@@ -49,12 +49,14 @@ The Inventory Management System will be:<br>
 -	supporting multi-user mode to administer functions according to the position of the employee.<br>
 <br>
 The Inventory Management System aims to:<br>
--	Ensure accurate tracking of inventory levels, including real-time updates and stock adjustments.
--	Streamline the order management process, from placing orders to order processing and fulfillment.
--	Generate comprehensive reports on inventory status, sales performance, and purchasing activities.
--	Implement barcode scanning functionality for efficient inventory management and product identification.
--	Set up stock alerts and notifications to prevent stockouts and optimize inventory replenishment.
--	Enable returns and exchanges management, including authorization, inventory updates, and refunds.
+
+
+- Ensure accurate tracking of inventory levels, including real-time updates and stock adjustments.
+- Streamline the order management process, from placing orders to order processing and fulfillment.
+- Generate comprehensive reports on inventory status, sales performance, and purchasing activities.
+- Implement barcode scanning functionality for efficient inventory management and product identification.
+- Set up stock alerts and notifications to prevent stockouts and optimize inventory replenishment.
+- Enable returns and exchanges management, including authorization, inventory updates, and refunds.
 <br>
 c.	Features<br>
 
