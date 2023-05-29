@@ -3,40 +3,61 @@
 # Inventory Management System Using C#<br>
  
 ## Chapter 1: Concept
-Mind map:<br>
- ![image](https://github.com/Yajme/Inventory-Management-System/assets/88352665/120c8213-9d92-4462-97c5-ce7662b8d540)
+### Mind map:<br>
+![image](https://github.com/Yajme/Inventory-Management-System/assets/88352665/494ec97e-b1d5-4357-842f-72307511e50a)
 
-Flowchart:<br>
+
+### Flowchart:<br>
   ![image](https://github.com/Yajme/Inventory-Management-System/assets/88352665/438efc02-acbb-41fe-af33-ac3cf0f9b56a)
 <br>
 ### I.	Inventory Tracking
 a.	Inventory Database<br>
-<p>Create and manage a database to store inventory information, including product details, quantities, and locations.</p><br>
+
+> Create and manage a database to store inventory information, including product details, quantities, and locations.<br>
 
 b.	Barcode scanning<br>
-Implement barcode scanning functionality to update inventory levels and track product movements quickly and accurately.<br>
+
+> Implement barcode scanning functionality to update inventory levels and track product movements quickly and accurately.<br>
 
 c.	Stock alerts<br>
-Set up alerts and notifications to inform users when inventory levels are running low or when items are out of stock.
+
+> Set up alerts and notifications to inform users when inventory levels are running low or when items are out of stock.
+
 ### II.	Order Management
 #### a.	Order Placement
-Enable users to place orders for products, including features like selecting items, specifying quantities, and choosing shipping options.
-i.	Order Processing: Process incoming orders, update inventory levels , update sales database , and generate invoices .
+> Enable users to place orders for products, including features like selecting items, specifying quantities, and choosing shipping options.
+>> Order Processing: Process incoming orders, update inventory levels, update sales database, and generate invoices.
+
+
 #### b.	Inventory Replenishment
 <br>
-i.	Reorder Trigger : Automatically detect when inventory levels reach a predefined threshold, triggering the need to replenish stock.<br>
-ii.	Generate Purchase Order : Create purchase orders based on the reorder trigger and send them to suppliers .<br>
-iii.	Receive Order Confirmation : Receive confirmation from suppliers regarding the purchase order and update inventory and purchase database .<br>
+
+> i.	Reorder Trigger : Automatically detect when inventory levels reach a predefined threshold, triggering the need to replenish stock.
+
+
+> ii.	Generate Purchase Order : Create purchase orders based on the reorder trigger and send them to suppliers.
+
+
+> iii.	Receive Order Confirmation : Receive confirmation from suppliers regarding the purchase order and update inventory and purchase database.
+
+
 
 c.	Return and Exchanges
-Return Authorization : Manage the process of authorizing returns and exchanges, update inventory , and update sales database . Generate refunds when necessary.
+> Return Authorization : Manage the process of authorizing returns and exchanges, update inventory, and update sales database. Generate refunds when necessary.
 ### III.	Reporting and Analytics
 a. Inventory Reports<br>
-Generate reports providing insights into inventory levels , stock movements , and expiry tracking .<br>
+> Generate reports providing insights into inventory levels , stock movements , and expiry tracking .<br>
+
+
 b.	Sales Reports<br>
-Generate reports on sales performance, including overall sales performance, product sales, and customer sales.<br>
+
+> Generate reports on sales performance, including overall sales performance, product sales, and customer sales.<br>
+
+
 c.	Purchase Reports<br>
-Generate reports on purchasing activities, including supplier performance, product purchases, and cost analysis.<br>
+> Generate reports on purchasing activities, including supplier performance, product purchases, and cost analysis.<br>
+
+
  <br><br>
 ## Chapter 2: Planning
 ### I.	Requirement Gathering
