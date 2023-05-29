@@ -11,7 +11,7 @@ Flowchart:<br>
 <br>
 ### I.	Inventory Tracking
 a.	Inventory Database<br>
-Create and manage a database to store inventory information, including product details, quantities, and locations.<br>
+<p>Create and manage a database to store inventory information, including product details, quantities, and locations.</p><br>
 
 b.	Barcode scanning<br>
 Implement barcode scanning functionality to update inventory levels and track product movements quickly and accurately.<br>
@@ -40,15 +40,15 @@ Generate reports on purchasing activities, including supplier performance, produ
  <br><br>
 ## Chapter 2: Planning
 ### I.	Requirement Gathering
-a.	Introduction: 
+#### a.	Introduction: 
 <br>Traditional inventory system using papers and manual labor has been used by many vendors here in the Philippines to track the store inventory and calculate their sales. Some are also using excel to efficiently calculate and track their sales however it is most efficient to use software that automatically track sales and inventory that is stored in a database that can be used in a long term and adequately boost productivity in sales. <br>
-b.	Scopes and Objectives: <br>
+#### b.	Scopes and Objectives: <br>
 The Inventory Management System will be:<br>
 -	providing its services to a small grocery store to handle transactions and concurrencies within the business to effectively track sales and manage inventory proficiently.
 -	handling products that are within the store but may vary according to the availability to the suppliers.
 -	supporting multi-user mode to administer functions according to the position of the employee.<br>
 <br>
-The Inventory Management System aims to:<br>
+The Inventory Management System aims to: <br><br>
 
 
 - Ensure accurate tracking of inventory levels, including real-time updates and stock adjustments.
@@ -58,7 +58,8 @@ The Inventory Management System aims to:<br>
 - Set up stock alerts and notifications to prevent stockouts and optimize inventory replenishment.
 - Enable returns and exchanges management, including authorization, inventory updates, and refunds.
 <br>
-c.	Features<br>
+
+#### c.	Features <br>
 
 1.	Inventory Tracking Features:
 -	Ability to add, update, and delete inventory items.
@@ -68,7 +69,6 @@ c.	Features<br>
 2.	Order Management Features:
 -	Order placement functionality for cashiers.
 -	Managing returns, exchanges, and refunds.
-
 
 3.	Reporting and Analytics Features:
 -	Generation of inventory reports, such as stock levels, stock movements, and expiry tracking.
