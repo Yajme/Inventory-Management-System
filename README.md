@@ -121,6 +121,7 @@ The Inventory Management System aims to: <br><br>
 <p>The Inventory Management System Interface will be designed using Visual Studio to create user-friendly experience and suitable environment for the user. 
 
  </p>
+ 
 ### III.	Database Development
 ***
 
