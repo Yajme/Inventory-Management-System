@@ -8,10 +8,15 @@
 
 
 ### Flowchart:<br>
+
   ![image](https://github.com/Yajme/Inventory-Management-System/assets/88352665/438efc02-acbb-41fe-af33-ac3cf0f9b56a)
+  
+  
 <br>
-### I.	Inventory Tracking
-a.	Inventory Database<br>
+
+###  I.	Inventory Tracking 
+***
+a.	Inventory Database  <br>
 
 > Create and manage a database to store inventory information, including product details, quantities, and locations.<br>
 
@@ -24,6 +29,7 @@ c.	Stock alerts<br>
 > Set up alerts and notifications to inform users when inventory levels are running low or when items are out of stock.
 
 ### II.	Order Management
+***
 #### a.	Order Placement
 > Enable users to place orders for products, including features like selecting items, specifying quantities, and choosing shipping options.
 >> Order Processing: Process incoming orders, update inventory levels, update sales database, and generate invoices.
@@ -45,6 +51,7 @@ c.	Stock alerts<br>
 c.	Return and Exchanges
 > Return Authorization : Manage the process of authorizing returns and exchanges, update inventory, and update sales database. Generate refunds when necessary.
 ### III.	Reporting and Analytics
+***
 a. Inventory Reports<br>
 > Generate reports providing insights into inventory levels , stock movements , and expiry tracking .<br>
 
@@ -61,6 +68,7 @@ c.	Purchase Reports<br>
  <br><br>
 ## Chapter 2: Planning
 ### I.	Requirement Gathering
+***
 #### a.	Introduction: 
 <br>Traditional inventory system using papers and manual labor has been used by many vendors here in the Philippines to track the store inventory and calculate their sales. Some are also using excel to efficiently calculate and track their sales however it is most efficient to use software that automatically track sales and inventory that is stored in a database that can be used in a long term and adequately boost productivity in sales. <br>
 #### b.	Scopes and Objectives: <br>
@@ -109,18 +117,26 @@ The Inventory Management System aims to: <br><br>
 -	Integration with inventory replenishment processes to trigger reorder actions.
 
 ### II.	System Design
-The Inventory Management System Interface will be designed using Visual Studio to create user-friendly experience and suitable environment for the user. 
+***
+<p>The Inventory Management System Interface will be designed using Visual Studio to create user-friendly experience and suitable environment for the user. 
 
+ </p>
 ### III.	Database Development
+***
 
 ### IV.	Backend Development
+***
 
 ### V.	User interface development
+***
 
 ### VI.	Integration and Testing
+***
 
 ### VII.	Security and Access Control
+***
 
 ### VIII.	Deployment and Maintenance
+***
 
 
