@@ -137,7 +137,34 @@ The Inventory Management System aims to: <br><br>
 *Figure 1. Sample ER Diagram*
 <br>
 
-<p>The table named "Products" holds information pertaining to products, including their identification number, name, description, category, supplier, unit price, stock quantity, and reorder level. The "Categories" table maintains a record of different product categories, while the "Suppliers" table contains details about suppliers, such as their identification number, name, contact person, phone number, and email address. The "Orders" table keeps track of customer orders and includes fields for order identification number, order date, and customer identification number. The "OrderItems" table records individual items within an order, including their order item identification number, order identification number, product identification number, quantity, and unit price. The "Customers" table stores customer information such as customer identification number, name, address, city, phone number, and email address. The "Warehouses" table maintains information about warehouses, including their identification number, name, and location. Lastly, the "StockMovements" table tracks the movement of inventory between warehouses and includes fields for movement identification number, product identification number, warehouse identification number, type of movement, date of movement, and quantity. Altogether, these tables create a comprehensive database structure that enables efficient storage, retrieval, and management of data related to inventory within the Inventory Management System. </p>
+
+- The table named "Products" holds information pertaining to products, including their identification number, name, description, category, supplier, unit price, stock quantity, and reorder level. 
+- The "Categories" table maintains a record of different product categories, while the "Suppliers" table contains details about suppliers, such as their identification number, name, contact person, phone number, and email address. 
+- The "Orders" table keeps track of customer orders and includes fields for order identification number, order date, and customer identification number.
+- The "OrderItems" table records individual items within an order, including their order item identification number, order identification number, product identification number, quantity, and unit price.
+- The "Customers" table stores customer information such as customer identification number, name, address, city, phone number, and email address. 
+- The "Warehouses" table maintains information about warehouses, including their identification number, name, and location. 
+- Lastly, the "StockMovements" table tracks the movement of inventory between warehouses and includes fields for movement identification number, product identification number, warehouse identification number, type of movement, date of movement, and quantity. 
+ 
+ <br>
+ 
+ Altogether, these tables create a comprehensive database structure that enables efficient storage, retrieval, and management of data related to inventory within the Inventory Management System. 
+
+<br>
+b.	Database Engine
+
+<br>
+
+This project will be using MS SQL Server as the Database Engine for several reasons:
+<br>
+<br>
+i.	Robust and Reliable: MS SQL is known for its stability, reliability, and performance. It is designed to handle large volumes of data and high transaction loads, making it suitable for enterprise-level applications.<br><br>
+ii.	Comprehensive Feature Set: MS SQL offers a wide range of features, including advanced querying capabilities, indexing options, stored procedures, triggers, and support for complex data types. It also provides built-in support for full-text search, data encryption, and high availability solutions.<br><br>
+iii.	Integration with Microsoft Ecosystem: If you are already utilizing other Microsoft technologies such as .NET framework, Azure cloud services, or Windows Server, MS SQL integrates seamlessly with these platforms. This integration can simplify development, deployment, and management processes.<br><br>
+iv.	Scalability and Performance: MS SQL provides various features to optimize and scale your database as your application grows. It supports clustering, replication, partitioning, and distributed query processing, allowing you to handle increasing workloads and ensure optimal performance.<br><br>
+v.	Security Features: Security is a critical aspect of any database system. MS SQL offers robust security features such as role-based access control, transparent data encryption, and fine-grained auditing. It also provides features like row-level security and dynamic data masking to protect sensitive data.<br><br>
+vi.	Management Tools: Microsoft provides powerful management tools like SQL Server Management Studio (SSMS) and Azure Data Studio, which offer intuitive interfaces for database administration, performance tuning, monitoring, and troubleshooting.<br><br>
+vii.	Strong Community and Support: MS SQL has a large and active community of developers and database administrators. This means there are ample resources, tutorials, forums, and documentation available to assist with any challenges you may face.<br><br>
 
 ### IV.	Backend Development
 ***
