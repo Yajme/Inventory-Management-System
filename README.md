@@ -118,12 +118,26 @@ The Inventory Management System aims to: <br><br>
 
 ### II.	System Design
 ***
-<p>The Inventory Management System Interface will be designed using Visual Studio to create user-friendly experience and suitable environment for the user. 
+<p>The user interface of the Inventory Management System will be designed using Visual Studio, aiming to deliver a user-friendly experience and create an environment that maximizes efficiency while ensuring accurate sales reports and inventory tracking. This approach will minimize user effort and enhance overall system usability. Additionally, the system will be developed using the C# programming language.
 
  </p>
  
 ### III.	Database Development
 ***
+
+<p> The project will be using a database to store important information such as orders, invoices, customer details, and inventory data. This will create a central and well-organized place to manage and access data efficiently. The database allows different parts of the system to work together smoothly and enables accurate tracking, reporting, and analysis of inventory-related activities. By using a database, the Inventory Management System can easily store, update, and retrieve necessary information, improving the overall functionality and dependability of the system. </p>
+
+<br>
+
+  a. The Entity Relationship Diagram illustrates the connections between different entities within the system and outlines the roles and functions of each entity within those relationships.
+  
+  <br>
+  
+  ![image](https://github.com/Yajme/Inventory-Management-System/assets/88352665/5e8c60a9-23c5-4197-900a-18dfbfb8ef38)
+*Figure 1. Sample ER Diagram*
+<br>
+
+<p>The table named "Products" holds information pertaining to products, including their identification number, name, description, category, supplier, unit price, stock quantity, and reorder level. The "Categories" table maintains a record of different product categories, while the "Suppliers" table contains details about suppliers, such as their identification number, name, contact person, phone number, and email address. The "Orders" table keeps track of customer orders and includes fields for order identification number, order date, and customer identification number. The "OrderItems" table records individual items within an order, including their order item identification number, order identification number, product identification number, quantity, and unit price. The "Customers" table stores customer information such as customer identification number, name, address, city, phone number, and email address. The "Warehouses" table maintains information about warehouses, including their identification number, name, and location. Lastly, the "StockMovements" table tracks the movement of inventory between warehouses and includes fields for movement identification number, product identification number, warehouse identification number, type of movement, date of movement, and quantity. Altogether, these tables create a comprehensive database structure that enables efficient storage, retrieval, and management of data related to inventory within the Inventory Management System. </p>
 
 ### IV.	Backend Development
 ***
