@@ -168,7 +168,7 @@ vii.	Strong Community and Support: MS SQL has a large and active community of de
 
 ### IV.	Backend Development
 ***
-
+<p>The Inventory Management System will be developed in .NET Framework using C#</p>
 ### V.	User interface development
 ***
 
