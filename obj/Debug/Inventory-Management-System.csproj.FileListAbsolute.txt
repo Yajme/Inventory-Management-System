@@ -1,0 +1,13 @@
+D:\Users\spart\source\repos\Inventory-Management-System\bin\Debug\Inventory Management System.exe.config
+D:\Users\spart\source\repos\Inventory-Management-System\bin\Debug\Inventory Management System.exe
+D:\Users\spart\source\repos\Inventory-Management-System\bin\Debug\Inventory Management System.pdb
+D:\Users\spart\source\repos\Inventory-Management-System\bin\Debug\FontAwesome.Sharp.dll
+D:\Users\spart\source\repos\Inventory-Management-System\obj\Debug\Inventory-Management-System.csproj.AssemblyReference.cache
+D:\Users\spart\source\repos\Inventory-Management-System\obj\Debug\Inventory-Management-System.csproj.SuggestedBindingRedirects.cache
+D:\Users\spart\source\repos\Inventory-Management-System\obj\Debug\Inventory_Management_System.Login.resources
+D:\Users\spart\source\repos\Inventory-Management-System\obj\Debug\Inventory_Management_System.Properties.Resources.resources
+D:\Users\spart\source\repos\Inventory-Management-System\obj\Debug\Inventory-Management-System.csproj.GenerateResource.cache
+D:\Users\spart\source\repos\Inventory-Management-System\obj\Debug\Inventory-Management-System.csproj.CoreCompileInputs.cache
+D:\Users\spart\source\repos\Inventory-Management-System\obj\Debug\Inventory-Management-System.csproj.CopyComplete
+D:\Users\spart\source\repos\Inventory-Management-System\obj\Debug\Inventory Management System.exe
+D:\Users\spart\source\repos\Inventory-Management-System\obj\Debug\Inventory Management System.pdb
