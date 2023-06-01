@@ -53,6 +53,7 @@ namespace Inventory_Management_System
                                     {
                                       frmDashboard frmdb = new frmDashboard();
                                       frmdb.Show();
+                                this.Hide();
                                     }
                                 }
                                 else

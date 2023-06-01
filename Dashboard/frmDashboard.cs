@@ -16,5 +16,15 @@ namespace Inventory_Management_System.Dashboard
         {
             InitializeComponent();
         }
+
+        private void frmDashboard_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Do you want to exit the application?", "Exit", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+                Application.ExitThread(); // Terminate the program
+            }
+        }
     }
 }
