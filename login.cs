@@ -46,16 +46,14 @@ namespace Inventory_Management_System
                             command.Parameters.AddWithValue("@Username", txtUsername.Text);
                             command.Parameters.AddWithValue("@Password", txtPassword.Text);
 
-                        db.dr = command.ExecuteReader();
+                            db.dr = command.ExecuteReader();
                                 if (db.dr.Read())
                                 {
                                     if(db.dr[3].ToString() == "1")
                                     {
-                                frmDashboard frmdb = new frmDashboard();
-                                frmdb.Show();
-
+                                      frmDashboard frmdb = new frmDashboard();
+                                      frmdb.Show();
                                     }
-                                   
                                 }
                                 else
                                 {

@@ -11,3 +11,4 @@ D:\Users\spart\source\repos\Inventory-Management-System\obj\Debug\Inventory-Mana
 D:\Users\spart\source\repos\Inventory-Management-System\obj\Debug\Inventory-Management-System.csproj.CopyComplete
 D:\Users\spart\source\repos\Inventory-Management-System\obj\Debug\Inventory Management System.exe
 D:\Users\spart\source\repos\Inventory-Management-System\obj\Debug\Inventory Management System.pdb
+D:\Users\spart\source\repos\Inventory-Management-System\obj\Debug\Inventory_Management_System.Dashboard.frmDashboard.resources
