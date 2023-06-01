@@ -168,9 +168,11 @@ vii.	Strong Community and Support: MS SQL has a large and active community of de
 
 ### IV.	Backend Development
 ***
-<p>The Inventory Management System will be developed in .NET Framework using C#, a widely adopted programming language known for its versatility and robustness. C# provides a rich set of features and libraries that will enable efficient development and seamless integration with other technologies.
-The development process will involve creating a modular and scalable architecture to handle various aspects of inventory management, such as tracking stock levels, managing suppliers, and processing orders. The .NET Framework offers a comprehensive set of tools and frameworks, including the .NET Core, which allows for cross-platform development and deployment.
-To ensure smooth data management, the system will utilize a database management system, such as Microsoft SQL Server, to store and retrieve inventory-related information. This will enable efficient querying and data manipulation, ensuring fast and accurate retrieval of inventory data.
+<p>This project aims to develop the Inventory Management System using C# programming language within the .NET Framework. C# is widely recognized for its flexibility and reliability, offering a vast array of features and libraries that will expedite development and seamless integration with other technologies.
+
+The development process will prioritize the creation of a modular and scalable architecture capable of handling diverse aspects of inventory management, including stock level tracking, supplier management, and order processing. Leveraging the extensive toolset and frameworks provided by the .NET Framework, particularly .NET Core, will allow for efficient development and deployment across multiple platforms.
+
+To ensure the smooth management of data, the system will employ a reliable database management system like Microsoft SQL Server. This will enable efficient storage and retrieval of inventory-related information, ensuring prompt and accurate access to inventory data through efficient querying and manipulation techniques.
 </p>
 
 ### V.	User interface development
