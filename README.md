@@ -168,11 +168,18 @@ vii.	Strong Community and Support: MS SQL has a large and active community of de
 
 ### IV.	Backend Development
 ***
-<p>The Inventory Management System will be developed in .NET Framework using C#</p>
+<p>The Inventory Management System will be developed in .NET Framework using C#, a widely adopted programming language known for its versatility and robustness. C# provides a rich set of features and libraries that will enable efficient development and seamless integration with other technologies.
+The development process will involve creating a modular and scalable architecture to handle various aspects of inventory management, such as tracking stock levels, managing suppliers, and processing orders. The .NET Framework offers a comprehensive set of tools and frameworks, including the .NET Core, which allows for cross-platform development and deployment.
+To ensure smooth data management, the system will utilize a database management system, such as Microsoft SQL Server, to store and retrieve inventory-related information. This will enable efficient querying and data manipulation, ensuring fast and accurate retrieval of inventory data.
+</p>
 
 ### V.	User interface development
 ***
 
+<p>The system will incorporate user-friendly interfaces, allowing authorized users to easily navigate through different functionalities and perform tasks efficiently. The graphical user interface (GUI) will be designed using modern UI frameworks, such as Windows Presentation Foundation (WPF) or ASP.NET, to provide a visually appealing and intuitive user experience.
+To enhance the system's functionality and performance, various libraries and frameworks within the .NET ecosystem will be leveraged. This includes leveraging third-party libraries for barcode scanning and generation, reporting and analytics, and integration with external systems such as payment gateways or enterprise resource planning (ERP) systems.
+ </p>
+   
 ### VI.	Integration and Testing
 ***
 
