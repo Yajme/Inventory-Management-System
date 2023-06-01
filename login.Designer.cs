@@ -35,10 +35,11 @@
             this.btnExit = new FontAwesome.Sharp.IconButton();
             this.panel4 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txtPassword = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtUsername = new System.Windows.Forms.TextBox();
             this.iconPictureBox1 = new FontAwesome.Sharp.IconPictureBox();
+            this.btnShowPass = new FontAwesome.Sharp.IconButton();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -58,6 +59,7 @@
             this.btnLogin.TabIndex = 0;
             this.btnLogin.Text = "Login";
             this.btnLogin.UseVisualStyleBackColor = true;
+            this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
             // 
             // panel1
             // 
@@ -100,13 +102,15 @@
             this.btnExit.Size = new System.Drawing.Size(75, 54);
             this.btnExit.TabIndex = 0;
             this.btnExit.UseVisualStyleBackColor = false;
+            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
             // panel4
             // 
+            this.panel4.Controls.Add(this.btnShowPass);
             this.panel4.Controls.Add(this.label2);
-            this.panel4.Controls.Add(this.textBox2);
+            this.panel4.Controls.Add(this.txtPassword);
             this.panel4.Controls.Add(this.label1);
-            this.panel4.Controls.Add(this.textBox1);
+            this.panel4.Controls.Add(this.txtUsername);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel4.Location = new System.Drawing.Point(171, 54);
             this.panel4.Name = "panel4";
@@ -123,13 +127,15 @@
             this.label2.TabIndex = 8;
             this.label2.Text = "Password";
             // 
-            // textBox2
+            // txtPassword
             // 
-            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.textBox2.Location = new System.Drawing.Point(190, 113);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(270, 35);
-            this.textBox2.TabIndex = 7;
+            this.txtPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.txtPassword.Location = new System.Drawing.Point(190, 113);
+            this.txtPassword.Name = "txtPassword";
+            this.txtPassword.Size = new System.Drawing.Size(270, 35);
+            this.txtPassword.TabIndex = 7;
+            this.txtPassword.UseSystemPasswordChar = true;
+            this.txtPassword.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.keyPressEnter);
             // 
             // label1
             // 
@@ -141,28 +147,45 @@
             this.label1.TabIndex = 6;
             this.label1.Text = "Username";
             // 
-            // textBox1
+            // txtUsername
             // 
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.textBox1.Location = new System.Drawing.Point(190, 72);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(270, 35);
-            this.textBox1.TabIndex = 5;
+            this.txtUsername.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.txtUsername.Location = new System.Drawing.Point(190, 72);
+            this.txtUsername.Name = "txtUsername";
+            this.txtUsername.Size = new System.Drawing.Size(270, 35);
+            this.txtUsername.TabIndex = 5;
+            this.txtUsername.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.keyPressEnter);
             // 
             // iconPictureBox1
             // 
             this.iconPictureBox1.BackColor = System.Drawing.SystemColors.Control;
             this.iconPictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.iconPictureBox1.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.iconPictureBox1.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.iconPictureBox1.IconColor = System.Drawing.SystemColors.ControlText;
-            this.iconPictureBox1.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iconPictureBox1.ForeColor = System.Drawing.Color.DarkGray;
+            this.iconPictureBox1.IconChar = FontAwesome.Sharp.IconChar.CircleUser;
+            this.iconPictureBox1.IconColor = System.Drawing.Color.DarkGray;
+            this.iconPictureBox1.IconFont = FontAwesome.Sharp.IconFont.Solid;
             this.iconPictureBox1.IconSize = 171;
             this.iconPictureBox1.Location = new System.Drawing.Point(0, 0);
             this.iconPictureBox1.Name = "iconPictureBox1";
             this.iconPictureBox1.Size = new System.Drawing.Size(171, 342);
             this.iconPictureBox1.TabIndex = 0;
             this.iconPictureBox1.TabStop = false;
+            // 
+            // btnShowPass
+            // 
+            this.btnShowPass.AutoSize = true;
+            this.btnShowPass.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnShowPass.IconChar = FontAwesome.Sharp.IconChar.Eye;
+            this.btnShowPass.IconColor = System.Drawing.Color.Black;
+            this.btnShowPass.IconFont = FontAwesome.Sharp.IconFont.Regular;
+            this.btnShowPass.IconSize = 20;
+            this.btnShowPass.Location = new System.Drawing.Point(423, 113);
+            this.btnShowPass.Margin = new System.Windows.Forms.Padding(0);
+            this.btnShowPass.Name = "btnShowPass";
+            this.btnShowPass.Size = new System.Drawing.Size(37, 35);
+            this.btnShowPass.TabIndex = 9;
+            this.btnShowPass.UseVisualStyleBackColor = true;
+            this.btnShowPass.Click += new System.EventHandler(this.btnShowPass_Click);
             // 
             // Login
             // 
@@ -177,6 +200,7 @@
             this.Name = "Login";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Login_Load);
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
@@ -196,10 +220,11 @@
         private FontAwesome.Sharp.IconButton btnExit;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txtPassword;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtUsername;
         private FontAwesome.Sharp.IconPictureBox iconPictureBox1;
+        private FontAwesome.Sharp.IconButton btnShowPass;
     }
 }
 
