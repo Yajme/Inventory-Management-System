@@ -37,6 +37,58 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
         private void frmInventory_Load(object sender, EventArgs e)
         {
             LoadItems("*", "*");
+            
+        }
+
+        public void RemoveText(object sender, EventArgs e)
+        {
+            if(txtQuery.Text == "Search...")
+            {
+                txtQuery.Text = "";
+                txtQuery.ForeColor = Color.Black;
+            }
+        }
+
+        public void AddText(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtQuery.Text))
+              txtQuery.Text = "Search...";
+              txtQuery.ForeColor = Color.DimGray;
+        }
+
+        private void btnAddProduct_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnManageCategory_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnManageSupplier_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnManageStocks_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnManageWarehouse_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnScan_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

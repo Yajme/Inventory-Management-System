@@ -1,4 +1,6 @@
-﻿namespace Inventory_Management_System.Dashboard.frmPanelContainers
+﻿using System.Windows.Media.Animation;
+
+namespace Inventory_Management_System.Dashboard.frmPanelContainers
 {
     partial class frmInventory
     {
@@ -28,12 +30,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmInventory));
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.iconButton7 = new FontAwesome.Sharp.IconButton();
-            this.iconButton6 = new FontAwesome.Sharp.IconButton();
+            this.cmbFilter = new System.Windows.Forms.ComboBox();
+            this.btnScan = new FontAwesome.Sharp.IconButton();
+            this.btnSearch = new FontAwesome.Sharp.IconButton();
             this.panel5 = new System.Windows.Forms.Panel();
             this.txtQuery = new System.Windows.Forms.TextBox();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -77,9 +80,9 @@
             // panel3
             // 
             this.panel3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.panel3.Controls.Add(this.comboBox1);
-            this.panel3.Controls.Add(this.iconButton7);
-            this.panel3.Controls.Add(this.iconButton6);
+            this.panel3.Controls.Add(this.cmbFilter);
+            this.panel3.Controls.Add(this.btnScan);
+            this.panel3.Controls.Add(this.btnSearch);
             this.panel3.Controls.Add(this.panel5);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel3.Location = new System.Drawing.Point(836, 0);
@@ -88,46 +91,48 @@
             this.panel3.Size = new System.Drawing.Size(492, 94);
             this.panel3.TabIndex = 2;
             // 
-            // comboBox1
+            // cmbFilter
             // 
-            this.comboBox1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(371, 38);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 28);
-            this.comboBox1.TabIndex = 7;
+            this.cmbFilter.Dock = System.Windows.Forms.DockStyle.Right;
+            this.cmbFilter.FormattingEnabled = true;
+            this.cmbFilter.Location = new System.Drawing.Point(371, 38);
+            this.cmbFilter.Name = "cmbFilter";
+            this.cmbFilter.Size = new System.Drawing.Size(121, 28);
+            this.cmbFilter.TabIndex = 7;
             // 
-            // iconButton7
+            // btnScan
             // 
-            this.iconButton7.AutoSize = true;
-            this.iconButton7.Dock = System.Windows.Forms.DockStyle.Left;
-            this.iconButton7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.iconButton7.ForeColor = System.Drawing.Color.White;
-            this.iconButton7.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.iconButton7.IconColor = System.Drawing.Color.Black;
-            this.iconButton7.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconButton7.Location = new System.Drawing.Point(243, 38);
-            this.iconButton7.Name = "iconButton7";
-            this.iconButton7.Size = new System.Drawing.Size(128, 56);
-            this.iconButton7.TabIndex = 6;
-            this.iconButton7.Text = "[Scan]";
-            this.iconButton7.UseVisualStyleBackColor = true;
+            this.btnScan.AutoSize = true;
+            this.btnScan.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnScan.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnScan.ForeColor = System.Drawing.Color.White;
+            this.btnScan.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.btnScan.IconColor = System.Drawing.Color.Black;
+            this.btnScan.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnScan.Location = new System.Drawing.Point(243, 38);
+            this.btnScan.Name = "btnScan";
+            this.btnScan.Size = new System.Drawing.Size(128, 56);
+            this.btnScan.TabIndex = 6;
+            this.btnScan.Text = "[Scan]";
+            this.btnScan.UseVisualStyleBackColor = true;
+            this.btnScan.Click += new System.EventHandler(this.btnScan_Click);
             // 
-            // iconButton6
+            // btnSearch
             // 
-            this.iconButton6.AutoSize = true;
-            this.iconButton6.Dock = System.Windows.Forms.DockStyle.Left;
-            this.iconButton6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.iconButton6.ForeColor = System.Drawing.Color.White;
-            this.iconButton6.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.iconButton6.IconColor = System.Drawing.Color.Black;
-            this.iconButton6.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconButton6.Location = new System.Drawing.Point(0, 38);
-            this.iconButton6.Name = "iconButton6";
-            this.iconButton6.Size = new System.Drawing.Size(243, 56);
-            this.iconButton6.TabIndex = 5;
-            this.iconButton6.Text = "[Search]";
-            this.iconButton6.UseVisualStyleBackColor = true;
+            this.btnSearch.AutoSize = true;
+            this.btnSearch.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSearch.ForeColor = System.Drawing.Color.White;
+            this.btnSearch.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.btnSearch.IconColor = System.Drawing.Color.Black;
+            this.btnSearch.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnSearch.Location = new System.Drawing.Point(0, 38);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(243, 56);
+            this.btnSearch.TabIndex = 5;
+            this.btnSearch.Text = "[Search]";
+            this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // panel5
             // 
@@ -144,13 +149,18 @@
             this.txtQuery.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtQuery.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.txtQuery.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtQuery.ForeColor = System.Drawing.Color.DimGray;
             this.txtQuery.Location = new System.Drawing.Point(0, 0);
             this.txtQuery.Name = "txtQuery";
             this.txtQuery.Size = new System.Drawing.Size(492, 38);
             this.txtQuery.TabIndex = 4;
+            this.txtQuery.Text = "Search...";
+            this.txtQuery.GotFocus += new System.EventHandler(this.RemoveText);
+            this.txtQuery.LostFocus += new System.EventHandler(this.AddText);
             // 
             // panel2
             // 
+            this.panel2.AutoSize = true;
             this.panel2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.panel2.Controls.Add(this.btnManageWarehouse);
             this.panel2.Controls.Add(this.btnManageStocks);
@@ -160,7 +170,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(803, 94);
+            this.panel2.Size = new System.Drawing.Size(734, 94);
             this.panel2.TabIndex = 1;
             // 
             // btnManageWarehouse
@@ -179,6 +189,7 @@
             this.btnManageWarehouse.TabIndex = 4;
             this.btnManageWarehouse.Text = "[Manage Warehouse]";
             this.btnManageWarehouse.UseVisualStyleBackColor = true;
+            this.btnManageWarehouse.Click += new System.EventHandler(this.btnManageWarehouse_Click);
             // 
             // btnManageStocks
             // 
@@ -196,6 +207,7 @@
             this.btnManageStocks.TabIndex = 3;
             this.btnManageStocks.Text = "[Manage Stocks]";
             this.btnManageStocks.UseVisualStyleBackColor = true;
+            this.btnManageStocks.Click += new System.EventHandler(this.btnManageStocks_Click);
             // 
             // btnManageSupplier
             // 
@@ -213,6 +225,7 @@
             this.btnManageSupplier.TabIndex = 2;
             this.btnManageSupplier.Text = "[Manage Supplier]";
             this.btnManageSupplier.UseVisualStyleBackColor = true;
+            this.btnManageSupplier.Click += new System.EventHandler(this.btnManageSupplier_Click);
             // 
             // btnManageCategory
             // 
@@ -230,6 +243,7 @@
             this.btnManageCategory.TabIndex = 1;
             this.btnManageCategory.Text = "[Manage Category]";
             this.btnManageCategory.UseVisualStyleBackColor = true;
+            this.btnManageCategory.Click += new System.EventHandler(this.btnManageCategory_Click);
             // 
             // btnAddProduct
             // 
@@ -247,6 +261,7 @@
             this.btnAddProduct.TabIndex = 0;
             this.btnAddProduct.Text = "[Add Product]";
             this.btnAddProduct.UseVisualStyleBackColor = true;
+            this.btnAddProduct.Click += new System.EventHandler(this.btnAddProduct_Click);
             // 
             // panel4
             // 
@@ -263,14 +278,14 @@
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(172)))), ((int)(((byte)(132)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(172)))), ((int)(((byte)(132)))));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colProductID,
@@ -358,7 +373,7 @@
             // 
             this.colEdit.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
             this.colEdit.HeaderText = "";
-            this.colEdit.Image = global::Inventory_Management_System.Properties.Resources.edit;
+            this.colEdit.Image = ((System.Drawing.Image)(resources.GetObject("colEdit.Image")));
             this.colEdit.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
             this.colEdit.MinimumWidth = 8;
             this.colEdit.Name = "colEdit";
@@ -369,7 +384,7 @@
             // 
             this.colDelete.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
             this.colDelete.HeaderText = "";
-            this.colDelete.Image = global::Inventory_Management_System.Properties.Resources.trash;
+            this.colDelete.Image = ((System.Drawing.Image)(resources.GetObject("colDelete.Image")));
             this.colDelete.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
             this.colDelete.MinimumWidth = 8;
             this.colDelete.Name = "colDelete";
@@ -380,7 +395,7 @@
             // 
             this.dataGridViewImageColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
             this.dataGridViewImageColumn1.HeaderText = "";
-            this.dataGridViewImageColumn1.Image = global::Inventory_Management_System.Properties.Resources.edit;
+            this.dataGridViewImageColumn1.Image = ((System.Drawing.Image)(resources.GetObject("dataGridViewImageColumn1.Image")));
             this.dataGridViewImageColumn1.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
             this.dataGridViewImageColumn1.MinimumWidth = 8;
             this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
@@ -391,7 +406,7 @@
             // 
             this.dataGridViewImageColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.dataGridViewImageColumn2.HeaderText = "";
-            this.dataGridViewImageColumn2.Image = global::Inventory_Management_System.Properties.Resources.trash;
+            this.dataGridViewImageColumn2.Image = ((System.Drawing.Image)(resources.GetObject("dataGridViewImageColumn2.Image")));
             this.dataGridViewImageColumn2.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
             this.dataGridViewImageColumn2.MinimumWidth = 8;
             this.dataGridViewImageColumn2.Name = "dataGridViewImageColumn2";
@@ -410,6 +425,7 @@
             this.Text = "frmInventory";
             this.Load += new System.EventHandler(this.frmInventory_Load);
             this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.panel5.ResumeLayout(false);
@@ -445,10 +461,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colSupplier;
         private System.Windows.Forms.DataGridViewImageColumn colEdit;
         private System.Windows.Forms.DataGridViewImageColumn colDelete;
-        private FontAwesome.Sharp.IconButton iconButton7;
-        private FontAwesome.Sharp.IconButton iconButton6;
+        private FontAwesome.Sharp.IconButton btnScan;
+        private FontAwesome.Sharp.IconButton btnSearch;
         private System.Windows.Forms.Panel panel5;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cmbFilter;
         private System.Windows.Forms.TextBox txtQuery;
     }
 }
