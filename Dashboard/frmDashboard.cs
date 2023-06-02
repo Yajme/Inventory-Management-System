@@ -120,7 +120,7 @@ namespace Inventory_Management_System.Dashboard
             {
                 showText();
                 panelSideTop.Height = 289;
-                sidePanel.Width = 320;
+                sidePanel.Width = 254;
                 btnShowHidePanel.IconChar = FontAwesome.Sharp.IconChar.AngleDoubleLeft;
             }
             

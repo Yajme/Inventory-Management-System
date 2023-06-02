@@ -154,6 +154,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Dashboard\frmPanelContainers\frmInventoryForms\" />
     <Folder Include="POS\" />
   </ItemGroup>
   <ItemGroup>
