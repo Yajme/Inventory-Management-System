@@ -4,19 +4,68 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.Remoting.Channels;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Inventory_Management_System;
+using Inventory_Management_System.Dashboard.frmPanelContainers;
+
 namespace Inventory_Management_System.Dashboard
 {
     public partial class frmDashboard : Form
     {
         public static bool logout = false;
+        public Form lastForm;
         public frmDashboard()
         {
             InitializeComponent();
         }
+        private void btnPanel(object sender, EventArgs e)
+        {
+            ChangeMenu(((Button)sender).Tag.ToString());
+        }
+
+        
+
+        public void ChangeMenu(string menu)
+        {
+            if (panelContainer.Controls.Contains(lastForm))
+            {
+                lastForm.Close();
+            }
+
+            switch (menu)
+            {
+                case "btnHome":
+                    AddForm(new frmHome());
+                    break;
+                case "btnSalesReport":
+                    AddForm(new frmSalesReport());
+                    break; 
+                case "btnInventory":
+                    AddForm(new frmInventory());
+                    break;
+                case "btnOrder":
+                    AddForm(new frmOrder());
+                    break;
+                
+            }
+        }
+
+        private void AddForm(Form frm)
+        {
+            panelContainer.Controls.Clear();
+
+            frm.TopMost = true;
+            frm.TopLevel = false;
+            frm.Dock = DockStyle.Fill;
+            panelContainer.Controls.Add(frm);
+            frm.Show();
+
+            lastForm = frm;
+        }
+
 
         private void frmDashboard_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -100,6 +149,7 @@ namespace Inventory_Management_System.Dashboard
         private void frmDashboard_Load(object sender, EventArgs e)
         {
             logout = false;
+            ChangeMenu("btnHome");
         }
     }
 }
