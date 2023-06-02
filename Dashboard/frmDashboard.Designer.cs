@@ -28,144 +28,180 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.PanelContainer = new System.Windows.Forms.Panel();
-            this.iconButton6 = new FontAwesome.Sharp.IconButton();
-            this.iconButton5 = new FontAwesome.Sharp.IconButton();
-            this.iconButton4 = new FontAwesome.Sharp.IconButton();
-            this.iconButton3 = new FontAwesome.Sharp.IconButton();
-            this.iconButton2 = new FontAwesome.Sharp.IconButton();
-            this.iconButton1 = new FontAwesome.Sharp.IconButton();
-            this.panel3 = new System.Windows.Forms.Panel();
+            this.sidePanel = new System.Windows.Forms.Panel();
+            this.btnLogout = new FontAwesome.Sharp.IconButton();
+            this.btnExit = new FontAwesome.Sharp.IconButton();
+            this.btnSalesReport = new FontAwesome.Sharp.IconButton();
+            this.btnInventory = new FontAwesome.Sharp.IconButton();
+            this.btnOrder = new FontAwesome.Sharp.IconButton();
+            this.btnHome = new FontAwesome.Sharp.IconButton();
+            this.panelSideTop = new System.Windows.Forms.Panel();
+            this.btnShowHidePanel = new FontAwesome.Sharp.IconButton();
             this.iconPictureBox1 = new FontAwesome.Sharp.IconPictureBox();
-            this.panel1.SuspendLayout();
-            this.panel3.SuspendLayout();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.panelContainer = new System.Windows.Forms.Panel();
+            this.btnSettings = new FontAwesome.Sharp.IconButton();
+            this.sidePanel.SuspendLayout();
+            this.panelSideTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
-            // panel1
+            // sidePanel
             // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(55)))), ((int)(((byte)(55)))));
-            this.panel1.Controls.Add(this.iconButton6);
-            this.panel1.Controls.Add(this.iconButton5);
-            this.panel1.Controls.Add(this.iconButton4);
-            this.panel1.Controls.Add(this.iconButton3);
-            this.panel1.Controls.Add(this.iconButton2);
-            this.panel1.Controls.Add(this.iconButton1);
-            this.panel1.Controls.Add(this.panel3);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(320, 844);
-            this.panel1.TabIndex = 0;
+            this.sidePanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(55)))), ((int)(((byte)(55)))));
+            this.sidePanel.Controls.Add(this.btnSettings);
+            this.sidePanel.Controls.Add(this.btnLogout);
+            this.sidePanel.Controls.Add(this.btnExit);
+            this.sidePanel.Controls.Add(this.btnSalesReport);
+            this.sidePanel.Controls.Add(this.btnInventory);
+            this.sidePanel.Controls.Add(this.btnOrder);
+            this.sidePanel.Controls.Add(this.btnHome);
+            this.sidePanel.Controls.Add(this.panelSideTop);
+            this.sidePanel.Dock = System.Windows.Forms.DockStyle.Left;
+            this.sidePanel.Location = new System.Drawing.Point(0, 0);
+            this.sidePanel.Name = "sidePanel";
+            this.sidePanel.Size = new System.Drawing.Size(320, 844);
+            this.sidePanel.TabIndex = 0;
             // 
-            // panel2
+            // btnLogout
             // 
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel2.Location = new System.Drawing.Point(320, 0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1258, 55);
-            this.panel2.TabIndex = 1;
+            this.btnLogout.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(55)))), ((int)(((byte)(55)))));
+            this.btnLogout.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.btnLogout.FlatAppearance.BorderSize = 0;
+            this.btnLogout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLogout.ForeColor = System.Drawing.Color.White;
+            this.btnLogout.IconChar = FontAwesome.Sharp.IconChar.DoorOpen;
+            this.btnLogout.IconColor = System.Drawing.Color.White;
+            this.btnLogout.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnLogout.IconSize = 40;
+            this.btnLogout.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnLogout.Location = new System.Drawing.Point(0, 764);
+            this.btnLogout.Name = "btnLogout";
+            this.btnLogout.Size = new System.Drawing.Size(320, 40);
+            this.btnLogout.TabIndex = 6;
+            this.btnLogout.Text = "Logout";
+            this.btnLogout.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnLogout.UseVisualStyleBackColor = false;
+            this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
             // 
-            // PanelContainer
+            // btnExit
             // 
-            this.PanelContainer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PanelContainer.Location = new System.Drawing.Point(320, 55);
-            this.PanelContainer.Name = "PanelContainer";
-            this.PanelContainer.Size = new System.Drawing.Size(1258, 789);
-            this.PanelContainer.TabIndex = 2;
+            this.btnExit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(55)))), ((int)(((byte)(55)))));
+            this.btnExit.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.btnExit.FlatAppearance.BorderSize = 0;
+            this.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnExit.ForeColor = System.Drawing.Color.White;
+            this.btnExit.IconChar = FontAwesome.Sharp.IconChar.PowerOff;
+            this.btnExit.IconColor = System.Drawing.Color.White;
+            this.btnExit.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnExit.IconSize = 40;
+            this.btnExit.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnExit.Location = new System.Drawing.Point(0, 804);
+            this.btnExit.Name = "btnExit";
+            this.btnExit.Size = new System.Drawing.Size(320, 40);
+            this.btnExit.TabIndex = 5;
+            this.btnExit.Text = "Exit";
+            this.btnExit.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnExit.UseVisualStyleBackColor = false;
+            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
-            // iconButton6
+            // btnSalesReport
             // 
-            this.iconButton6.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.iconButton6.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.iconButton6.IconColor = System.Drawing.Color.Black;
-            this.iconButton6.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconButton6.Location = new System.Drawing.Point(0, 764);
-            this.iconButton6.Name = "iconButton6";
-            this.iconButton6.Size = new System.Drawing.Size(320, 40);
-            this.iconButton6.TabIndex = 6;
-            this.iconButton6.Text = "iconButton6";
-            this.iconButton6.UseVisualStyleBackColor = true;
+            this.btnSalesReport.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnSalesReport.FlatAppearance.BorderSize = 0;
+            this.btnSalesReport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSalesReport.ForeColor = System.Drawing.Color.White;
+            this.btnSalesReport.IconChar = FontAwesome.Sharp.IconChar.LineChart;
+            this.btnSalesReport.IconColor = System.Drawing.Color.White;
+            this.btnSalesReport.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnSalesReport.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSalesReport.Location = new System.Drawing.Point(0, 511);
+            this.btnSalesReport.Name = "btnSalesReport";
+            this.btnSalesReport.Size = new System.Drawing.Size(320, 74);
+            this.btnSalesReport.TabIndex = 4;
+            this.btnSalesReport.Text = "Sales Report";
+            this.btnSalesReport.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnSalesReport.UseVisualStyleBackColor = true;
             // 
-            // iconButton5
+            // btnInventory
             // 
-            this.iconButton5.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.iconButton5.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.iconButton5.IconColor = System.Drawing.Color.Black;
-            this.iconButton5.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconButton5.Location = new System.Drawing.Point(0, 804);
-            this.iconButton5.Name = "iconButton5";
-            this.iconButton5.Size = new System.Drawing.Size(320, 40);
-            this.iconButton5.TabIndex = 5;
-            this.iconButton5.Text = "iconButton5";
-            this.iconButton5.UseVisualStyleBackColor = true;
+            this.btnInventory.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnInventory.FlatAppearance.BorderSize = 0;
+            this.btnInventory.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnInventory.ForeColor = System.Drawing.Color.White;
+            this.btnInventory.IconChar = FontAwesome.Sharp.IconChar.ClipboardList;
+            this.btnInventory.IconColor = System.Drawing.Color.White;
+            this.btnInventory.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnInventory.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnInventory.Location = new System.Drawing.Point(0, 437);
+            this.btnInventory.Name = "btnInventory";
+            this.btnInventory.Size = new System.Drawing.Size(320, 74);
+            this.btnInventory.TabIndex = 3;
+            this.btnInventory.Text = "Inventory";
+            this.btnInventory.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnInventory.UseVisualStyleBackColor = true;
             // 
-            // iconButton4
+            // btnOrder
             // 
-            this.iconButton4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.iconButton4.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.iconButton4.IconColor = System.Drawing.Color.Black;
-            this.iconButton4.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconButton4.Location = new System.Drawing.Point(0, 511);
-            this.iconButton4.Name = "iconButton4";
-            this.iconButton4.Size = new System.Drawing.Size(320, 74);
-            this.iconButton4.TabIndex = 4;
-            this.iconButton4.Text = "Sales Report";
-            this.iconButton4.UseVisualStyleBackColor = true;
+            this.btnOrder.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnOrder.FlatAppearance.BorderSize = 0;
+            this.btnOrder.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnOrder.ForeColor = System.Drawing.Color.White;
+            this.btnOrder.IconChar = FontAwesome.Sharp.IconChar.ShoppingCart;
+            this.btnOrder.IconColor = System.Drawing.Color.White;
+            this.btnOrder.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnOrder.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnOrder.Location = new System.Drawing.Point(0, 363);
+            this.btnOrder.Name = "btnOrder";
+            this.btnOrder.Size = new System.Drawing.Size(320, 74);
+            this.btnOrder.TabIndex = 2;
+            this.btnOrder.Text = "Order";
+            this.btnOrder.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnOrder.UseVisualStyleBackColor = true;
             // 
-            // iconButton3
+            // btnHome
             // 
-            this.iconButton3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.iconButton3.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.iconButton3.IconColor = System.Drawing.Color.Black;
-            this.iconButton3.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconButton3.Location = new System.Drawing.Point(0, 437);
-            this.iconButton3.Name = "iconButton3";
-            this.iconButton3.Size = new System.Drawing.Size(320, 74);
-            this.iconButton3.TabIndex = 3;
-            this.iconButton3.Text = "Inventory";
-            this.iconButton3.UseVisualStyleBackColor = true;
+            this.btnHome.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnHome.FlatAppearance.BorderSize = 0;
+            this.btnHome.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnHome.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.btnHome.IconChar = FontAwesome.Sharp.IconChar.HomeUser;
+            this.btnHome.IconColor = System.Drawing.Color.White;
+            this.btnHome.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnHome.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnHome.Location = new System.Drawing.Point(0, 289);
+            this.btnHome.Name = "btnHome";
+            this.btnHome.Size = new System.Drawing.Size(320, 74);
+            this.btnHome.TabIndex = 1;
+            this.btnHome.Text = "Home";
+            this.btnHome.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnHome.UseVisualStyleBackColor = true;
             // 
-            // iconButton2
+            // panelSideTop
             // 
-            this.iconButton2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.iconButton2.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.iconButton2.IconColor = System.Drawing.Color.Black;
-            this.iconButton2.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconButton2.Location = new System.Drawing.Point(0, 363);
-            this.iconButton2.Name = "iconButton2";
-            this.iconButton2.Size = new System.Drawing.Size(320, 74);
-            this.iconButton2.TabIndex = 2;
-            this.iconButton2.Text = "Order";
-            this.iconButton2.UseVisualStyleBackColor = true;
+            this.panelSideTop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
+            this.panelSideTop.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.panelSideTop.Controls.Add(this.btnShowHidePanel);
+            this.panelSideTop.Controls.Add(this.iconPictureBox1);
+            this.panelSideTop.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelSideTop.Location = new System.Drawing.Point(0, 0);
+            this.panelSideTop.Name = "panelSideTop";
+            this.panelSideTop.Size = new System.Drawing.Size(320, 289);
+            this.panelSideTop.TabIndex = 0;
             // 
-            // iconButton1
+            // btnShowHidePanel
             // 
-            this.iconButton1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.iconButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.iconButton1.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.iconButton1.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.iconButton1.IconColor = System.Drawing.Color.Black;
-            this.iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconButton1.Location = new System.Drawing.Point(0, 289);
-            this.iconButton1.Name = "iconButton1";
-            this.iconButton1.Size = new System.Drawing.Size(320, 74);
-            this.iconButton1.TabIndex = 1;
-            this.iconButton1.Text = "Home";
-            this.iconButton1.UseVisualStyleBackColor = true;
-            // 
-            // panel3
-            // 
-            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
-            this.panel3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.panel3.Controls.Add(this.iconPictureBox1);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel3.Location = new System.Drawing.Point(0, 0);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(320, 289);
-            this.panel3.TabIndex = 0;
+            this.btnShowHidePanel.FlatAppearance.BorderSize = 0;
+            this.btnShowHidePanel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnShowHidePanel.IconChar = FontAwesome.Sharp.IconChar.AngleDoubleLeft;
+            this.btnShowHidePanel.IconColor = System.Drawing.Color.White;
+            this.btnShowHidePanel.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnShowHidePanel.Location = new System.Drawing.Point(3, 3);
+            this.btnShowHidePanel.Name = "btnShowHidePanel";
+            this.btnShowHidePanel.Size = new System.Drawing.Size(56, 46);
+            this.btnShowHidePanel.TabIndex = 1;
+            this.btnShowHidePanel.UseVisualStyleBackColor = true;
+            this.btnShowHidePanel.Click += new System.EventHandler(this.btnShowHidePanel_Click);
             // 
             // iconPictureBox1
             // 
@@ -176,27 +212,64 @@
             this.iconPictureBox1.IconChar = FontAwesome.Sharp.IconChar.None;
             this.iconPictureBox1.IconColor = System.Drawing.SystemColors.ControlText;
             this.iconPictureBox1.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconPictureBox1.IconSize = 237;
-            this.iconPictureBox1.Location = new System.Drawing.Point(12, 12);
+            this.iconPictureBox1.IconSize = 198;
+            this.iconPictureBox1.Location = new System.Drawing.Point(39, 55);
             this.iconPictureBox1.Name = "iconPictureBox1";
-            this.iconPictureBox1.Size = new System.Drawing.Size(302, 237);
+            this.iconPictureBox1.Size = new System.Drawing.Size(224, 198);
             this.iconPictureBox1.TabIndex = 0;
             this.iconPictureBox1.TabStop = false;
+            // 
+            // panel2
+            // 
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel2.Location = new System.Drawing.Point(320, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(1258, 55);
+            this.panel2.TabIndex = 1;
+            // 
+            // panelContainer
+            // 
+            this.panelContainer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelContainer.Location = new System.Drawing.Point(320, 55);
+            this.panelContainer.Name = "panelContainer";
+            this.panelContainer.Size = new System.Drawing.Size(1258, 789);
+            this.panelContainer.TabIndex = 2;
+            // 
+            // btnSettings
+            // 
+            this.btnSettings.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(55)))), ((int)(((byte)(55)))));
+            this.btnSettings.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.btnSettings.FlatAppearance.BorderSize = 0;
+            this.btnSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSettings.ForeColor = System.Drawing.Color.White;
+            this.btnSettings.IconChar = FontAwesome.Sharp.IconChar.Gear;
+            this.btnSettings.IconColor = System.Drawing.Color.White;
+            this.btnSettings.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnSettings.IconSize = 40;
+            this.btnSettings.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSettings.Location = new System.Drawing.Point(0, 724);
+            this.btnSettings.Name = "btnSettings";
+            this.btnSettings.Size = new System.Drawing.Size(320, 40);
+            this.btnSettings.TabIndex = 7;
+            this.btnSettings.Text = "Settings";
+            this.btnSettings.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnSettings.UseVisualStyleBackColor = false;
             // 
             // frmDashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1578, 844);
-            this.Controls.Add(this.PanelContainer);
+            this.Controls.Add(this.panelContainer);
             this.Controls.Add(this.panel2);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.sidePanel);
             this.Name = "frmDashboard";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmDashboard";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmDashboard_FormClosing);
-            this.panel1.ResumeLayout(false);
-            this.panel3.ResumeLayout(false);
+            this.Load += new System.EventHandler(this.frmDashboard_Load);
+            this.sidePanel.ResumeLayout(false);
+            this.panelSideTop.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).EndInit();
             this.ResumeLayout(false);
 
@@ -204,16 +277,18 @@
 
         #endregion
 
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel sidePanel;
         private System.Windows.Forms.Panel panel2;
-        private FontAwesome.Sharp.IconButton iconButton6;
-        private FontAwesome.Sharp.IconButton iconButton5;
-        private FontAwesome.Sharp.IconButton iconButton4;
-        private FontAwesome.Sharp.IconButton iconButton3;
-        private FontAwesome.Sharp.IconButton iconButton2;
-        private FontAwesome.Sharp.IconButton iconButton1;
-        private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Panel PanelContainer;
+        private FontAwesome.Sharp.IconButton btnLogout;
+        private FontAwesome.Sharp.IconButton btnExit;
+        private FontAwesome.Sharp.IconButton btnSalesReport;
+        private FontAwesome.Sharp.IconButton btnInventory;
+        private FontAwesome.Sharp.IconButton btnOrder;
+        private FontAwesome.Sharp.IconButton btnHome;
+        private System.Windows.Forms.Panel panelSideTop;
+        private System.Windows.Forms.Panel panelContainer;
         private FontAwesome.Sharp.IconPictureBox iconPictureBox1;
+        private FontAwesome.Sharp.IconButton btnShowHidePanel;
+        private FontAwesome.Sharp.IconButton btnSettings;
     }
 }
