@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using System.Data.SqlClient;
 namespace Inventory_Management_System.Dashboard.frmPanelContainers
 {
     public partial class frmInventory : Form
@@ -15,6 +15,11 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
         public frmInventory()
         {
             InitializeComponent();
+        }
+
+        private void frmInventory_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
