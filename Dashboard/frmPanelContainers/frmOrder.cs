@@ -16,5 +16,10 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
         {
             InitializeComponent();
         }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }
