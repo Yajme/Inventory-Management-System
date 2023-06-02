@@ -21,5 +21,10 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
         {
 
         }
+
+        private void frmOrder_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
