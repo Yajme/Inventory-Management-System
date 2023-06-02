@@ -48,6 +48,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmOrder";
             this.Text = "btnOrder";
+            this.Load += new System.EventHandler(this.frmOrder_Load);
             this.ResumeLayout(false);
 
         }
