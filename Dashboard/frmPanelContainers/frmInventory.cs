@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using Inventory_Management_System.Dashboard.frmPanelContainers.frmInventoyForms;
 namespace Inventory_Management_System.Dashboard.frmPanelContainers
 {
     public partial class frmInventory : Form
@@ -18,6 +19,7 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
         }
         private void LoadItems(string query, string filter)
         {
+            dataGridView1.Rows.Clear();
             db.con.Open();
 
             if(query == "*" && filter == "*")
@@ -58,6 +60,9 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
 
         private void btnAddProduct_Click(object sender, EventArgs e)
         {
+            frmAddProduct frmNew = new frmAddProduct();
+            
+            frmNew.ShowDialog();
 
         }
 

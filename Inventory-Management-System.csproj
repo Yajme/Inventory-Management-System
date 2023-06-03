@@ -78,6 +78,12 @@
     <Compile Include="Dashboard\frmDashboard.Designer.cs">
       <DependentUpon>frmDashboard.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dashboard\frmPanelContainers\frmInventoyForms\frmAddProduct.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dashboard\frmPanelContainers\frmInventoyForms\frmAddProduct.Designer.cs">
+      <DependentUpon>frmAddProduct.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dashboard\frmPanelContainers\frmOrder.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -114,6 +120,9 @@
     <EmbeddedResource Include="Dashboard\frmDashboard.resx">
       <DependentUpon>frmDashboard.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dashboard\frmPanelContainers\frmInventoyForms\frmAddProduct.resx">
+      <DependentUpon>frmAddProduct.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dashboard\frmPanelContainers\frmOrder.resx">
       <DependentUpon>frmOrder.cs</DependentUpon>
     </EmbeddedResource>
@@ -139,6 +148,8 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="App.config" />
+    <None Include="app.manifest" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -151,10 +162,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Dashboard\frmPanelContainers\frmInventoryForms\" />
     <Folder Include="POS\" />
   </ItemGroup>
   <ItemGroup>

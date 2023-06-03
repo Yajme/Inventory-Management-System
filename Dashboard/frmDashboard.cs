@@ -151,5 +151,10 @@ namespace Inventory_Management_System.Dashboard
             logout = false;
             ChangeMenu("btnHome");
         }
+
+        private void panelContainer_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

@@ -30,7 +30,7 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmInventory));
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -73,8 +73,9 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
             this.panel1.Controls.Add(this.panel2);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1328, 94);
+            this.panel1.Size = new System.Drawing.Size(885, 61);
             this.panel1.TabIndex = 0;
             // 
             // panel3
@@ -85,19 +86,21 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
             this.panel3.Controls.Add(this.btnSearch);
             this.panel3.Controls.Add(this.panel5);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel3.Location = new System.Drawing.Point(836, 0);
-            this.panel3.MaximumSize = new System.Drawing.Size(492, 94);
+            this.panel3.Location = new System.Drawing.Point(557, 0);
+            this.panel3.Margin = new System.Windows.Forms.Padding(2);
+            this.panel3.MaximumSize = new System.Drawing.Size(328, 61);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(492, 94);
+            this.panel3.Size = new System.Drawing.Size(328, 61);
             this.panel3.TabIndex = 2;
             // 
             // cmbFilter
             // 
             this.cmbFilter.Dock = System.Windows.Forms.DockStyle.Right;
             this.cmbFilter.FormattingEnabled = true;
-            this.cmbFilter.Location = new System.Drawing.Point(371, 38);
+            this.cmbFilter.Location = new System.Drawing.Point(246, 30);
+            this.cmbFilter.Margin = new System.Windows.Forms.Padding(2);
             this.cmbFilter.Name = "cmbFilter";
-            this.cmbFilter.Size = new System.Drawing.Size(121, 28);
+            this.cmbFilter.Size = new System.Drawing.Size(82, 21);
             this.cmbFilter.TabIndex = 7;
             // 
             // btnScan
@@ -109,9 +112,10 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
             this.btnScan.IconChar = FontAwesome.Sharp.IconChar.None;
             this.btnScan.IconColor = System.Drawing.Color.Black;
             this.btnScan.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnScan.Location = new System.Drawing.Point(243, 38);
+            this.btnScan.Location = new System.Drawing.Point(162, 30);
+            this.btnScan.Margin = new System.Windows.Forms.Padding(2);
             this.btnScan.Name = "btnScan";
-            this.btnScan.Size = new System.Drawing.Size(128, 56);
+            this.btnScan.Size = new System.Drawing.Size(86, 31);
             this.btnScan.TabIndex = 6;
             this.btnScan.Text = "[Scan]";
             this.btnScan.UseVisualStyleBackColor = true;
@@ -126,9 +130,10 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
             this.btnSearch.IconChar = FontAwesome.Sharp.IconChar.None;
             this.btnSearch.IconColor = System.Drawing.Color.Black;
             this.btnSearch.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnSearch.Location = new System.Drawing.Point(0, 38);
+            this.btnSearch.Location = new System.Drawing.Point(0, 30);
+            this.btnSearch.Margin = new System.Windows.Forms.Padding(2);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(243, 56);
+            this.btnSearch.Size = new System.Drawing.Size(162, 31);
             this.btnSearch.TabIndex = 5;
             this.btnSearch.Text = "[Search]";
             this.btnSearch.UseVisualStyleBackColor = true;
@@ -140,8 +145,9 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
             this.panel5.Controls.Add(this.txtQuery);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel5.Location = new System.Drawing.Point(0, 0);
+            this.panel5.Margin = new System.Windows.Forms.Padding(2);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(492, 38);
+            this.panel5.Size = new System.Drawing.Size(328, 30);
             this.panel5.TabIndex = 0;
             // 
             // txtQuery
@@ -151,8 +157,9 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
             this.txtQuery.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtQuery.ForeColor = System.Drawing.Color.DimGray;
             this.txtQuery.Location = new System.Drawing.Point(0, 0);
+            this.txtQuery.Margin = new System.Windows.Forms.Padding(2);
             this.txtQuery.Name = "txtQuery";
-            this.txtQuery.Size = new System.Drawing.Size(492, 38);
+            this.txtQuery.Size = new System.Drawing.Size(328, 30);
             this.txtQuery.TabIndex = 4;
             this.txtQuery.Text = "Search...";
             this.txtQuery.GotFocus += new System.EventHandler(this.RemoveText);
@@ -169,8 +176,9 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
             this.panel2.Controls.Add(this.btnAddProduct);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Margin = new System.Windows.Forms.Padding(2);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(734, 94);
+            this.panel2.Size = new System.Drawing.Size(520, 61);
             this.panel2.TabIndex = 1;
             // 
             // btnManageWarehouse
@@ -183,9 +191,10 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
             this.btnManageWarehouse.IconChar = FontAwesome.Sharp.IconChar.None;
             this.btnManageWarehouse.IconColor = System.Drawing.Color.White;
             this.btnManageWarehouse.IconFont = FontAwesome.Sharp.IconFont.Solid;
-            this.btnManageWarehouse.Location = new System.Drawing.Point(561, 0);
+            this.btnManageWarehouse.Location = new System.Drawing.Point(398, 0);
+            this.btnManageWarehouse.Margin = new System.Windows.Forms.Padding(2);
             this.btnManageWarehouse.Name = "btnManageWarehouse";
-            this.btnManageWarehouse.Size = new System.Drawing.Size(173, 94);
+            this.btnManageWarehouse.Size = new System.Drawing.Size(122, 61);
             this.btnManageWarehouse.TabIndex = 4;
             this.btnManageWarehouse.Text = "[Manage Warehouse]";
             this.btnManageWarehouse.UseVisualStyleBackColor = true;
@@ -201,9 +210,10 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
             this.btnManageStocks.IconChar = FontAwesome.Sharp.IconChar.None;
             this.btnManageStocks.IconColor = System.Drawing.Color.White;
             this.btnManageStocks.IconFont = FontAwesome.Sharp.IconFont.Solid;
-            this.btnManageStocks.Location = new System.Drawing.Point(421, 0);
+            this.btnManageStocks.Location = new System.Drawing.Point(298, 0);
+            this.btnManageStocks.Margin = new System.Windows.Forms.Padding(2);
             this.btnManageStocks.Name = "btnManageStocks";
-            this.btnManageStocks.Size = new System.Drawing.Size(140, 94);
+            this.btnManageStocks.Size = new System.Drawing.Size(100, 61);
             this.btnManageStocks.TabIndex = 3;
             this.btnManageStocks.Text = "[Manage Stocks]";
             this.btnManageStocks.UseVisualStyleBackColor = true;
@@ -219,9 +229,10 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
             this.btnManageSupplier.IconChar = FontAwesome.Sharp.IconChar.None;
             this.btnManageSupplier.IconColor = System.Drawing.Color.White;
             this.btnManageSupplier.IconFont = FontAwesome.Sharp.IconFont.Solid;
-            this.btnManageSupplier.Location = new System.Drawing.Point(272, 0);
+            this.btnManageSupplier.Location = new System.Drawing.Point(193, 0);
+            this.btnManageSupplier.Margin = new System.Windows.Forms.Padding(2);
             this.btnManageSupplier.Name = "btnManageSupplier";
-            this.btnManageSupplier.Size = new System.Drawing.Size(149, 94);
+            this.btnManageSupplier.Size = new System.Drawing.Size(105, 61);
             this.btnManageSupplier.TabIndex = 2;
             this.btnManageSupplier.Text = "[Manage Supplier]";
             this.btnManageSupplier.UseVisualStyleBackColor = true;
@@ -237,9 +248,10 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
             this.btnManageCategory.IconChar = FontAwesome.Sharp.IconChar.None;
             this.btnManageCategory.IconColor = System.Drawing.Color.White;
             this.btnManageCategory.IconFont = FontAwesome.Sharp.IconFont.Solid;
-            this.btnManageCategory.Location = new System.Drawing.Point(117, 0);
+            this.btnManageCategory.Location = new System.Drawing.Point(84, 0);
+            this.btnManageCategory.Margin = new System.Windows.Forms.Padding(2);
             this.btnManageCategory.Name = "btnManageCategory";
-            this.btnManageCategory.Size = new System.Drawing.Size(155, 94);
+            this.btnManageCategory.Size = new System.Drawing.Size(109, 61);
             this.btnManageCategory.TabIndex = 1;
             this.btnManageCategory.Text = "[Manage Category]";
             this.btnManageCategory.UseVisualStyleBackColor = true;
@@ -256,8 +268,9 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
             this.btnAddProduct.IconColor = System.Drawing.Color.White;
             this.btnAddProduct.IconFont = FontAwesome.Sharp.IconFont.Solid;
             this.btnAddProduct.Location = new System.Drawing.Point(0, 0);
+            this.btnAddProduct.Margin = new System.Windows.Forms.Padding(2);
             this.btnAddProduct.Name = "btnAddProduct";
-            this.btnAddProduct.Size = new System.Drawing.Size(117, 94);
+            this.btnAddProduct.Size = new System.Drawing.Size(84, 61);
             this.btnAddProduct.TabIndex = 0;
             this.btnAddProduct.Text = "[Add Product]";
             this.btnAddProduct.UseVisualStyleBackColor = true;
@@ -269,23 +282,26 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
             this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(65)))), ((int)(((byte)(65)))));
             this.panel4.Controls.Add(this.dataGridView1);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel4.Location = new System.Drawing.Point(0, 94);
+            this.panel4.Location = new System.Drawing.Point(0, 61);
+            this.panel4.Margin = new System.Windows.Forms.Padding(2);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(1328, 710);
+            this.panel4.Size = new System.Drawing.Size(885, 461);
             this.panel4.TabIndex = 1;
             // 
             // dataGridView1
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(172)))), ((int)(((byte)(132)))));
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.dataGridView1.AllowUserToResizeColumns = false;
+            this.dataGridView1.AllowUserToResizeRows = false;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(172)))), ((int)(((byte)(132)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colProductID,
@@ -300,12 +316,13 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.EnableHeadersVisualStyles = false;
             this.dataGridView1.Location = new System.Drawing.Point(0, 0);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.RowHeadersWidth = 62;
             this.dataGridView1.RowTemplate.Height = 28;
-            this.dataGridView1.Size = new System.Drawing.Size(1328, 710);
+            this.dataGridView1.Size = new System.Drawing.Size(885, 461);
             this.dataGridView1.TabIndex = 0;
             // 
             // colProductID
@@ -323,7 +340,7 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
             this.colProductName.MinimumWidth = 8;
             this.colProductName.Name = "colProductName";
             this.colProductName.ReadOnly = true;
-            this.colProductName.Width = 123;
+            this.colProductName.Width = 97;
             // 
             // colDesc
             // 
@@ -340,7 +357,7 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
             this.colCatergory.MinimumWidth = 8;
             this.colCatergory.Name = "colCatergory";
             this.colCatergory.ReadOnly = true;
-            this.colCatergory.Width = 94;
+            this.colCatergory.Width = 74;
             // 
             // colQuantity
             // 
@@ -349,7 +366,7 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
             this.colQuantity.MinimumWidth = 8;
             this.colQuantity.Name = "colQuantity";
             this.colQuantity.ReadOnly = true;
-            this.colQuantity.Width = 90;
+            this.colQuantity.Width = 71;
             // 
             // colPrice
             // 
@@ -358,7 +375,7 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
             this.colPrice.MinimumWidth = 8;
             this.colPrice.Name = "colPrice";
             this.colPrice.ReadOnly = true;
-            this.colPrice.Width = 94;
+            this.colPrice.Width = 75;
             // 
             // colSupplier
             // 
@@ -367,7 +384,7 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
             this.colSupplier.MinimumWidth = 8;
             this.colSupplier.Name = "colSupplier";
             this.colSupplier.ReadOnly = true;
-            this.colSupplier.Width = 89;
+            this.colSupplier.Width = 70;
             // 
             // colEdit
             // 
@@ -400,7 +417,6 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
             this.dataGridViewImageColumn1.MinimumWidth = 8;
             this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
             this.dataGridViewImageColumn1.ReadOnly = true;
-            this.dataGridViewImageColumn1.Width = 125;
             // 
             // dataGridViewImageColumn2
             // 
@@ -414,13 +430,13 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
             // 
             // frmInventory
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(1328, 804);
+            this.ClientSize = new System.Drawing.Size(885, 522);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "frmInventory";
             this.Text = "frmInventory";
             this.Load += new System.EventHandler(this.frmInventory_Load);
