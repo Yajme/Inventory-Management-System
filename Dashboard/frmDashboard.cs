@@ -113,14 +113,15 @@ namespace Inventory_Management_System.Dashboard
             if(sidePanel.Width > 56)
             {
                 hideText();
-                panelSideTop.Height = 46;
+                panelSideTop.Height = 42;
                 sidePanel.Width = 56;
                 btnShowHidePanel.IconChar = FontAwesome.Sharp.IconChar.AngleDoubleRight;
-            }else if(sidePanel.Width < 320)
+            }else if(sidePanel.Width < 169)
             {
                 showText();
-                panelSideTop.Height = 289;
-                sidePanel.Width = 254;
+                panelSideTop.Height = 188;
+                sidePanel.Width = 169;
+                sidePanel.Height = 551;
                 btnShowHidePanel.IconChar = FontAwesome.Sharp.IconChar.AngleDoubleLeft;
             }
             
@@ -140,7 +141,7 @@ namespace Inventory_Management_System.Dashboard
                 logout = true;
                 this.Dispose();
                 Login frmLogin = new Login();
-                frmLogin.ShowDialog();
+               frmLogin.ShowDialog();
                     
             }
             
@@ -150,6 +151,7 @@ namespace Inventory_Management_System.Dashboard
         {
             logout = false;
             ChangeMenu("btnHome");
+            db.Connection();
         }
 
         private void panelContainer_Paint(object sender, PaintEventArgs e)

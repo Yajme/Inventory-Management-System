@@ -38,17 +38,17 @@
             this.btnHome = new FontAwesome.Sharp.IconButton();
             this.panelSideTop = new System.Windows.Forms.Panel();
             this.btnShowHidePanel = new FontAwesome.Sharp.IconButton();
-            this.iconPictureBox1 = new FontAwesome.Sharp.IconPictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panelContainer = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.sidePanel.SuspendLayout();
             this.panelSideTop.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F); // for design in 96 DPI
             // 
             // sidePanel
             // 
+            this.sidePanel.AutoScroll = true;
             this.sidePanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(55)))), ((int)(((byte)(55)))));
             this.sidePanel.Controls.Add(this.btnSettings);
             this.sidePanel.Controls.Add(this.btnLogout);
@@ -60,9 +60,9 @@
             this.sidePanel.Controls.Add(this.panelSideTop);
             this.sidePanel.Dock = System.Windows.Forms.DockStyle.Left;
             this.sidePanel.Location = new System.Drawing.Point(0, 0);
-            this.sidePanel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.sidePanel.Margin = new System.Windows.Forms.Padding(2);
             this.sidePanel.Name = "sidePanel";
-            this.sidePanel.Size = new System.Drawing.Size(169, 549);
+            this.sidePanel.Size = new System.Drawing.Size(169, 681);
             this.sidePanel.TabIndex = 0;
             // 
             // btnSettings
@@ -75,12 +75,12 @@
             this.btnSettings.IconChar = FontAwesome.Sharp.IconChar.Gear;
             this.btnSettings.IconColor = System.Drawing.Color.White;
             this.btnSettings.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnSettings.IconSize = 40;
+            this.btnSettings.IconSize = 35;
             this.btnSettings.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSettings.Location = new System.Drawing.Point(0, 471);
-            this.btnSettings.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnSettings.Location = new System.Drawing.Point(0, 555);
+            this.btnSettings.Margin = new System.Windows.Forms.Padding(2);
             this.btnSettings.Name = "btnSettings";
-            this.btnSettings.Size = new System.Drawing.Size(169, 26);
+            this.btnSettings.Size = new System.Drawing.Size(169, 42);
             this.btnSettings.TabIndex = 7;
             this.btnSettings.Text = "Settings";
             this.btnSettings.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -96,12 +96,12 @@
             this.btnLogout.IconChar = FontAwesome.Sharp.IconChar.DoorOpen;
             this.btnLogout.IconColor = System.Drawing.Color.White;
             this.btnLogout.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnLogout.IconSize = 40;
+            this.btnLogout.IconSize = 35;
             this.btnLogout.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnLogout.Location = new System.Drawing.Point(0, 497);
-            this.btnLogout.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnLogout.Location = new System.Drawing.Point(0, 597);
+            this.btnLogout.Margin = new System.Windows.Forms.Padding(2);
             this.btnLogout.Name = "btnLogout";
-            this.btnLogout.Size = new System.Drawing.Size(169, 26);
+            this.btnLogout.Size = new System.Drawing.Size(169, 42);
             this.btnLogout.TabIndex = 6;
             this.btnLogout.Text = "Logout";
             this.btnLogout.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -118,12 +118,12 @@
             this.btnExit.IconChar = FontAwesome.Sharp.IconChar.PowerOff;
             this.btnExit.IconColor = System.Drawing.Color.White;
             this.btnExit.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnExit.IconSize = 40;
+            this.btnExit.IconSize = 35;
             this.btnExit.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnExit.Location = new System.Drawing.Point(0, 523);
-            this.btnExit.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnExit.Location = new System.Drawing.Point(0, 639);
+            this.btnExit.Margin = new System.Windows.Forms.Padding(2);
             this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(169, 26);
+            this.btnExit.Size = new System.Drawing.Size(169, 42);
             this.btnExit.TabIndex = 5;
             this.btnExit.Text = "Exit";
             this.btnExit.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -141,7 +141,7 @@
             this.btnSalesReport.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnSalesReport.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSalesReport.Location = new System.Drawing.Point(0, 332);
-            this.btnSalesReport.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnSalesReport.Margin = new System.Windows.Forms.Padding(2);
             this.btnSalesReport.Name = "btnSalesReport";
             this.btnSalesReport.Size = new System.Drawing.Size(169, 48);
             this.btnSalesReport.TabIndex = 4;
@@ -162,7 +162,7 @@
             this.btnInventory.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnInventory.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnInventory.Location = new System.Drawing.Point(0, 284);
-            this.btnInventory.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnInventory.Margin = new System.Windows.Forms.Padding(2);
             this.btnInventory.Name = "btnInventory";
             this.btnInventory.Size = new System.Drawing.Size(169, 48);
             this.btnInventory.TabIndex = 3;
@@ -183,7 +183,7 @@
             this.btnOrder.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnOrder.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnOrder.Location = new System.Drawing.Point(0, 236);
-            this.btnOrder.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnOrder.Margin = new System.Windows.Forms.Padding(2);
             this.btnOrder.Name = "btnOrder";
             this.btnOrder.Size = new System.Drawing.Size(169, 48);
             this.btnOrder.TabIndex = 2;
@@ -204,7 +204,7 @@
             this.btnHome.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnHome.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnHome.Location = new System.Drawing.Point(0, 188);
-            this.btnHome.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnHome.Margin = new System.Windows.Forms.Padding(2);
             this.btnHome.Name = "btnHome";
             this.btnHome.Size = new System.Drawing.Size(169, 48);
             this.btnHome.TabIndex = 1;
@@ -218,76 +218,72 @@
             // 
             this.panelSideTop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
             this.panelSideTop.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.panelSideTop.Controls.Add(this.pictureBox1);
             this.panelSideTop.Controls.Add(this.btnShowHidePanel);
-            this.panelSideTop.Controls.Add(this.iconPictureBox1);
             this.panelSideTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelSideTop.Location = new System.Drawing.Point(0, 0);
-            this.panelSideTop.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panelSideTop.Margin = new System.Windows.Forms.Padding(2);
             this.panelSideTop.Name = "panelSideTop";
             this.panelSideTop.Size = new System.Drawing.Size(169, 188);
             this.panelSideTop.TabIndex = 0;
             // 
             // btnShowHidePanel
             // 
+            this.btnShowHidePanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnShowHidePanel.FlatAppearance.BorderSize = 0;
             this.btnShowHidePanel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnShowHidePanel.IconChar = FontAwesome.Sharp.IconChar.AngleDoubleLeft;
             this.btnShowHidePanel.IconColor = System.Drawing.Color.White;
             this.btnShowHidePanel.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnShowHidePanel.Location = new System.Drawing.Point(2, 2);
-            this.btnShowHidePanel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnShowHidePanel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnShowHidePanel.Location = new System.Drawing.Point(0, 0);
+            this.btnShowHidePanel.Margin = new System.Windows.Forms.Padding(2);
             this.btnShowHidePanel.Name = "btnShowHidePanel";
-            this.btnShowHidePanel.Size = new System.Drawing.Size(37, 30);
+            this.btnShowHidePanel.Size = new System.Drawing.Size(169, 39);
             this.btnShowHidePanel.TabIndex = 1;
             this.btnShowHidePanel.UseVisualStyleBackColor = true;
             this.btnShowHidePanel.Click += new System.EventHandler(this.btnShowHidePanel_Click);
-            // 
-            // iconPictureBox1
-            // 
-            this.iconPictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
-            this.iconPictureBox1.BackgroundImage = global::Inventory_Management_System.Properties.Resources.inventory_management;
-            this.iconPictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.iconPictureBox1.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.iconPictureBox1.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.iconPictureBox1.IconColor = System.Drawing.SystemColors.ControlText;
-            this.iconPictureBox1.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconPictureBox1.IconSize = 129;
-            this.iconPictureBox1.Location = new System.Drawing.Point(8, 32);
-            this.iconPictureBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.iconPictureBox1.Name = "iconPictureBox1";
-            this.iconPictureBox1.Size = new System.Drawing.Size(149, 129);
-            this.iconPictureBox1.TabIndex = 0;
-            this.iconPictureBox1.TabStop = false;
             // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(172)))), ((int)(((byte)(132)))));
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(169, 0);
-            this.panel2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel2.Margin = new System.Windows.Forms.Padding(2);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(858, 32);
+            this.panel2.Size = new System.Drawing.Size(1095, 32);
             this.panel2.TabIndex = 1;
             // 
             // panelContainer
             // 
             this.panelContainer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelContainer.Location = new System.Drawing.Point(169, 32);
-            this.panelContainer.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panelContainer.Margin = new System.Windows.Forms.Padding(2);
             this.panelContainer.Name = "panelContainer";
-            this.panelContainer.Size = new System.Drawing.Size(858, 517);
+            this.panelContainer.Size = new System.Drawing.Size(1095, 649);
             this.panelContainer.TabIndex = 2;
             this.panelContainer.Paint += new System.Windows.Forms.PaintEventHandler(this.panelContainer_Paint);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pictureBox1.Image = global::Inventory_Management_System.Properties.Resources.inventory_management;
+            this.pictureBox1.Location = new System.Drawing.Point(0, 39);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(169, 149);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
             // 
             // frmDashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.ClientSize = new System.Drawing.Size(1027, 549);
+            this.ClientSize = new System.Drawing.Size(1264, 681);
             this.Controls.Add(this.panelContainer);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.sidePanel);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "frmDashboard";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmDashboard";
@@ -295,7 +291,7 @@
             this.Load += new System.EventHandler(this.frmDashboard_Load);
             this.sidePanel.ResumeLayout(false);
             this.panelSideTop.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -312,8 +308,8 @@
         private FontAwesome.Sharp.IconButton btnHome;
         private System.Windows.Forms.Panel panelSideTop;
         private System.Windows.Forms.Panel panelContainer;
-        private FontAwesome.Sharp.IconPictureBox iconPictureBox1;
         private FontAwesome.Sharp.IconButton btnShowHidePanel;
         private FontAwesome.Sharp.IconButton btnSettings;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

@@ -123,7 +123,6 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
             // 
             // btnSearch
             // 
-            this.btnSearch.AutoSize = true;
             this.btnSearch.Dock = System.Windows.Forms.DockStyle.Left;
             this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSearch.ForeColor = System.Drawing.Color.White;
@@ -430,7 +429,8 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
             // 
             // frmInventory
             // 
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(885, 522);
             this.Controls.Add(this.panel4);

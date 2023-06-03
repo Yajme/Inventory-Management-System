@@ -25,7 +25,7 @@ namespace Inventory_Management_System
             Authentication();
         }
 
-        
+       
         void Authentication()
         {
             if (string.IsNullOrWhiteSpace(txtUsername.Text))
@@ -41,33 +41,30 @@ namespace Inventory_Management_System
                 try
                 {
                         db.con.Open();
-                        using (SqlCommand command = new SqlCommand("SELECT * FROM users WHERE username = @Username AND password = @Password", db.con))
+                    using (SqlCommand command = new SqlCommand("SELECT * FROM users WHERE username = @Username AND password = @Password", db.con))
+                    {
+                        command.Parameters.AddWithValue("@Username", txtUsername.Text);
+                        command.Parameters.AddWithValue("@Password", txtPassword.Text);
+
+                        db.dr = command.ExecuteReader();
+                        if (db.dr.Read())
                         {
-                            command.Parameters.AddWithValue("@Username", txtUsername.Text);
-                            command.Parameters.AddWithValue("@Password", txtPassword.Text);
-
-                            db.dr = command.ExecuteReader();
-                                if (db.dr.Read())
-                                {
-                                    if(db.dr[3].ToString() == "1")
-                                    {
-                                      frmDashboard frmdb = new frmDashboard();
-                                      frmdb.Show();
-                                this.Hide();
-                                    }
-                                }
-                                else
-                                {
-                                    MessageBox.Show("Invalid username or password");
-                                }
-                                
-                            
+                            if (db.dr[3].ToString() == "1")
+                            {
+                                frmDashboard frmdb = new frmDashboard();
+                                frmdb.Show();
+                                Hide();
+                            }
                         }
-                    
-
+                        else
+                        {
+                            MessageBox.Show("Invalid username or password");
+                        }
+                    }
                     // Clear the input fields
                     txtPassword.Text = "";
                     txtUsername.Text = "";
+                    db.dr.Close();
                     db.con.Close();
                 }
                 catch (Exception ex)
@@ -83,7 +80,6 @@ namespace Inventory_Management_System
         private void Login_Load(object sender, EventArgs e)
         {
             db.Connection();
-            
         }
 
         private void keyPressEnter(object sender, KeyPressEventArgs e)

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using Inventory_Management_System.Dashboard;
 namespace Inventory_Management_System
 {
     internal static class Program
@@ -16,7 +16,8 @@ namespace Inventory_Management_System
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Login());
+            Application.Run(new Dashboard.frmDashboard());
+            //Application.Run(new Login());
         }
     }
 }
