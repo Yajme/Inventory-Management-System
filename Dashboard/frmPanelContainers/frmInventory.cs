@@ -68,7 +68,8 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
 
         private void btnManageCategory_Click(object sender, EventArgs e)
         {
-
+            frmManageCategory frmNew = new frmManageCategory();
+            frmNew.ShowDialog();
         }
 
         private void btnManageSupplier_Click(object sender, EventArgs e)

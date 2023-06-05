@@ -85,6 +85,12 @@
     <Compile Include="Dashboard\frmPanelContainers\frmInventoyForms\frmAddProduct.Designer.cs">
       <DependentUpon>frmAddProduct.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dashboard\frmPanelContainers\frmInventoyForms\frmManageCategory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dashboard\frmPanelContainers\frmInventoyForms\frmManageCategory.Designer.cs">
+      <DependentUpon>frmManageCategory.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dashboard\frmPanelContainers\frmOrder.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -109,6 +115,7 @@
     <Compile Include="Dashboard\frmPanelContainers\frmSalesReport.Designer.cs">
       <DependentUpon>frmSalesReport.cs</DependentUpon>
     </Compile>
+    <Compile Include="db\commands.cs" />
     <Compile Include="db\db.cs" />
     <Compile Include="login.cs">
       <SubType>Form</SubType>
@@ -123,6 +130,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dashboard\frmPanelContainers\frmInventoyForms\frmAddProduct.resx">
       <DependentUpon>frmAddProduct.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dashboard\frmPanelContainers\frmInventoyForms\frmManageCategory.resx">
+      <DependentUpon>frmManageCategory.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dashboard\frmPanelContainers\frmOrder.resx">
       <DependentUpon>frmOrder.cs</DependentUpon>

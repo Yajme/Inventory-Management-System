@@ -30,21 +30,21 @@
         {
             this.panelTop = new System.Windows.Forms.Panel();
             this.btnExit = new FontAwesome.Sharp.IconButton();
-            this.iconButton1 = new FontAwesome.Sharp.IconButton();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.btnScan = new FontAwesome.Sharp.IconButton();
+            this.txtProductID = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cmbCategory = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.txtProductName = new System.Windows.Forms.TextBox();
+            this.txtDescription = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.txtUnitPrice = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.iconButton2 = new FontAwesome.Sharp.IconButton();
-            this.iconButton4 = new FontAwesome.Sharp.IconButton();
+            this.cmbSupplier = new System.Windows.Forms.ComboBox();
+            this.btnSave = new FontAwesome.Sharp.IconButton();
+            this.btnDiscard = new FontAwesome.Sharp.IconButton();
             this.panelTop.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -74,24 +74,24 @@
             this.btnExit.UseVisualStyleBackColor = true;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
-            // iconButton1
+            // btnScan
             // 
-            this.iconButton1.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.iconButton1.IconColor = System.Drawing.Color.Black;
-            this.iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconButton1.Location = new System.Drawing.Point(379, 80);
-            this.iconButton1.Name = "iconButton1";
-            this.iconButton1.Size = new System.Drawing.Size(81, 31);
-            this.iconButton1.TabIndex = 1;
-            this.iconButton1.Text = "[Scan]";
-            this.iconButton1.UseVisualStyleBackColor = true;
+            this.btnScan.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.btnScan.IconColor = System.Drawing.Color.Black;
+            this.btnScan.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnScan.Location = new System.Drawing.Point(379, 80);
+            this.btnScan.Name = "btnScan";
+            this.btnScan.Size = new System.Drawing.Size(81, 31);
+            this.btnScan.TabIndex = 1;
+            this.btnScan.Text = "[Scan]";
+            this.btnScan.UseVisualStyleBackColor = true;
             // 
-            // textBox1
+            // txtProductID
             // 
-            this.textBox1.Location = new System.Drawing.Point(138, 91);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(235, 20);
-            this.textBox1.TabIndex = 2;
+            this.txtProductID.Location = new System.Drawing.Point(138, 91);
+            this.txtProductID.Name = "txtProductID";
+            this.txtProductID.Size = new System.Drawing.Size(235, 20);
+            this.txtProductID.TabIndex = 2;
             // 
             // label1
             // 
@@ -102,13 +102,13 @@
             this.label1.TabIndex = 3;
             this.label1.Text = "ProductID";
             // 
-            // comboBox1
+            // cmbCategory
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(138, 195);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
-            this.comboBox1.TabIndex = 4;
+            this.cmbCategory.FormattingEnabled = true;
+            this.cmbCategory.Location = new System.Drawing.Point(138, 195);
+            this.cmbCategory.Name = "cmbCategory";
+            this.cmbCategory.Size = new System.Drawing.Size(121, 21);
+            this.cmbCategory.TabIndex = 4;
             // 
             // label2
             // 
@@ -119,19 +119,19 @@
             this.label2.TabIndex = 5;
             this.label2.Text = "ProductName";
             // 
-            // textBox2
+            // txtProductName
             // 
-            this.textBox2.Location = new System.Drawing.Point(138, 122);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(235, 20);
-            this.textBox2.TabIndex = 6;
+            this.txtProductName.Location = new System.Drawing.Point(138, 122);
+            this.txtProductName.Name = "txtProductName";
+            this.txtProductName.Size = new System.Drawing.Size(235, 20);
+            this.txtProductName.TabIndex = 6;
             // 
-            // textBox3
+            // txtDescription
             // 
-            this.textBox3.Location = new System.Drawing.Point(138, 157);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(235, 20);
-            this.textBox3.TabIndex = 8;
+            this.txtDescription.Location = new System.Drawing.Point(138, 157);
+            this.txtDescription.Name = "txtDescription";
+            this.txtDescription.Size = new System.Drawing.Size(235, 20);
+            this.txtDescription.TabIndex = 8;
             // 
             // label3
             // 
@@ -151,12 +151,12 @@
             this.label4.TabIndex = 9;
             this.label4.Text = "Categoy";
             // 
-            // textBox4
+            // txtUnitPrice
             // 
-            this.textBox4.Location = new System.Drawing.Point(138, 232);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(235, 20);
-            this.textBox4.TabIndex = 11;
+            this.txtUnitPrice.Location = new System.Drawing.Point(138, 232);
+            this.txtUnitPrice.Name = "txtUnitPrice";
+            this.txtUnitPrice.Size = new System.Drawing.Size(235, 20);
+            this.txtUnitPrice.TabIndex = 11;
             // 
             // label5
             // 
@@ -176,63 +176,64 @@
             this.label6.TabIndex = 13;
             this.label6.Text = "Supplier";
             // 
-            // comboBox2
+            // cmbSupplier
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(138, 268);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(121, 21);
-            this.comboBox2.TabIndex = 12;
+            this.cmbSupplier.FormattingEnabled = true;
+            this.cmbSupplier.Location = new System.Drawing.Point(138, 268);
+            this.cmbSupplier.Name = "cmbSupplier";
+            this.cmbSupplier.Size = new System.Drawing.Size(121, 21);
+            this.cmbSupplier.TabIndex = 12;
             // 
-            // iconButton2
+            // btnSave
             // 
-            this.iconButton2.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.iconButton2.IconColor = System.Drawing.Color.Black;
-            this.iconButton2.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconButton2.Location = new System.Drawing.Point(451, 342);
-            this.iconButton2.Name = "iconButton2";
-            this.iconButton2.Size = new System.Drawing.Size(81, 31);
-            this.iconButton2.TabIndex = 14;
-            this.iconButton2.Text = "[Save]";
-            this.iconButton2.UseVisualStyleBackColor = true;
+            this.btnSave.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.btnSave.IconColor = System.Drawing.Color.Black;
+            this.btnSave.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnSave.Location = new System.Drawing.Point(451, 342);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(81, 31);
+            this.btnSave.TabIndex = 14;
+            this.btnSave.Text = "[Save]";
+            this.btnSave.UseVisualStyleBackColor = true;
             // 
-            // iconButton4
+            // btnDiscard
             // 
-            this.iconButton4.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.iconButton4.IconColor = System.Drawing.Color.Black;
-            this.iconButton4.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconButton4.Location = new System.Drawing.Point(364, 342);
-            this.iconButton4.Name = "iconButton4";
-            this.iconButton4.Size = new System.Drawing.Size(81, 31);
-            this.iconButton4.TabIndex = 15;
-            this.iconButton4.Text = "[Discard]";
-            this.iconButton4.UseVisualStyleBackColor = true;
+            this.btnDiscard.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.btnDiscard.IconColor = System.Drawing.Color.Black;
+            this.btnDiscard.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnDiscard.Location = new System.Drawing.Point(364, 342);
+            this.btnDiscard.Name = "btnDiscard";
+            this.btnDiscard.Size = new System.Drawing.Size(81, 31);
+            this.btnDiscard.TabIndex = 15;
+            this.btnDiscard.Text = "[Discard]";
+            this.btnDiscard.UseVisualStyleBackColor = true;
             // 
             // frmAddProduct
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.ClientSize = new System.Drawing.Size(544, 385);
-            this.Controls.Add(this.iconButton4);
-            this.Controls.Add(this.iconButton2);
+            this.Controls.Add(this.btnDiscard);
+            this.Controls.Add(this.btnSave);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.comboBox2);
-            this.Controls.Add(this.textBox4);
+            this.Controls.Add(this.cmbSupplier);
+            this.Controls.Add(this.txtUnitPrice);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.txtDescription);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.txtProductName);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.cmbCategory);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.iconButton1);
+            this.Controls.Add(this.txtProductID);
+            this.Controls.Add(this.btnScan);
             this.Controls.Add(this.panelTop);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmAddProduct";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmAddProduct";
+            this.Load += new System.EventHandler(this.frmAddProduct_Load);
             this.panelTop.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -242,21 +243,21 @@
         #endregion
 
         private System.Windows.Forms.Panel panelTop;
-        private FontAwesome.Sharp.IconButton iconButton1;
-        private System.Windows.Forms.TextBox textBox1;
+        private FontAwesome.Sharp.IconButton btnScan;
+        private System.Windows.Forms.TextBox txtProductID;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cmbCategory;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox txtProductName;
+        private System.Windows.Forms.TextBox txtDescription;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox txtUnitPrice;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox cmbSupplier;
         private FontAwesome.Sharp.IconButton btnExit;
-        private FontAwesome.Sharp.IconButton iconButton2;
-        private FontAwesome.Sharp.IconButton iconButton4;
+        private FontAwesome.Sharp.IconButton btnSave;
+        private FontAwesome.Sharp.IconButton btnDiscard;
     }
 }
