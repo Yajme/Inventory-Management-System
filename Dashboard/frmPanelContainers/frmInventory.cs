@@ -74,7 +74,8 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
 
         private void btnManageSupplier_Click(object sender, EventArgs e)
         {
-
+            frmManageSupplier frmNew = new frmManageSupplier();
+            frmNew.ShowDialog();
         }
 
         private void btnManageStocks_Click(object sender, EventArgs e)

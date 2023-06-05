@@ -22,14 +22,13 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers.frmInventoyFo
 
         private void btnExit_Click(object sender, EventArgs e)
         {
-            this.Dispose();
+            this.Close();
         }
         
         private void btnNew_Click(object sender, EventArgs e)
         {
             txtCategory.Clear();
-            ShowNewRecord();
-            
+            ShowNewRecord(); 
         }
 
         private void btnClose_Click(object sender, EventArgs e)

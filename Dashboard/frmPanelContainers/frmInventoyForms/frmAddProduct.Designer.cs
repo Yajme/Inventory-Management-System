@@ -29,8 +29,6 @@
         private void InitializeComponent()
         {
             this.panelTop = new System.Windows.Forms.Panel();
-            this.btnExit = new FontAwesome.Sharp.IconButton();
-            this.btnScan = new FontAwesome.Sharp.IconButton();
             this.txtProductID = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.cmbCategory = new System.Windows.Forms.ComboBox();
@@ -43,8 +41,10 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.cmbSupplier = new System.Windows.Forms.ComboBox();
-            this.btnSave = new FontAwesome.Sharp.IconButton();
             this.btnDiscard = new FontAwesome.Sharp.IconButton();
+            this.btnSave = new FontAwesome.Sharp.IconButton();
+            this.btnScan = new FontAwesome.Sharp.IconButton();
+            this.btnExit = new FontAwesome.Sharp.IconButton();
             this.panelTop.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -57,34 +57,6 @@
             this.panelTop.Name = "panelTop";
             this.panelTop.Size = new System.Drawing.Size(544, 39);
             this.panelTop.TabIndex = 0;
-            // 
-            // btnExit
-            // 
-            this.btnExit.FlatAppearance.BorderSize = 0;
-            this.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnExit.ForeColor = System.Drawing.Color.White;
-            this.btnExit.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.btnExit.IconColor = System.Drawing.Color.Black;
-            this.btnExit.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnExit.Location = new System.Drawing.Point(460, 3);
-            this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(81, 31);
-            this.btnExit.TabIndex = 15;
-            this.btnExit.Text = "[Exit]";
-            this.btnExit.UseVisualStyleBackColor = true;
-            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
-            // 
-            // btnScan
-            // 
-            this.btnScan.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.btnScan.IconColor = System.Drawing.Color.Black;
-            this.btnScan.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnScan.Location = new System.Drawing.Point(379, 80);
-            this.btnScan.Name = "btnScan";
-            this.btnScan.Size = new System.Drawing.Size(81, 31);
-            this.btnScan.TabIndex = 1;
-            this.btnScan.Text = "[Scan]";
-            this.btnScan.UseVisualStyleBackColor = true;
             // 
             // txtProductID
             // 
@@ -147,9 +119,9 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(12, 203);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(46, 13);
+            this.label4.Size = new System.Drawing.Size(49, 13);
             this.label4.TabIndex = 9;
-            this.label4.Text = "Categoy";
+            this.label4.Text = "Category";
             // 
             // txtUnitPrice
             // 
@@ -184,6 +156,18 @@
             this.cmbSupplier.Size = new System.Drawing.Size(121, 21);
             this.cmbSupplier.TabIndex = 12;
             // 
+            // btnDiscard
+            // 
+            this.btnDiscard.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.btnDiscard.IconColor = System.Drawing.Color.Black;
+            this.btnDiscard.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnDiscard.Location = new System.Drawing.Point(364, 342);
+            this.btnDiscard.Name = "btnDiscard";
+            this.btnDiscard.Size = new System.Drawing.Size(81, 31);
+            this.btnDiscard.TabIndex = 15;
+            this.btnDiscard.Text = "[Discard]";
+            this.btnDiscard.UseVisualStyleBackColor = true;
+            // 
             // btnSave
             // 
             this.btnSave.IconChar = FontAwesome.Sharp.IconChar.None;
@@ -196,17 +180,33 @@
             this.btnSave.Text = "[Save]";
             this.btnSave.UseVisualStyleBackColor = true;
             // 
-            // btnDiscard
+            // btnScan
             // 
-            this.btnDiscard.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.btnDiscard.IconColor = System.Drawing.Color.Black;
-            this.btnDiscard.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnDiscard.Location = new System.Drawing.Point(364, 342);
-            this.btnDiscard.Name = "btnDiscard";
-            this.btnDiscard.Size = new System.Drawing.Size(81, 31);
-            this.btnDiscard.TabIndex = 15;
-            this.btnDiscard.Text = "[Discard]";
-            this.btnDiscard.UseVisualStyleBackColor = true;
+            this.btnScan.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.btnScan.IconColor = System.Drawing.Color.Black;
+            this.btnScan.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnScan.Location = new System.Drawing.Point(379, 80);
+            this.btnScan.Name = "btnScan";
+            this.btnScan.Size = new System.Drawing.Size(81, 31);
+            this.btnScan.TabIndex = 1;
+            this.btnScan.Text = "[Scan]";
+            this.btnScan.UseVisualStyleBackColor = true;
+            // 
+            // btnExit
+            // 
+            this.btnExit.FlatAppearance.BorderSize = 0;
+            this.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnExit.ForeColor = System.Drawing.Color.White;
+            this.btnExit.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.btnExit.IconColor = System.Drawing.Color.Black;
+            this.btnExit.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnExit.Location = new System.Drawing.Point(460, 3);
+            this.btnExit.Name = "btnExit";
+            this.btnExit.Size = new System.Drawing.Size(81, 31);
+            this.btnExit.TabIndex = 15;
+            this.btnExit.Text = "[Exit]";
+            this.btnExit.UseVisualStyleBackColor = true;
+            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
             // frmAddProduct
             // 
