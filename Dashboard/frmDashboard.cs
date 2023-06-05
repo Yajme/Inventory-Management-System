@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Runtime.Remoting.Channels;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,6 +17,7 @@ namespace Inventory_Management_System.Dashboard
     public partial class frmDashboard : Form
     {
         public static bool logout = false;
+        public static double getdpi;
         public Form lastForm;
         public frmDashboard()
         {
@@ -113,15 +115,14 @@ namespace Inventory_Management_System.Dashboard
             if(sidePanel.Width > 56)
             {
                 hideText();
-                panelSideTop.Height = 42;
+                panelSideTop.Height = (int)(39*getdpi/100);
                 sidePanel.Width = 56;
                 btnShowHidePanel.IconChar = FontAwesome.Sharp.IconChar.AngleDoubleRight;
             }else if(sidePanel.Width < 169)
             {
                 showText();
-                panelSideTop.Height = 188;
-                sidePanel.Width = 169;
-                sidePanel.Height = 551;
+                panelSideTop.Height = (int)(188*getdpi/100);
+                sidePanel.Width = (int)(169 * getdpi/100);
                 btnShowHidePanel.IconChar = FontAwesome.Sharp.IconChar.AngleDoubleLeft;
             }
             
@@ -152,11 +153,16 @@ namespace Inventory_Management_System.Dashboard
             logout = false;
             ChangeMenu("btnHome");
             db.Connection();
+
+            getdpi = devmode.GetWindowsScaling();
+            //MessageBox.Show((getsize/100).ToString());
         }
 
         private void panelContainer_Paint(object sender, PaintEventArgs e)
         {
 
         }
+
+       
     }
 }
