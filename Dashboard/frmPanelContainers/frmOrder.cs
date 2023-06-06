@@ -144,16 +144,10 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
         //placeorder
 
         //replenishbutton
-        private int validateWarehouse(string warehousename)
-        {
-            int id = 0;
-
-
-            return id;
-        }
+        
         private void btnSave_Click(object sender, EventArgs e)
         {
-            int id = validateWarehouse(cmbWarehouse.SelectedItem.ToString());
+            int id = commands.selectWarehouse(cmbWarehouse.SelectedItem.ToString());
             string[] stock = new string[3];
             stock[0] = txtProductID.Text;
             stock[1] = id.ToString();

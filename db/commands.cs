@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Windows.Input;
+using System.Data.Common;
 
 public static class commands
     {
@@ -156,8 +158,24 @@ public static class commands
         db.dr = db.cmd.ExecuteReader();
 
     }
+    public static int selectWarehouse(string warehousename)
+    {
+        int id = 0;
+        db.con.Open();
+        db.cmd = new SqlCommand("SELECT WarehouseID FROM Warehouses WHERE WarehouseName=@WarehouseName", db.con);
+        db.cmd.Parameters.AddWithValue("@WarehouseName", warehousename);
+        db.dr = db.cmd.ExecuteReader();
+        if (db.dr.Read())
+        {
+            id = (int)db.dr[0];
+        }
+        db.dr.Close();
+        db.con.Close();
+        return id;
+    }
     public static int insertMovementStock(string[] stock)
     {
+        db.con.Open();
 
 
         return 1;
