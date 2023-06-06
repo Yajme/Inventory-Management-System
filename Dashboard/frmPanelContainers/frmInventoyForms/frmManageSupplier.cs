@@ -22,8 +22,8 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers.frmInventoyFo
         }
         private void showFields()
         {
-            panel3.Height = (int)(221* (getdpi/100));
-            btnShowField.Hide();
+            panel3.Height = (int)(260 * (getdpi/100));
+            panel2.Height = 0;
             
         }
         private void hideFields()
@@ -34,6 +34,7 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers.frmInventoyFo
             txtContactPerson.Clear();
             txtEmail.Clear();
             txtPhone.Clear();
+            panel2.Height = (int)(39 * (getdpi / 100));
         }
         private void loadRecords()
         {
@@ -41,7 +42,7 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers.frmInventoyFo
             commands.loadsuppliers();
             while (db.dr.Read())
             {
-                dataGridView1.Rows.Add(db.dr[0], db.dr[1], db.dr[2], db.dr[3], db.dr[4]);
+                dataGridView1.Rows.Add(db.dr[0], db.dr[1], db.dr[2], db.dr[4], db.dr[3]);
             }
             db.dr.Close();
             db.con.Close();
@@ -71,14 +72,13 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers.frmInventoyFo
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if(update == false)
-            {
-                string[] suppliers = new string[4];
-                suppliers[0] = txtSupplierName.Text;
-                suppliers[1] = txtContactPerson.Text;
-                suppliers[2] = txtPhone.Text;
-                suppliers[3] = txtEmail.Text;
-                
+            string[] suppliers = new string[4];
+            suppliers[0] = txtSupplierName.Text;
+            suppliers[1] = txtContactPerson.Text;
+            suppliers[2] = txtPhone.Text;
+            suppliers[3] = txtEmail.Text;
+            if (update == false)
+            { 
                 int query = commands.insertsuppliers(suppliers);
                 if(query == 1)
                 {
@@ -88,16 +88,9 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers.frmInventoyFo
                 {
                     MessageBox.Show("Failed!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                
             }
             else
             {
-                string[] suppliers = new string[4];
-                suppliers[0] = txtSupplierName.Text;
-                suppliers[1] = txtContactPerson.Text;
-                suppliers[2] = txtPhone.Text;
-                suppliers[3] = txtEmail.Text;
-                
                 int query = commands.updatesuppliers(suppliers,supplierid);
                 if (query == 1)
                 {
@@ -109,7 +102,7 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers.frmInventoyFo
                 }
                 update = false;
             }
-
+            
             db.dr.Close();
             db.con.Close();
             hideFields();
@@ -123,11 +116,12 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers.frmInventoyFo
             string colName = dataGridView1.Columns[e.ColumnIndex].Name;
             if (colName == "colEdit")
             {
+                update = true;
                 txtSupplierName.Text  = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
                 txtContactPerson.Text = dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString();
                 txtEmail.Text = dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString();
                 txtPhone.Text = dataGridView1.Rows[e.RowIndex].Cells[4].Value.ToString();
-                update = true;
+                
                 showFields();
             }
             else if (colName == "colDelete")

@@ -86,7 +86,7 @@ public static class commands
         public static int updatesuppliers(string[] supplier, int supplierid)
         {
 
-        db.cmd = new SqlCommand("UPDATE SUPPLIERS SET SUPPLIERNAME=@SUPPLIERNAME, CONTACTPERSON= @CONTACTPERSON,PHONE= @PHONE,EMAIL= @EMAIL WHERE SUPPLIERID= @SUPPLIERID ", db.con);
+        db.cmd = new SqlCommand("UPDATE SUPPLIERS SET SUPPLIERNAME=@SUPPLIERNAME, CONTACTPERSON= @CONTACTPERSON, PHONE= @PHONE, EMAIL= @EMAIL WHERE SUPPLIERID= @SUPPLIERID ", db.con);
         db.cmd.Parameters.AddWithValue("@SUPPLIERNAME", supplier[0]);
         db.cmd.Parameters.AddWithValue("@CONTACTPERSON", supplier[1]);
         db.cmd.Parameters.AddWithValue("@PHONE", supplier[2]);
