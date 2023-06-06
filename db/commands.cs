@@ -5,9 +5,16 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.WindowsRuntime;
 
 public static class commands
     {
+        public static void loadInventory()
+        {
+        db.con.Open();
+        db.cmd = new SqlCommand("SELECT Products.ProductID, Products.ProductName, Products.Description, Categories.CategoryName, Products.QuantityInStock, Products.UnitPrice, Suppliers.SupplierName\r\nFROM Products\r\nJOIN Categories ON Products.CategoryID = Categories.CategoryID\r\nJOIN Suppliers ON Products.SupplierID = Suppliers.SupplierID", db.con);
+        db.dr = db.cmd.ExecuteReader();
+        }
         public static void loadsuppliers()
         {
         db.con.Open();
@@ -134,6 +141,26 @@ public static class commands
         db.dr.Close();
         db.con.Close();
         return items;
+    }
+
+    public static void loadMovementStock()
+    {
+        db.con.Open();
+        db.cmd = new SqlCommand("SELECT StockMovements.MovementID, StockMovements.ProductID, Warehouses.WarehouseName, StockMovements.MovementType,StockMovements.MovementDate, StockMovements.Quantity FROM StockMovements JOIN Warehouses ON StockMovements.WarehouseID = Warehouses.WarehouseID", db.con);
+        db.dr = db.cmd.ExecuteReader();
+    }
+    public static void loadWarehouses()
+    {
+        db.con.Open();
+        db.cmd = new SqlCommand("SELECT * FROM Warehouses", db.con);
+        db.dr = db.cmd.ExecuteReader();
+
+    }
+    public static int insertMovementStock(string[] stock)
+    {
+
+
+        return 1;
     }
 }
         

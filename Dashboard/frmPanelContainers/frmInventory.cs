@@ -20,14 +20,14 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
         private void LoadItems(string query, string filter)
         {
             dataGridView1.Rows.Clear();
-            db.con.Open();
+            ;
 
             if(query == "*" && filter == "*")
             {
-                db.cmd = new SqlCommand("SELECT Products.ProductID, Products.ProductName, Products.Description, Categories.CategoryName, Products.QuantityInStock, Products.UnitPrice, Suppliers.SupplierName\r\nFROM Products\r\nJOIN Categories ON Products.CategoryID = Categories.CategoryID\r\nJOIN Suppliers ON Products.SupplierID = Suppliers.SupplierID", db.con);
+                commands.loadInventory();
             }
 
-            db.dr = db.cmd.ExecuteReader();
+           
             while (db.dr.Read())
             {
                 dataGridView1.Rows.Add(db.dr[0], db.dr[1], db.dr[2], db.dr[3], db.dr[4], db.dr[5], db.dr[6]);
@@ -61,7 +61,6 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
         private void btnAddProduct_Click(object sender, EventArgs e)
         {
             frmAddProduct frmNew = new frmAddProduct();
-            
             frmNew.ShowDialog();
 
         }

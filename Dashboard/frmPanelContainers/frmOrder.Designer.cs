@@ -34,13 +34,19 @@
             this.btnPlaceOrder = new FontAwesome.Sharp.IconButton();
             this.panelPlaceOrder = new System.Windows.Forms.Panel();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.colRow = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colDesc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colUnitPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colQuantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colTotalPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panelOrderTop = new System.Windows.Forms.Panel();
             this.btnEnter = new FontAwesome.Sharp.IconButton();
             this.txtQuery = new System.Windows.Forms.TextBox();
             this.panelOrderControls = new System.Windows.Forms.Panel();
-            this.iconButton1 = new FontAwesome.Sharp.IconButton();
-            this.iconButton8 = new FontAwesome.Sharp.IconButton();
-            this.iconButton7 = new FontAwesome.Sharp.IconButton();
+            this.btnVoidItem = new FontAwesome.Sharp.IconButton();
+            this.btnAddDiscount = new FontAwesome.Sharp.IconButton();
+            this.btnSettle = new FontAwesome.Sharp.IconButton();
             this.btnProductInquiry = new FontAwesome.Sharp.IconButton();
             this.btnNewTransaction = new FontAwesome.Sharp.IconButton();
             this.panelPlaceOrderSide = new System.Windows.Forms.Panel();
@@ -65,13 +71,13 @@
             this.panelReplenishInventory = new System.Windows.Forms.Panel();
             this.btnDiscard = new FontAwesome.Sharp.IconButton();
             this.btnSave = new FontAwesome.Sharp.IconButton();
-            this.iconButton3 = new FontAwesome.Sharp.IconButton();
+            this.btnScan = new FontAwesome.Sharp.IconButton();
             this.label9 = new System.Windows.Forms.Label();
             this.dataGridView3 = new System.Windows.Forms.DataGridView();
             this.colProductID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colProductName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colPQuantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.iconButton2 = new FontAwesome.Sharp.IconButton();
+            this.btnEnterReplenish = new FontAwesome.Sharp.IconButton();
             this.label8 = new System.Windows.Forms.Label();
             this.txtQuantity = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -87,12 +93,8 @@
             this.colQuantityH = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel6 = new System.Windows.Forms.Panel();
             this.label10 = new System.Windows.Forms.Label();
-            this.colRow = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colDesc = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colUnitPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colQuantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colTotalPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label11 = new System.Windows.Forms.Label();
+            this.cmbWarehouse = new System.Windows.Forms.ComboBox();
             this.panelTop.SuspendLayout();
             this.panelPlaceOrder.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -182,9 +184,9 @@
             this.panelPlaceOrder.Controls.Add(this.panelOrderTop);
             this.panelPlaceOrder.Controls.Add(this.panelOrderControls);
             this.panelPlaceOrder.Controls.Add(this.panelPlaceOrderSide);
-            this.panelPlaceOrder.Location = new System.Drawing.Point(166, 24);
+            this.panelPlaceOrder.Location = new System.Drawing.Point(146, 271);
             this.panelPlaceOrder.Name = "panelPlaceOrder";
-            this.panelPlaceOrder.Size = new System.Drawing.Size(809, 579);
+            this.panelPlaceOrder.Size = new System.Drawing.Size(819, 238);
             this.panelPlaceOrder.TabIndex = 1;
             this.panelPlaceOrder.Visible = false;
             // 
@@ -192,6 +194,8 @@
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.AllowUserToResizeColumns = false;
+            this.dataGridView1.AllowUserToResizeRows = false;
             this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dataGridView1.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -207,8 +211,54 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersVisible = false;
-            this.dataGridView1.Size = new System.Drawing.Size(572, 515);
+            this.dataGridView1.Size = new System.Drawing.Size(582, 174);
             this.dataGridView1.TabIndex = 5;
+            // 
+            // colRow
+            // 
+            this.colRow.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.colRow.HeaderText = "#";
+            this.colRow.Name = "colRow";
+            this.colRow.ReadOnly = true;
+            this.colRow.Width = 39;
+            // 
+            // colID
+            // 
+            this.colID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colID.HeaderText = "ID";
+            this.colID.Name = "colID";
+            this.colID.ReadOnly = true;
+            // 
+            // colDesc
+            // 
+            this.colDesc.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colDesc.HeaderText = "Description";
+            this.colDesc.Name = "colDesc";
+            this.colDesc.ReadOnly = true;
+            // 
+            // colUnitPrice
+            // 
+            this.colUnitPrice.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.colUnitPrice.HeaderText = "Price";
+            this.colUnitPrice.Name = "colUnitPrice";
+            this.colUnitPrice.ReadOnly = true;
+            this.colUnitPrice.Width = 56;
+            // 
+            // colQuantity
+            // 
+            this.colQuantity.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.colQuantity.HeaderText = "Quantity";
+            this.colQuantity.Name = "colQuantity";
+            this.colQuantity.ReadOnly = true;
+            this.colQuantity.Width = 71;
+            // 
+            // colTotalPrice
+            // 
+            this.colTotalPrice.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.colTotalPrice.HeaderText = "Total";
+            this.colTotalPrice.Name = "colTotalPrice";
+            this.colTotalPrice.ReadOnly = true;
+            this.colTotalPrice.Width = 56;
             // 
             // panelOrderTop
             // 
@@ -217,7 +267,7 @@
             this.panelOrderTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelOrderTop.Location = new System.Drawing.Point(0, 0);
             this.panelOrderTop.Name = "panelOrderTop";
-            this.panelOrderTop.Size = new System.Drawing.Size(572, 27);
+            this.panelOrderTop.Size = new System.Drawing.Size(582, 27);
             this.panelOrderTop.TabIndex = 6;
             // 
             // btnEnter
@@ -245,55 +295,61 @@
             // 
             // panelOrderControls
             // 
-            this.panelOrderControls.Controls.Add(this.iconButton1);
-            this.panelOrderControls.Controls.Add(this.iconButton8);
-            this.panelOrderControls.Controls.Add(this.iconButton7);
+            this.panelOrderControls.Controls.Add(this.btnVoidItem);
+            this.panelOrderControls.Controls.Add(this.btnAddDiscount);
+            this.panelOrderControls.Controls.Add(this.btnSettle);
             this.panelOrderControls.Controls.Add(this.btnProductInquiry);
             this.panelOrderControls.Controls.Add(this.btnNewTransaction);
             this.panelOrderControls.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelOrderControls.Location = new System.Drawing.Point(0, 542);
+            this.panelOrderControls.Location = new System.Drawing.Point(0, 201);
             this.panelOrderControls.Name = "panelOrderControls";
-            this.panelOrderControls.Size = new System.Drawing.Size(572, 37);
+            this.panelOrderControls.Size = new System.Drawing.Size(582, 37);
             this.panelOrderControls.TabIndex = 4;
             // 
-            // iconButton1
+            // btnVoidItem
             // 
-            this.iconButton1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.iconButton1.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.iconButton1.IconColor = System.Drawing.Color.Black;
-            this.iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconButton1.Location = new System.Drawing.Point(463, 0);
-            this.iconButton1.Name = "iconButton1";
-            this.iconButton1.Size = new System.Drawing.Size(110, 37);
-            this.iconButton1.TabIndex = 4;
-            this.iconButton1.Text = "[F5] - Void Item";
-            this.iconButton1.UseVisualStyleBackColor = true;
+            this.btnVoidItem.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnVoidItem.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.btnVoidItem.IconColor = System.Drawing.Color.Black;
+            this.btnVoidItem.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnVoidItem.Location = new System.Drawing.Point(463, 0);
+            this.btnVoidItem.Name = "btnVoidItem";
+            this.btnVoidItem.Size = new System.Drawing.Size(110, 37);
+            this.btnVoidItem.TabIndex = 4;
+            this.btnVoidItem.Tag = "VoidItem";
+            this.btnVoidItem.Text = "[F5] - Void Item";
+            this.btnVoidItem.UseVisualStyleBackColor = true;
+            this.btnVoidItem.Click += new System.EventHandler(this.btnPOSControls);
             // 
-            // iconButton8
+            // btnAddDiscount
             // 
-            this.iconButton8.Dock = System.Windows.Forms.DockStyle.Left;
-            this.iconButton8.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.iconButton8.IconColor = System.Drawing.Color.Black;
-            this.iconButton8.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconButton8.Location = new System.Drawing.Point(353, 0);
-            this.iconButton8.Name = "iconButton8";
-            this.iconButton8.Size = new System.Drawing.Size(110, 37);
-            this.iconButton8.TabIndex = 3;
-            this.iconButton8.Text = "[F4] - Add Discount";
-            this.iconButton8.UseVisualStyleBackColor = true;
+            this.btnAddDiscount.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnAddDiscount.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.btnAddDiscount.IconColor = System.Drawing.Color.Black;
+            this.btnAddDiscount.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnAddDiscount.Location = new System.Drawing.Point(353, 0);
+            this.btnAddDiscount.Name = "btnAddDiscount";
+            this.btnAddDiscount.Size = new System.Drawing.Size(110, 37);
+            this.btnAddDiscount.TabIndex = 3;
+            this.btnAddDiscount.Tag = "AddDiscount";
+            this.btnAddDiscount.Text = "[F4] - Add Discount";
+            this.btnAddDiscount.UseVisualStyleBackColor = true;
+            this.btnAddDiscount.Click += new System.EventHandler(this.btnPOSControls);
             // 
-            // iconButton7
+            // btnSettle
             // 
-            this.iconButton7.Dock = System.Windows.Forms.DockStyle.Left;
-            this.iconButton7.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.iconButton7.IconColor = System.Drawing.Color.Black;
-            this.iconButton7.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconButton7.Location = new System.Drawing.Point(263, 0);
-            this.iconButton7.Name = "iconButton7";
-            this.iconButton7.Size = new System.Drawing.Size(90, 37);
-            this.iconButton7.TabIndex = 2;
-            this.iconButton7.Text = "[F3] - Settle";
-            this.iconButton7.UseVisualStyleBackColor = true;
+            this.btnSettle.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnSettle.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.btnSettle.IconColor = System.Drawing.Color.Black;
+            this.btnSettle.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnSettle.Location = new System.Drawing.Point(263, 0);
+            this.btnSettle.Name = "btnSettle";
+            this.btnSettle.Size = new System.Drawing.Size(90, 37);
+            this.btnSettle.TabIndex = 2;
+            this.btnSettle.Tag = "Settle";
+            this.btnSettle.Text = "[F3] - Settle";
+            this.btnSettle.UseVisualStyleBackColor = true;
+            this.btnSettle.Click += new System.EventHandler(this.btnPOSControls);
             // 
             // btnProductInquiry
             // 
@@ -305,8 +361,10 @@
             this.btnProductInquiry.Name = "btnProductInquiry";
             this.btnProductInquiry.Size = new System.Drawing.Size(117, 37);
             this.btnProductInquiry.TabIndex = 1;
+            this.btnProductInquiry.Tag = "ProductInquiry";
             this.btnProductInquiry.Text = "[F2] - Product Inquiry";
             this.btnProductInquiry.UseVisualStyleBackColor = true;
+            this.btnProductInquiry.Click += new System.EventHandler(this.btnPOSControls);
             // 
             // btnNewTransaction
             // 
@@ -318,8 +376,10 @@
             this.btnNewTransaction.Name = "btnNewTransaction";
             this.btnNewTransaction.Size = new System.Drawing.Size(146, 37);
             this.btnNewTransaction.TabIndex = 0;
+            this.btnNewTransaction.Tag = "NewTransaction";
             this.btnNewTransaction.Text = "[F1] - New Transaction";
             this.btnNewTransaction.UseVisualStyleBackColor = true;
+            this.btnNewTransaction.Click += new System.EventHandler(this.btnPOSControls);
             // 
             // panelPlaceOrderSide
             // 
@@ -330,9 +390,9 @@
             this.panelPlaceOrderSide.Controls.Add(this.panel4);
             this.panelPlaceOrderSide.Controls.Add(this.panel5);
             this.panelPlaceOrderSide.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panelPlaceOrderSide.Location = new System.Drawing.Point(572, 0);
+            this.panelPlaceOrderSide.Location = new System.Drawing.Point(582, 0);
             this.panelPlaceOrderSide.Name = "panelPlaceOrderSide";
-            this.panelPlaceOrderSide.Size = new System.Drawing.Size(237, 579);
+            this.panelPlaceOrderSide.Size = new System.Drawing.Size(237, 238);
             this.panelPlaceOrderSide.TabIndex = 1;
             // 
             // panel1
@@ -340,7 +400,7 @@
             this.panel1.Controls.Add(this.lblSubTotal);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 379);
+            this.panel1.Location = new System.Drawing.Point(0, 38);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(237, 40);
             this.panel1.TabIndex = 6;
@@ -393,7 +453,7 @@
             this.panel2.Controls.Add(this.lblVAT);
             this.panel2.Controls.Add(this.label2);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(0, 419);
+            this.panel2.Location = new System.Drawing.Point(0, 78);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(237, 40);
             this.panel2.TabIndex = 7;
@@ -424,7 +484,7 @@
             this.panel3.Controls.Add(this.lblTotal);
             this.panel3.Controls.Add(this.label3);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel3.Location = new System.Drawing.Point(0, 459);
+            this.panel3.Location = new System.Drawing.Point(0, 118);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(237, 40);
             this.panel3.TabIndex = 7;
@@ -455,7 +515,7 @@
             this.panel4.Controls.Add(this.lblCash);
             this.panel4.Controls.Add(this.label4);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel4.Location = new System.Drawing.Point(0, 499);
+            this.panel4.Location = new System.Drawing.Point(0, 158);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(237, 40);
             this.panel4.TabIndex = 7;
@@ -486,7 +546,7 @@
             this.panel5.Controls.Add(this.lblChange);
             this.panel5.Controls.Add(this.label5);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel5.Location = new System.Drawing.Point(0, 539);
+            this.panel5.Location = new System.Drawing.Point(0, 198);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(237, 40);
             this.panel5.TabIndex = 8;
@@ -514,7 +574,6 @@
             // 
             // panelContainer
             // 
-            this.panelContainer.Controls.Add(this.panelPlaceOrder);
             this.panelContainer.Controls.Add(this.panelReplenishInventory);
             this.panelContainer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelContainer.Location = new System.Drawing.Point(0, 73);
@@ -524,12 +583,15 @@
             // 
             // panelReplenishInventory
             // 
+            this.panelReplenishInventory.Controls.Add(this.cmbWarehouse);
+            this.panelReplenishInventory.Controls.Add(this.label11);
             this.panelReplenishInventory.Controls.Add(this.btnDiscard);
+            this.panelReplenishInventory.Controls.Add(this.panelPlaceOrder);
             this.panelReplenishInventory.Controls.Add(this.btnSave);
-            this.panelReplenishInventory.Controls.Add(this.iconButton3);
+            this.panelReplenishInventory.Controls.Add(this.btnScan);
             this.panelReplenishInventory.Controls.Add(this.label9);
             this.panelReplenishInventory.Controls.Add(this.dataGridView3);
-            this.panelReplenishInventory.Controls.Add(this.iconButton2);
+            this.panelReplenishInventory.Controls.Add(this.btnEnterReplenish);
             this.panelReplenishInventory.Controls.Add(this.label8);
             this.panelReplenishInventory.Controls.Add(this.txtQuantity);
             this.panelReplenishInventory.Controls.Add(this.label7);
@@ -538,7 +600,7 @@
             this.panelReplenishInventory.Controls.Add(this.txtProductName);
             this.panelReplenishInventory.Controls.Add(this.dataGridView2);
             this.panelReplenishInventory.Controls.Add(this.panel6);
-            this.panelReplenishInventory.Location = new System.Drawing.Point(1034, 499);
+            this.panelReplenishInventory.Location = new System.Drawing.Point(71, 38);
             this.panelReplenishInventory.Name = "panelReplenishInventory";
             this.panelReplenishInventory.Size = new System.Drawing.Size(929, 509);
             this.panelReplenishInventory.TabIndex = 2;
@@ -549,36 +611,39 @@
             this.btnDiscard.IconChar = FontAwesome.Sharp.IconChar.None;
             this.btnDiscard.IconColor = System.Drawing.Color.Black;
             this.btnDiscard.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnDiscard.Location = new System.Drawing.Point(742, 160);
+            this.btnDiscard.Location = new System.Drawing.Point(741, 187);
             this.btnDiscard.Name = "btnDiscard";
             this.btnDiscard.Size = new System.Drawing.Size(75, 22);
             this.btnDiscard.TabIndex = 16;
             this.btnDiscard.Text = "[Discard]";
             this.btnDiscard.UseVisualStyleBackColor = true;
+            this.btnDiscard.Click += new System.EventHandler(this.btnDiscard_Click);
             // 
             // btnSave
             // 
             this.btnSave.IconChar = FontAwesome.Sharp.IconChar.None;
             this.btnSave.IconColor = System.Drawing.Color.Black;
             this.btnSave.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnSave.Location = new System.Drawing.Point(661, 160);
+            this.btnSave.Location = new System.Drawing.Point(660, 187);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 22);
             this.btnSave.TabIndex = 15;
             this.btnSave.Text = "[Save]";
             this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
-            // iconButton3
+            // btnScan
             // 
-            this.iconButton3.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.iconButton3.IconColor = System.Drawing.Color.Black;
-            this.iconButton3.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconButton3.Location = new System.Drawing.Point(912, 60);
-            this.iconButton3.Name = "iconButton3";
-            this.iconButton3.Size = new System.Drawing.Size(75, 22);
-            this.iconButton3.TabIndex = 14;
-            this.iconButton3.Text = "[Scan]";
-            this.iconButton3.UseVisualStyleBackColor = true;
+            this.btnScan.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.btnScan.IconColor = System.Drawing.Color.Black;
+            this.btnScan.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnScan.Location = new System.Drawing.Point(912, 60);
+            this.btnScan.Name = "btnScan";
+            this.btnScan.Size = new System.Drawing.Size(75, 22);
+            this.btnScan.TabIndex = 14;
+            this.btnScan.Text = "[Scan]";
+            this.btnScan.UseVisualStyleBackColor = true;
+            this.btnScan.Click += new System.EventHandler(this.btnScan_Click);
             // 
             // label9
             // 
@@ -631,22 +696,23 @@
             this.colPQuantity.ReadOnly = true;
             this.colPQuantity.Width = 71;
             // 
-            // iconButton2
+            // btnEnterReplenish
             // 
-            this.iconButton2.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.iconButton2.IconColor = System.Drawing.Color.Black;
-            this.iconButton2.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconButton2.Location = new System.Drawing.Point(831, 60);
-            this.iconButton2.Name = "iconButton2";
-            this.iconButton2.Size = new System.Drawing.Size(75, 22);
-            this.iconButton2.TabIndex = 10;
-            this.iconButton2.Text = "[Enter]";
-            this.iconButton2.UseVisualStyleBackColor = true;
+            this.btnEnterReplenish.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.btnEnterReplenish.IconColor = System.Drawing.Color.Black;
+            this.btnEnterReplenish.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnEnterReplenish.Location = new System.Drawing.Point(831, 60);
+            this.btnEnterReplenish.Name = "btnEnterReplenish";
+            this.btnEnterReplenish.Size = new System.Drawing.Size(75, 22);
+            this.btnEnterReplenish.TabIndex = 10;
+            this.btnEnterReplenish.Text = "[Enter]";
+            this.btnEnterReplenish.UseVisualStyleBackColor = true;
+            this.btnEnterReplenish.Click += new System.EventHandler(this.btnEnterReplenish_Click);
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(515, 120);
+            this.label8.Location = new System.Drawing.Point(515, 124);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(46, 13);
             this.label8.TabIndex = 9;
@@ -662,7 +728,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(515, 91);
+            this.label7.Location = new System.Drawing.Point(515, 98);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(72, 13);
             this.label7.TabIndex = 7;
@@ -678,7 +744,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(515, 65);
+            this.label6.Location = new System.Drawing.Point(515, 69);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(55, 13);
             this.label6.TabIndex = 5;
@@ -779,51 +845,22 @@
             this.label10.TabIndex = 14;
             this.label10.Text = "History:";
             // 
-            // colRow
+            // label11
             // 
-            this.colRow.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.colRow.HeaderText = "#";
-            this.colRow.Name = "colRow";
-            this.colRow.ReadOnly = true;
-            this.colRow.Width = 39;
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(517, 151);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(62, 13);
+            this.label11.TabIndex = 17;
+            this.label11.Text = "Warehouse";
             // 
-            // colID
+            // cmbWarehouse
             // 
-            this.colID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colID.HeaderText = "ID";
-            this.colID.Name = "colID";
-            this.colID.ReadOnly = true;
-            // 
-            // colDesc
-            // 
-            this.colDesc.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colDesc.HeaderText = "Description";
-            this.colDesc.Name = "colDesc";
-            this.colDesc.ReadOnly = true;
-            // 
-            // colUnitPrice
-            // 
-            this.colUnitPrice.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.colUnitPrice.HeaderText = "Price";
-            this.colUnitPrice.Name = "colUnitPrice";
-            this.colUnitPrice.ReadOnly = true;
-            this.colUnitPrice.Width = 56;
-            // 
-            // colQuantity
-            // 
-            this.colQuantity.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.colQuantity.HeaderText = "Quantity";
-            this.colQuantity.Name = "colQuantity";
-            this.colQuantity.ReadOnly = true;
-            this.colQuantity.Width = 71;
-            // 
-            // colTotalPrice
-            // 
-            this.colTotalPrice.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.colTotalPrice.HeaderText = "Total";
-            this.colTotalPrice.Name = "colTotalPrice";
-            this.colTotalPrice.ReadOnly = true;
-            this.colTotalPrice.Width = 56;
+            this.cmbWarehouse.FormattingEnabled = true;
+            this.cmbWarehouse.Location = new System.Drawing.Point(593, 143);
+            this.cmbWarehouse.Name = "cmbWarehouse";
+            this.cmbWarehouse.Size = new System.Drawing.Size(223, 21);
+            this.cmbWarehouse.TabIndex = 18;
             // 
             // frmOrder
             // 
@@ -885,8 +922,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Panel panelOrderControls;
-        private FontAwesome.Sharp.IconButton iconButton8;
-        private FontAwesome.Sharp.IconButton iconButton7;
+        private FontAwesome.Sharp.IconButton btnAddDiscount;
+        private FontAwesome.Sharp.IconButton btnSettle;
         private FontAwesome.Sharp.IconButton btnProductInquiry;
         private FontAwesome.Sharp.IconButton btnNewTransaction;
         private System.Windows.Forms.Panel panelPlaceOrderSide;
@@ -897,7 +934,7 @@
         private System.Windows.Forms.Panel panelOrderTop;
         private FontAwesome.Sharp.IconButton btnEnter;
         private System.Windows.Forms.TextBox txtQuery;
-        private FontAwesome.Sharp.IconButton iconButton1;
+        private FontAwesome.Sharp.IconButton btnVoidItem;
         private System.Windows.Forms.Panel panelContainer;
         private System.Windows.Forms.Label lblSubTotal;
         private System.Windows.Forms.Label lblVAT;
@@ -907,13 +944,13 @@
         private System.Windows.Forms.Panel panelReplenishInventory;
         private FontAwesome.Sharp.IconButton btnDiscard;
         private FontAwesome.Sharp.IconButton btnSave;
-        private FontAwesome.Sharp.IconButton iconButton3;
+        private FontAwesome.Sharp.IconButton btnScan;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.DataGridView dataGridView3;
         private System.Windows.Forms.DataGridViewTextBoxColumn colProductID;
         private System.Windows.Forms.DataGridViewTextBoxColumn colProductName;
         private System.Windows.Forms.DataGridViewTextBoxColumn colPQuantity;
-        private FontAwesome.Sharp.IconButton iconButton2;
+        private FontAwesome.Sharp.IconButton btnEnterReplenish;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox txtQuantity;
         private System.Windows.Forms.Label label7;
@@ -935,5 +972,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colUnitPrice;
         private System.Windows.Forms.DataGridViewTextBoxColumn colQuantity;
         private System.Windows.Forms.DataGridViewTextBoxColumn colTotalPrice;
+        private System.Windows.Forms.ComboBox cmbWarehouse;
+        private System.Windows.Forms.Label label11;
     }
 }

@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.Web;
 
 namespace Inventory_Management_System.Dashboard.frmPanelContainers
 {
@@ -19,6 +20,7 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
         {
             InitializeComponent();
         }
+        //formcontrol
         private void frmOrder_Load(object sender, EventArgs e)
         {
             this.KeyPreview = true;
@@ -45,6 +47,7 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
         private void btnReplenishInventory_Click(object sender, EventArgs e)
         {
             fillContainer(panelReplenishInventory);
+            loadHistoryandProducts();
         }
 
         private void btnReturnExchange_Click(object sender, EventArgs e)
@@ -60,30 +63,12 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
             panel.Show();
         }
 
-        private void frmOrder_Key(object sender, KeyEventArgs e)
-        {
-            
-            switch (e.KeyCode.ToString())
-            {
-                case "F1":
-                    clearPlaceOrderPanel();
-                    MessageBox.Show("F1 pressed");
-                    break;
-                case "F2":
-                    MessageBox.Show("F2 pressed");
-                    break;
-                case "F3":
-                    MessageBox.Show("F3 pressed");
-                    break;
-                case "F4":
-                    MessageBox.Show("F4 pressed");
-                    break;
-                case "F5":
-                    MessageBox.Show("F5 pressed");
-                    break;
-            }
-        }
+       
+        
+        //formcontrol
 
+        /// placeorder
+        
         private void itemScan(string query)
         {
             bool found = false;
@@ -124,5 +109,132 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
         {
             itemScan(txtQuery.Text);
         }
+        private void frmOrder_Key(object sender, KeyEventArgs e)
+        {
+
+            switch (e.KeyCode.ToString())
+            {
+                case "F1":
+                    POSControls("NewTransaction");
+                    
+                    break;
+                case "F2":
+                    POSControls("ProductInquiry");
+                    break;
+                case "F3":
+                    POSControls("Settle");
+                    break;
+                case "F4":
+                    POSControls("AddDiscount");
+                    break;
+                case "F5":
+                    POSControls("VoidItem");
+                    break;
+            }
+        }
+
+        private void btnPOSControls(object sender, EventArgs e)
+        {
+            POSControls(((Button)sender).Tag.ToString());
+        }
+        private void POSControls(string tag)
+        {
+            MessageBox.Show(tag);
+        }
+        //placeorder
+
+        //replenishbutton
+        private int validateWarehouse(string warehousename)
+        {
+            int id = 0;
+
+
+            return id;
+        }
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            int id = validateWarehouse(cmbWarehouse.SelectedItem.ToString());
+            string[] stock = new string[3];
+            stock[0] = txtProductID.Text;
+            stock[1] = id.ToString();
+            stock[2] = txtQuantity.Text;
+
+            int query = commands.insertMovementStock(stock);
+
+
+        }
+
+        private void btnDiscard_Click(object sender, EventArgs e)
+        {
+            loadHistoryandProducts();
+        }
+
+        private void btnEnterReplenish_Click(object sender, EventArgs e)
+        {
+            string[] item = commands.itemEncode(txtProductID.Text);
+            if(item.Length > 0)
+            {
+                txtProductName.Text = item[1];
+            }
+            
+        }
+
+        private void btnScan_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
+        //replenishbutton
+
+        // replenishloaddata
+        private void loadHistoryandProducts()
+        {
+            txtProductID.Clear();
+            txtProductName.Clear();
+            txtQuantity.Clear();
+            
+            //datagridview2 = history
+            //datagridview3 = product
+
+            //product
+            dataGridView3.Rows.Clear();
+            commands.loadInventory();
+            while (db.dr.Read())
+            {
+                dataGridView3.Rows.Add(db.dr[0], db.dr[1], db.dr[4]);
+            }
+           db.dr.Close();
+           db.con.Close();
+            //product
+
+
+            //history
+            //cmb
+            cmbWarehouse.Items.Clear();
+            commands.loadWarehouses();
+            while (db.dr.Read())
+            {
+                cmbWarehouse.Items.Add(db.dr[1]);
+            }
+            db.dr.Close();
+            db.con.Close();
+            //cmb
+            dataGridView2.Rows.Clear();
+            commands.loadMovementStock();
+            while (db.dr.Read())
+            {
+                dataGridView2.Rows.Add(db.dr[0], db.dr[1], db.dr[2], db.dr[3], db.dr[4], db.dr[5]);
+            }
+            db.dr.Close();
+            db.con.Close();
+            //history
+
+        }
+
+
+        // replenishloaddata
+
+
     }
 }
