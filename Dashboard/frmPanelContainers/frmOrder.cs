@@ -14,6 +14,7 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
     public partial class frmOrder : Form
     {
         public static double getdpi;
+        public static double total = 0;
         public frmOrder()
         {
             InitializeComponent();
@@ -35,6 +36,8 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
         private void clearPlaceOrderPanel()
         {
             dataGridView1.Rows.Clear();
+            total = 0;
+            txtQuery.Clear();
             lblSaleTotal.Text = "0.00";
 
         }
@@ -81,14 +84,45 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
             }
         }
 
-        private void panelReplenishInventory_Paint(object sender, PaintEventArgs e)
+        private void itemScan(string query)
         {
+            bool found = false;
+            int row = 0;
+            string[] itemfetched = commands.itemEncode(query);
+            total += Convert.ToDouble(itemfetched[2]);
+            //commands.itemEncode(query);
+            if (dataGridView1.Rows.Count > 0)
+            {
+                foreach (DataGridViewRow rows in dataGridView1.Rows)
+                {
+                    if (rows.Cells[dataGridView1.Columns["colID"].Index].Value.ToString() == txtQuery.Text)
+                    {
+                        found = true;
+                        rows.Cells[dataGridView1.Columns["colQuantity"].Index].Value = Convert.ToInt32(rows.Cells[dataGridView1.Columns["colQuantity"].Index].Value) + 1;
+                    }
+                }
+                if (!found)
+                {
+                    row++;
+                    dataGridView1.Rows.Add(row, itemfetched[0] ,itemfetched[1], itemfetched[2],1, string.Format("0", "#,##0.00"));
+                }
+            }
+            else
+            {
+                row++;
+                dataGridView1.Rows.Add(row,itemfetched[0], itemfetched[1], itemfetched[2], 1, string.Format("0", "#,##0.00"));
+            }
 
+            foreach (DataGridViewRow rows in dataGridView1.Rows)
+            {
+                rows.Cells[dataGridView1.Columns["colTotalPrice"].Index].Value = Convert.ToDouble(rows.Cells[dataGridView1.Columns["colUnitPrice"].Index].Value) * Convert.ToDouble(rows.Cells[dataGridView1.Columns["colQuantity"].Index].Value);
+            }
+            lblSaleTotal.Text = string.Format(total.ToString(), "#,##0.00");
         }
 
-        private void textBox3_TextChanged(object sender, EventArgs e)
+        private void btnEnter_Click(object sender, EventArgs e)
         {
-
+            itemScan(txtQuery.Text);
         }
     }
 }

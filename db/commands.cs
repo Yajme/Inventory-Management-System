@@ -116,6 +116,25 @@ public static class commands
             return -1;
         }
     }
+
+    public static string[]itemEncode (string id)
+    {
+        string[] items = new string[3];
+        db.con.Open();
+        db.cmd = new SqlCommand("SELECT ProductID, Description, UnitPrice FROM PRODUCTS WHERE PRODUCTID= @PRODUCTID", db.con);
+        db.cmd.Parameters.AddWithValue("@PRODUCTID", id);
+        db.dr = db.cmd.ExecuteReader();
+        if (db.dr.Read())
+        {
+
+            items[0] = db.dr[0].ToString(); // productid
+            items[1] = db.dr[1].ToString(); //desc
+            items[2] = db.dr[2].ToString(); //unitprice
+        }
+        db.dr.Close();
+        db.con.Close();
+        return items;
+    }
 }
         
 

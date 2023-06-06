@@ -30,17 +30,12 @@
         {
             this.panelTop = new System.Windows.Forms.Panel();
             this.btnReturnExchange = new FontAwesome.Sharp.IconButton();
-            this.btnPlaceOrder = new FontAwesome.Sharp.IconButton();
             this.btnReplenishInventory = new FontAwesome.Sharp.IconButton();
+            this.btnPlaceOrder = new FontAwesome.Sharp.IconButton();
             this.panelPlaceOrder = new System.Windows.Forms.Panel();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.colRow = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colDesc = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colUnitPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colQuantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colTotalPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panelOrderTop = new System.Windows.Forms.Panel();
-            this.iconButton4 = new FontAwesome.Sharp.IconButton();
+            this.btnEnter = new FontAwesome.Sharp.IconButton();
             this.txtQuery = new System.Windows.Forms.TextBox();
             this.panelOrderControls = new System.Windows.Forms.Panel();
             this.iconButton1 = new FontAwesome.Sharp.IconButton();
@@ -92,6 +87,12 @@
             this.colQuantityH = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel6 = new System.Windows.Forms.Panel();
             this.label10 = new System.Windows.Forms.Label();
+            this.colRow = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colDesc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colUnitPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colQuantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colTotalPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panelTop.SuspendLayout();
             this.panelPlaceOrder.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -115,8 +116,8 @@
             // 
             this.panelTop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(55)))), ((int)(((byte)(55)))));
             this.panelTop.Controls.Add(this.btnReturnExchange);
-            this.panelTop.Controls.Add(this.btnPlaceOrder);
             this.panelTop.Controls.Add(this.btnReplenishInventory);
+            this.panelTop.Controls.Add(this.btnPlaceOrder);
             this.panelTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelTop.Location = new System.Drawing.Point(0, 0);
             this.panelTop.Margin = new System.Windows.Forms.Padding(2);
@@ -132,7 +133,7 @@
             this.btnReturnExchange.IconChar = FontAwesome.Sharp.IconChar.None;
             this.btnReturnExchange.IconColor = System.Drawing.Color.Black;
             this.btnReturnExchange.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnReturnExchange.Location = new System.Drawing.Point(246, 9);
+            this.btnReturnExchange.Location = new System.Drawing.Point(266, 11);
             this.btnReturnExchange.Margin = new System.Windows.Forms.Padding(2);
             this.btnReturnExchange.Name = "btnReturnExchange";
             this.btnReturnExchange.Size = new System.Drawing.Size(134, 56);
@@ -140,23 +141,6 @@
             this.btnReturnExchange.Text = "[Return and Exchanges]";
             this.btnReturnExchange.UseVisualStyleBackColor = true;
             this.btnReturnExchange.Click += new System.EventHandler(this.btnReturnExchange_Click);
-            // 
-            // btnPlaceOrder
-            // 
-            this.btnPlaceOrder.AutoSize = true;
-            this.btnPlaceOrder.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPlaceOrder.ForeColor = System.Drawing.Color.White;
-            this.btnPlaceOrder.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.btnPlaceOrder.IconColor = System.Drawing.Color.Black;
-            this.btnPlaceOrder.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnPlaceOrder.Location = new System.Drawing.Point(9, 9);
-            this.btnPlaceOrder.Margin = new System.Windows.Forms.Padding(2);
-            this.btnPlaceOrder.Name = "btnPlaceOrder";
-            this.btnPlaceOrder.Size = new System.Drawing.Size(81, 56);
-            this.btnPlaceOrder.TabIndex = 0;
-            this.btnPlaceOrder.Text = "[Place Order]";
-            this.btnPlaceOrder.UseVisualStyleBackColor = true;
-            this.btnPlaceOrder.Click += new System.EventHandler(this.btnPlaceOrder_Click);
             // 
             // btnReplenishInventory
             // 
@@ -166,14 +150,31 @@
             this.btnReplenishInventory.IconChar = FontAwesome.Sharp.IconChar.None;
             this.btnReplenishInventory.IconColor = System.Drawing.Color.Black;
             this.btnReplenishInventory.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnReplenishInventory.Location = new System.Drawing.Point(103, 9);
+            this.btnReplenishInventory.Location = new System.Drawing.Point(143, 11);
             this.btnReplenishInventory.Margin = new System.Windows.Forms.Padding(2);
             this.btnReplenishInventory.Name = "btnReplenishInventory";
-            this.btnReplenishInventory.Size = new System.Drawing.Size(129, 56);
+            this.btnReplenishInventory.Size = new System.Drawing.Size(119, 56);
             this.btnReplenishInventory.TabIndex = 1;
             this.btnReplenishInventory.Text = "[Replenish Inventory]";
             this.btnReplenishInventory.UseVisualStyleBackColor = true;
             this.btnReplenishInventory.Click += new System.EventHandler(this.btnReplenishInventory_Click);
+            // 
+            // btnPlaceOrder
+            // 
+            this.btnPlaceOrder.AutoSize = true;
+            this.btnPlaceOrder.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPlaceOrder.ForeColor = System.Drawing.Color.White;
+            this.btnPlaceOrder.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.btnPlaceOrder.IconColor = System.Drawing.Color.Black;
+            this.btnPlaceOrder.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnPlaceOrder.Location = new System.Drawing.Point(36, 11);
+            this.btnPlaceOrder.Margin = new System.Windows.Forms.Padding(2);
+            this.btnPlaceOrder.Name = "btnPlaceOrder";
+            this.btnPlaceOrder.Size = new System.Drawing.Size(103, 56);
+            this.btnPlaceOrder.TabIndex = 0;
+            this.btnPlaceOrder.Text = "[Place Order]";
+            this.btnPlaceOrder.UseVisualStyleBackColor = true;
+            this.btnPlaceOrder.Click += new System.EventHandler(this.btnPlaceOrder_Click);
             // 
             // panelPlaceOrder
             // 
@@ -181,7 +182,7 @@
             this.panelPlaceOrder.Controls.Add(this.panelOrderTop);
             this.panelPlaceOrder.Controls.Add(this.panelOrderControls);
             this.panelPlaceOrder.Controls.Add(this.panelPlaceOrderSide);
-            this.panelPlaceOrder.Location = new System.Drawing.Point(1075, 549);
+            this.panelPlaceOrder.Location = new System.Drawing.Point(166, 24);
             this.panelPlaceOrder.Name = "panelPlaceOrder";
             this.panelPlaceOrder.Size = new System.Drawing.Size(809, 579);
             this.panelPlaceOrder.TabIndex = 1;
@@ -192,9 +193,11 @@
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.dataGridView1.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colRow,
+            this.colID,
             this.colDesc,
             this.colUnitPrice,
             this.colQuantity,
@@ -207,48 +210,9 @@
             this.dataGridView1.Size = new System.Drawing.Size(572, 515);
             this.dataGridView1.TabIndex = 5;
             // 
-            // colRow
-            // 
-            this.colRow.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.colRow.HeaderText = "#";
-            this.colRow.Name = "colRow";
-            this.colRow.ReadOnly = true;
-            this.colRow.Width = 39;
-            // 
-            // colDesc
-            // 
-            this.colDesc.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colDesc.HeaderText = "Description";
-            this.colDesc.Name = "colDesc";
-            this.colDesc.ReadOnly = true;
-            // 
-            // colUnitPrice
-            // 
-            this.colUnitPrice.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.colUnitPrice.HeaderText = "Price";
-            this.colUnitPrice.Name = "colUnitPrice";
-            this.colUnitPrice.ReadOnly = true;
-            this.colUnitPrice.Width = 56;
-            // 
-            // colQuantity
-            // 
-            this.colQuantity.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.colQuantity.HeaderText = "Quantity";
-            this.colQuantity.Name = "colQuantity";
-            this.colQuantity.ReadOnly = true;
-            this.colQuantity.Width = 71;
-            // 
-            // colTotalPrice
-            // 
-            this.colTotalPrice.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.colTotalPrice.HeaderText = "Total";
-            this.colTotalPrice.Name = "colTotalPrice";
-            this.colTotalPrice.ReadOnly = true;
-            this.colTotalPrice.Width = 56;
-            // 
             // panelOrderTop
             // 
-            this.panelOrderTop.Controls.Add(this.iconButton4);
+            this.panelOrderTop.Controls.Add(this.btnEnter);
             this.panelOrderTop.Controls.Add(this.txtQuery);
             this.panelOrderTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelOrderTop.Location = new System.Drawing.Point(0, 0);
@@ -256,18 +220,19 @@
             this.panelOrderTop.Size = new System.Drawing.Size(572, 27);
             this.panelOrderTop.TabIndex = 6;
             // 
-            // iconButton4
+            // btnEnter
             // 
-            this.iconButton4.Dock = System.Windows.Forms.DockStyle.Left;
-            this.iconButton4.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.iconButton4.IconColor = System.Drawing.Color.Black;
-            this.iconButton4.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconButton4.Location = new System.Drawing.Point(368, 0);
-            this.iconButton4.Name = "iconButton4";
-            this.iconButton4.Size = new System.Drawing.Size(65, 27);
-            this.iconButton4.TabIndex = 5;
-            this.iconButton4.Text = "Enter";
-            this.iconButton4.UseVisualStyleBackColor = true;
+            this.btnEnter.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnEnter.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.btnEnter.IconColor = System.Drawing.Color.Black;
+            this.btnEnter.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnEnter.Location = new System.Drawing.Point(368, 0);
+            this.btnEnter.Name = "btnEnter";
+            this.btnEnter.Size = new System.Drawing.Size(65, 27);
+            this.btnEnter.TabIndex = 5;
+            this.btnEnter.Text = "Enter";
+            this.btnEnter.UseVisualStyleBackColor = true;
+            this.btnEnter.Click += new System.EventHandler(this.btnEnter_Click);
             // 
             // txtQuery
             // 
@@ -414,11 +379,12 @@
             // lblSaleTotal
             // 
             this.lblSaleTotal.AutoSize = true;
-            this.lblSaleTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSaleTotal.Dock = System.Windows.Forms.DockStyle.Left;
+            this.lblSaleTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSaleTotal.ForeColor = System.Drawing.Color.White;
-            this.lblSaleTotal.Location = new System.Drawing.Point(3, 8);
+            this.lblSaleTotal.Location = new System.Drawing.Point(0, 0);
             this.lblSaleTotal.Name = "lblSaleTotal";
-            this.lblSaleTotal.Size = new System.Drawing.Size(44, 20);
+            this.lblSaleTotal.Size = new System.Drawing.Size(88, 39);
             this.lblSaleTotal.TabIndex = 0;
             this.lblSaleTotal.Text = "0.00";
             // 
@@ -577,7 +543,6 @@
             this.panelReplenishInventory.Size = new System.Drawing.Size(929, 509);
             this.panelReplenishInventory.TabIndex = 2;
             this.panelReplenishInventory.Visible = false;
-            this.panelReplenishInventory.Paint += new System.Windows.Forms.PaintEventHandler(this.panelReplenishInventory_Paint);
             // 
             // btnDiscard
             // 
@@ -693,7 +658,6 @@
             this.txtQuantity.Name = "txtQuantity";
             this.txtQuantity.Size = new System.Drawing.Size(224, 20);
             this.txtQuantity.TabIndex = 8;
-            this.txtQuantity.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
             // 
             // label7
             // 
@@ -815,6 +779,52 @@
             this.label10.TabIndex = 14;
             this.label10.Text = "History:";
             // 
+            // colRow
+            // 
+            this.colRow.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.colRow.HeaderText = "#";
+            this.colRow.Name = "colRow";
+            this.colRow.ReadOnly = true;
+            this.colRow.Width = 39;
+            // 
+            // colID
+            // 
+            this.colID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colID.HeaderText = "ID";
+            this.colID.Name = "colID";
+            this.colID.ReadOnly = true;
+            // 
+            // colDesc
+            // 
+            this.colDesc.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colDesc.HeaderText = "Description";
+            this.colDesc.Name = "colDesc";
+            this.colDesc.ReadOnly = true;
+            // 
+            // colUnitPrice
+            // 
+            this.colUnitPrice.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.colUnitPrice.HeaderText = "Price";
+            this.colUnitPrice.Name = "colUnitPrice";
+            this.colUnitPrice.ReadOnly = true;
+            this.colUnitPrice.Width = 56;
+            // 
+            // colQuantity
+            // 
+            this.colQuantity.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.colQuantity.HeaderText = "Quantity";
+            this.colQuantity.Name = "colQuantity";
+            this.colQuantity.ReadOnly = true;
+            this.colQuantity.Width = 71;
+            // 
+            // colTotalPrice
+            // 
+            this.colTotalPrice.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.colTotalPrice.HeaderText = "Total";
+            this.colTotalPrice.Name = "colTotalPrice";
+            this.colTotalPrice.ReadOnly = true;
+            this.colTotalPrice.Width = 56;
+            // 
             // frmOrder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -874,11 +884,6 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colRow;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colDesc;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colUnitPrice;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colQuantity;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colTotalPrice;
         private System.Windows.Forms.Panel panelOrderControls;
         private FontAwesome.Sharp.IconButton iconButton8;
         private FontAwesome.Sharp.IconButton iconButton7;
@@ -890,7 +895,7 @@
         private System.Windows.Forms.Panel panelSaleTotalContaine;
         private System.Windows.Forms.Label lblSaleTotal;
         private System.Windows.Forms.Panel panelOrderTop;
-        private FontAwesome.Sharp.IconButton iconButton4;
+        private FontAwesome.Sharp.IconButton btnEnter;
         private System.Windows.Forms.TextBox txtQuery;
         private FontAwesome.Sharp.IconButton iconButton1;
         private System.Windows.Forms.Panel panelContainer;
@@ -924,5 +929,11 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colQuantityH;
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colRow;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colDesc;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colUnitPrice;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colQuantity;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colTotalPrice;
     }
 }
