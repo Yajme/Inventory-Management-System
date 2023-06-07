@@ -16,5 +16,36 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers.frmInventoyFo
         {
             InitializeComponent();
         }
+        //stockmovements -> products
+        //quantity -> outgoing -> quantity
+        /* 
+        ------------------                                                   ------------------
+        | StockMovements |                                                   | StockMovements  |
+        ------------------                                                   ------------------
+        |Quantity|MvtType|  -> /ManageStocks(AddStockstoInventory, 5);/ - >  |Quantity|MvtType |  
+        ------------------                                                   ------------------
+        |   10   |Ingoing|                                                   |   10   |Ingoing |
+        ------------------                                                   |   5    |Outgoing| 
+                                                                             -------------------  
+        
+           -------------------------                                        -------------------------
+           |       Products        |                                        |       Products        | 
+           -------------------------                                        -------------------------
+           |QtyInStock|ReorderLevel|                                        |QtyInStock|ReorderLevel|
+           -------------------------  /ManageStocks(AdjustStock)/ ->       -------------------------
+           |    5     |    LowStock |                                       |    10     |    0       |
+           -------------------------                                        -------------------------
+        
+        
+        */
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void frmManageStocks_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

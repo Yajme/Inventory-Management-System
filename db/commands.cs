@@ -193,6 +193,13 @@ public static class commands
             items[1] = db.dr[1].ToString(); //desc
             items[2] = db.dr[2].ToString(); //unitprice
         }
+        else
+        {
+            db.dr.Close();
+            db.con.Close();
+            var empty3 = Array.Empty<string>();
+            return empty3;
+        }
         db.dr.Close();
         db.con.Close();
         return items;
@@ -228,10 +235,19 @@ public static class commands
     }
     public static int insertMovementStock(string[] stock)
     {
+        int query = 0;
+        db.cmd = new SqlCommand("INSERT INTO StockMovements(ProductID, WarehouseID, MovementType, Quantity) VALUES(@PRODUCTID, @WAREHOUSEID, @MOVEMENTTYPE,@QUANTITY)", db.con);
+        db.cmd.Parameters.AddWithValue("@PRODUCTID", stock[0]);//productid
+        db.cmd.Parameters.AddWithValue("@WAREHOUSEID", stock[1]);//warehouseid
+        db.cmd.Parameters.AddWithValue("@MOVEMENTTYPE", "Outgoing");//quantity
+        db.cmd.Parameters.AddWithValue("@QUANTITY", stock[2]);//movementtype
         db.con.Open();
-
-
-        return 1;
+        if(db.cmd.ExecuteNonQuery() == 1)
+        {
+            query = 1;
+        }
+        db.con.Close();
+        return query;
     }
 }
         

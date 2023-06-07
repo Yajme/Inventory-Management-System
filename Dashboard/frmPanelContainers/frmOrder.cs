@@ -15,6 +15,8 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
     {
         public static double getdpi;
         public static double total = 0;
+        public static bool scan = false;
+        string lastID = "";
         public frmOrder()
         {
             InitializeComponent();
@@ -74,37 +76,44 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
             bool found = false;
             int row = 0;
             string[] itemfetched = commands.itemEncode(query);
-            total += Convert.ToDouble(itemfetched[2]);
+            
             //commands.itemEncode(query);
-            if (dataGridView1.Rows.Count > 0)
-            {
-                foreach (DataGridViewRow rows in dataGridView1.Rows)
+            if (itemfetched != Array.Empty<string>()) {
+                total += Convert.ToDouble(itemfetched[2]);
+                if (dataGridView1.Rows.Count > 0)
                 {
-                    if (rows.Cells[dataGridView1.Columns["colID"].Index].Value.ToString() == txtQuery.Text)
+                    foreach (DataGridViewRow rows in dataGridView1.Rows)
                     {
-                        found = true;
-                        rows.Cells[dataGridView1.Columns["colQuantity"].Index].Value = Convert.ToInt32(rows.Cells[dataGridView1.Columns["colQuantity"].Index].Value) + 1;
+                        if (rows.Cells[dataGridView1.Columns["colID"].Index].Value.ToString() == txtQuery.Text)
+                        {
+                            found = true;
+                            rows.Cells[dataGridView1.Columns["colQuantity"].Index].Value = Convert.ToInt32(rows.Cells[dataGridView1.Columns["colQuantity"].Index].Value) + 1;
+                        }
+                    }
+                    if (!found)
+                    {
+                        row++;
+                        dataGridView1.Rows.Add(row, itemfetched[0], itemfetched[1], itemfetched[2], 1, string.Format("0", "#,##0.00"));
                     }
                 }
-                if (!found)
+                else
                 {
                     row++;
-                    dataGridView1.Rows.Add(row, itemfetched[0] ,itemfetched[1], itemfetched[2],1, string.Format("0", "#,##0.00"));
+                    dataGridView1.Rows.Add(row, itemfetched[0], itemfetched[1], itemfetched[2], 1, string.Format("0", "#,##0.00"));
                 }
+
+                foreach (DataGridViewRow rows in dataGridView1.Rows)
+                {
+                    rows.Cells[dataGridView1.Columns["colTotalPrice"].Index].Value = Convert.ToDouble(rows.Cells[dataGridView1.Columns["colUnitPrice"].Index].Value) * Convert.ToDouble(rows.Cells[dataGridView1.Columns["colQuantity"].Index].Value);
+                }
+                lblSaleTotal.Text = string.Format(total.ToString(), "#,##0.00");
+                txtQuery.Clear();
             }
             else
             {
-                row++;
-                dataGridView1.Rows.Add(row,itemfetched[0], itemfetched[1], itemfetched[2], 1, string.Format("0", "#,##0.00"));
+                txtQuery.Clear();
+                MessageBox.Show("Item not Found!", "404", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
-            foreach (DataGridViewRow rows in dataGridView1.Rows)
-            {
-                rows.Cells[dataGridView1.Columns["colTotalPrice"].Index].Value = Convert.ToDouble(rows.Cells[dataGridView1.Columns["colUnitPrice"].Index].Value) * Convert.ToDouble(rows.Cells[dataGridView1.Columns["colQuantity"].Index].Value);
-            }
-            lblSaleTotal.Text = string.Format(total.ToString(), "#,##0.00");
-            txtQuery.Clear();
-                
 
         }
 
@@ -151,46 +160,69 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
         private void btnSave_Click(object sender, EventArgs e)
         {
             int id = commands.selectWarehouse(cmbWarehouse.SelectedItem.ToString());
+            
+
             string[] stock = new string[3];
             stock[0] = txtProductID.Text;
             stock[1] = id.ToString();
             stock[2] = txtQuantity.Text;
 
             int query = commands.insertMovementStock(stock);
-
-
+            if(query == 1)
+            {
+                MessageBox.Show("Record Saved!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("Failed!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            loadHistoryandProducts();
         }
 
         private void btnDiscard_Click(object sender, EventArgs e)
         {
             loadHistoryandProducts();
         }
-
-        private void btnEnterReplenish_Click(object sender, EventArgs e)
+        private void replenishFetch(string id)
         {
-            string[] item = commands.itemEncode(txtProductID.Text);
-            if(item.Length > 0)
+            if(!scan)
             {
-                txtProductName.Text = item[1];
+                string[] item = commands.itemEncode(txtProductID.Text);
+                if (item.Length > 0)
+                {
+                    txtProductName.Text = item[1];
+                }
+                txtProductID.ReadOnly = true;
+                scan = true;
             }
             
+            
         }
-
-        private void btnScan_Click(object sender, EventArgs e)
+        private void btnEnterReplenish_Click(object sender, EventArgs e)
         {
 
+            replenishFetch(txtProductID.Text);
         }
+
+        
 
 
         //replenishbutton
 
         // replenishloaddata
-        private void loadHistoryandProducts()
+        private void resetTextbox()
         {
             txtProductID.Clear();
             txtProductName.Clear();
             txtQuantity.Clear();
-            
+
+        }
+        private void loadHistoryandProducts()
+        {
+            scan = false;
+            txtProductID.ReadOnly = false;
+            txtProductID.Focus();
+            resetTextbox();
             //datagridview2 = history
             //datagridview3 = product
 
@@ -240,6 +272,21 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
             {
                 itemScan(txtQuery.Text);
             }
+        }
+
+        private void txtProductID_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                lastID = txtProductID.Text;
+                replenishFetch(txtProductID.Text);
+            }
+        }
+
+        private void txtProductID_TextChanged(object sender, EventArgs e)
+        {
+            
         }
 
 
