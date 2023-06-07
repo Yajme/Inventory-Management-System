@@ -17,6 +17,30 @@ public static class commands
         db.cmd = new SqlCommand("SELECT Products.ProductID, Products.ProductName, Products.Description, Categories.CategoryName, Products.QuantityInStock, Products.UnitPrice, Suppliers.SupplierName\r\nFROM Products\r\nJOIN Categories ON Products.CategoryID = Categories.CategoryID\r\nJOIN Suppliers ON Products.SupplierID = Suppliers.SupplierID", db.con);
         db.dr = db.cmd.ExecuteReader();
         }
+
+        public static int insertInventory(string[] product)
+        {
+        
+        db.cmd = new SqlCommand("INSERT INTO Products(ProductID,ProductName,Description,CategoryID,SupplierID,UnitPrice) VALUES(@PRODUCTID,@PRODUCTNAME,@DESCRIPTION,@CATEGORYID,@SUPPLIERID,@UNITPRICE)", db.con);
+        db.cmd.Parameters.AddWithValue("@PRODUCTID", product[0]);
+        db.cmd.Parameters.AddWithValue("@PRODUCTNAME", product[1]);
+        db.cmd.Parameters.AddWithValue("@DESCRIPTION", product[2]);
+        db.cmd.Parameters.AddWithValue("@CATEGORYID", product[3]);
+        db.cmd.Parameters.AddWithValue("@SUPPLIERID", product[4]);
+        db.cmd.Parameters.AddWithValue("@UNITPRICE", product[5]);
+        db.con.Open();
+        if(db.cmd.ExecuteNonQuery() == 1)
+        {
+            db.con.Close();
+            return 1;
+        }
+        else
+        {
+            db.con.Close();
+            return -1;
+        }
+        
+        }
         public static void loadsuppliers()
         {
         db.con.Open();
@@ -73,8 +97,37 @@ public static class commands
              {
             return -1;
              }
-         }
-        public static int insertsuppliers(string[] supplier)
+        }
+        public static int categoryValidator(string category)
+        {
+        int id = 0;
+        db.con.Open();
+        db.cmd = new SqlCommand("SELECT CategoryID FROM Categories WHERE CategoryName= @CategoryName", db.con);
+        db.cmd.Parameters.AddWithValue("@CategoryName", category);
+        db.dr = db.cmd.ExecuteReader();
+        if (db.dr.Read())
+        {
+            id = (int)db.dr[0];
+        }
+        db.con.Close();
+        return id;
+        }
+
+        public static int supplierValidator(string supplier)
+        {
+        int id = 0;
+        db.con.Open();
+        db.cmd = new SqlCommand("SELECT SupplierID FROM Suppliers WHERE SupplierName= @SupplierName", db.con);
+        db.cmd.Parameters.AddWithValue("@SupplierName", supplier);
+        db.dr = db.cmd.ExecuteReader();
+        if (db.dr.Read())
+        {
+            id = (int)db.dr[0];
+        }
+        db.con.Close();
+        return id;
+    }
+    public static int insertsuppliers(string[] supplier)
         {
         db.cmd = new SqlCommand("INSERT INTO SUPPLIERS(SUPPLIERNAME,CONTACTPERSON,PHONE,EMAIL) VALUES(@SUPPLIERNAME,@CONTACTPERSON,@PHONE,@EMAIL) ", db.con);
         db.cmd.Parameters.AddWithValue("@SUPPLIERNAME", supplier[0]);

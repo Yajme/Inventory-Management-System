@@ -8,7 +8,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
-using System.Web;
 
 namespace Inventory_Management_System.Dashboard.frmPanelContainers
 {
@@ -19,6 +18,7 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
         public frmOrder()
         {
             InitializeComponent();
+            
         }
         //formcontrol
         private void frmOrder_Load(object sender, EventArgs e)
@@ -32,7 +32,7 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
         {
             clearPlaceOrderPanel();
             fillContainer(panelPlaceOrder);
-
+            txtQuery.Focus();
 
         }
         private void clearPlaceOrderPanel()
@@ -103,6 +103,9 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
                 rows.Cells[dataGridView1.Columns["colTotalPrice"].Index].Value = Convert.ToDouble(rows.Cells[dataGridView1.Columns["colUnitPrice"].Index].Value) * Convert.ToDouble(rows.Cells[dataGridView1.Columns["colQuantity"].Index].Value);
             }
             lblSaleTotal.Text = string.Format(total.ToString(), "#,##0.00");
+            txtQuery.Clear();
+                
+
         }
 
         private void btnEnter_Click(object sender, EventArgs e)
@@ -224,6 +227,19 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
             db.con.Close();
             //history
 
+        }
+
+        private void frmOrder_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+        }
+
+        private void txtQuery_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                itemScan(txtQuery.Text);
+            }
         }
 
 
