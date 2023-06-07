@@ -45,7 +45,28 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers.frmInventoyFo
 
         private void frmManageStocks_Load(object sender, EventArgs e)
         {
+            loadWarehouse();
+            txtQuantity.Text = "0";
+        }
 
+        private void loadWarehouse()
+        {
+            
+        }
+        private void selectWarehouse(string productID)
+        {
+            //WHERE warehouse.WarehouseName = @name AND Products.ProductID = @name
+        }
+        private void btnMinus_Click(object sender, EventArgs e)
+        {
+            int number = int.Parse(txtQuantity.Text) - 1;
+            txtQuantity.Text = number.ToString();
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            int number = int.Parse(txtQuantity.Text) + 1;
+            txtQuantity.Text = number.ToString();
         }
     }
 }

@@ -121,7 +121,7 @@
             this.panelTop.Controls.Add(this.btnPlaceOrder);
             this.panelTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelTop.Location = new System.Drawing.Point(0, 0);
-            this.panelTop.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panelTop.Margin = new System.Windows.Forms.Padding(2);
             this.panelTop.Name = "panelTop";
             this.panelTop.Size = new System.Drawing.Size(1095, 73);
             this.panelTop.TabIndex = 0;
@@ -134,8 +134,8 @@
             this.btnReturnExchange.IconChar = FontAwesome.Sharp.IconChar.None;
             this.btnReturnExchange.IconColor = System.Drawing.Color.Black;
             this.btnReturnExchange.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnReturnExchange.Location = new System.Drawing.Point(266, 11);
-            this.btnReturnExchange.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnReturnExchange.Location = new System.Drawing.Point(292, 11);
+            this.btnReturnExchange.Margin = new System.Windows.Forms.Padding(2);
             this.btnReturnExchange.Name = "btnReturnExchange";
             this.btnReturnExchange.Size = new System.Drawing.Size(162, 56);
             this.btnReturnExchange.TabIndex = 2;
@@ -152,7 +152,7 @@
             this.btnReplenishInventory.IconColor = System.Drawing.Color.Black;
             this.btnReplenishInventory.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnReplenishInventory.Location = new System.Drawing.Point(143, 11);
-            this.btnReplenishInventory.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnReplenishInventory.Margin = new System.Windows.Forms.Padding(2);
             this.btnReplenishInventory.Name = "btnReplenishInventory";
             this.btnReplenishInventory.Size = new System.Drawing.Size(145, 56);
             this.btnReplenishInventory.TabIndex = 1;
@@ -169,7 +169,7 @@
             this.btnPlaceOrder.IconColor = System.Drawing.Color.Black;
             this.btnPlaceOrder.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnPlaceOrder.Location = new System.Drawing.Point(36, 11);
-            this.btnPlaceOrder.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnPlaceOrder.Margin = new System.Windows.Forms.Padding(2);
             this.btnPlaceOrder.Name = "btnPlaceOrder";
             this.btnPlaceOrder.Size = new System.Drawing.Size(103, 56);
             this.btnPlaceOrder.TabIndex = 0;
@@ -183,7 +183,7 @@
             this.panelPlaceOrder.Controls.Add(this.panelOrderTop);
             this.panelPlaceOrder.Controls.Add(this.panelOrderControls);
             this.panelPlaceOrder.Controls.Add(this.panelPlaceOrderSide);
-            this.panelPlaceOrder.Location = new System.Drawing.Point(146, 271);
+            this.panelPlaceOrder.Location = new System.Drawing.Point(1095, 649);
             this.panelPlaceOrder.Name = "panelPlaceOrder";
             this.panelPlaceOrder.Size = new System.Drawing.Size(819, 238);
             this.panelPlaceOrder.TabIndex = 1;
@@ -606,7 +606,7 @@
             this.panelReplenishInventory.Controls.Add(this.txtProductName);
             this.panelReplenishInventory.Controls.Add(this.dataGridView2);
             this.panelReplenishInventory.Controls.Add(this.panel6);
-            this.panelReplenishInventory.Location = new System.Drawing.Point(71, 38);
+            this.panelReplenishInventory.Location = new System.Drawing.Point(1095, 649);
             this.panelReplenishInventory.Name = "panelReplenishInventory";
             this.panelReplenishInventory.Size = new System.Drawing.Size(929, 509);
             this.panelReplenishInventory.TabIndex = 2;
@@ -876,7 +876,7 @@
             this.Controls.Add(this.panelContainer);
             this.Controls.Add(this.panelTop);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "frmOrder";
             this.Text = "btnOrder";
             this.Load += new System.EventHandler(this.frmOrder_Load);
