@@ -324,6 +324,21 @@ public static class commands
         db.con.Close();
         return query;
     }
+
+    public static void viewWarehouseStock()
+    {
+        db.con.Open();
+        db.cmd = new SqlCommand("SELECT * FROM WAREHOUSESTOCK",db.con);
+        db.dr = db.cmd.ExecuteReader();
+
+        
+    }
+    public static void searchWarehouseStock()
+    {
+        db.con.Open();
+        db.cmd = new SqlCommand("SELECT * FROM WAREHOUSESTOCK WHERE PRODUCTID= @PRODUCTID AND WAREHOUSEID=@WAREHOUSEID",db.con);
+        db.dr = db.cmd.ExecuteReader();
+    }
     private static void beginTransaction()
     {
 

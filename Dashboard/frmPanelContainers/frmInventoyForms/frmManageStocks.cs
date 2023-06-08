@@ -21,6 +21,7 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers.frmInventoyFo
             InitializeComponent();
 
             SendMessage(this.cmbWarehouse.Handle, CB_SETCUEBANNER, 0, "Please select an item...");
+            SendMessage(this.cmbViewWarehouse.Handle, CB_SETCUEBANNER, 0, "Please select an item...");
         }
         //stockmovements -> products
         //quantity -> outgoing -> quantity
@@ -53,7 +54,7 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers.frmInventoyFo
         {
             loadWarehouse();
             txtQuantity.Text = "0";
-            
+            loadWarehouseStocks();
         }
 
         private void loadWarehouse()
@@ -63,6 +64,7 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers.frmInventoyFo
             while (db.dr.Read())
             {
                 cmbWarehouse.Items.Add(db.dr[1]);
+                cmbViewWarehouse.Items.Add(db.dr[1]);
             }
             db.dr.Close();
             db.con.Close();
@@ -158,6 +160,17 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers.frmInventoyFo
             updateProducts(stock);
             MovementStock(stock);
 
+        }
+        private void loadWarehouseStocks()
+        {
+            dataGridView1.Rows.Clear();
+            commands.viewWarehouseStock();
+            while (db.dr.Read())
+            {
+                dataGridView1.Rows.Add(db.dr[0], db.dr[1], db.dr[3]);
+            }
+            db.dr.Close();
+            db.con.Close();
         }
     }
 }
