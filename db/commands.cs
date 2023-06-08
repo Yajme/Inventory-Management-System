@@ -8,6 +8,8 @@ using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Windows.Input;
 using System.Data.Common;
+using System.Windows.Forms;
+using System.Windows.Forms.VisualStyles;
 
 public static class commands
     {
@@ -181,9 +183,9 @@ public static class commands
 
     public static string[]itemEncode (string id)
     {
-        string[] items = new string[3];
+        string[] items = new string[4];
         db.con.Open();
-        db.cmd = new SqlCommand("SELECT ProductID, Description, UnitPrice FROM PRODUCTS WHERE PRODUCTID= @PRODUCTID", db.con);
+        db.cmd = new SqlCommand("SELECT ProductID, Description, UnitPrice, QuantityInStock FROM PRODUCTS WHERE PRODUCTID= @PRODUCTID", db.con);
         db.cmd.Parameters.AddWithValue("@PRODUCTID", id);
         db.dr = db.cmd.ExecuteReader();
         if (db.dr.Read())
@@ -192,6 +194,7 @@ public static class commands
             items[0] = db.dr[0].ToString(); // productid
             items[1] = db.dr[1].ToString(); //desc
             items[2] = db.dr[2].ToString(); //unitprice
+            items[3] = db.dr[3].ToString(); //quantityinstock
         }
         else
         {
@@ -239,8 +242,8 @@ public static class commands
         db.cmd = new SqlCommand("INSERT INTO StockMovements(ProductID, WarehouseID, MovementType, Quantity) VALUES(@PRODUCTID, @WAREHOUSEID, @MOVEMENTTYPE,@QUANTITY)", db.con);
         db.cmd.Parameters.AddWithValue("@PRODUCTID", stock[0]);//productid
         db.cmd.Parameters.AddWithValue("@WAREHOUSEID", stock[1]);//warehouseid
-        db.cmd.Parameters.AddWithValue("@MOVEMENTTYPE", "Outgoing");//quantity
-        db.cmd.Parameters.AddWithValue("@QUANTITY", stock[2]);//movementtype
+        db.cmd.Parameters.AddWithValue("@QUANTITY", stock[2]);//quantity
+        db.cmd.Parameters.AddWithValue("@MOVEMENTTYPE", stock[3]);//movementtype
         db.con.Open();
         if(db.cmd.ExecuteNonQuery() == 1)
         {
@@ -248,6 +251,76 @@ public static class commands
         }
         db.con.Close();
         return query;
+    }
+    public static int insertStocktoWarehouse(string[] stock)
+    {
+        int query = 0;
+        db.cmd = new SqlCommand("INSERT INTO WarehouseStock(ProductID, WarehouseID,QuantityStock) VALUES (@ProductID,@WarehouseID,@Quantity)", db.con);
+        db.cmd.Parameters.AddWithValue("@ProductID", stock[0]);//productid
+        db.cmd.Parameters.AddWithValue("@WarehouseID", stock[1]);//warehouseid
+        db.cmd.Parameters.AddWithValue("@Quantity", stock[2]);//quantity
+        db.con.Open();
+        if (db.cmd.ExecuteNonQuery() == 1)
+        {
+            query = 1;
+        }
+        db.con.Close();
+        return query;
+    }
+    public static int stockWarehouseValidator(string[] stock)
+    {
+        int query = 0;
+        db.con.Open();
+        db.cmd = new SqlCommand("SELECT * FROM WarehouseStock WHERE ProductID= @ProductID AND WarehouseID= @WarehouseID",db.con);
+        db.cmd.Parameters.AddWithValue("@ProductID", stock[0]);//productid
+        db.cmd.Parameters.AddWithValue("@WarehouseID", stock[1]);//warehouseid
+        db.dr = db.cmd.ExecuteReader();
+        if (!db.dr.HasRows)
+        {
+            query= 1;
+
+        }
+
+
+        db.con.Close();
+        return query;
+    }
+    public static int updateStocktoWarehouse(string[] stock)
+    {
+        int query = 0;
+        db.cmd = new SqlCommand("UPDATE WarehouseStock SET QuantityStock= QuantityStock+@Quantity WHERE ProductID=@ProductID AND WarehouseID=@WarehouseID", db.con);
+        db.cmd.Parameters.AddWithValue("@ProductID", stock[0]);//productid
+        db.cmd.Parameters.AddWithValue("@WarehouseID", stock[1]);//warehouseid
+        db.cmd.Parameters.AddWithValue("@Quantity", stock[2]);//quantity
+        db.con.Open();
+        if(db.cmd.ExecuteNonQuery() == 1)
+        {
+            query = 1;
+        }
+        db.con.Close();
+        return query;
+    }
+
+    public static string[] checkProductWarehouse(string[] stock)
+    {
+        string[] item = new string[2];
+
+
+
+        return item;
+    }
+
+    public static int updateProductsStocks(string[] stock)
+    {
+        int query = 0;
+
+
+
+        return query;
+    }
+    private static void beginTransaction()
+    {
+
     }
 }
         

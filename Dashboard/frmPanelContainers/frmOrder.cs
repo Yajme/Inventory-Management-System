@@ -162,13 +162,25 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
             int id = commands.selectWarehouse(cmbWarehouse.SelectedItem.ToString());
             
 
-            string[] stock = new string[3];
-            stock[0] = txtProductID.Text;
-            stock[1] = id.ToString();
+            string[] stock = new string[4];
+            stock[0] = txtProductID.Text;//productid
+            stock[1] = id.ToString(); //warehouseid
             stock[2] = txtQuantity.Text;
+            stock[3] = "Inbound";
 
-            int query = commands.insertMovementStock(stock);
-            if(query == 1)
+            
+            int query2 = commands.stockWarehouseValidator(stock);
+            int query3;
+            if (query2 == 1)//new
+            {
+                query3 = commands.insertStocktoWarehouse(stock);
+            }
+            else//update
+            {
+                query3 = commands.updateStocktoWarehouse(stock);
+            }
+            int query1 = commands.insertMovementStock(stock);
+            if (query1 == 1 && query3 == 1)
             {
                 MessageBox.Show("Record Saved!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
