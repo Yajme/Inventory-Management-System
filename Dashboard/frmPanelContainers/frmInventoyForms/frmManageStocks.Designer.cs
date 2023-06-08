@@ -123,7 +123,7 @@
             this.panelAdjustStock.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelAdjustStock.Location = new System.Drawing.Point(0, 42);
             this.panelAdjustStock.Name = "panelAdjustStock";
-            this.panelAdjustStock.Size = new System.Drawing.Size(403, 284);
+            this.panelAdjustStock.Size = new System.Drawing.Size(403, 235);
             this.panelAdjustStock.TabIndex = 1;
             // 
             // label4
@@ -259,7 +259,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(403, 326);
+            this.ClientSize = new System.Drawing.Size(403, 277);
             this.Controls.Add(this.panelAdjustStock);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;

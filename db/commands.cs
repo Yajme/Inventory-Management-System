@@ -313,9 +313,15 @@ public static class commands
     public static int updateProductsStocks(string[] stock)
     {
         int query = 0;
-
-
-
+        db.cmd = new SqlCommand("UPDATE Products SET QuantityInStock= QuantityInStock+@Quantity WHERE PRODUCTID= @PRODUCTID", db.con);
+        db.cmd.Parameters.AddWithValue("@ProductID", stock[0]);//productid
+        db.cmd.Parameters.AddWithValue("@Quantity", stock[2]);//quantity
+        db.con.Open();
+        if(db.cmd.ExecuteNonQuery() == 1)
+        {
+            query = 1;
+        }
+        db.con.Close();
         return query;
     }
     private static void beginTransaction()

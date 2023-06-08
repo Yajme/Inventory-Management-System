@@ -117,14 +117,46 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers.frmInventoyFo
 
             return id;
         }
+
+        private void updateProducts(string[] stock)
+        {
+            int query = commands.updateProductsStocks(stock);
+            
+        }
+        private void MovementStock(string[] stock)
+        {
+            int query2 = commands.stockWarehouseValidator(stock);
+            int query3;
+            if (query2 == 1)//new
+            {
+                MessageBox.Show("No Stock");
+                query3 = 0;
+            }
+            else//update
+            {
+                stock[2] = "-" + txtQuantity.Text;
+                query3 = commands.updateStocktoWarehouse(stock);
+            }
+            int query1 = commands.insertMovementStock(stock);
+            if (query1 == 1 && query3 == 1)
+            {
+                MessageBox.Show("Record Saved!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("Failed!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+        }
         private void btnSave_Click(object sender, EventArgs e)
         {
-            string[] stock = new string[3];
+            string[] stock = new string[4];
             stock[0] = txtProductID.Text;
-            stock[1] = warehouseID(cmbWarehouse.SelectedItem.ToString()).ToString();
+            stock[1] = commands.selectWarehouse(cmbWarehouse.SelectedItem.ToString()).ToString();
             stock[2] = txtQuantity.Text;
-
-
+            stock[3] = "Outbound";
+            updateProducts(stock);
+            MovementStock(stock);
 
         }
     }
