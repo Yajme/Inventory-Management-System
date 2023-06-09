@@ -20,7 +20,7 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
         private void LoadItems(string query, string filter)
         {
             dataGridView1.Rows.Clear();
-            ;
+            loadCategory();
 
             if(query == "*" && filter == "*")
             {
@@ -33,6 +33,16 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
                 dataGridView1.Rows.Add(db.dr[0], db.dr[1], db.dr[2], db.dr[3], db.dr[4], db.dr[5], db.dr[6]);
             }
 
+            db.dr.Close();
+            db.con.Close();
+        }
+        private void loadCategory()
+        {
+            commands.loadcategories();
+            while (db.dr.Read())
+            {
+                cmbFilter.Items.Add(db.dr[1]);
+            }
             db.dr.Close();
             db.con.Close();
         }
@@ -62,6 +72,7 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
         {
             frmAddProduct frmNew = new frmAddProduct();
             frmNew.ShowDialog();
+            frmInventory_Enter();
 
         }
 
@@ -69,18 +80,21 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
         {
             frmManageCategory frmNew = new frmManageCategory();
             frmNew.ShowDialog();
+            frmInventory_Enter();
         }
 
         private void btnManageSupplier_Click(object sender, EventArgs e)
         {
             frmManageSupplier frmNew = new frmManageSupplier();
             frmNew.ShowDialog();
+            frmInventory_Enter();
         }
 
         private void btnManageStocks_Click(object sender, EventArgs e)
         {
             frmManageStocks frmNew = new frmManageStocks();
             frmNew.ShowDialog();
+            frmInventory_Enter();
         }
 
         private void btnManageWarehouse_Click(object sender, EventArgs e)
@@ -96,6 +110,29 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
         private void btnScan_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void frmInventory_Enter()
+        {
+            LoadItems("*", "*");
+            
+        }
+
+        private void cmbFilter_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            dataGridView1.Rows.Clear();
+            db.con.Open();
+            db.cmd = new SqlCommand("SELECT Products.ProductID, Products.ProductName, Products.Description, Categories.CategoryName, Products.QuantityInStock, Products.UnitPrice, Suppliers.SupplierName\r\nFROM Products\r\nJOIN Categories ON Products.CategoryID = Categories.CategoryID\r\nJOIN Suppliers ON Products.SupplierID = Suppliers.SupplierID WHERE Categories.CategoryName= @CategoryName", db.con);
+            db.cmd.Parameters.AddWithValue("@CategoryName", cmbFilter.SelectedItem.ToString());
+            db.dr = db.cmd.ExecuteReader();
+
+            while (db.dr.Read())
+            {
+                dataGridView1.Rows.Add(db.dr[0], db.dr[1], db.dr[2], db.dr[3], db.dr[4], db.dr[5], db.dr[6]);
+            }
+
+            db.dr.Close();
+            db.con.Close();
         }
     }
 }

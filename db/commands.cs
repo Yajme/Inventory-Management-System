@@ -19,6 +19,11 @@ public static class commands
         db.cmd = new SqlCommand("SELECT Products.ProductID, Products.ProductName, Products.Description, Categories.CategoryName, Products.QuantityInStock, Products.UnitPrice, Suppliers.SupplierName\r\nFROM Products\r\nJOIN Categories ON Products.CategoryID = Categories.CategoryID\r\nJOIN Suppliers ON Products.SupplierID = Suppliers.SupplierID", db.con);
         db.dr = db.cmd.ExecuteReader();
         }
+        
+        public static void inventorySearch(string productid)
+    {
+
+    }
 
         public static int insertInventory(string[] product)
         {

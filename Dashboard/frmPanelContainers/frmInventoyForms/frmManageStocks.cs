@@ -12,6 +12,7 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers.frmInventoyFo
 {
     public partial class frmManageStocks : Form
     {
+        int quantity = 0;
         private const int CB_SETCUEBANNER = 0x1703;
 
         [System.Runtime.InteropServices.DllImport("user32.dll", CharSet = System.Runtime.InteropServices.CharSet.Auto)]
@@ -52,6 +53,7 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers.frmInventoyFo
 
         private void frmManageStocks_Load(object sender, EventArgs e)
         {
+            ChangePanel(panelAdjustStock);
             loadWarehouse();
             txtQuantity.Text = "0";
             loadWarehouseStocks();
@@ -84,14 +86,24 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers.frmInventoyFo
             int number = int.Parse(txtQuantity.Text) + 1;
             txtQuantity.Text = number.ToString();
         }
-
+        /*
+         
+        quantity = 5 -> 6
+                 stock   new stock
+                -6 instead of -1
+                2 -> 5
+               -5 instead of -3
+          
+        
+         */
         private void selectProduct(string productid)
         {
             string[] itemfetched = commands.itemEncode(productid);
             if (itemfetched != Array.Empty<string>())
             {
                 txtProductName.Text = itemfetched[1];
-                txtQuantity.Text = itemfetched[3];
+                quantity = int.Parse(itemfetched[3]);
+                txtQuantity.Text = quantity.ToString();
             }
             else
             {
@@ -136,7 +148,7 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers.frmInventoyFo
             }
             else//update
             {
-                stock[2] = "-" + txtQuantity.Text;
+                stock[2] = "-" + stock[2];
                 query3 = commands.updateStocktoWarehouse(stock);
             }
             int query1 = commands.insertMovementStock(stock);
@@ -152,10 +164,11 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers.frmInventoyFo
         }
         private void btnSave_Click(object sender, EventArgs e)
         {
+            int mvtquantity =int.Parse(txtQuantity.Text)-quantity;
             string[] stock = new string[4];
             stock[0] = txtProductID.Text;
             stock[1] = commands.selectWarehouse(cmbWarehouse.SelectedItem.ToString()).ToString();
-            stock[2] = txtQuantity.Text;
+            stock[2] = mvtquantity.ToString();
             stock[3] = "Outbound";
             updateProducts(stock);
             MovementStock(stock);
@@ -171,6 +184,27 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers.frmInventoyFo
             }
             db.dr.Close();
             db.con.Close();
+        }
+
+        private void btnChangePanel(object sender, EventArgs e)
+        {
+            string changepanel = ((Button)sender).Tag.ToString();
+            switch (changepanel)
+            {
+                case "btnAdjustStock":
+                    ChangePanel(panelAdjustStock);
+                    break;
+                case "btnViewWarehouse":
+                    ChangePanel(panelViewWarehouseStock);
+                    break;
+            }
+        }
+        private void ChangePanel(Panel panel)
+        {
+            panelContainer.Controls.Clear();
+            panel.Dock = DockStyle.Fill;
+            panelContainer.Controls.Add(panel);
+            panel.Show();
         }
     }
 }
