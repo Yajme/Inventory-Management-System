@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -119,23 +120,25 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers.frmInventoyFo
                 selectProduct(txtProductID.Text);
             }
         }
-        private void warehouseStockCheck(string[] stock)
-        {
-           
-        }
-
-        private int warehouseID(string warehouse)
-        {
-            int id = 0;
-
-
-            return id;
-        }
-
+       
         private void updateProducts(string[] stock)
         {
-            int query = commands.updateProductsStocks(stock);
             
+            try
+            {
+                commands.updateProductsStocks(stock);
+                MessageBox.Show("Process Successful", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (SqlException)
+            {
+                MessageBox.Show("Process UnSuccessful, could not write to database", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception Ex)
+            {
+                MessageBox.Show("Process UnSuccessful, a non-database error occured\n\n" + Ex.Message , "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            
+
         }
         private void MovementStock(string[] stock)
         {
@@ -164,14 +167,14 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers.frmInventoyFo
         }
         private void btnSave_Click(object sender, EventArgs e)
         {
-            int mvtquantity =int.Parse(txtQuantity.Text)-quantity;
+            //int mvtquantity =int.Parse(txtQuantity.Text)-quantity;
             string[] stock = new string[4];
             stock[0] = txtProductID.Text;
             stock[1] = commands.selectWarehouse(cmbWarehouse.SelectedItem.ToString()).ToString();
-            stock[2] = mvtquantity.ToString();
+            stock[2] = txtQuantity.Text; //mvtquantity.ToString();
             stock[3] = "Outbound";
             updateProducts(stock);
-            MovementStock(stock);
+            //MovementStock(stock);
 
         }
         private void loadWarehouseStocks()

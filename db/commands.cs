@@ -229,6 +229,10 @@ public static class commands
     public static int selectWarehouse(string warehousename)
     {
         int id = 0;
+        if(db.con.State == ConnectionState.Open)
+        {
+            db.con.Close();
+        }
         db.con.Open();
         db.cmd = new SqlCommand("SELECT WarehouseID FROM Warehouses WHERE WarehouseName=@WarehouseName", db.con);
         db.cmd.Parameters.AddWithValue("@WarehouseName", warehousename);
@@ -315,7 +319,7 @@ public static class commands
         return item;
     }
 
-    public static int updateProductsStocks(string[] stock)
+    public static void updateProductsStocks(string[] stock)
     {
         int query = 0;
         db.cmd = new SqlCommand("UPDATE Products SET QuantityInStock= QuantityInStock+@Quantity WHERE PRODUCTID= @PRODUCTID", db.con);
@@ -327,7 +331,7 @@ public static class commands
             query = 1;
         }
         db.con.Close();
-        return query;
+        //return query;
     }
 
     public static void viewWarehouseStock()
@@ -361,7 +365,7 @@ public static class commands
 
     public static DataTable loadInventory()
     {
-
+        
         db.con.Open();
         db.cmd = new SqlCommand("SELECT Products.ProductID, Products.ProductName, Products.Description, Categories.CategoryName, Products.QuantityInStock, Products.UnitPrice, Suppliers.SupplierName\r\nFROM Products\r\nJOIN Categories ON Products.CategoryID = Categories.CategoryID\r\nJOIN Suppliers ON Products.SupplierID = Suppliers.SupplierID", db.con);
 

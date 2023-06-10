@@ -16,9 +16,14 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
         public frmInventory()
         {
             InitializeComponent();
+            
         }
         private void LoadItems(string query, string filter)
         {
+            if (db.con.State == ConnectionState.Open)
+            {
+                db.con.Close();
+            }
             dataGridView1.Rows.Clear();
             
 
@@ -65,7 +70,7 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
         }
         private void frmInventory_Load(object sender, EventArgs e)
         {
-            LoadItems("*", "*");
+            frmInventory_Enter();
             loadCategory();
         }
 
@@ -90,7 +95,6 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
             frmAddProduct frmNew = new frmAddProduct();
             frmNew.ShowDialog();
             frmInventory_Enter();
-
         }
 
         private void btnManageCategory_Click(object sender, EventArgs e)
@@ -116,7 +120,9 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
 
         private void btnManageWarehouse_Click(object sender, EventArgs e)
         {
-
+            frmManageWarehouse frmNew = new frmManageWarehouse();
+            frmNew.ShowDialog();
+            frmInventory_Enter();
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
@@ -127,6 +133,7 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
 
         private void frmInventory_Enter()
         {
+            
             LoadItems("*", "*");
             
         }
@@ -148,7 +155,7 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
         {
             if (txtQuery.Text == "Search...")
             {
-                LoadItems("*", "*");
+                frmInventory_Enter();
             }
 
         }
