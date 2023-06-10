@@ -10,24 +10,21 @@ using System.Windows.Input;
 using System.Data.Common;
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
+using System.Data;
+using System.Collections;
 
 public static class commands
-    {
-        public static void loadInventory()
-        {
-        db.con.Open();
-        db.cmd = new SqlCommand("SELECT Products.ProductID, Products.ProductName, Products.Description, Categories.CategoryName, Products.QuantityInStock, Products.UnitPrice, Suppliers.SupplierName\r\nFROM Products\r\nJOIN Categories ON Products.CategoryID = Categories.CategoryID\r\nJOIN Suppliers ON Products.SupplierID = Suppliers.SupplierID", db.con);
-        db.dr = db.cmd.ExecuteReader();
-        }
-        
-        public static void inventorySearch(string productid)
+{
+    
+
+    public static void inventorySearch(string productid)
     {
 
     }
 
-        public static int insertInventory(string[] product)
-        {
-        
+    public static int insertInventory(string[] product)
+    {
+
         db.cmd = new SqlCommand("INSERT INTO Products(ProductID,ProductName,Description,CategoryID,SupplierID,UnitPrice) VALUES(@PRODUCTID,@PRODUCTNAME,@DESCRIPTION,@CATEGORYID,@SUPPLIERID,@UNITPRICE)", db.con);
         db.cmd.Parameters.AddWithValue("@PRODUCTID", product[0]);
         db.cmd.Parameters.AddWithValue("@PRODUCTNAME", product[1]);
@@ -36,7 +33,7 @@ public static class commands
         db.cmd.Parameters.AddWithValue("@SUPPLIERID", product[4]);
         db.cmd.Parameters.AddWithValue("@UNITPRICE", product[5]);
         db.con.Open();
-        if(db.cmd.ExecuteNonQuery() == 1)
+        if (db.cmd.ExecuteNonQuery() == 1)
         {
             db.con.Close();
             return 1;
@@ -46,67 +43,70 @@ public static class commands
             db.con.Close();
             return -1;
         }
-        
-        }
-        public static void loadsuppliers()
-        {
+
+    }
+    public static void loadsuppliers()
+    {
         db.con.Open();
         db.cmd = new SqlCommand("SELECT * FROM SUPPLIERS", db.con);
         db.dr = db.cmd.ExecuteReader();
-        }
-        public static void loadcategories()
-        {
+    }
+    public static DataTable loadcategories()
+    {
         db.con.Open();
         db.cmd = new SqlCommand("SELECT * FROM CATEGORIES", db.con);
-        db.dr = db.cmd.ExecuteReader();
-        }
-        public static int insertcategories(string category)
+        DataTable dt = new DataTable();
+        dt.Load(db.cmd.ExecuteReader());
+        db.con.Close();
+        return dt;
+    }
+    public static int insertcategories(string category)
+    {
+        db.cmd = new SqlCommand("INSERT INTO CATEGORIES(CATEGORYNAME) VALUES(@CATEGORYNAME)", db.con);
+        db.cmd.Parameters.AddWithValue("@CATEGORYNAME", category);
+        db.con.Open();
+        if (db.cmd.ExecuteNonQuery() == 1)
         {
-         db.cmd = new SqlCommand("INSERT INTO CATEGORIES(CATEGORYNAME) VALUES(@CATEGORYNAME)", db.con);
-         db.cmd.Parameters.AddWithValue("@CATEGORYNAME", category);
-         db.con.Open();
-            if(db.cmd.ExecuteNonQuery() == 1)
-             {
             return 1;
-            }
-            else
-            {
-            return -1;
-            }
         }
-        public static int updatecategories(string category, int id)
+        else
         {
-        db.cmd = new SqlCommand("UPDATE CATEGORIES SET CATEGORYNAME= @CATEGORYNAME WHERE CATEGORYID= @CATEGORYID",db.con);
+            return -1;
+        }
+    }
+    public static int updatecategories(string category, int id)
+    {
+        db.cmd = new SqlCommand("UPDATE CATEGORIES SET CATEGORYNAME= @CATEGORYNAME WHERE CATEGORYID= @CATEGORYID", db.con);
         db.cmd.Parameters.AddWithValue("@CATEGORYNAME", category);
         db.cmd.Parameters.AddWithValue("@CATEGORYID", id);
 
         db.con.Open();
-            if (db.cmd.ExecuteNonQuery() == 1)
-            {
-                 return 1;
-            }
-            else
-            {
-                return -1;
-            }
-         }
-        public static int deletecategories(int id)
-         {
+        if (db.cmd.ExecuteNonQuery() == 1)
+        {
+            return 1;
+        }
+        else
+        {
+            return -1;
+        }
+    }
+    public static int deletecategories(int id)
+    {
         db.cmd = new SqlCommand("DELETE FROM CATEGORIES WHERE CATEGORYID= @CATEGORYID", db.con);
         db.cmd.Parameters.AddWithValue("@CATEGORYID", id);
 
         db.con.Open();
-            if (db.cmd.ExecuteNonQuery() == 1)
-            {
-            return 1;
-            }
-             else
-             {
-            return -1;
-             }
-        }
-        public static int categoryValidator(string category)
+        if (db.cmd.ExecuteNonQuery() == 1)
         {
+            return 1;
+        }
+        else
+        {
+            return -1;
+        }
+    }
+    public static int categoryValidator(string category)
+    {
         int id = 0;
         db.con.Open();
         db.cmd = new SqlCommand("SELECT CategoryID FROM Categories WHERE CategoryName= @CategoryName", db.con);
@@ -118,10 +118,10 @@ public static class commands
         }
         db.con.Close();
         return id;
-        }
+    }
 
-        public static int supplierValidator(string supplier)
-        {
+    public static int supplierValidator(string supplier)
+    {
         int id = 0;
         db.con.Open();
         db.cmd = new SqlCommand("SELECT SupplierID FROM Suppliers WHERE SupplierName= @SupplierName", db.con);
@@ -135,7 +135,7 @@ public static class commands
         return id;
     }
     public static int insertsuppliers(string[] supplier)
-        {
+    {
         db.cmd = new SqlCommand("INSERT INTO SUPPLIERS(SUPPLIERNAME,CONTACTPERSON,PHONE,EMAIL) VALUES(@SUPPLIERNAME,@CONTACTPERSON,@PHONE,@EMAIL) ", db.con);
         db.cmd.Parameters.AddWithValue("@SUPPLIERNAME", supplier[0]);
         db.cmd.Parameters.AddWithValue("@CONTACTPERSON", supplier[1]);
@@ -152,8 +152,8 @@ public static class commands
         }
     }
 
-        public static int updatesuppliers(string[] supplier, int supplierid)
-        {
+    public static int updatesuppliers(string[] supplier, int supplierid)
+    {
 
         db.cmd = new SqlCommand("UPDATE SUPPLIERS SET SUPPLIERNAME=@SUPPLIERNAME, CONTACTPERSON= @CONTACTPERSON, PHONE= @PHONE, EMAIL= @EMAIL WHERE SUPPLIERID= @SUPPLIERID ", db.con);
         db.cmd.Parameters.AddWithValue("@SUPPLIERNAME", supplier[0]);
@@ -171,8 +171,8 @@ public static class commands
             return -1;
         }
     }
-        public static int deletesuppliers(int id)
-        {
+    public static int deletesuppliers(int id)
+    {
         db.cmd = new SqlCommand(" ", db.con);
         db.cmd.Parameters.AddWithValue("@SUPPLIERID", id);
         db.con.Open();
@@ -186,7 +186,7 @@ public static class commands
         }
     }
 
-    public static string[]itemEncode (string id)
+    public static string[] itemEncode(string id)
     {
         string[] items = new string[4];
         db.con.Open();
@@ -250,7 +250,7 @@ public static class commands
         db.cmd.Parameters.AddWithValue("@QUANTITY", stock[2]);//quantity
         db.cmd.Parameters.AddWithValue("@MOVEMENTTYPE", stock[3]);//movementtype
         db.con.Open();
-        if(db.cmd.ExecuteNonQuery() == 1)
+        if (db.cmd.ExecuteNonQuery() == 1)
         {
             query = 1;
         }
@@ -276,13 +276,13 @@ public static class commands
     {
         int query = 0;
         db.con.Open();
-        db.cmd = new SqlCommand("SELECT * FROM WarehouseStock WHERE ProductID= @ProductID AND WarehouseID= @WarehouseID",db.con);
+        db.cmd = new SqlCommand("SELECT * FROM WarehouseStock WHERE ProductID= @ProductID AND WarehouseID= @WarehouseID", db.con);
         db.cmd.Parameters.AddWithValue("@ProductID", stock[0]);//productid
         db.cmd.Parameters.AddWithValue("@WarehouseID", stock[1]);//warehouseid
         db.dr = db.cmd.ExecuteReader();
         if (!db.dr.HasRows)
         {
-            query= 1;
+            query = 1;
 
         }
 
@@ -298,7 +298,7 @@ public static class commands
         db.cmd.Parameters.AddWithValue("@WarehouseID", stock[1]);//warehouseid
         db.cmd.Parameters.AddWithValue("@Quantity", stock[2]);//quantity
         db.con.Open();
-        if(db.cmd.ExecuteNonQuery() == 1)
+        if (db.cmd.ExecuteNonQuery() == 1)
         {
             query = 1;
         }
@@ -322,7 +322,7 @@ public static class commands
         db.cmd.Parameters.AddWithValue("@ProductID", stock[0]);//productid
         db.cmd.Parameters.AddWithValue("@Quantity", stock[2]);//quantity
         db.con.Open();
-        if(db.cmd.ExecuteNonQuery() == 1)
+        if (db.cmd.ExecuteNonQuery() == 1)
         {
             query = 1;
         }
@@ -333,16 +333,75 @@ public static class commands
     public static void viewWarehouseStock()
     {
         db.con.Open();
-        db.cmd = new SqlCommand("SELECT * FROM WAREHOUSESTOCK",db.con);
+        db.cmd = new SqlCommand("SELECT * FROM WAREHOUSESTOCK", db.con);
         db.dr = db.cmd.ExecuteReader();
 
-        
+
     }
     public static void searchWarehouseStock()
     {
         db.con.Open();
-        db.cmd = new SqlCommand("SELECT * FROM WAREHOUSESTOCK WHERE PRODUCTID= @PRODUCTID AND WAREHOUSEID=@WAREHOUSEID",db.con);
+        db.cmd = new SqlCommand("SELECT * FROM WAREHOUSESTOCK WHERE PRODUCTID= @PRODUCTID AND WAREHOUSEID=@WAREHOUSEID", db.con);
         db.dr = db.cmd.ExecuteReader();
+    }
+
+    public static DataTable demo()
+    {
+        
+        db.con.Open();
+        db.cmd = new SqlCommand("SELECT Products.ProductID, Products.ProductName, Products.Description, Categories.CategoryName, Products.QuantityInStock, Products.UnitPrice, Suppliers.SupplierName\r\nFROM Products\r\nJOIN Categories ON Products.CategoryID = Categories.CategoryID\r\nJOIN Suppliers ON Products.SupplierID = Suppliers.SupplierID", db.con);
+
+        DataTable dt = new DataTable();
+        dt.Load(db.cmd.ExecuteReader());
+
+        db.con.Close();
+
+        return dt;
+    }
+
+    public static DataTable loadInventory()
+    {
+
+        db.con.Open();
+        db.cmd = new SqlCommand("SELECT Products.ProductID, Products.ProductName, Products.Description, Categories.CategoryName, Products.QuantityInStock, Products.UnitPrice, Suppliers.SupplierName\r\nFROM Products\r\nJOIN Categories ON Products.CategoryID = Categories.CategoryID\r\nJOIN Suppliers ON Products.SupplierID = Suppliers.SupplierID", db.con);
+
+        DataTable dt = new DataTable();
+        dt.Load(db.cmd.ExecuteReader());
+
+        db.con.Close();
+
+        return dt;
+    }
+
+    public static DataTable searchInventory(string query, string filter)
+    {
+
+        db.con.Open();
+        db.cmd = new SqlCommand("SELECT Products.ProductID, Products.ProductName, Products.Description, Categories.CategoryName, Products.QuantityInStock, Products.UnitPrice, Suppliers.SupplierName\r\nFROM Products\r\nJOIN Categories ON Products.CategoryID = Categories.CategoryID\r\nJOIN Suppliers ON Products.SupplierID = Suppliers.SupplierID WHERE Products.ProductID= @ProductID AND Categories.CategoryName= @CategoryName", db.con);
+        db.cmd.Parameters.AddWithValue("@ProductID", query);
+        db.cmd.Parameters.AddWithValue("@CategoryName", filter);
+
+        DataTable dt = new DataTable();
+        dt.Load(db.cmd.ExecuteReader());
+
+        db.con.Close();
+
+        return dt;
+    }
+
+    public static DataTable filterCategory(string filter)
+    {
+        db.con.Open();
+        db.cmd = new SqlCommand("SELECT Products.ProductID, Products.ProductName, Products.Description, Categories.CategoryName, Products.QuantityInStock, Products.UnitPrice, Suppliers.SupplierName\r\nFROM Products\r\nJOIN Categories ON Products.CategoryID = Categories.CategoryID\r\nJOIN Suppliers ON Products.SupplierID = Suppliers.SupplierID WHERE Categories.CategoryName= @CategoryName", db.con);
+        db.cmd.Parameters.AddWithValue("@CategoryName", filter);
+
+        DataTable dt = new DataTable();
+        dt.Load(db.cmd.ExecuteReader());
+
+        db.con.Close();
+
+        return dt;
+
     }
     private static void beginTransaction()
     {

@@ -240,13 +240,12 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
 
             //product
             dataGridView3.Rows.Clear();
-            commands.loadInventory();
-            while (db.dr.Read())
+            DataTable dt =  commands.loadInventory();
+            foreach (DataRow row in dt.Rows)
             {
-                dataGridView3.Rows.Add(db.dr[0], db.dr[1], db.dr[4]);
+                dataGridView3.Rows.Add(row[0], row[1], row[4]);
             }
-           db.dr.Close();
-           db.con.Close();
+          
             //product
 
 

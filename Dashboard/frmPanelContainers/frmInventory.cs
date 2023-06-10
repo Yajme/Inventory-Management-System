@@ -22,29 +22,32 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
             dataGridView1.Rows.Clear();
             loadCategory();
 
-            if(query == "*" && filter == "*")
+            DataTable dt = new DataTable();
+            if (query == "*" && filter == "*"){
+                dt = commands.loadInventory();
+            }else if(query == "*" && filter != "*")
             {
-                commands.loadInventory();
+                dt = commands.filterCategory(filter);
+            }
+            else
+            {
+                dt = commands.searchInventory(query, filter);
             }
 
-           
-            while (db.dr.Read())
+            foreach (DataRow row in dt.Rows)
             {
-                dataGridView1.Rows.Add(db.dr[0], db.dr[1], db.dr[2], db.dr[3], db.dr[4], db.dr[5], db.dr[6]);
+                dataGridView1.Rows.Add(row[0], row[1], row[2], row[3], row[4], row[5], row[6]);
             }
-
-            db.dr.Close();
-            db.con.Close();
         }
         private void loadCategory()
         {
-            commands.loadcategories();
-            while (db.dr.Read())
+            cmbFilter.Items.Clear();
+
+            DataTable dt = commands.loadcategories();
+            foreach (DataRow row in dt.Rows)
             {
-                cmbFilter.Items.Add(db.dr[1]);
+                cmbFilter.Items.Add(row[1]);
             }
-            db.dr.Close();
-            db.con.Close();
         }
         private void frmInventory_Load(object sender, EventArgs e)
         {
@@ -104,13 +107,9 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-
+            LoadItems(txtQuery.Text, cmbFilter.SelectedItem.ToString());
         }
 
-        private void btnScan_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void frmInventory_Enter()
         {
@@ -120,19 +119,23 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
 
         private void cmbFilter_SelectedIndexChanged(object sender, EventArgs e)
         {
-            dataGridView1.Rows.Clear();
-            db.con.Open();
-            db.cmd = new SqlCommand("SELECT Products.ProductID, Products.ProductName, Products.Description, Categories.CategoryName, Products.QuantityInStock, Products.UnitPrice, Suppliers.SupplierName\r\nFROM Products\r\nJOIN Categories ON Products.CategoryID = Categories.CategoryID\r\nJOIN Suppliers ON Products.SupplierID = Suppliers.SupplierID WHERE Categories.CategoryName= @CategoryName", db.con);
-            db.cmd.Parameters.AddWithValue("@CategoryName", cmbFilter.SelectedItem.ToString());
-            db.dr = db.cmd.ExecuteReader();
+            LoadItems("*", cmbFilter.SelectedItem.ToString());
+           
+        }
 
-            while (db.dr.Read())
-            {
-                dataGridView1.Rows.Add(db.dr[0], db.dr[1], db.dr[2], db.dr[3], db.dr[4], db.dr[5], db.dr[6]);
+        private void btnClearFilter_Click(object sender, EventArgs e)
+        {
+            txtQuery.Text = "";
+            cmbFilter.SelectedIndex = 0;
+           
+        }
+
+        private void txtQuery_TextChanged(object sender, EventArgs e)
+        {
+            if (txtQuery.Text == String.Empty){
+                LoadItems("*", "*");
             }
 
-            db.dr.Close();
-            db.con.Close();
         }
     }
 }
