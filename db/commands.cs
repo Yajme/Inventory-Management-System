@@ -379,7 +379,10 @@ public static class commands
         db.con.Open();
         db.cmd = new SqlCommand("SELECT Products.ProductID, Products.ProductName, Products.Description, Categories.CategoryName, Products.QuantityInStock, Products.UnitPrice, Suppliers.SupplierName\r\nFROM Products\r\nJOIN Categories ON Products.CategoryID = Categories.CategoryID\r\nJOIN Suppliers ON Products.SupplierID = Suppliers.SupplierID WHERE Products.ProductID= @ProductID AND Categories.CategoryName= @CategoryName", db.con);
         db.cmd.Parameters.AddWithValue("@ProductID", query);
-        db.cmd.Parameters.AddWithValue("@CategoryName", filter);
+       
+            db.cmd.Parameters.AddWithValue("@CategoryName", filter);
+        
+        
 
         DataTable dt = new DataTable();
         dt.Load(db.cmd.ExecuteReader());
@@ -389,6 +392,23 @@ public static class commands
         return dt;
     }
 
+    public static DataTable searchInventoryWOC(string query)
+    {
+
+        db.con.Open();
+        db.cmd = new SqlCommand("SELECT Products.ProductID, Products.ProductName, Products.Description, Categories.CategoryName, Products.QuantityInStock, Products.UnitPrice, Suppliers.SupplierName\r\nFROM Products\r\nJOIN Categories ON Products.CategoryID = Categories.CategoryID\r\nJOIN Suppliers ON Products.SupplierID = Suppliers.SupplierID WHERE Products.ProductID= @ProductID", db.con);
+        db.cmd.Parameters.AddWithValue("@ProductID", query);
+
+
+
+
+        DataTable dt = new DataTable();
+        dt.Load(db.cmd.ExecuteReader());
+
+        db.con.Close();
+
+        return dt;
+    }
     public static DataTable filterCategory(string filter)
     {
         db.con.Open();

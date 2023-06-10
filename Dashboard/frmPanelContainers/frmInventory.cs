@@ -20,7 +20,7 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
         private void LoadItems(string query, string filter)
         {
             dataGridView1.Rows.Clear();
-            loadCategory();
+            
 
             DataTable dt = new DataTable();
             if (query == "*" && filter == "*"){
@@ -29,15 +29,27 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
             {
                 dt = commands.filterCategory(filter);
             }
+            else if(query != "*" && filter == "*")
+            {
+                dt = commands.searchInventoryWOC(query);
+            }
             else
             {
                 dt = commands.searchInventory(query, filter);
             }
-
-            foreach (DataRow row in dt.Rows)
+            if(dt.Rows.Count > 0)
             {
-                dataGridView1.Rows.Add(row[0], row[1], row[2], row[3], row[4], row[5], row[6]);
+                foreach (DataRow row in dt.Rows)
+                {
+                    dataGridView1.Rows.Add(row[0], row[1], row[2], row[3], row[4], row[5], row[6]);
+                }
             }
+            else
+            {
+                MessageBox.Show("Item Not Found!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtQuery.Text = "Search...";
+            }
+            
         }
         private void loadCategory()
         {
@@ -52,7 +64,7 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
         private void frmInventory_Load(object sender, EventArgs e)
         {
             LoadItems("*", "*");
-            
+            loadCategory();
         }
 
         public void RemoveText(object sender, EventArgs e)
@@ -107,7 +119,7 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            LoadItems(txtQuery.Text, cmbFilter.SelectedItem.ToString());
+            LoadItems(txtQuery.Text, cmbFilter.Text.ToString());
         }
 
 
@@ -125,17 +137,35 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
 
         private void btnClearFilter_Click(object sender, EventArgs e)
         {
-            txtQuery.Text = "";
-            cmbFilter.SelectedIndex = 0;
+            txtQuery.Text = "Search...";
+            cmbFilter.Text = "";
            
         }
 
         private void txtQuery_TextChanged(object sender, EventArgs e)
         {
-            if (txtQuery.Text == String.Empty){
+            if (txtQuery.Text == "Search...")
+            {
                 LoadItems("*", "*");
             }
 
+        }
+
+        private void txtQuery_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if(e.KeyChar == (char)Keys.Enter)
+            {
+                if(cmbFilter.Text.ToString() == "")
+                {
+                    LoadItems(txtQuery.Text, "*");
+                }
+                else
+                {
+                    LoadItems(txtQuery.Text, cmbFilter.Text.ToString());
+
+                }
+                
+            }
         }
     }
 }
