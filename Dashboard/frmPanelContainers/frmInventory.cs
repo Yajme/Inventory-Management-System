@@ -48,6 +48,8 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
             {
                 MessageBox.Show("Item Not Found!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtQuery.Text = "Search...";
+                cmbFilter.Text = "";
+                LoadItems("*","*");
             }
             
         }

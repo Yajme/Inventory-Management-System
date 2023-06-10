@@ -52,13 +52,11 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers.frmInventoyFo
             db.con.Close();
             //supplier_End
             // Category__start
-            commands.loadcategories();
-            while (db.dr.Read())
+            DataTable dt = commands.loadcategories();
+            foreach (DataRow row in dt.Rows)
             {
-                cmbCategory.Items.Add(db.dr[1]);
+                cmbCategory.Items.Add(row[1]);
             }
-            db.dr.Close();
-            db.con.Close();
             //category_End
         }
         

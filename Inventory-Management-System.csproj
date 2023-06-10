@@ -103,6 +103,12 @@
     <Compile Include="Dashboard\frmPanelContainers\frmInventoyForms\frmManageSupplier.Designer.cs">
       <DependentUpon>frmManageSupplier.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dashboard\frmPanelContainers\frmInventoyForms\frmManageWarehouse.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dashboard\frmPanelContainers\frmInventoyForms\frmManageWarehouse.Designer.cs">
+      <DependentUpon>frmManageWarehouse.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dashboard\frmPanelContainers\frmOrder.cs">
       <SubType>Form</SubType>
     </Compile>

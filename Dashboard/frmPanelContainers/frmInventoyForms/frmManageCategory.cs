@@ -74,13 +74,11 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers.frmInventoyFo
         private void loadRecords()
         {
             dataGridView1.Rows.Clear();
-            commands.loadcategories();
-            while (db.dr.Read())
+            DataTable dt = commands.loadcategories();
+            foreach (DataRow row in dt.Rows)
             {
-                dataGridView1.Rows.Add(db.dr[0],db.dr[1]);
+                dataGridView1.Rows.Add(row[0], row[1]);
             }
-            db.dr.Close();
-            db.con.Close();
         }
         private void btnSave_Click(object sender, EventArgs e)
         {
