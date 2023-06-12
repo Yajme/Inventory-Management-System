@@ -280,15 +280,15 @@ public static class commands
     {
         int query = 0;
         db.con.Open();
-        db.cmd = new SqlCommand("SELECT * FROM WarehouseStock WHERE ProductID= @ProductID AND WarehouseID= @WarehouseID", db.con);
+        db.cmd = new SqlCommand("SELECT QuantityStock FROM WarehouseStock WHERE ProductID= @ProductID AND WarehouseID= @WarehouseID", db.con);
         db.cmd.Parameters.AddWithValue("@ProductID", stock[0]);//productid
         db.cmd.Parameters.AddWithValue("@WarehouseID", stock[1]);//warehouseid
         db.dr = db.cmd.ExecuteReader();
-        if (!db.dr.HasRows)
+        if(db.dr.Read())
         {
-            query = 1;
-
+            query = (int)db.dr[0];
         }
+        
 
 
         db.con.Close();
@@ -321,15 +321,13 @@ public static class commands
 
     public static void updateProductsStocks(string[] stock)
     {
-        int query = 0;
+        
         db.cmd = new SqlCommand("UPDATE Products SET QuantityInStock= QuantityInStock+@Quantity WHERE PRODUCTID= @PRODUCTID", db.con);
         db.cmd.Parameters.AddWithValue("@ProductID", stock[0]);//productid
         db.cmd.Parameters.AddWithValue("@Quantity", stock[2]);//quantity
         db.con.Open();
-        if (db.cmd.ExecuteNonQuery() == 1)
-        {
-            query = 1;
-        }
+        db.cmd.ExecuteNonQuery();
+        
         db.con.Close();
         //return query;
     }

@@ -74,7 +74,7 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
         private void itemScan(string query)
         {
             bool found = false;
-            int row = 0;
+            int row = dataGridView1.RowCount;
             string[] itemfetched = commands.itemEncode(query);
             
             //commands.itemEncode(query);
@@ -106,7 +106,7 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
                 {
                     rows.Cells[dataGridView1.Columns["colTotalPrice"].Index].Value = Convert.ToDouble(rows.Cells[dataGridView1.Columns["colUnitPrice"].Index].Value) * Convert.ToDouble(rows.Cells[dataGridView1.Columns["colQuantity"].Index].Value);
                 }
-                lblSaleTotal.Text = string.Format(total.ToString(), "#,##0.00");
+                lblSaleTotal.Text = total.ToString("#,##0.00");
                 txtQuery.Clear();
             }
             else
@@ -171,7 +171,7 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
             
             int query2 = commands.stockWarehouseValidator(stock);
             int query3;
-            if (query2 == 1)//new
+            if (query2 < 1)//new
             {
                 query3 = commands.insertStocktoWarehouse(stock);
             }

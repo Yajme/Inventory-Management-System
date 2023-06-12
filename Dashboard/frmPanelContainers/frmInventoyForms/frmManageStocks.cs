@@ -14,6 +14,8 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers.frmInventoyFo
     public partial class frmManageStocks : Form
     {
         int quantity = 0;
+        
+        int max = 0;
         private const int CB_SETCUEBANNER = 0x1703;
 
         [System.Runtime.InteropServices.DllImport("user32.dll", CharSet = System.Runtime.InteropServices.CharSet.Auto)]
@@ -76,16 +78,42 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers.frmInventoyFo
         {
             //WHERE warehouse.WarehouseName = @name AND Products.ProductID = @name
         }
+        private bool maxlowquuantity(int number,string operation)
+        {
+            if(number <= max && operation == "+")//max
+            {
+                return true;
+            }
+            if(number >= quantity && operation == "-")
+            {
+                return true;
+            }
+            return false;
+        }
         private void btnMinus_Click(object sender, EventArgs e)
         {
+            
             int number = int.Parse(txtQuantity.Text) - 1;
-            txtQuantity.Text = number.ToString();
+            if (maxlowquuantity(number,"-"))
+            {
+                txtQuantity.Text = number.ToString();
+            }
+            
+            
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
             int number = int.Parse(txtQuantity.Text) + 1;
-            txtQuantity.Text = number.ToString();
+            if (maxlowquuantity(number,"+"))
+            {
+                txtQuantity.Text = number.ToString();
+            }
+            else
+            {
+                MessageBox.Show("Quantity Exceed to Warehouse Stock");
+
+            }
         }
         /*
          
@@ -99,16 +127,25 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers.frmInventoyFo
          */
         private void selectProduct(string productid)
         {
+
             string[] itemfetched = commands.itemEncode(productid);
-            if (itemfetched != Array.Empty<string>())
+            string[] stock = new string[2];
+            stock[0] = productid;
+            stock[1] = commands.selectWarehouse(cmbWarehouse.Text).ToString();
+            int query = commands.stockWarehouseValidator(stock);
+            if (itemfetched != Array.Empty<string>() && query > 0)
             {
                 txtProductName.Text = itemfetched[1];
                 quantity = int.Parse(itemfetched[3]);
                 txtQuantity.Text = quantity.ToString();
+                max = query + quantity;
+                //MessageBox.Show(max.ToString() + "\n\n" + stock[1]);
             }
             else
             {
                 MessageBox.Show("Item Not Found\n\n Please check if warehouse has Item", "Not Found", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                txtProductID.Clear();
             }
 
         }
@@ -144,17 +181,18 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers.frmInventoyFo
         {
             int query2 = commands.stockWarehouseValidator(stock);
             int query3;
-            if (query2 == 1)//new
+            if (query2 == 0)//new
             {
                 MessageBox.Show("No Stock");
                 query3 = 0;
             }
-            else//update
+            else if(query2 == 0)//update
             {
                 stock[2] = "-" + stock[2];
                 query3 = commands.updateStocktoWarehouse(stock);
             }
             int query1 = commands.insertMovementStock(stock);
+            /*
             if (query1 == 1 && query3 == 1)
             {
                 MessageBox.Show("Record Saved!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -163,7 +201,7 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers.frmInventoyFo
             {
                 MessageBox.Show("Failed!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
+            */
         }
         private void btnSave_Click(object sender, EventArgs e)
         {
