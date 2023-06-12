@@ -24,15 +24,10 @@ public static class commands
     }
     
 
-    public static void inventorySearch(string productid)
-    {
-
-    }
 
     public static void insertInventory(string[] product)
     {
 
-        
         db.con.Open();
         SqlTransaction t = db.con.BeginTransaction();
 
@@ -66,11 +61,13 @@ public static class commands
         }
 
     }
-    public static void loadsuppliers()
+    public static DataTable loadsuppliers()
     {
+        DataTable dt = new DataTable();
         db.con.Open();
         db.cmd = new SqlCommand("SELECT * FROM SUPPLIERS", db.con);
-        db.dr = db.cmd.ExecuteReader();
+        dt.Load(db.cmd.ExecuteReader());
+        return dt;
     }
     public static DataTable loadcategories()
     {
@@ -81,50 +78,89 @@ public static class commands
         db.con.Close();
         return dt;
     }
-    public static int insertcategories(string category)
+    public static void insertcategories(string category)
     {
-        db.cmd = new SqlCommand("INSERT INTO CATEGORIES(CATEGORYNAME) VALUES(@CATEGORYNAME)", db.con);
-        db.cmd.Parameters.AddWithValue("@CATEGORYNAME", category);
-        db.con.Open();
-        if (db.cmd.ExecuteNonQuery() == 1)
+        SqlTransaction t = db.con.BeginTransaction();
+        try
         {
-            return 1;
+            db.cmd = new SqlCommand("INSERT INTO CATEGORIES(CATEGORYNAME) VALUES(@CATEGORYNAME)", db.con,t);
+            db.cmd.Parameters.AddWithValue("@CATEGORYNAME", category);
+            db.con.Open();
+            db.cmd.ExecuteNonQuery();
+            t.Commit();
         }
-        else
+        catch(SqlException ex)
         {
-            return -1;
+            t.Rollback();
+            throw ex;
         }
+        catch(Exception ex)
+        {
+            t.Rollback();
+            throw ex;
+        }
+        finally
+        {
+            db.con.Close();
+        }
+        
+       
     }
-    public static int updatecategories(string category, int id)
+    public static void updatecategories(string category, int id)
     {
-        db.cmd = new SqlCommand("UPDATE CATEGORIES SET CATEGORYNAME= @CATEGORYNAME WHERE CATEGORYID= @CATEGORYID", db.con);
-        db.cmd.Parameters.AddWithValue("@CATEGORYNAME", category);
-        db.cmd.Parameters.AddWithValue("@CATEGORYID", id);
+        SqlTransaction t = db.con.BeginTransaction();
+        try
+        {
+            db.cmd = new SqlCommand("UPDATE CATEGORIES SET CATEGORYNAME= @CATEGORYNAME WHERE CATEGORYID= @CATEGORYID", db.con,t);
+            db.cmd.Parameters.AddWithValue("@CATEGORYNAME", category);
+            db.cmd.Parameters.AddWithValue("@CATEGORYID", id);
 
-        db.con.Open();
-        if (db.cmd.ExecuteNonQuery() == 1)
+            db.con.Open();
+            db.cmd.ExecuteNonQuery();
+            t.Commit();
+        }catch(SqlException ex)
         {
-            return 1;
-        }
-        else
+            t.Rollback();
+            throw ex;
+        }catch(Exception ex)
         {
-            return -1;
+            t.Rollback();
+            throw ex;
         }
+        finally
+        {
+            db.con.Close();
+        }
+        
+        
     }
-    public static int deletecategories(int id)
+    public static void deletecategories(int id)
     {
-        db.cmd = new SqlCommand("DELETE FROM CATEGORIES WHERE CATEGORYID= @CATEGORYID", db.con);
-        db.cmd.Parameters.AddWithValue("@CATEGORYID", id);
+        SqlTransaction t = db.con.BeginTransaction();
+        try
+        {
+            db.cmd = new SqlCommand("DELETE FROM CATEGORIES WHERE CATEGORYID= @CATEGORYID", db.con,t);
+            db.cmd.Parameters.AddWithValue("@CATEGORYID", id);
 
-        db.con.Open();
-        if (db.cmd.ExecuteNonQuery() == 1)
-        {
-            return 1;
+            db.con.Open();
+            db.cmd.ExecuteNonQuery();
+            t.Commit();
         }
-        else
+        catch(SqlException ex)
         {
-            return -1;
+            t.Rollback();
+            throw ex;
+        }catch(Exception ex)
+        {
+            t.Rollback();
+            throw ex;
         }
+        finally
+        {
+            db.con.Close();
+        }
+        
+        
     }
     public static int categoryValidator(string category)
     {
@@ -155,56 +191,92 @@ public static class commands
         db.con.Close();
         return id;
     }
-    public static int insertsuppliers(string[] supplier)
+    public static void insertsuppliers(string[] supplier)
     {
-        db.cmd = new SqlCommand("INSERT INTO SUPPLIERS(SUPPLIERNAME,CONTACTPERSON,PHONE,EMAIL) VALUES(@SUPPLIERNAME,@CONTACTPERSON,@PHONE,@EMAIL) ", db.con);
-        db.cmd.Parameters.AddWithValue("@SUPPLIERNAME", supplier[0]);
-        db.cmd.Parameters.AddWithValue("@CONTACTPERSON", supplier[1]);
-        db.cmd.Parameters.AddWithValue("@PHONE", supplier[2]);
-        db.cmd.Parameters.AddWithValue("@EMAIL", supplier[3]);
-        db.con.Open();
-        if (db.cmd.ExecuteNonQuery() == 1)
+        SqlTransaction t = db.con.BeginTransaction();
+        try
         {
-            return 1;
+            db.cmd = new SqlCommand("INSERT INTO SUPPLIERS(SUPPLIERNAME,CONTACTPERSON,PHONE,EMAIL) VALUES(@SUPPLIERNAME,@CONTACTPERSON,@PHONE,@EMAIL) ", db.con, t);
+            db.cmd.Parameters.AddWithValue("@SUPPLIERNAME", supplier[0]);
+            db.cmd.Parameters.AddWithValue("@CONTACTPERSON", supplier[1]);
+            db.cmd.Parameters.AddWithValue("@PHONE", supplier[2]);
+            db.cmd.Parameters.AddWithValue("@EMAIL", supplier[3]);
+            db.con.Open();
+            db.cmd.ExecuteNonQuery();
+            t.Commit();
         }
-        else
+        catch (SqlException ex)
         {
-            return -1;
+            t.Rollback();
+            throw ex;
+        }catch(Exception ex)
+        {
+            t.Rollback();
+            throw ex;
+        }
+        finally
+        {
+            db.con.Close();
         }
     }
 
-    public static int updatesuppliers(string[] supplier, int supplierid)
+    public static void updatesuppliers(string[] supplier, int supplierid)
     {
+        SqlTransaction t = db.con.BeginTransaction();
+        try
+        {
+            db.cmd = new SqlCommand("UPDATE SUPPLIERS SET SUPPLIERNAME=@SUPPLIERNAME, CONTACTPERSON= @CONTACTPERSON, PHONE= @PHONE, EMAIL= @EMAIL WHERE SUPPLIERID= @SUPPLIERID ", db.con);
+            db.cmd.Parameters.AddWithValue("@SUPPLIERNAME", supplier[0]);
+            db.cmd.Parameters.AddWithValue("@CONTACTPERSON", supplier[1]);
+            db.cmd.Parameters.AddWithValue("@PHONE", supplier[2]);
+            db.cmd.Parameters.AddWithValue("@EMAIL", supplier[3]);
+            db.cmd.Parameters.AddWithValue("@SUPPLIERID", supplierid);
+            db.con.Open();
+            db.cmd.ExecuteNonQuery();
 
-        db.cmd = new SqlCommand("UPDATE SUPPLIERS SET SUPPLIERNAME=@SUPPLIERNAME, CONTACTPERSON= @CONTACTPERSON, PHONE= @PHONE, EMAIL= @EMAIL WHERE SUPPLIERID= @SUPPLIERID ", db.con);
-        db.cmd.Parameters.AddWithValue("@SUPPLIERNAME", supplier[0]);
-        db.cmd.Parameters.AddWithValue("@CONTACTPERSON", supplier[1]);
-        db.cmd.Parameters.AddWithValue("@PHONE", supplier[2]);
-        db.cmd.Parameters.AddWithValue("@EMAIL", supplier[3]);
-        db.cmd.Parameters.AddWithValue("@SUPPLIERID", supplierid);
-        db.con.Open();
-        if (db.cmd.ExecuteNonQuery() == 1)
-        {
-            return 1;
         }
-        else
+        catch (SqlException ex)
         {
-            return -1;
+            t.Rollback();
+            throw ex;
+        }catch(Exception ex)
+        {
+            t.Rollback();
+            throw ex;
         }
+        finally
+        {
+            db.con.Close();
+        }
+        
     }
-    public static int deletesuppliers(int id)
+    public static void deletesuppliers(int id)
     {
-        db.cmd = new SqlCommand(" ", db.con);
-        db.cmd.Parameters.AddWithValue("@SUPPLIERID", id);
-        db.con.Open();
-        if (db.cmd.ExecuteNonQuery() == 1)
+        SqlTransaction t = db.con.BeginTransaction();
+        try
         {
-            return 1;
+            db.cmd = new SqlCommand("DELETE FROM SUPPLIERS WHERE SUPPLIERID= @SUPPLIERID", db.con, t);
+            db.cmd.Parameters.AddWithValue("@SUPPLIERID", id);
+            db.con.Open();
+            db.cmd.ExecuteNonQuery();
+            t.Commit();
         }
-        else
+        catch(SqlException ex)
         {
-            return -1;
+            t.Rollback();
+            throw ex;
+        }catch(Exception ex)
+        {
+            t.Rollback();
+            throw ex;
         }
+        finally
+        {
+            db.con.Close();
+        }
+        
+        
+        
     }
 
     public static string[] itemEncode(string id)
@@ -287,28 +359,29 @@ public static class commands
     public static void insertStocktoWarehouse(string[] stock)
     {
 
-        db.cmd = new SqlCommand("INSERT INTO WarehouseStock(ProductID, WarehouseID, QuantityStock) VALUES (@ProductID, @WarehouseID, @Quantity)", db.con);
-        db.cmd.Parameters.AddWithValue("@ProductID", stock[0]); // productid
-        db.cmd.Parameters.AddWithValue("@WarehouseID", stock[1]); // warehouseid
-        db.cmd.Parameters.AddWithValue("@Quantity", stock[2]); // quantity
-
-        db.con.Open();
+        
         DbTransaction t = db.con.BeginTransaction();
 
         try
         {
+            db.cmd = new SqlCommand("INSERT INTO WarehouseStock(ProductID, WarehouseID, QuantityStock) VALUES (@ProductID, @WarehouseID, @Quantity)", db.con);
+            db.cmd.Parameters.AddWithValue("@ProductID", stock[0]); // productid
+            db.cmd.Parameters.AddWithValue("@WarehouseID", stock[1]); // warehouseid
+            db.cmd.Parameters.AddWithValue("@Quantity", stock[2]); // quantity
+
+            db.con.Open();
             db.cmd.ExecuteNonQuery();
             t.Commit();
         }
         catch (SqlException ex)
         {
             t.Rollback();
-            MessageBox.Show("Error in database: " + ex.Message);
+            throw ex;
         }
         catch (Exception ex)
         {
             t.Rollback();
-            MessageBox.Show("Error: " + ex.Message);
+            throw ex;
         }
         finally
         {
@@ -337,27 +410,28 @@ public static class commands
     }
     public static void updateStocktoWarehouse(string[] stock)
     {
-        db.cmd = new SqlCommand("UPDATE WarehouseStock SET QuantityStock= QuantityStock+@Quantity WHERE ProductID=@ProductID AND WarehouseID=@WarehouseID", db.con);
-        db.cmd.Parameters.AddWithValue("@ProductID", stock[0]);//productid
-        db.cmd.Parameters.AddWithValue("@WarehouseID", stock[1]);//warehouseid
-        db.cmd.Parameters.AddWithValue("@Quantity", stock[2]);//quantity
-        db.con.Open();
+        
         DbTransaction t = db.con.BeginTransaction();
 
         try
         {
+            db.cmd = new SqlCommand("UPDATE WarehouseStock SET QuantityStock= QuantityStock+@Quantity WHERE ProductID=@ProductID AND WarehouseID=@WarehouseID", db.con);
+            db.cmd.Parameters.AddWithValue("@ProductID", stock[0]);//productid
+            db.cmd.Parameters.AddWithValue("@WarehouseID", stock[1]);//warehouseid
+            db.cmd.Parameters.AddWithValue("@Quantity", stock[2]);//quantity
+            db.con.Open();
             db.cmd.ExecuteNonQuery();
             t.Commit();
         }
         catch (SqlException ex)
         {
             t.Rollback();
-            MessageBox.Show("Error in database: " + ex.Message);
+            throw ex;
         }
         catch (Exception ex)
         {
             t.Rollback();
-            MessageBox.Show("Error: " + ex.Message);
+            throw ex;
         }
         finally
         {
@@ -365,26 +439,34 @@ public static class commands
         }
     }
 
-    public static string[] checkProductWarehouse(string[] stock)
-    {
-        string[] item = new string[2];
-
-
-
-        return item;
-    }
-
     public static void updateProductsStocks(string[] stock)
     {
+        SqlTransaction t = db.con.BeginTransaction();
+        try
+        {
+            db.cmd = new SqlCommand("UPDATE Products SET QuantityInStock= QuantityInStock+@Quantity WHERE PRODUCTID= @PRODUCTID", db.con);
+            db.cmd.Parameters.AddWithValue("@ProductID", stock[0]);//productid
+            db.cmd.Parameters.AddWithValue("@Quantity", stock[2]);//quantity
+            db.con.Open();
+            db.cmd.ExecuteNonQuery();
+            t.Commit();
+        }
+        catch(SqlException ex)
+        {
+            t.Rollback();
+            throw ex;
+        }catch(Exception ex)
+        {
+            t.Rollback();
+            throw ex;
+        }
+        finally
+        {
+            db.con.Close();
+        }
         
-        db.cmd = new SqlCommand("UPDATE Products SET QuantityInStock= QuantityInStock+@Quantity WHERE PRODUCTID= @PRODUCTID", db.con);
-        db.cmd.Parameters.AddWithValue("@ProductID", stock[0]);//productid
-        db.cmd.Parameters.AddWithValue("@Quantity", stock[2]);//quantity
-        db.con.Open();
-        db.cmd.ExecuteNonQuery();
         
-        db.con.Close();
-        //return query;
+        
     }
 
     public static void viewWarehouseStock()
@@ -480,10 +562,7 @@ public static class commands
         return dt;
 
     }
-    private static void beginTransaction()
-    {
-
-    }
+    
 }
         
 

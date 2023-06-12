@@ -43,13 +43,11 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers.frmInventoyFo
         public void loadcombobox()
         {
             //Supplier_start
-            commands.loadsuppliers();
-            while (db.dr.Read())
+            DataTable dts = commands.loadsuppliers();
+            foreach(DataRow row in dts.Rows)
             {
-                cmbSupplier.Items.Add(db.dr[1]);
+                cmbSupplier.Items.Add(row[1]);
             }
-            db.dr.Close();
-            db.con.Close();
             //supplier_End
             // Category__start
             DataTable dt = commands.loadcategories();

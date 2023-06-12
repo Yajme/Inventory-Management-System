@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -82,32 +83,32 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers.frmInventoyFo
         }
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if(update == false)
+            try
             {
-                int query = commands.insertcategories(txtCategory.Text);
-                if(query == 1)
+                if (update == false)
                 {
-                    MessageBox.Show("Category Added!","Success!",MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }else if(query == -1)
-                {
-                    MessageBox.Show("Failed!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    commands.insertcategories(txtCategory.Text);
+                    MessageBox.Show("Category Added!", "Success!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-            }else if(update == true)
-            {
-                int query = commands.updatecategories(txtCategory.Text, categoryid);
-                if (query == 1)
+                else
                 {
+                    commands.updatecategories(txtCategory.Text, categoryid);
                     MessageBox.Show("Updated!", "Success!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    update = false;
                 }
-                else if (query == -1)
-                {
-                    MessageBox.Show("Failed!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                update = false;
+
             }
-            
-            db.con.Close();
-            HideNewRecord();
+            catch (SqlException ex)
+            {
+                MessageBox.Show("Database error: " + ex.Message);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Database error: " + ex.Message);
+            }
+
+                HideNewRecord();
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -126,16 +127,20 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers.frmInventoyFo
                 DialogResult result = MessageBox.Show("Are you sure to Delete this Record?", "Delete?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if(result == DialogResult.Yes)
                 {
-                    int query = commands.deletecategories(categoryid);
-                    if (query == 1)
+                    try
                     {
-                        MessageBox.Show("Record Deleted!", "Success!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        commands.deletecategories(categoryid);
                     }
-                    else if (query == -1)
+                    catch (SqlException ex)
                     {
-                        MessageBox.Show("Failed!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Database error: " + ex.Message);
                     }
-                    db.con.Close();
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Database error: " + ex.Message);
+                    }
+
+
                     loadRecords();
                 }
 

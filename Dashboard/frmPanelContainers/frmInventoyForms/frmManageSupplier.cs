@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -39,13 +40,12 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers.frmInventoyFo
         private void loadRecords()
         {
             dataGridView1.Rows.Clear();
-            commands.loadsuppliers();
-            while (db.dr.Read())
+            DataTable dt = commands.loadsuppliers();
+            foreach(DataRow row in dt.Rows)
             {
-                dataGridView1.Rows.Add(db.dr[0], db.dr[1], db.dr[2], db.dr[4], db.dr[3]);
+                dataGridView1.Rows.Add(row[0], row[1], row[2], row[4], row[3]);
             }
-            db.dr.Close();
-            db.con.Close();
+            
         }
         private void frmManageSupplier_Load(object sender, EventArgs e)
         {
@@ -72,39 +72,35 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers.frmInventoyFo
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            string[] suppliers = new string[4];
-            suppliers[0] = txtSupplierName.Text;
-            suppliers[1] = txtContactPerson.Text;
-            suppliers[2] = txtPhone.Text;
-            suppliers[3] = txtEmail.Text;
-            if (update == false)
-            { 
-                int query = commands.insertsuppliers(suppliers);
-                if(query == 1)
+            try
+            {
+                string[] suppliers = new string[4];
+                suppliers[0] = txtSupplierName.Text;
+                suppliers[1] = txtContactPerson.Text;
+                suppliers[2] = txtPhone.Text;
+                suppliers[3] = txtEmail.Text;
+                if (update == false)
                 {
+                    commands.insertsuppliers(suppliers);
                     MessageBox.Show("Supplier Added!", "Success!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
-                    MessageBox.Show("Failed!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    commands.updatesuppliers(suppliers, supplierid);
+                    MessageBox.Show("Supplier Updated!", "Success!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    update = false;
                 }
             }
-            else
+            catch(SqlException ex)
             {
-                int query = commands.updatesuppliers(suppliers,supplierid);
-                if (query == 1)
-                {
-                    MessageBox.Show("Supplier Updated!", "Success!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                else
-                {
-                    MessageBox.Show("Failed!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                update = false;
+                MessageBox.Show(ex.Message);
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
             
-            db.dr.Close();
-            db.con.Close();
+            
             hideFields();
             loadRecords();
 
@@ -129,17 +125,22 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers.frmInventoyFo
                 DialogResult result = MessageBox.Show("Are you sure to Delete this Record?", "Delete?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (result == DialogResult.Yes)
                 {
-                    int query = commands.deletesuppliers(supplierid);
-                    if (query == 1)
+                    try
                     {
+                        commands.deletesuppliers(supplierid);
+
                         MessageBox.Show("Record Deleted!", "Success!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
                     }
-                    else if (query == -1)
+                    catch (SqlException ex)
                     {
-                        MessageBox.Show("Failed!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show(ex.Message);
                     }
-                    db.con.Close();
-                    loadRecords();
+                    catch(Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                     loadRecords();
                 }
 
             }

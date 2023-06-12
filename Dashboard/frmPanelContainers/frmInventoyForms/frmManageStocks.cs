@@ -156,16 +156,17 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers.frmInventoyFo
         {
             try
             {
+                commands.updateProductsStocks(stock);
                 stock[2] = "-" + stock[2];
                 commands.updateStocktoWarehouse(stock);
                 commands.insertMovementStock(stock);
+                
                 MessageBox.Show("Stock Adjusted!", "Success!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 clearFields();
             }
             catch (SqlException exsql)
             {
                 MessageBox.Show("Error in Database\n\n" + exsql.Message);
-                commands.dbclose();
             }
             catch(Exception ex)
             {
