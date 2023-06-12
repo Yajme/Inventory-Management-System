@@ -199,6 +199,7 @@
             this.btnDiscard.TabIndex = 7;
             this.btnDiscard.Text = "[Discard]";
             this.btnDiscard.UseVisualStyleBackColor = true;
+            this.btnDiscard.Click += new System.EventHandler(this.btnDiscard_Click);
             // 
             // btnMinus
             // 
@@ -374,6 +375,7 @@
             this.Name = "frmManageStocks";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmManageStocks";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmManageStocks_FormClosing);
             this.Load += new System.EventHandler(this.frmManageStocks_Load);
             this.panel1.ResumeLayout(false);
             this.panelAdjustStock.ResumeLayout(false);

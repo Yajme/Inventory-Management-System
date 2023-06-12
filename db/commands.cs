@@ -15,6 +15,13 @@ using System.Collections;
 
 public static class commands
 {
+    public static void dbclose()
+    {
+        if (db.con.State == ConnectionState.Open)
+        {
+            db.con.Close();
+        }
+    }
     
 
     public static void inventorySearch(string productid)
@@ -229,10 +236,7 @@ public static class commands
     public static int selectWarehouse(string warehousename)
     {
         int id = 0;
-        if(db.con.State == ConnectionState.Open)
-        {
-            db.con.Close();
-        }
+        
         db.con.Open();
         db.cmd = new SqlCommand("SELECT WarehouseID FROM Warehouses WHERE WarehouseName=@WarehouseName", db.con);
         db.cmd.Parameters.AddWithValue("@WarehouseName", warehousename);
@@ -245,21 +249,19 @@ public static class commands
         db.con.Close();
         return id;
     }
-    public static int insertMovementStock(string[] stock)
+    public static void insertMovementStock(string[] stock)
     {
-        int query = 0;
+        //int query = 0;
         db.cmd = new SqlCommand("INSERT INTO StockMovements(ProductID, WarehouseID, MovementType, Quantity) VALUES(@PRODUCTID, @WAREHOUSEID, @MOVEMENTTYPE,@QUANTITY)", db.con);
         db.cmd.Parameters.AddWithValue("@PRODUCTID", stock[0]);//productid
         db.cmd.Parameters.AddWithValue("@WAREHOUSEID", stock[1]);//warehouseid
         db.cmd.Parameters.AddWithValue("@QUANTITY", stock[2]);//quantity
         db.cmd.Parameters.AddWithValue("@MOVEMENTTYPE", stock[3]);//movementtype
         db.con.Open();
-        if (db.cmd.ExecuteNonQuery() == 1)
-        {
-            query = 1;
-        }
+        db.cmd.ExecuteNonQuery();
+        
         db.con.Close();
-        return query;
+        //return query;
     }
     public static int insertStocktoWarehouse(string[] stock)
     {
@@ -294,20 +296,18 @@ public static class commands
         db.con.Close();
         return query;
     }
-    public static int updateStocktoWarehouse(string[] stock)
+    public static void updateStocktoWarehouse(string[] stock)
     {
-        int query = 0;
+        //int query = 0;
         db.cmd = new SqlCommand("UPDATE WarehouseStock SET QuantityStock= QuantityStock+@Quantity WHERE ProductID=@ProductID AND WarehouseID=@WarehouseID", db.con);
         db.cmd.Parameters.AddWithValue("@ProductID", stock[0]);//productid
         db.cmd.Parameters.AddWithValue("@WarehouseID", stock[1]);//warehouseid
         db.cmd.Parameters.AddWithValue("@Quantity", stock[2]);//quantity
         db.con.Open();
-        if (db.cmd.ExecuteNonQuery() == 1)
-        {
-            query = 1;
-        }
+        db.cmd.ExecuteNonQuery();
+        
         db.con.Close();
-        return query;
+        //return query;
     }
 
     public static string[] checkProductWarehouse(string[] stock)

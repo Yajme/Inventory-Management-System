@@ -168,7 +168,7 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
             stock[2] = txtQuantity.Text;
             stock[3] = "Inbound";
 
-            
+            /*
             int query2 = commands.stockWarehouseValidator(stock);
             int query3;
             if (query2 < 1)//new
@@ -188,6 +188,7 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
             {
                 MessageBox.Show("Failed!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            */
             loadHistoryandProducts();
         }
 

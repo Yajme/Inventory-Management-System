@@ -14,7 +14,6 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers.frmInventoyFo
     public partial class frmManageStocks : Form
     {
         int quantity = 0;
-        
         int max = 0;
         private const int CB_SETCUEBANNER = 0x1703;
 
@@ -52,6 +51,7 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers.frmInventoyFo
         private void btnExit_Click(object sender, EventArgs e)
         {
             this.Close();
+            
         }
 
         private void frmManageStocks_Load(object sender, EventArgs e)
@@ -74,10 +74,7 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers.frmInventoyFo
             db.dr.Close();
             db.con.Close();
         }
-        private void selectWarehouse(string productID)
-        {
-            //WHERE warehouse.WarehouseName = @name AND Products.ProductID = @name
-        }
+       
         private bool maxlowquuantity(int number,string operation)
         {
             if(number <= max && operation == "+")//max
@@ -92,14 +89,11 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers.frmInventoyFo
         }
         private void btnMinus_Click(object sender, EventArgs e)
         {
-            
             int number = int.Parse(txtQuantity.Text) - 1;
-            if (maxlowquuantity(number,"-"))
+            if (maxlowquuantity(number, "-"))
             {
                 txtQuantity.Text = number.ToString();
             }
-            
-            
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -157,62 +151,56 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers.frmInventoyFo
                 selectProduct(txtProductID.Text);
             }
         }
-       
-        private void updateProducts(string[] stock)
-        {
-            
-            try
-            {
-                commands.updateProductsStocks(stock);
-                MessageBox.Show("Process Successful", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            catch (SqlException)
-            {
-                MessageBox.Show("Process UnSuccessful, could not write to database", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            catch (Exception Ex)
-            {
-                MessageBox.Show("Process UnSuccessful, a non-database error occured\n\n" + Ex.Message , "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            
-
-        }
+      
         private void MovementStock(string[] stock)
         {
-            int query2 = commands.stockWarehouseValidator(stock);
-            int query3;
-            if (query2 == 0)//new
-            {
-                MessageBox.Show("No Stock");
-                query3 = 0;
-            }
-            else if(query2 == 0)//update
+            try
             {
                 stock[2] = "-" + stock[2];
-                query3 = commands.updateStocktoWarehouse(stock);
+                commands.updateStocktoWarehouse(stock);
+                commands.insertMovementStock(stock);
+                MessageBox.Show("Stock Adjusted!", "Success!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                clearFields();
             }
-            int query1 = commands.insertMovementStock(stock);
-            /*
-            if (query1 == 1 && query3 == 1)
+            catch (SqlException exsql)
             {
-                MessageBox.Show("Record Saved!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Error in Database\n\n" + exsql.Message);
+                commands.dbclose();
+
             }
-            else
+            catch(Exception ex)
             {
-                MessageBox.Show("Failed!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message);
             }
-            */
         }
         private void btnSave_Click(object sender, EventArgs e)
         {
-            //int mvtquantity =int.Parse(txtQuantity.Text)-quantity;
+            
+            int num;
+            int mvtquantity = int.Parse(txtQuantity.Text);
+            if (!int.TryParse(txtQuantity.Text, out num)) {
+                MessageBox.Show("That is not a number!");
+                txtQuantity.Text = quantity.ToString();
+            }
+            else
+            {
+                if (mvtquantity > max ||  mvtquantity < quantity)
+                {
+                    MessageBox.Show("Invalid Quantity");
+                }
+                else
+                {
+                    mvtquantity -= quantity;
+                }
+                
+            }
+            
             string[] stock = new string[4];
             stock[0] = txtProductID.Text;
             stock[1] = commands.selectWarehouse(cmbWarehouse.SelectedItem.ToString()).ToString();
-            stock[2] = txtQuantity.Text; //mvtquantity.ToString();
+            stock[2] = mvtquantity.ToString();
             stock[3] = "Outbound";
-            updateProducts(stock);
-            //MovementStock(stock);
+            MovementStock(stock);
 
         }
         private void loadWarehouseStocks()
@@ -246,6 +234,37 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers.frmInventoyFo
             panel.Dock = DockStyle.Fill;
             panelContainer.Controls.Add(panel);
             panel.Show();
+        }
+
+        private void frmManageStocks_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (txtProductID.Text != String.Empty)
+            {
+                DialogResult result = MessageBox.Show("are you sure to discard changes?","Discard changes?",MessageBoxButtons.YesNo,MessageBoxIcon.Question); 
+                if(result == DialogResult.No)
+                {
+                    e.Cancel = true;
+                }
+            }
+        }
+
+        private void clearFields()
+        {
+            txtProductID.Clear();
+            txtProductName.Clear();
+            txtQuantity.Text = "0";
+            cmbWarehouse.Text = "";
+        }
+        private void btnDiscard_Click(object sender, EventArgs e)
+        {
+            if (txtProductID.Text != String.Empty)
+            {
+                DialogResult result = MessageBox.Show("are you sure to discard changes?", "Discard changes?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (result == DialogResult.Yes)
+                {
+                    clearFields();
+                }
+            }
         }
     }
 }
