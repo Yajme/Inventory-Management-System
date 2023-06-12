@@ -29,26 +29,40 @@ public static class commands
 
     }
 
-    public static int insertInventory(string[] product)
+    public static void insertInventory(string[] product)
     {
 
-        db.cmd = new SqlCommand("INSERT INTO Products(ProductID,ProductName,Description,CategoryID,SupplierID,UnitPrice) VALUES(@PRODUCTID,@PRODUCTNAME,@DESCRIPTION,@CATEGORYID,@SUPPLIERID,@UNITPRICE)", db.con);
-        db.cmd.Parameters.AddWithValue("@PRODUCTID", product[0]);
-        db.cmd.Parameters.AddWithValue("@PRODUCTNAME", product[1]);
-        db.cmd.Parameters.AddWithValue("@DESCRIPTION", product[2]);
-        db.cmd.Parameters.AddWithValue("@CATEGORYID", product[3]);
-        db.cmd.Parameters.AddWithValue("@SUPPLIERID", product[4]);
-        db.cmd.Parameters.AddWithValue("@UNITPRICE", product[5]);
+        
         db.con.Open();
-        if (db.cmd.ExecuteNonQuery() == 1)
+        SqlTransaction t = db.con.BeginTransaction();
+
+        try
         {
-            db.con.Close();
-            return 1;
+            db.cmd = new SqlCommand("INSERT INTO Products(ProductID,ProductName,Description,CategoryID,SupplierID,UnitPrice) VALUES(@PRODUCTID,@PRODUCTNAME,@DESCRIPTION,@CATEGORYID,@SUPPLIERID,@UNITPRICE)", db.con, t);
+            db.cmd.Parameters.AddWithValue("@PRODUCTID", product[0]);
+            db.cmd.Parameters.AddWithValue("@PRODUCTNAME", product[1]);
+            db.cmd.Parameters.AddWithValue("@DESCRIPTION", product[2]);
+            db.cmd.Parameters.AddWithValue("@CATEGORYID", product[3]);
+            db.cmd.Parameters.AddWithValue("@SUPPLIERID", product[4]);
+            db.cmd.Parameters.AddWithValue("@UNITPRICE", product[5]);
+            db.cmd.ExecuteNonQuery();
+            t.Commit();
         }
-        else
+        catch (SqlException ex)
+        {
+            
+            t.Rollback();
+            throw ex;
+            
+        }
+        catch (Exception ex)
+        {
+            t.Rollback();
+            throw ex;
+        }
+        finally
         {
             db.con.Close();
-            return -1;
         }
 
     }
@@ -220,18 +234,25 @@ public static class commands
         return items;
     }
 
-    public static void loadMovementStock()
+    public static DataTable loadMovementStock()
     {
         db.con.Open();
         db.cmd = new SqlCommand("SELECT StockMovements.MovementID, StockMovements.ProductID, Warehouses.WarehouseName, StockMovements.MovementType,StockMovements.MovementDate, StockMovements.Quantity FROM StockMovements JOIN Warehouses ON StockMovements.WarehouseID = Warehouses.WarehouseID", db.con);
-        db.dr = db.cmd.ExecuteReader();
+        DataTable dt = new DataTable();
+        dt.Load(db.cmd.ExecuteReader());
+        db.con.Close();
+        return dt;
     }
-    public static void loadWarehouses()
+    public static DataTable loadWarehouses()
     {
         db.con.Open();
         db.cmd = new SqlCommand("SELECT * FROM Warehouses", db.con);
-        db.dr = db.cmd.ExecuteReader();
+        
+        DataTable dt = new DataTable();
+        dt.Load(db.cmd.ExecuteReader());
 
+        db.con.Close();
+        return dt;
     }
     public static int selectWarehouse(string warehousename)
     {
@@ -263,20 +284,38 @@ public static class commands
         db.con.Close();
         //return query;
     }
-    public static int insertStocktoWarehouse(string[] stock)
+    public static void insertStocktoWarehouse(string[] stock)
     {
-        int query = 0;
-        db.cmd = new SqlCommand("INSERT INTO WarehouseStock(ProductID, WarehouseID,QuantityStock) VALUES (@ProductID,@WarehouseID,@Quantity)", db.con);
-        db.cmd.Parameters.AddWithValue("@ProductID", stock[0]);//productid
-        db.cmd.Parameters.AddWithValue("@WarehouseID", stock[1]);//warehouseid
-        db.cmd.Parameters.AddWithValue("@Quantity", stock[2]);//quantity
+
+        db.cmd = new SqlCommand("INSERT INTO WarehouseStock(ProductID, WarehouseID, QuantityStock) VALUES (@ProductID, @WarehouseID, @Quantity)", db.con);
+        db.cmd.Parameters.AddWithValue("@ProductID", stock[0]); // productid
+        db.cmd.Parameters.AddWithValue("@WarehouseID", stock[1]); // warehouseid
+        db.cmd.Parameters.AddWithValue("@Quantity", stock[2]); // quantity
+
         db.con.Open();
-        if (db.cmd.ExecuteNonQuery() == 1)
+        DbTransaction t = db.con.BeginTransaction();
+
+        try
         {
-            query = 1;
+            db.cmd.ExecuteNonQuery();
+            t.Commit();
         }
-        db.con.Close();
-        return query;
+        catch (SqlException ex)
+        {
+            t.Rollback();
+            MessageBox.Show("Error in database: " + ex.Message);
+        }
+        catch (Exception ex)
+        {
+            t.Rollback();
+            MessageBox.Show("Error: " + ex.Message);
+        }
+        finally
+        {
+            db.con.Close();
+        }
+
+
     }
     public static int stockWarehouseValidator(string[] stock)
     {
@@ -298,16 +337,32 @@ public static class commands
     }
     public static void updateStocktoWarehouse(string[] stock)
     {
-        //int query = 0;
         db.cmd = new SqlCommand("UPDATE WarehouseStock SET QuantityStock= QuantityStock+@Quantity WHERE ProductID=@ProductID AND WarehouseID=@WarehouseID", db.con);
         db.cmd.Parameters.AddWithValue("@ProductID", stock[0]);//productid
         db.cmd.Parameters.AddWithValue("@WarehouseID", stock[1]);//warehouseid
         db.cmd.Parameters.AddWithValue("@Quantity", stock[2]);//quantity
         db.con.Open();
-        db.cmd.ExecuteNonQuery();
-        
-        db.con.Close();
-        //return query;
+        DbTransaction t = db.con.BeginTransaction();
+
+        try
+        {
+            db.cmd.ExecuteNonQuery();
+            t.Commit();
+        }
+        catch (SqlException ex)
+        {
+            t.Rollback();
+            MessageBox.Show("Error in database: " + ex.Message);
+        }
+        catch (Exception ex)
+        {
+            t.Rollback();
+            MessageBox.Show("Error: " + ex.Message);
+        }
+        finally
+        {
+            db.con.Close();
+        }
     }
 
     public static string[] checkProductWarehouse(string[] stock)

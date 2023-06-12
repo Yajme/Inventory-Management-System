@@ -166,7 +166,6 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers.frmInventoyFo
             {
                 MessageBox.Show("Error in Database\n\n" + exsql.Message);
                 commands.dbclose();
-
             }
             catch(Exception ex)
             {

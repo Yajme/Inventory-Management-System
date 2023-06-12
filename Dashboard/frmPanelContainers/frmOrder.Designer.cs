@@ -614,6 +614,7 @@
             // 
             // cmbWarehouse
             // 
+            this.cmbWarehouse.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbWarehouse.FormattingEnabled = true;
             this.cmbWarehouse.Location = new System.Drawing.Point(602, 145);
             this.cmbWarehouse.Name = "cmbWarehouse";

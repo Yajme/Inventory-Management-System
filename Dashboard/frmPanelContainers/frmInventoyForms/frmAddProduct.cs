@@ -63,26 +63,35 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers.frmInventoyFo
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            int categoryid = commands.categoryValidator(cmbCategory.SelectedItem.ToString());
-            int supplierid = commands.supplierValidator(cmbSupplier.SelectedItem.ToString());
-            string[] products = new string[6];
-            products[0] = txtProductID.Text;
-            products[1] = txtProductName.Text;
-            products[2] = txtDescription.Text;
-            products[3] = categoryid.ToString();
-            products[4] = supplierid.ToString();
-            products[5] = txtUnitPrice.Text;
-            int query = commands.insertInventory(products);
-            if(query == 1)
+            
+            try
             {
-                MessageBox.Show("Product Added!", "Success!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                int categoryid = commands.categoryValidator(cmbCategory.Text);
+                int supplierid = commands.supplierValidator(cmbSupplier.Text);
+                string[] products = new string[6];
+                products[0] = txtProductID.Text;
+                products[1] = txtProductName.Text;
+                products[2] = txtDescription.Text;
+                products[3] = categoryid.ToString();
+                products[4] = supplierid.ToString();
+                products[5] = txtUnitPrice.Text;
+                commands.insertInventory(products);
+                MessageBox.Show("Product Added!");
+                clearItems();
+                this.Close();
             }
-            else
+            catch(SqlException ex)
             {
-                MessageBox.Show("Failed", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error in database: " + ex.Message);
+            }catch(Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
             }
-            clearItems();
-            this.Close();
+               
+            
+            
+           
+            
         }
     }
 }

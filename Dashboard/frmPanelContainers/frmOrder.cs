@@ -156,10 +156,33 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
         //placeorder
 
         //replenishbutton
-        
+        private void movementStock(string[] stock)
+        {
+            try
+            {
+                int validator = commands.stockWarehouseValidator(stock);
+                if (validator == 0) //new
+                {
+                    commands.insertStocktoWarehouse(stock);
+                }
+                else//existing record
+                {
+                    commands.updateStocktoWarehouse(stock);
+                }
+            }
+            catch(SqlException exsql)
+            {
+                MessageBox.Show("Database Error\n\n" + exsql.Message);
+                commands.dbclose();
+            }catch(Exception ex)
+            {
+                MessageBox.Show("Error\n\n" + ex.Message);
+            }
+            
+        }
         private void btnSave_Click(object sender, EventArgs e)
         {
-            int id = commands.selectWarehouse(cmbWarehouse.SelectedItem.ToString());
+            int id = commands.selectWarehouse(cmbWarehouse.Text);
             
 
             string[] stock = new string[4];
@@ -167,28 +190,9 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
             stock[1] = id.ToString(); //warehouseid
             stock[2] = txtQuantity.Text;
             stock[3] = "Inbound";
+            movementStock(stock);
 
-            /*
-            int query2 = commands.stockWarehouseValidator(stock);
-            int query3;
-            if (query2 < 1)//new
-            {
-                query3 = commands.insertStocktoWarehouse(stock);
-            }
-            else//update
-            {
-                query3 = commands.updateStocktoWarehouse(stock);
-            }
-            int query1 = commands.insertMovementStock(stock);
-            if (query1 == 1 && query3 == 1)
-            {
-                MessageBox.Show("Record Saved!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            else
-            {
-                MessageBox.Show("Failed!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            */
+           
             loadHistoryandProducts();
         }
 
@@ -213,7 +217,6 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
         }
         private void btnEnterReplenish_Click(object sender, EventArgs e)
         {
-
             replenishFetch(txtProductID.Text);
         }
 
@@ -244,7 +247,7 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
             DataTable dt =  commands.loadInventory();
             foreach (DataRow row in dt.Rows)
             {
-                dataGridView3.Rows.Add(row[0], row[1], row[4]);
+                dataGridView3.Rows.Add(row[0], row[2], row[4]);
             }
           
             //product
@@ -253,22 +256,20 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
             //history
             //cmb
             cmbWarehouse.Items.Clear();
-            commands.loadWarehouses();
-            while (db.dr.Read())
+            
+            DataTable warehouse = commands.loadWarehouses();
+            foreach(DataRow row in warehouse.Rows)
             {
-                cmbWarehouse.Items.Add(db.dr[1]);
+                cmbWarehouse.Items.Add(row[1]);
             }
-            db.dr.Close();
-            db.con.Close();
             //cmb
             dataGridView2.Rows.Clear();
-            commands.loadMovementStock();
-            while (db.dr.Read())
+            DataTable history = commands.loadMovementStock();
+            foreach(DataRow row in history.Rows)
             {
-                dataGridView2.Rows.Add(db.dr[0], db.dr[1], db.dr[2], db.dr[3], db.dr[4], db.dr[5]);
+                dataGridView2.Rows.Add(row[0], row[1], row[2], row[3], row[4], row[5]);
             }
-            db.dr.Close();
-            db.con.Close();
+            
             //history
 
         }
@@ -298,7 +299,10 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
 
         private void txtProductID_TextChanged(object sender, EventArgs e)
         {
-            
+            if(txtProductID.Text == "")
+            {
+                resetTextbox();
+            }
         }
 
 
