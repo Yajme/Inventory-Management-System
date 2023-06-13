@@ -45,10 +45,8 @@ public static class commands
         }
         catch (SqlException ex)
         {
-            
             t.Rollback();
             throw ex;
-            
         }
         catch (Exception ex)
         {

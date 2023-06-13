@@ -28,6 +28,9 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
             this.KeyPreview = true;
             this.KeyDown += new KeyEventHandler(frmOrder_Key);
             getdpi = devmode.GetWindowsScaling();
+            clearPlaceOrderPanel();
+            fillContainer(panelPlaceOrder);
+            txtQuery.Focus();
         }
 
         private void btnPlaceOrder_Click(object sender, EventArgs e)
@@ -151,7 +154,18 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
         }
         private void POSControls(string tag)
         {
-            MessageBox.Show(tag);
+            //MessageBox.Show(tag);
+
+            switch (tag)
+            {
+                case "Settle":
+                    MessageBox.Show(tag);
+                    panelCash.Visible = true;
+                    //panelContainer.Controls.Add(panelCash);
+                    txtCashTendered.Focus();
+                    break;
+
+            }
         }
         //placeorder
 
@@ -173,7 +187,7 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
             catch(SqlException exsql)
             {
                 MessageBox.Show("Database Error\n\n" + exsql.Message);
-                commands.dbclose();
+                
             }catch(Exception ex)
             {
                 MessageBox.Show("Error\n\n" + ex.Message);
@@ -302,6 +316,33 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
             if(txtProductID.Text == "")
             {
                 resetTextbox();
+            }
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtCashTendered_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                double cash = double.Parse(txtCashTendered.Text);
+                double change = cash - total;
+                double subtotal = (total/112) * 100;
+                double vat = total - subtotal;
+
+                lblSubTotal.Text = subtotal.ToString("#,##0.00");
+                lblVAT.Text = vat.ToString("#,##0.00");
+                lblTotal.Text = total.ToString("#,##0.00"); ;
+                lblCash.Text = cash.ToString("#,##0.00");
+                lblChange.Text = change.ToString("#,##0.00");
+                panelCash.Visible = false;
+            }
+            else if(e.KeyChar == (char)Keys.Escape)
+            {
+                panelCash.Visible = false;
             }
         }
 

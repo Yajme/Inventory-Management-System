@@ -68,6 +68,7 @@
             this.lblChange = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.panelContainer = new System.Windows.Forms.Panel();
+            this.txtCashTendered = new System.Windows.Forms.TextBox();
             this.panelReplenishInventory = new System.Windows.Forms.Panel();
             this.cmbWarehouse = new System.Windows.Forms.ComboBox();
             this.label11 = new System.Windows.Forms.Label();
@@ -94,6 +95,8 @@
             this.colQuantityH = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel6 = new System.Windows.Forms.Panel();
             this.label10 = new System.Windows.Forms.Label();
+            this.panelCash = new System.Windows.Forms.Panel();
+            this.label12 = new System.Windows.Forms.Label();
             this.panelTop.SuspendLayout();
             this.panelPlaceOrder.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -111,11 +114,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.panel6.SuspendLayout();
+            this.panelCash.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelTop
             // 
             this.panelTop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(55)))), ((int)(((byte)(55)))));
+            this.panelTop.Controls.Add(this.panelCash);
             this.panelTop.Controls.Add(this.btnReturnExchange);
             this.panelTop.Controls.Add(this.btnReplenishInventory);
             this.panelTop.Controls.Add(this.btnPlaceOrder);
@@ -588,6 +593,16 @@
             this.panelContainer.Size = new System.Drawing.Size(1095, 576);
             this.panelContainer.TabIndex = 2;
             // 
+            // txtCashTendered
+            // 
+            this.txtCashTendered.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtCashTendered.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCashTendered.Location = new System.Drawing.Point(0, 0);
+            this.txtCashTendered.Name = "txtCashTendered";
+            this.txtCashTendered.Size = new System.Drawing.Size(602, 62);
+            this.txtCashTendered.TabIndex = 3;
+            this.txtCashTendered.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCashTendered_KeyPress);
+            // 
             // panelReplenishInventory
             // 
             this.panelReplenishInventory.Controls.Add(this.cmbWarehouse);
@@ -869,6 +884,27 @@
             this.label10.TabIndex = 14;
             this.label10.Text = "History:";
             // 
+            // panelCash
+            // 
+            this.panelCash.Controls.Add(this.label12);
+            this.panelCash.Controls.Add(this.txtCashTendered);
+            this.panelCash.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panelCash.Location = new System.Drawing.Point(493, 0);
+            this.panelCash.Name = "panelCash";
+            this.panelCash.Size = new System.Drawing.Size(602, 73);
+            this.panelCash.TabIndex = 4;
+            this.panelCash.Visible = false;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(3, 65);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(68, 25);
+            this.label12.TabIndex = 4;
+            this.label12.Text = "Cash:";
+            // 
             // frmOrder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -909,6 +945,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
+            this.panelCash.ResumeLayout(false);
+            this.panelCash.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -981,5 +1019,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colTotalPrice;
         private System.Windows.Forms.ComboBox cmbWarehouse;
         private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.TextBox txtCashTendered;
+        private System.Windows.Forms.Panel panelCash;
+        private System.Windows.Forms.Label label12;
     }
 }
