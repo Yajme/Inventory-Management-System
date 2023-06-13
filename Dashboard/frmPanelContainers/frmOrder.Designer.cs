@@ -29,6 +29,9 @@
         private void InitializeComponent()
         {
             this.panelTop = new System.Windows.Forms.Panel();
+            this.panelCash = new System.Windows.Forms.Panel();
+            this.label12 = new System.Windows.Forms.Label();
+            this.txtCashTendered = new System.Windows.Forms.TextBox();
             this.btnReturnExchange = new FontAwesome.Sharp.IconButton();
             this.btnReplenishInventory = new FontAwesome.Sharp.IconButton();
             this.btnPlaceOrder = new FontAwesome.Sharp.IconButton();
@@ -68,7 +71,6 @@
             this.lblChange = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.panelContainer = new System.Windows.Forms.Panel();
-            this.txtCashTendered = new System.Windows.Forms.TextBox();
             this.panelReplenishInventory = new System.Windows.Forms.Panel();
             this.cmbWarehouse = new System.Windows.Forms.ComboBox();
             this.label11 = new System.Windows.Forms.Label();
@@ -95,9 +97,8 @@
             this.colQuantityH = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel6 = new System.Windows.Forms.Panel();
             this.label10 = new System.Windows.Forms.Label();
-            this.panelCash = new System.Windows.Forms.Panel();
-            this.label12 = new System.Windows.Forms.Label();
             this.panelTop.SuspendLayout();
+            this.panelCash.SuspendLayout();
             this.panelPlaceOrder.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panelOrderTop.SuspendLayout();
@@ -114,7 +115,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.panel6.SuspendLayout();
-            this.panelCash.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelTop
@@ -130,6 +130,38 @@
             this.panelTop.Name = "panelTop";
             this.panelTop.Size = new System.Drawing.Size(1095, 73);
             this.panelTop.TabIndex = 0;
+            // 
+            // panelCash
+            // 
+            this.panelCash.Controls.Add(this.label12);
+            this.panelCash.Controls.Add(this.txtCashTendered);
+            this.panelCash.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panelCash.Location = new System.Drawing.Point(493, 0);
+            this.panelCash.Name = "panelCash";
+            this.panelCash.Size = new System.Drawing.Size(602, 73);
+            this.panelCash.TabIndex = 4;
+            this.panelCash.Visible = false;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(3, 65);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(68, 25);
+            this.label12.TabIndex = 4;
+            this.label12.Text = "Cash:";
+            // 
+            // txtCashTendered
+            // 
+            this.txtCashTendered.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtCashTendered.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCashTendered.Location = new System.Drawing.Point(0, 0);
+            this.txtCashTendered.Name = "txtCashTendered";
+            this.txtCashTendered.Size = new System.Drawing.Size(602, 62);
+            this.txtCashTendered.TabIndex = 3;
+            this.txtCashTendered.TextChanged += new System.EventHandler(this.txtCashTendered_TextChanged);
+            this.txtCashTendered.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCashTendered_KeyPress);
             // 
             // btnReturnExchange
             // 
@@ -303,6 +335,7 @@
             this.txtQuery.Name = "txtQuery";
             this.txtQuery.Size = new System.Drawing.Size(368, 26);
             this.txtQuery.TabIndex = 4;
+            this.txtQuery.TextChanged += new System.EventHandler(this.txtQuery_TextChanged);
             this.txtQuery.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtQuery_KeyPress);
             // 
             // panelOrderControls
@@ -593,16 +626,6 @@
             this.panelContainer.Size = new System.Drawing.Size(1095, 576);
             this.panelContainer.TabIndex = 2;
             // 
-            // txtCashTendered
-            // 
-            this.txtCashTendered.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtCashTendered.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCashTendered.Location = new System.Drawing.Point(0, 0);
-            this.txtCashTendered.Name = "txtCashTendered";
-            this.txtCashTendered.Size = new System.Drawing.Size(602, 62);
-            this.txtCashTendered.TabIndex = 3;
-            this.txtCashTendered.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCashTendered_KeyPress);
-            // 
             // panelReplenishInventory
             // 
             this.panelReplenishInventory.Controls.Add(this.cmbWarehouse);
@@ -884,27 +907,6 @@
             this.label10.TabIndex = 14;
             this.label10.Text = "History:";
             // 
-            // panelCash
-            // 
-            this.panelCash.Controls.Add(this.label12);
-            this.panelCash.Controls.Add(this.txtCashTendered);
-            this.panelCash.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panelCash.Location = new System.Drawing.Point(493, 0);
-            this.panelCash.Name = "panelCash";
-            this.panelCash.Size = new System.Drawing.Size(602, 73);
-            this.panelCash.TabIndex = 4;
-            this.panelCash.Visible = false;
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(3, 65);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(68, 25);
-            this.label12.TabIndex = 4;
-            this.label12.Text = "Cash:";
-            // 
             // frmOrder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -920,6 +922,8 @@
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.frmOrder_KeyPress);
             this.panelTop.ResumeLayout(false);
             this.panelTop.PerformLayout();
+            this.panelCash.ResumeLayout(false);
+            this.panelCash.PerformLayout();
             this.panelPlaceOrder.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.panelOrderTop.ResumeLayout(false);
@@ -945,8 +949,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
-            this.panelCash.ResumeLayout(false);
-            this.panelCash.PerformLayout();
             this.ResumeLayout(false);
 
         }

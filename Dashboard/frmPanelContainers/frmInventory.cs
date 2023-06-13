@@ -133,7 +133,7 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
 
         private void frmInventory_Enter()
         {
-            
+            Focus();
             LoadItems("*", "*");
             
         }
@@ -157,6 +157,8 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
             {
                 frmInventory_Enter();
             }
+
+            
 
         }
 

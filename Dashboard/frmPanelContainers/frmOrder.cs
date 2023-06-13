@@ -107,7 +107,7 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
 
                 foreach (DataGridViewRow rows in dataGridView1.Rows)
                 {
-                    rows.Cells[dataGridView1.Columns["colTotalPrice"].Index].Value = Convert.ToDouble(rows.Cells[dataGridView1.Columns["colUnitPrice"].Index].Value) * Convert.ToDouble(rows.Cells[dataGridView1.Columns["colQuantity"].Index].Value);
+                    rows.Cells[dataGridView1.Columns["colTotalPrice"].Index].Value = (Convert.ToDouble(rows.Cells[dataGridView1.Columns["colUnitPrice"].Index].Value) * Convert.ToDouble(rows.Cells[dataGridView1.Columns["colQuantity"].Index].Value)).ToString("#,##0.00");
                 }
                 lblSaleTotal.Text = total.ToString("#,##0.00");
                 txtQuery.Clear();
@@ -159,7 +159,7 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
             switch (tag)
             {
                 case "Settle":
-                    MessageBox.Show(tag);
+                    //MessageBox.Show(tag);
                     panelCash.Visible = true;
                     //panelContainer.Controls.Add(panelCash);
                     txtCashTendered.Focus();
@@ -339,10 +339,25 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
                 lblCash.Text = cash.ToString("#,##0.00");
                 lblChange.Text = change.ToString("#,##0.00");
                 panelCash.Visible = false;
+                txtQuery.Focus();
             }
             else if(e.KeyChar == (char)Keys.Escape)
             {
                 panelCash.Visible = false;
+                txtQuery.Focus();
+            }
+        }
+
+        private void txtCashTendered_TextChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void txtQuery_TextChanged(object sender, EventArgs e)
+        {
+            if(txtQuery.Text == "")
+            {
+                Focus();
             }
         }
 
