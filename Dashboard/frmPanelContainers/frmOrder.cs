@@ -45,6 +45,12 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
             dataGridView1.Rows.Clear();
             total = 0;
             txtQuery.Clear();
+            txtCashTendered.Clear();
+            lblCash.Text = "0.00";
+            lblChange.Text = "0.00";
+            lblSubTotal.Text  = "0.00";
+            lblVAT.Text = "0.00";
+            lblTotal.Text = "0.00";
             lblSaleTotal.Text = "0.00";
 
         }
@@ -348,6 +354,7 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
 
                 commands.insertOrder(Sale, dt);
                 MessageBox.Show("Thank you Shop Again!");
+                clearPlaceOrderPanel();
             }
             catch (SqlException ex)
             {
@@ -364,7 +371,7 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
         {
             if (e.KeyChar == (char)Keys.Enter)
             {
-                newSale();
+                
                 double cash = double.Parse(txtCashTendered.Text);
                 double change = cash - total;
                 double subtotal = (total/112) * 100;
@@ -376,7 +383,7 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
                 lblCash.Text = cash.ToString("#,##0.00");
                 lblChange.Text = change.ToString("#,##0.00");
                 panelCash.Visible = false;
-                
+                newSale();
                 txtQuery.Focus();
             }
             else if(e.KeyChar == (char)Keys.Escape)

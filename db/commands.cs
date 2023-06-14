@@ -612,7 +612,7 @@ public static class commands
                 sb.Append(row);
                 batch++;
 
-
+                //add parameters
                 db.cmd.Parameters.Add(orderID, SqlDbType.Int).Value = orderid;
                 db.cmd.Parameters.Add(productID, SqlDbType.VarChar).Value = dr[0];
                 db.cmd.Parameters.Add(quantity, SqlDbType.Int).Value = dr[1];
