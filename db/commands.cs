@@ -12,6 +12,9 @@ using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
 using System.Data;
 using System.Collections;
+using System.Security.Cryptography.X509Certificates;
+using System.Security.Cryptography;
+using System.Collections.ObjectModel;
 
 public static class commands
 {
@@ -560,6 +563,98 @@ public static class commands
         return dt;
 
     }
+    //public static int OrderID = 0;
+    
+    
+    public static void insertOrder(string[] data, DataTable OrderItems)
+    {
+        db.con.Open();
+        SqlTransaction t = db.con.BeginTransaction();
+        
+        try
+        {
+            
+            //Order
+            db.cmd = new SqlCommand("INSERT INTO Orders(CustomerID, SaleAmount) VALUES(@CustomerID,@SaleAmount);DECLARE @OrderID INT;SET @OrderID = SCOPE_IDENTITY();", db.con, t);
+
+            db.cmd.Parameters.AddWithValue("@CustomerID", data[0]);
+            db.cmd.Parameters.AddWithValue("@SaleAmount", data[1]);
+            db.cmd.ExecuteNonQuery();
+            
+            db.cmd.Parameters.Clear();
+            int orderid = 0;
+            //db.cmd = new SqlCommand("SELECT TOP 1 OrderID FROM Orders ORDER BY OrderID DESC", db.con, t);
+            using (db.cmd = new SqlCommand("SELECT TOP 1 OrderID FROM Orders ORDER BY OrderID DESC", db.con, t)) 
+            {
+                orderid = Convert.ToInt32(db.cmd.ExecuteScalar());
+            }
+
+            int p = 1;
+            int batch = 0;
+            StringBuilder sb = new StringBuilder();
+            foreach (DataRow dr in OrderItems.Rows)
+            {
+                //Parameter Name
+                string orderID = string.Format("@p{0}", p);
+                string productID = string.Format("@p{0}", p+1);
+                string quantity = string.Format("@p{0}", p+2);
+                string total = string.Format("@p{0}", p+3);
+                p += 4;
+
+                //row
+                String row = String.Format("({0}, {1}, {2}, {3})", orderID,productID,quantity,total);
+
+                //add row
+                if(batch > 0)
+                {
+                    sb.AppendLine(",");
+                }
+                sb.Append(row);
+                batch++;
+
+
+                db.cmd.Parameters.Add(orderID, SqlDbType.Int).Value = orderid;
+                db.cmd.Parameters.Add(productID, SqlDbType.VarChar).Value = dr[0];
+                db.cmd.Parameters.Add(quantity, SqlDbType.Int).Value = dr[1];
+                db.cmd.Parameters.Add(total, SqlDbType.Decimal).Value = dr[2];
+
+                if(batch >= 5)
+                {
+                    string sql = "INSERT INTO OrderItems(OrderID,ProductID,Quantity,UnitPrice) VALUES" + "\r\n" + sb.ToString();
+                    db.cmd.CommandText = sql;
+                    db.cmd.ExecuteNonQuery();
+                    db.cmd.Parameters.Clear();
+                    sb.Clear();
+                    batch = 0;
+                    p = 1;
+                }
+            }
+            if(batch > 0)
+            {
+                string sql = "INSERT INTO OrderItems(OrderID,ProductID,Quantity,UnitPrice) VALUES" + "\r\n" + sb.ToString();
+                db.cmd.CommandText = sql;
+                db.cmd.ExecuteNonQuery();
+            }
+            
+            t.Commit();
+        }
+        catch (SqlException ex)
+        {
+            t.Rollback();
+            throw ex;
+        }
+        catch (Exception ex)
+        {
+            t.Rollback();
+            throw ex;
+        }
+        finally
+        {
+            db.con.Close();
+        }
+    }
+
+    
     
 }
         

@@ -158,6 +158,7 @@
             this.txtCashTendered.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCashTendered.Location = new System.Drawing.Point(0, 0);
             this.txtCashTendered.Name = "txtCashTendered";
+            this.txtCashTendered.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtCashTendered.Size = new System.Drawing.Size(602, 62);
             this.txtCashTendered.TabIndex = 3;
             this.txtCashTendered.TextChanged += new System.EventHandler(this.txtCashTendered_TextChanged);
@@ -220,7 +221,7 @@
             this.panelPlaceOrder.Controls.Add(this.panelOrderTop);
             this.panelPlaceOrder.Controls.Add(this.panelOrderControls);
             this.panelPlaceOrder.Controls.Add(this.panelPlaceOrderSide);
-            this.panelPlaceOrder.Location = new System.Drawing.Point(1095, 649);
+            this.panelPlaceOrder.Location = new System.Drawing.Point(0, 0);
             this.panelPlaceOrder.Name = "panelPlaceOrder";
             this.panelPlaceOrder.Size = new System.Drawing.Size(819, 238);
             this.panelPlaceOrder.TabIndex = 1;

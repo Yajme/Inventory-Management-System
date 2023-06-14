@@ -7,7 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Data.SqlClient;
 using Inventory_Management_System.Dashboard.frmPanelContainers.frmInventoyForms;
 namespace Inventory_Management_System.Dashboard.frmPanelContainers
 {
@@ -52,8 +51,9 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
             else
             {
                 MessageBox.Show("Item Not Found!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtQuery.Text = "Search...";
-                cmbFilter.Text = "";
+                txtQuery.Clear();
+                dataGridView1.Focus();
+                cmbFilter.SelectedIndex = -1;
                 LoadItems("*","*");
             }
             
@@ -86,8 +86,11 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
         public void AddText(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(txtQuery.Text))
-              txtQuery.Text = "Search...";
-              txtQuery.ForeColor = Color.DimGray;
+            {
+                txtQuery.Text = "Search...";
+                txtQuery.ForeColor = Color.DimGray;
+            }
+              
         }
 
         private void btnAddProduct_Click(object sender, EventArgs e)
@@ -133,21 +136,32 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
 
         private void frmInventory_Enter()
         {
-            Focus();
+            dataGridView1.Focus();
             LoadItems("*", "*");
             
         }
 
         private void cmbFilter_SelectedIndexChanged(object sender, EventArgs e)
         {
-            LoadItems("*", cmbFilter.SelectedItem.ToString());
+            if(cmbFilter.Text != "")
+            {
+                LoadItems("*", cmbFilter.Text);
+            }
+            
            
         }
 
         private void btnClearFilter_Click(object sender, EventArgs e)
         {
-            txtQuery.Text = "Search...";
-            cmbFilter.Text = "";
+            
+            
+            if (!string.IsNullOrWhiteSpace(txtQuery.Text))
+            {
+                txtQuery.Text = "Search...";
+                txtQuery.ForeColor = Color.DimGray;
+            }
+            frmInventory_Enter();
+            cmbFilter.SelectedIndex = -1;
            
         }
 

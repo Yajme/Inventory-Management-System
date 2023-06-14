@@ -319,15 +319,52 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
             }
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
+        private void newSale()
         {
+            string customer = "0";
+            try
+            {
+                //OrderTable
+                string[] Sale = new string[2];
+                Sale[0] = customer;
+                Sale[1] = total.ToString("#,##0.00");
 
+                //OrderItemTable
+                DataTable dt = new DataTable();
+                dt.Columns.Add("ProductID");
+                dt.Columns.Add("Quantity");
+                dt.Columns.Add("Total");
+
+                DataRow dr = null;
+
+                foreach (DataGridViewRow row in dataGridView1.Rows)
+                {
+                    dr = dt.NewRow();
+                    dr["ProductID"] = row.Cells["colID"].Value;
+                    dr["Quantity"] = row.Cells["colQuantity"].Value;
+                    dr["Total"] = row.Cells["colTotalPrice"].Value;
+                    dt.Rows.Add(dr);
+                }
+
+                commands.insertOrder(Sale, dt);
+                MessageBox.Show("Thank you Shop Again!");
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("Database Error: " + ex.Message + " \n\n\n" + ex.Procedure);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("System Error: " + ex.Message + " \n\n\n" + ex.StackTrace.ToString());
+            }
+           
         }
 
         private void txtCashTendered_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == (char)Keys.Enter)
             {
+                newSale();
                 double cash = double.Parse(txtCashTendered.Text);
                 double change = cash - total;
                 double subtotal = (total/112) * 100;
@@ -335,10 +372,11 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
 
                 lblSubTotal.Text = subtotal.ToString("#,##0.00");
                 lblVAT.Text = vat.ToString("#,##0.00");
-                lblTotal.Text = total.ToString("#,##0.00"); ;
+                lblTotal.Text = total.ToString("#,##0.00"); 
                 lblCash.Text = cash.ToString("#,##0.00");
                 lblChange.Text = change.ToString("#,##0.00");
                 panelCash.Visible = false;
+                
                 txtQuery.Focus();
             }
             else if(e.KeyChar == (char)Keys.Escape)
@@ -346,11 +384,29 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
                 panelCash.Visible = false;
                 txtQuery.Focus();
             }
+
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
+            {
+                e.Handled = true;
+            }
+
+            // only allow one decimal point
+            if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+            {
+                e.Handled = true;
+            }
+           
         }
 
         private void txtCashTendered_TextChanged(object sender, EventArgs e)
         {
-            
+            /*
+            if (txtCashTendered.Text == "" || txtCashTendered.Text == "0") return;
+            decimal number;
+            number = decimal.Parse(txtCashTendered.Text, System.Globalization.NumberStyles.Currency);
+            txtCashTendered.Text = number.ToString("#,#");
+            txtCashTendered.SelectionStart = txtCashTendered.Text.Length;
+            */
         }
 
         private void txtQuery_TextChanged(object sender, EventArgs e)
