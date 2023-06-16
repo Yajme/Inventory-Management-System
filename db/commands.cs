@@ -68,6 +68,7 @@ public static class commands
         db.con.Open();
         db.cmd = new SqlCommand("SELECT * FROM SUPPLIERS", db.con);
         dt.Load(db.cmd.ExecuteReader());
+        db.con.Close();
         return dt;
     }
     public static DataTable loadcategories()
@@ -581,14 +582,14 @@ public static class commands
             db.cmd.Parameters.AddWithValue("@SaleAmount", data[1]);
             db.cmd.ExecuteNonQuery();
             
-            db.cmd.Parameters.Clear();
+            
             int orderid = 0;
             //db.cmd = new SqlCommand("SELECT TOP 1 OrderID FROM Orders ORDER BY OrderID DESC", db.con, t);
             using (db.cmd = new SqlCommand("SELECT TOP 1 OrderID FROM Orders ORDER BY OrderID DESC", db.con, t)) 
             {
-                orderid = Convert.ToInt32(db.cmd.ExecuteScalar());
+                orderid = Convert.ToInt32(db.cmd.ExecuteScalar()) + 1;
             }
-
+            db.cmd.Parameters.Clear();
             int p = 1;
             int batch = 0;
             StringBuilder sb = new StringBuilder();
@@ -655,7 +656,96 @@ public static class commands
     }
 
     
-    
+    public static void insertWarehouse(string[] warehouse)
+    {
+        db.con.Open();
+        SqlTransaction t = db.con.BeginTransaction();
+        try
+        {
+            db.cmd = new SqlCommand("INSERT INTO Warehouses(WarehouseName, Location) VALUES(@WarehouseName, @Location)", db.con, t);
+            db.cmd.Parameters.AddWithValue("@WarehouseName", warehouse[0]);
+            db.cmd.Parameters.AddWithValue("@Location", warehouse[1]);
+            
+            db.cmd.ExecuteNonQuery();
+
+
+            t.Commit();
+        }catch(SqlException ex)
+        {
+            t.Rollback();
+            throw ex;
+        }catch(Exception ex)
+        {
+            t.Rollback();
+            throw ex;
+        }
+        finally
+        {
+            db.con.Close();
+        }
+
+    }
+    public static void updateWarehouse(string[] warehouse, int warehouseID)
+    {
+
+        SqlTransaction t = db.con.BeginTransaction();
+        try
+        {
+            db.cmd = new SqlCommand("UPDATE Warehouses SET WarehouseName= @WarehouseName, Location= @Location WHERE WarehouseID= @WarehouseID", db.con, t);
+            db.cmd.Parameters.AddWithValue("@WarehouseName", warehouse[0]);
+            db.cmd.Parameters.AddWithValue("@Location", warehouse[1]);
+            db.cmd.Parameters.AddWithValue("@WarehouseID", warehouseID);
+            db.con.Open();
+            db.cmd.ExecuteNonQuery();
+
+
+
+            t.Commit();
+        }
+        catch (SqlException ex)
+        {
+            t.Rollback();
+            throw ex;
+        }
+        catch (Exception ex)
+        {
+            t.Rollback();
+            throw ex;
+        }
+        finally
+        {
+            db.con.Close();
+        }
+    }
+
+    public static void deleteWarehouse(int warehouseID)
+    {
+        SqlTransaction t = db.con.BeginTransaction();
+        try
+        {
+            db.cmd = new SqlCommand("DELETE FROM Warehouses WHERE WarehouseID= @WarehouseID", db.con, t);
+            db.cmd.Parameters.AddWithValue("@WarehouseID", warehouseID);
+            db.con.Open();
+            db.cmd.ExecuteNonQuery();
+
+            t.Commit();
+        }
+        catch (SqlException ex)
+        {
+            t.Rollback();
+            throw ex;
+        }
+        catch (Exception ex)
+        {
+            t.Rollback();
+            throw ex;
+        }
+        finally
+        {
+            db.con.Close();
+        }
+
+    }
 }
         
 

@@ -65,14 +65,13 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers.frmInventoyFo
         private void loadWarehouse()
         {
             cmbWarehouse.Items.Clear();
-            commands.loadWarehouses();
-            while (db.dr.Read())
+            DataTable dt  = commands.loadWarehouses();
+            foreach(DataRow row in dt.Rows)
             {
-                cmbWarehouse.Items.Add(db.dr[1]);
-                cmbViewWarehouse.Items.Add(db.dr[1]);
+                cmbWarehouse.Items.Add(row[1]);
+                cmbViewWarehouse.Items.Add(row[1]);
             }
-            db.dr.Close();
-            db.con.Close();
+            
         }
        
         private bool maxlowquuantity(int number,string operation)

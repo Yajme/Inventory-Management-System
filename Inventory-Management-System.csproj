@@ -158,6 +158,9 @@
     <EmbeddedResource Include="Dashboard\frmPanelContainers\frmInventoyForms\frmManageSupplier.resx">
       <DependentUpon>frmManageSupplier.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dashboard\frmPanelContainers\frmInventoyForms\frmManageWarehouse.resx">
+      <DependentUpon>frmManageWarehouse.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dashboard\frmPanelContainers\frmOrder.resx">
       <DependentUpon>frmOrder.cs</DependentUpon>
     </EmbeddedResource>
