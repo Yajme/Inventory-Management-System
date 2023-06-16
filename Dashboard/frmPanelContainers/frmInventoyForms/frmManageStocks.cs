@@ -65,6 +65,7 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers.frmInventoyFo
         private void loadWarehouse()
         {
             cmbWarehouse.Items.Clear();
+            cmbViewWarehouse.Items.Clear();
             DataTable dt  = commands.loadWarehouses();
             foreach(DataRow row in dt.Rows)
             {
@@ -204,14 +205,14 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers.frmInventoyFo
         }
         private void loadWarehouseStocks()
         {
+            txtQuery.Clear();
             dataGridView1.Rows.Clear();
-            commands.viewWarehouseStock();
-            while (db.dr.Read())
+            DataTable dt = commands.viewWarehouseStock();
+            foreach(DataRow row in dt.Rows)
             {
-                dataGridView1.Rows.Add(db.dr[0], db.dr[1], db.dr[3]);
+                dataGridView1.Rows.Add(row[0],row[1], row[2], row[3]);
             }
-            db.dr.Close();
-            db.con.Close();
+            
         }
 
         private void btnChangePanel(object sender, EventArgs e)
@@ -221,9 +222,11 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers.frmInventoyFo
             {
                 case "btnAdjustStock":
                     ChangePanel(panelAdjustStock);
+                    txtProductID.Focus();
                     break;
                 case "btnViewWarehouse":
                     ChangePanel(panelViewWarehouseStock);
+                    txtQuery.Focus();
                     break;
             }
         }
@@ -263,6 +266,66 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers.frmInventoyFo
                 {
                     clearFields();
                 }
+            }
+        }
+
+        private void resetViewWarehouse()
+        {
+            
+            loadWarehouse();
+            loadWarehouseStocks();
+
+            txtQuery.Focus();
+        }
+        private void cmbViewWarehouse_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            searchStock();
+        }
+
+        private void searchStock()
+        {
+            string[] stock = new string[2];
+
+            DataTable dt = new DataTable();
+            stock[0] = txtQuery.Text; // productID
+            stock[1] = cmbViewWarehouse.Text; //Warehouse
+            if (cmbViewWarehouse.Text != "" && txtQuery.Text != "") // both
+            {
+                dt = commands.searchWarehouseStock(stock);
+            }else if(cmbViewWarehouse.Text != string.Empty)//warehouseonly
+            {
+                
+               dt =  commands.selectWarehouseStock(stock[1]);
+            }else if(txtQuery.Text != string.Empty)//productid
+            {
+               
+               dt =  commands.selecthWarehouseProduct(stock[0]);
+            }
+
+            dataGridView1.Rows.Clear();
+
+            foreach(DataRow row in dt.Rows)
+            {
+                dataGridView1.Rows.Add(row[0], row[1], row[2], row[3]);
+            }
+
+        }
+
+        private void btnScanView_Click(object sender, EventArgs e)
+        {
+            searchStock();
+        }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            resetViewWarehouse();
+        }
+
+        private void txtQuery_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                searchStock();
             }
         }
     }

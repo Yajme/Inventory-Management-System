@@ -50,15 +50,18 @@
             this.btnScanView = new FontAwesome.Sharp.IconButton();
             this.txtQuery = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.colID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colProductID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colQuantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cmbViewWarehouse = new System.Windows.Forms.ComboBox();
             this.panelContainer = new System.Windows.Forms.Panel();
+            this.colID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colWarehouse = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colProductID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colQuantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnClear = new FontAwesome.Sharp.IconButton();
             this.panel1.SuspendLayout();
             this.panelAdjustStock.SuspendLayout();
             this.panelViewWarehouseStock.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.panelContainer.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -70,7 +73,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(403, 42);
+            this.panel1.Size = new System.Drawing.Size(584, 42);
             this.panel1.TabIndex = 0;
             // 
             // btnViewWarehouseStock
@@ -112,7 +115,7 @@
             this.btnExit.IconChar = FontAwesome.Sharp.IconChar.None;
             this.btnExit.IconColor = System.Drawing.Color.Black;
             this.btnExit.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnExit.Location = new System.Drawing.Point(328, 0);
+            this.btnExit.Location = new System.Drawing.Point(509, 0);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(75, 42);
             this.btnExit.TabIndex = 0;
@@ -135,15 +138,15 @@
             this.panelAdjustStock.Controls.Add(this.btnSave);
             this.panelAdjustStock.Controls.Add(this.txtProductID);
             this.panelAdjustStock.Controls.Add(this.cmbWarehouse);
-            this.panelAdjustStock.Location = new System.Drawing.Point(403, 277);
+            this.panelAdjustStock.Location = new System.Drawing.Point(584, 325);
             this.panelAdjustStock.Name = "panelAdjustStock";
-            this.panelAdjustStock.Size = new System.Drawing.Size(403, 235);
+            this.panelAdjustStock.Size = new System.Drawing.Size(584, 325);
             this.panelAdjustStock.TabIndex = 1;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(12, 111);
+            this.label4.Location = new System.Drawing.Point(105, 147);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(46, 13);
             this.label4.TabIndex = 12;
@@ -152,7 +155,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 85);
+            this.label3.Location = new System.Drawing.Point(105, 121);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(72, 13);
             this.label3.TabIndex = 11;
@@ -161,7 +164,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 59);
+            this.label2.Location = new System.Drawing.Point(105, 95);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(55, 13);
             this.label2.TabIndex = 10;
@@ -170,7 +173,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 33);
+            this.label1.Location = new System.Drawing.Point(105, 69);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(62, 13);
             this.label1.TabIndex = 9;
@@ -181,7 +184,7 @@
             this.btnScan.IconChar = FontAwesome.Sharp.IconChar.None;
             this.btnScan.IconColor = System.Drawing.Color.Black;
             this.btnScan.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnScan.Location = new System.Drawing.Point(314, 54);
+            this.btnScan.Location = new System.Drawing.Point(407, 90);
             this.btnScan.Name = "btnScan";
             this.btnScan.Size = new System.Drawing.Size(75, 23);
             this.btnScan.TabIndex = 8;
@@ -193,7 +196,7 @@
             this.btnDiscard.IconChar = FontAwesome.Sharp.IconChar.None;
             this.btnDiscard.IconColor = System.Drawing.Color.Black;
             this.btnDiscard.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnDiscard.Location = new System.Drawing.Point(235, 188);
+            this.btnDiscard.Location = new System.Drawing.Point(328, 224);
             this.btnDiscard.Name = "btnDiscard";
             this.btnDiscard.Size = new System.Drawing.Size(73, 37);
             this.btnDiscard.TabIndex = 7;
@@ -207,7 +210,7 @@
             this.btnMinus.IconColor = System.Drawing.Color.Black;
             this.btnMinus.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnMinus.IconSize = 20;
-            this.btnMinus.Location = new System.Drawing.Point(87, 109);
+            this.btnMinus.Location = new System.Drawing.Point(180, 145);
             this.btnMinus.Name = "btnMinus";
             this.btnMinus.Size = new System.Drawing.Size(40, 20);
             this.btnMinus.TabIndex = 6;
@@ -220,7 +223,7 @@
             this.btnAdd.IconColor = System.Drawing.Color.Black;
             this.btnAdd.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnAdd.IconSize = 20;
-            this.btnAdd.Location = new System.Drawing.Point(268, 109);
+            this.btnAdd.Location = new System.Drawing.Point(361, 145);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(40, 20);
             this.btnAdd.TabIndex = 5;
@@ -229,14 +232,14 @@
             // 
             // txtQuantity
             // 
-            this.txtQuantity.Location = new System.Drawing.Point(133, 109);
+            this.txtQuantity.Location = new System.Drawing.Point(226, 145);
             this.txtQuantity.Name = "txtQuantity";
             this.txtQuantity.Size = new System.Drawing.Size(129, 20);
             this.txtQuantity.TabIndex = 4;
             // 
             // txtProductName
             // 
-            this.txtProductName.Location = new System.Drawing.Point(87, 83);
+            this.txtProductName.Location = new System.Drawing.Point(180, 119);
             this.txtProductName.Name = "txtProductName";
             this.txtProductName.Size = new System.Drawing.Size(221, 20);
             this.txtProductName.TabIndex = 3;
@@ -246,7 +249,7 @@
             this.btnSave.IconChar = FontAwesome.Sharp.IconChar.None;
             this.btnSave.IconColor = System.Drawing.Color.Black;
             this.btnSave.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnSave.Location = new System.Drawing.Point(314, 188);
+            this.btnSave.Location = new System.Drawing.Point(407, 224);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(73, 37);
             this.btnSave.TabIndex = 2;
@@ -256,7 +259,7 @@
             // 
             // txtProductID
             // 
-            this.txtProductID.Location = new System.Drawing.Point(87, 57);
+            this.txtProductID.Location = new System.Drawing.Point(180, 93);
             this.txtProductID.Name = "txtProductID";
             this.txtProductID.Size = new System.Drawing.Size(221, 20);
             this.txtProductID.TabIndex = 1;
@@ -266,20 +269,21 @@
             // 
             this.cmbWarehouse.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbWarehouse.FormattingEnabled = true;
-            this.cmbWarehouse.Location = new System.Drawing.Point(87, 30);
+            this.cmbWarehouse.Location = new System.Drawing.Point(180, 66);
             this.cmbWarehouse.Name = "cmbWarehouse";
-            this.cmbWarehouse.Size = new System.Drawing.Size(121, 21);
+            this.cmbWarehouse.Size = new System.Drawing.Size(175, 21);
             this.cmbWarehouse.TabIndex = 0;
             // 
             // panelViewWarehouseStock
             // 
+            this.panelViewWarehouseStock.Controls.Add(this.btnClear);
             this.panelViewWarehouseStock.Controls.Add(this.btnScanView);
             this.panelViewWarehouseStock.Controls.Add(this.txtQuery);
             this.panelViewWarehouseStock.Controls.Add(this.dataGridView1);
             this.panelViewWarehouseStock.Controls.Add(this.cmbViewWarehouse);
-            this.panelViewWarehouseStock.Location = new System.Drawing.Point(403, 277);
+            this.panelViewWarehouseStock.Location = new System.Drawing.Point(584, 325);
             this.panelViewWarehouseStock.Name = "panelViewWarehouseStock";
-            this.panelViewWarehouseStock.Size = new System.Drawing.Size(403, 235);
+            this.panelViewWarehouseStock.Size = new System.Drawing.Size(584, 325);
             this.panelViewWarehouseStock.TabIndex = 2;
             // 
             // btnScanView
@@ -287,20 +291,22 @@
             this.btnScanView.IconChar = FontAwesome.Sharp.IconChar.None;
             this.btnScanView.IconColor = System.Drawing.Color.Black;
             this.btnScanView.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnScanView.Location = new System.Drawing.Point(325, -1);
+            this.btnScanView.Location = new System.Drawing.Point(295, 0);
             this.btnScanView.Name = "btnScanView";
-            this.btnScanView.Size = new System.Drawing.Size(75, 20);
+            this.btnScanView.Size = new System.Drawing.Size(83, 21);
             this.btnScanView.TabIndex = 2;
             this.btnScanView.Text = "[Scan]";
             this.btnScanView.UseVisualStyleBackColor = true;
+            this.btnScanView.Click += new System.EventHandler(this.btnScanView_Click);
             // 
             // txtQuery
             // 
             this.txtQuery.Dock = System.Windows.Forms.DockStyle.Left;
             this.txtQuery.Location = new System.Drawing.Point(0, 0);
             this.txtQuery.Name = "txtQuery";
-            this.txtQuery.Size = new System.Drawing.Size(233, 20);
+            this.txtQuery.Size = new System.Drawing.Size(289, 20);
             this.txtQuery.TabIndex = 1;
+            this.txtQuery.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtQuery_KeyPress);
             // 
             // dataGridView1
             // 
@@ -309,16 +315,37 @@
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colID,
+            this.colWarehouse,
             this.colProductID,
             this.colQuantity});
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 20);
+            this.dataGridView1.Location = new System.Drawing.Point(0, 25);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.Size = new System.Drawing.Size(403, 215);
+            this.dataGridView1.Size = new System.Drawing.Size(584, 300);
             this.dataGridView1.TabIndex = 0;
+            // 
+            // cmbViewWarehouse
+            // 
+            this.cmbViewWarehouse.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbViewWarehouse.FormattingEnabled = true;
+            this.cmbViewWarehouse.Location = new System.Drawing.Point(384, 0);
+            this.cmbViewWarehouse.Name = "cmbViewWarehouse";
+            this.cmbViewWarehouse.Size = new System.Drawing.Size(118, 21);
+            this.cmbViewWarehouse.TabIndex = 3;
+            this.cmbViewWarehouse.SelectedIndexChanged += new System.EventHandler(this.cmbViewWarehouse_SelectedIndexChanged);
+            // 
+            // panelContainer
+            // 
+            this.panelContainer.Controls.Add(this.panelViewWarehouseStock);
+            this.panelContainer.Controls.Add(this.panelAdjustStock);
+            this.panelContainer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelContainer.Location = new System.Drawing.Point(0, 42);
+            this.panelContainer.Name = "panelContainer";
+            this.panelContainer.Size = new System.Drawing.Size(584, 325);
+            this.panelContainer.TabIndex = 3;
             // 
             // colID
             // 
@@ -328,6 +355,14 @@
             this.colID.Name = "colID";
             this.colID.ReadOnly = true;
             this.colID.Width = 39;
+            // 
+            // colWarehouse
+            // 
+            this.colWarehouse.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.colWarehouse.HeaderText = "Warehouse";
+            this.colWarehouse.Name = "colWarehouse";
+            this.colWarehouse.ReadOnly = true;
+            this.colWarehouse.Width = 87;
             // 
             // colProductID
             // 
@@ -346,30 +381,25 @@
             this.colQuantity.ReadOnly = true;
             this.colQuantity.Width = 71;
             // 
-            // cmbViewWarehouse
+            // btnClear
             // 
-            this.cmbViewWarehouse.FormattingEnabled = true;
-            this.cmbViewWarehouse.Location = new System.Drawing.Point(239, -1);
-            this.cmbViewWarehouse.Name = "cmbViewWarehouse";
-            this.cmbViewWarehouse.Size = new System.Drawing.Size(83, 21);
-            this.cmbViewWarehouse.TabIndex = 3;
-            // 
-            // panelContainer
-            // 
-            this.panelContainer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelContainer.Location = new System.Drawing.Point(0, 42);
-            this.panelContainer.Name = "panelContainer";
-            this.panelContainer.Size = new System.Drawing.Size(403, 235);
-            this.panelContainer.TabIndex = 3;
+            this.btnClear.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.btnClear.IconColor = System.Drawing.Color.Black;
+            this.btnClear.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnClear.Location = new System.Drawing.Point(508, 0);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(61, 21);
+            this.btnClear.TabIndex = 4;
+            this.btnClear.Text = "[Clear]";
+            this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
             // frmManageStocks
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(403, 277);
+            this.ClientSize = new System.Drawing.Size(584, 367);
             this.Controls.Add(this.panelContainer);
-            this.Controls.Add(this.panelViewWarehouseStock);
-            this.Controls.Add(this.panelAdjustStock);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmManageStocks";
@@ -383,6 +413,7 @@
             this.panelViewWarehouseStock.ResumeLayout(false);
             this.panelViewWarehouseStock.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.panelContainer.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -412,9 +443,11 @@
         private System.Windows.Forms.TextBox txtQuery;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.ComboBox cmbViewWarehouse;
+        private System.Windows.Forms.Panel panelContainer;
         private System.Windows.Forms.DataGridViewTextBoxColumn colID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colWarehouse;
         private System.Windows.Forms.DataGridViewTextBoxColumn colProductID;
         private System.Windows.Forms.DataGridViewTextBoxColumn colQuantity;
-        private System.Windows.Forms.Panel panelContainer;
+        private FontAwesome.Sharp.IconButton btnClear;
     }
 }

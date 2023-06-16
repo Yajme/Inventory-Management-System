@@ -499,21 +499,53 @@ public static class commands
         
     }
 
-    public static void viewWarehouseStock()
+    public static DataTable viewWarehouseStock()
     {
+        DataTable dt = new DataTable();
         db.con.Open();
-        db.cmd = new SqlCommand("SELECT * FROM WAREHOUSESTOCK", db.con);
-        db.dr = db.cmd.ExecuteReader();
-
-
+        db.cmd = new SqlCommand("SELECT WarehouseStock.ProductStockID, Warehouses.WarehouseName, WarehouseStock.ProductID, WarehouseStock.QuantityStock FROM WarehouseStock JOIN Warehouses ON WarehouseStock.WarehouseID = Warehouses.WarehouseID", db.con);
+        dt.Load(db.cmd.ExecuteReader());
+        db.con.Close();
+        return dt;
     }
-    public static void searchWarehouseStock()
+    public static DataTable searchWarehouseStock(string[] stock)
     {
+
+        DataTable dt = new DataTable();
         db.con.Open();
-        db.cmd = new SqlCommand("SELECT * FROM WAREHOUSESTOCK WHERE PRODUCTID= @PRODUCTID AND WAREHOUSEID=@WAREHOUSEID", db.con);
-        db.dr = db.cmd.ExecuteReader();
+        db.cmd = new SqlCommand("SELECT WarehouseStock.ProductStockID, Warehouses.WarehouseName, WarehouseStock.ProductID, WarehouseStock.QuantityStock FROM WarehouseStock JOIN Warehouses ON WarehouseStock.WarehouseID = Warehouses.WarehouseID  WHERE WarehouseStock.ProductID = @ProductID AND Warehouses.WarehouseName= @Warehouse", db.con);
+        db.cmd.Parameters.AddWithValue("@ProductID", stock[0]);
+        db.cmd.Parameters.AddWithValue("@Warehouse", stock[1]);
+
+        dt.Load(db.cmd.ExecuteReader());
+        db.con.Close();
+        return dt;
     }
 
+    public static DataTable selectWarehouseStock(string warehouse)
+    {
+
+        DataTable dt = new DataTable();
+        db.con.Open();
+        db.cmd = new SqlCommand("SELECT WarehouseStock.ProductStockID, Warehouses.WarehouseName, WarehouseStock.ProductID, WarehouseStock.QuantityStock FROM WarehouseStock JOIN Warehouses ON WarehouseStock.WarehouseID = Warehouses.WarehouseID WHERE Warehouses.WarehouseName= @Warehouse", db.con);
+        db.cmd.Parameters.AddWithValue("@Warehouse", warehouse);
+
+        dt.Load(db.cmd.ExecuteReader());
+        db.con.Close();
+        return dt;
+    }
+    public static DataTable selecthWarehouseProduct(string productID)
+    {
+
+        DataTable dt = new DataTable();
+        db.con.Open();
+        db.cmd = new SqlCommand("SELECT WarehouseStock.ProductStockID, Warehouses.WarehouseName, WarehouseStock.ProductID, WarehouseStock.QuantityStock FROM WarehouseStock JOIN Warehouses ON WarehouseStock.WarehouseID = Warehouses.WarehouseID WHERE WarehouseStock.ProductID = @ProductID", db.con);
+        db.cmd.Parameters.AddWithValue("@ProductID", productID);
+
+        dt.Load(db.cmd.ExecuteReader());
+        db.con.Close();
+        return dt;
+    }
     public static DataTable demo()
     {
         
