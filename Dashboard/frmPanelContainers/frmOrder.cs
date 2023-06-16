@@ -189,6 +189,8 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
                 {
                     commands.updateStocktoWarehouse(stock);
                 }
+                commands.insertMovementStock(stock);
+                MessageBox.Show("Goods received!", "Done!",MessageBoxButtons.OK,MessageBoxIcon.Information);
             }
             catch(SqlException exsql)
             {
@@ -202,18 +204,34 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
         }
         private void btnSave_Click(object sender, EventArgs e)
         {
-            int id = commands.selectWarehouse(cmbWarehouse.Text);
+            int outbound;
+            if (string.IsNullOrWhiteSpace(txtQuantity.Text) || !int.TryParse(txtQuantity.Text, out outbound))
+            {
+                MessageBox.Show("Invalid Quantity!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtQuantity.Focus();
+            }else if(cmbWarehouse.Text == string.Empty)
+            {
+                MessageBox.Show("Please Select Warehouse!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }else if (!scan)
+            {
+                MessageBox.Show("Indicate Product!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtProductID.Focus();
+            }
+            else
+            {
+                int id = commands.selectWarehouse(cmbWarehouse.Text);
+
+                string[] stock = new string[4];
+                stock[0] = txtProductID.Text;//productid
+                stock[1] = id.ToString(); //warehouseid
+                stock[2] = txtQuantity.Text;
+                stock[3] = "Inbound";
+                movementStock(stock);
+
+
+                loadHistoryandProducts();
+            }
             
-
-            string[] stock = new string[4];
-            stock[0] = txtProductID.Text;//productid
-            stock[1] = id.ToString(); //warehouseid
-            stock[2] = txtQuantity.Text;
-            stock[3] = "Inbound";
-            movementStock(stock);
-
-           
-            loadHistoryandProducts();
         }
 
         private void btnDiscard_Click(object sender, EventArgs e)
@@ -222,18 +240,27 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
         }
         private void replenishFetch(string id)
         {
-            if(!scan)
+            if(txtProductID.Text != string.Empty)
             {
-                string[] item = commands.itemEncode(txtProductID.Text);
-                if (item.Length > 0)
+                if (!scan)
                 {
-                    txtProductName.Text = item[1];
+                    string[] item = commands.itemEncode(txtProductID.Text);
+                    if (item.Length > 0)
+                    {
+                        txtProductName.Text = item[1];
+                    }
+                    txtProductID.ReadOnly = true;
+                    scan = true;
                 }
-                txtProductID.ReadOnly = true;
-                scan = true;
             }
-            
-            
+            else
+            {
+                MessageBox.Show("Enter Product ID!" ,"Invalid Field", MessageBoxButtons.OK,MessageBoxIcon.Error);
+
+            }
+
+
+
         }
         private void btnEnterReplenish_Click(object sender, EventArgs e)
         {
