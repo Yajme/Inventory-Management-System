@@ -969,7 +969,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Panel panelOrderControls;
         private FontAwesome.Sharp.IconButton btnAddDiscount;
         private FontAwesome.Sharp.IconButton btnSettle;
@@ -1025,5 +1024,6 @@
         private System.Windows.Forms.TextBox txtCashTendered;
         private System.Windows.Forms.Panel panelCash;
         private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.DataGridView dataGridView1;
     }
 }

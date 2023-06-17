@@ -127,6 +127,12 @@
     <Compile Include="Dashboard\frmPanelContainers\frmInventory.Designer.cs">
       <DependentUpon>frmInventory.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dashboard\frmPanelContainers\frmOrderForms\frmProductInquiry.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dashboard\frmPanelContainers\frmOrderForms\frmProductInquiry.Designer.cs">
+      <DependentUpon>frmProductInquiry.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dashboard\frmPanelContainers\frmSalesReport.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -170,6 +176,9 @@
     <EmbeddedResource Include="Dashboard\frmPanelContainers\frmInventory.resx">
       <DependentUpon>frmInventory.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dashboard\frmPanelContainers\frmOrderForms\frmProductInquiry.resx">
+      <DependentUpon>frmProductInquiry.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dashboard\frmPanelContainers\frmSalesReport.resx">
       <DependentUpon>frmSalesReport.cs</DependentUpon>
     </EmbeddedResource>
@@ -200,7 +209,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Dashboard\frmPanelContainers\frmOrderForms\" />
     <Folder Include="POS\" />
   </ItemGroup>
   <ItemGroup>
@@ -226,6 +234,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\trash.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cart.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

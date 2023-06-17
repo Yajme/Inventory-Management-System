@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
-
+using Inventory_Management_System.Dashboard.frmPanelContainers.frmOrderForms;
 namespace Inventory_Management_System.Dashboard.frmPanelContainers
 {
     public partial class frmOrder : Form
@@ -30,14 +30,14 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
             getdpi = devmode.GetWindowsScaling();
             clearPlaceOrderPanel();
             fillContainer(panelPlaceOrder);
-            txtQuery.Focus();
+            
         }
 
         private void btnPlaceOrder_Click(object sender, EventArgs e)
         {
             clearPlaceOrderPanel();
             fillContainer(panelPlaceOrder);
-            txtQuery.Focus();
+            
 
         }
         private void clearPlaceOrderPanel()
@@ -52,7 +52,7 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
             lblVAT.Text = "0.00";
             lblTotal.Text = "0.00";
             lblSaleTotal.Text = "0.00";
-
+            txtQuery.Focus();
         }
 
         private void btnReplenishInventory_Click(object sender, EventArgs e)
@@ -74,13 +74,58 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
             panel.Show();
         }
 
-       
-        
+
+
         //formcontrol
 
-        /// placeorder
-        
-        private void itemScan(string query)
+        //placeorder
+       
+        public static void ProductInquiry(DataGridView dataGridView1, string query)
+        {
+            bool found = false;
+            int row = dataGridView1.RowCount;
+            string[] itemfetched = commands.itemEncode(query);
+
+            //commands.itemEncode(query);
+            if (itemfetched != Array.Empty<string>())
+            {
+                total += Convert.ToDouble(itemfetched[2]);
+                if (dataGridView1.Rows.Count > 0)
+                {
+                    foreach (DataGridViewRow rows in dataGridView1.Rows)
+                    {
+                        if (rows.Cells[dataGridView1.Columns["colID"].Index].Value.ToString() == txtQuery.Text)
+                        {
+                            found = true;
+                            rows.Cells[dataGridView1.Columns["colQuantity"].Index].Value = Convert.ToInt32(rows.Cells[dataGridView1.Columns["colQuantity"].Index].Value) + 1;
+                        }
+                    }
+                    if (!found)
+                    {
+                        row++;
+                        dataGridView1.Rows.Add(row, itemfetched[0], itemfetched[1], itemfetched[2], 1, string.Format("0", "#,##0.00"));
+                    }
+                }
+                else
+                {
+                    row++;
+                    dataGridView1.Rows.Add(row, itemfetched[0], itemfetched[1], itemfetched[2], 1, string.Format("0", "#,##0.00"));
+                }
+
+                foreach (DataGridViewRow rows in dataGridView1.Rows)
+                {
+                    rows.Cells[dataGridView1.Columns["colTotalPrice"].Index].Value = (Convert.ToDouble(rows.Cells[dataGridView1.Columns["colUnitPrice"].Index].Value) * Convert.ToDouble(rows.Cells[dataGridView1.Columns["colQuantity"].Index].Value)).ToString("#,##0.00");
+                }
+                lblSaleTotal.Text = total.ToString("#,##0.00");
+                txtQuery.Clear();
+            }
+            else
+            {
+                txtQuery.Clear();
+                MessageBox.Show("Item not Found!", "404", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        public void itemScan(string query)
         {
             bool found = false;
             int row = dataGridView1.RowCount;
@@ -164,11 +209,22 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
 
             switch (tag)
             {
+                case "NewTransaction":
+                    clearPlaceOrderPanel();
+                    break;
+                case "ProductInquiry":
+                    frmProductInquiry frmNew = new frmProductInquiry();
+                    frmNew.Show();
+                    break;
                 case "Settle":
-                    //MessageBox.Show(tag);
                     panelCash.Visible = true;
-                    //panelContainer.Controls.Add(panelCash);
                     txtCashTendered.Focus();
+                    break;
+                case "AddDiscount":
+
+                    break;
+                case "VoidItem":
+
                     break;
 
             }
