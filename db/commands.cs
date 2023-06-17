@@ -634,21 +634,45 @@ public static class commands
         
         try
         {
-            
-            //Order
-            db.cmd = new SqlCommand("INSERT INTO Orders(CustomerID, SaleAmount) VALUES(@CustomerID,@SaleAmount);DECLARE @OrderID INT;SET @OrderID = SCOPE_IDENTITY();", db.con, t);
 
-            db.cmd.Parameters.AddWithValue("@CustomerID", data[0]);
-            db.cmd.Parameters.AddWithValue("@SaleAmount", data[1]);
-            db.cmd.ExecuteNonQuery();
-            
-            
+            //Order
+            /*
+             CREATE PROCEDURE InsertOrder --ProcedureName
+	@CustomerID INT, -- ParameterName with DataType
+	@SaleAmount DECIMAL(18,2), --ParameterName with DataType 
+	@OrderID INT OUTPUT -- ID Fetched
+AS
+BEGIN
+
+	INSERT INTO Orders(CustomerID, SaleAmount) VALUES(@CustomerID,@SaleAmount);
+
+	SET @OrderID= SCOPE_IDENTITY();
+
+	SELECT OrderID FROM Orders WHERE OrderID= @OrderID;
+
+END
+             */
+            string ordercommand = "DECLARE @ReturnedID INT;\r\n\r\nEXEC InsertOrder \r\n\t@CustomerID,\r\n\t@SaleAmount,\r\n\t@OrderID = @ReturnedID OUTPUT;\r\n\r\nSELECT @ReturnedID as 'ReturnedID';";
+            //db.cmd = new SqlCommand(ordercommand, db.con, t);
+
             int orderid = 0;
+            //db.cmd.ExecuteNonQuery();
+            using (db.cmd = new SqlCommand(ordercommand, db.con, t))
+            {
+                db.cmd.Parameters.AddWithValue("@CustomerID", data[0]);
+                db.cmd.Parameters.AddWithValue("@SaleAmount", data[1]);
+
+                orderid = (int)db.cmd.ExecuteScalar();
+            }
+            
+           
             //db.cmd = new SqlCommand("SELECT TOP 1 OrderID FROM Orders ORDER BY OrderID DESC", db.con, t);
+            /*
             using (db.cmd = new SqlCommand("SELECT TOP 1 OrderID FROM Orders ORDER BY OrderID DESC", db.con, t)) 
             {
-                orderid = Convert.ToInt32(db.cmd.ExecuteScalar()) + 1;
-            }
+                orderid += Convert.ToInt32(db.cmd.ExecuteScalar());
+            }*/
+
             db.cmd.Parameters.Clear();
             int p = 1;
             int batch = 0;
