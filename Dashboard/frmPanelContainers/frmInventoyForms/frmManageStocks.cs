@@ -191,16 +191,17 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers.frmInventoyFo
                 else
                 {
                     mvtquantity -= quantity;
+                    string[] stock = new string[4];
+                    stock[0] = txtProductID.Text;
+                    stock[1] = commands.selectWarehouse(cmbWarehouse.SelectedItem.ToString()).ToString();
+                    stock[2] = mvtquantity.ToString();
+                    stock[3] = "Outbound";
+                    MovementStock(stock);DED
                 }
                 
             }
             
-            string[] stock = new string[4];
-            stock[0] = txtProductID.Text;
-            stock[1] = commands.selectWarehouse(cmbWarehouse.SelectedItem.ToString()).ToString();
-            stock[2] = mvtquantity.ToString();
-            stock[3] = "Outbound";
-            MovementStock(stock);
+            
 
         }
         private void loadWarehouseStocks()

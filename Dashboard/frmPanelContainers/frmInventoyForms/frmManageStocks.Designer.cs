@@ -47,16 +47,16 @@
             this.txtProductID = new System.Windows.Forms.TextBox();
             this.cmbWarehouse = new System.Windows.Forms.ComboBox();
             this.panelViewWarehouseStock = new System.Windows.Forms.Panel();
+            this.btnClear = new FontAwesome.Sharp.IconButton();
             this.btnScanView = new FontAwesome.Sharp.IconButton();
             this.txtQuery = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.cmbViewWarehouse = new System.Windows.Forms.ComboBox();
-            this.panelContainer = new System.Windows.Forms.Panel();
             this.colID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colWarehouse = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colProductID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colQuantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnClear = new FontAwesome.Sharp.IconButton();
+            this.cmbViewWarehouse = new System.Windows.Forms.ComboBox();
+            this.panelContainer = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             this.panelAdjustStock.SuspendLayout();
             this.panelViewWarehouseStock.SuspendLayout();
@@ -286,6 +286,19 @@
             this.panelViewWarehouseStock.Size = new System.Drawing.Size(584, 325);
             this.panelViewWarehouseStock.TabIndex = 2;
             // 
+            // btnClear
+            // 
+            this.btnClear.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.btnClear.IconColor = System.Drawing.Color.Black;
+            this.btnClear.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnClear.Location = new System.Drawing.Point(508, 0);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(61, 21);
+            this.btnClear.TabIndex = 4;
+            this.btnClear.Text = "[Clear]";
+            this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
+            // 
             // btnScanView
             // 
             this.btnScanView.IconChar = FontAwesome.Sharp.IconChar.None;
@@ -327,26 +340,6 @@
             this.dataGridView1.Size = new System.Drawing.Size(584, 300);
             this.dataGridView1.TabIndex = 0;
             // 
-            // cmbViewWarehouse
-            // 
-            this.cmbViewWarehouse.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbViewWarehouse.FormattingEnabled = true;
-            this.cmbViewWarehouse.Location = new System.Drawing.Point(384, 0);
-            this.cmbViewWarehouse.Name = "cmbViewWarehouse";
-            this.cmbViewWarehouse.Size = new System.Drawing.Size(118, 21);
-            this.cmbViewWarehouse.TabIndex = 3;
-            this.cmbViewWarehouse.SelectedIndexChanged += new System.EventHandler(this.cmbViewWarehouse_SelectedIndexChanged);
-            // 
-            // panelContainer
-            // 
-            this.panelContainer.Controls.Add(this.panelViewWarehouseStock);
-            this.panelContainer.Controls.Add(this.panelAdjustStock);
-            this.panelContainer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelContainer.Location = new System.Drawing.Point(0, 42);
-            this.panelContainer.Name = "panelContainer";
-            this.panelContainer.Size = new System.Drawing.Size(584, 325);
-            this.panelContainer.TabIndex = 3;
-            // 
             // colID
             // 
             this.colID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
@@ -381,18 +374,25 @@
             this.colQuantity.ReadOnly = true;
             this.colQuantity.Width = 71;
             // 
-            // btnClear
+            // cmbViewWarehouse
             // 
-            this.btnClear.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.btnClear.IconColor = System.Drawing.Color.Black;
-            this.btnClear.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnClear.Location = new System.Drawing.Point(508, 0);
-            this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(61, 21);
-            this.btnClear.TabIndex = 4;
-            this.btnClear.Text = "[Clear]";
-            this.btnClear.UseVisualStyleBackColor = true;
-            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
+            this.cmbViewWarehouse.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbViewWarehouse.FormattingEnabled = true;
+            this.cmbViewWarehouse.Location = new System.Drawing.Point(384, 0);
+            this.cmbViewWarehouse.Name = "cmbViewWarehouse";
+            this.cmbViewWarehouse.Size = new System.Drawing.Size(118, 21);
+            this.cmbViewWarehouse.TabIndex = 3;
+            this.cmbViewWarehouse.SelectedIndexChanged += new System.EventHandler(this.cmbViewWarehouse_SelectedIndexChanged);
+            // 
+            // panelContainer
+            // 
+            this.panelContainer.Controls.Add(this.panelViewWarehouseStock);
+            this.panelContainer.Controls.Add(this.panelAdjustStock);
+            this.panelContainer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelContainer.Location = new System.Drawing.Point(0, 42);
+            this.panelContainer.Name = "panelContainer";
+            this.panelContainer.Size = new System.Drawing.Size(584, 325);
+            this.panelContainer.TabIndex = 3;
             // 
             // frmManageStocks
             // 

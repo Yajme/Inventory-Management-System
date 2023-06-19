@@ -463,8 +463,9 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
             decimal number;
             number = decimal.Parse(txtCashTendered.Text, System.Globalization.NumberStyles.Currency);
             txtCashTendered.Text = number.ToString("#,#");
-            txtCashTendered.SelectionStart = txtCashTendered.Text.Length;
+            
             */
+            txtCashTendered.SelectionStart = txtCashTendered.Text.Length;
         }
 
         private void txtQuery_TextChanged(object sender, EventArgs e)
