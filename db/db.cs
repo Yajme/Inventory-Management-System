@@ -5,7 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Security.Cryptography.X509Certificates;
-
+namespace Inventory_Management_System.db
+{
     public static class db
     {
         public static SqlConnection con = new SqlConnection();
@@ -18,5 +19,7 @@ using System.Security.Cryptography.X509Certificates;
             con.ConnectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=D:\\Library\\Documents\\InventoryDB.mdf;Integrated Security=True;Connect Timeout=30";
         }
     }
+}
+    
 
 

@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Inventory_Management_System;
 using Inventory_Management_System.Dashboard.frmPanelContainers;
+using static Inventory_Management_System.db.db;
 
 namespace Inventory_Management_System.Dashboard
 {
@@ -152,7 +153,7 @@ namespace Inventory_Management_System.Dashboard
         {
             logout = false;
             ChangeMenu("btnHome");
-            db.Connection();
+            Connection();
 
             getdpi = devmode.GetWindowsScaling();
             //MessageBox.Show((getsize/100).ToString());

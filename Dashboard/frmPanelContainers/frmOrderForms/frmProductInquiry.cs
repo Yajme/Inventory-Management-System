@@ -13,9 +13,11 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers.frmOrderForms
 {
     public partial class frmProductInquiry : Form
     {
+        public static frmProductInquiry instance;
         public frmProductInquiry()
         {
             InitializeComponent();
+            instance = this;
         }
 
         private void frmProductInquiry_Load(object sender, EventArgs e)
@@ -65,9 +67,10 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers.frmOrderForms
             string colName = dataGridView1.Columns[e.ColumnIndex].Name;
             if(colName == "colAdd")
             {
-                MessageBox.Show(dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString());
-              
-               itemScan(dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString());
+               // MessageBox.Show(dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString());
+                frmOrder.instance.txtFormTextbox.Text = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
+                frmOrder.instance.SimulateEnterKeyPress();
+                //itemScan(dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString());
             }
         }
     }

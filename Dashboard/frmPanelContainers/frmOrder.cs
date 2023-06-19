@@ -16,12 +16,18 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
         public static double getdpi;
         public static double total = 0;
         public static bool scan = false;
+        public static frmOrder instance;
+        public TextBox txtFormTextbox;
         string lastID = "";
         public frmOrder()
         {
             InitializeComponent();
-            
+            instance = this;
+            txtFormTextbox = txtQuery;
+
+
         }
+
         //formcontrol
         private void frmOrder_Load(object sender, EventArgs e)
         {
@@ -80,51 +86,7 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
 
         //placeorder
        
-        public static void ProductInquiry(DataGridView dataGridView1, string query)
-        {
-            bool found = false;
-            int row = dataGridView1.RowCount;
-            string[] itemfetched = commands.itemEncode(query);
-
-            //commands.itemEncode(query);
-            if (itemfetched != Array.Empty<string>())
-            {
-                total += Convert.ToDouble(itemfetched[2]);
-                if (dataGridView1.Rows.Count > 0)
-                {
-                    foreach (DataGridViewRow rows in dataGridView1.Rows)
-                    {
-                        if (rows.Cells[dataGridView1.Columns["colID"].Index].Value.ToString() == txtQuery.Text)
-                        {
-                            found = true;
-                            rows.Cells[dataGridView1.Columns["colQuantity"].Index].Value = Convert.ToInt32(rows.Cells[dataGridView1.Columns["colQuantity"].Index].Value) + 1;
-                        }
-                    }
-                    if (!found)
-                    {
-                        row++;
-                        dataGridView1.Rows.Add(row, itemfetched[0], itemfetched[1], itemfetched[2], 1, string.Format("0", "#,##0.00"));
-                    }
-                }
-                else
-                {
-                    row++;
-                    dataGridView1.Rows.Add(row, itemfetched[0], itemfetched[1], itemfetched[2], 1, string.Format("0", "#,##0.00"));
-                }
-
-                foreach (DataGridViewRow rows in dataGridView1.Rows)
-                {
-                    rows.Cells[dataGridView1.Columns["colTotalPrice"].Index].Value = (Convert.ToDouble(rows.Cells[dataGridView1.Columns["colUnitPrice"].Index].Value) * Convert.ToDouble(rows.Cells[dataGridView1.Columns["colQuantity"].Index].Value)).ToString("#,##0.00");
-                }
-                lblSaleTotal.Text = total.ToString("#,##0.00");
-                txtQuery.Clear();
-            }
-            else
-            {
-                txtQuery.Clear();
-                MessageBox.Show("Item not Found!", "404", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
+      
         public void itemScan(string query)
         {
             bool found = false;
@@ -213,6 +175,8 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
                     clearPlaceOrderPanel();
                     break;
                 case "ProductInquiry":
+
+                    // Toggle on or off
                     frmProductInquiry frmNew = new frmProductInquiry();
                     frmNew.Show();
                     break;
@@ -388,6 +352,10 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
             {
                 itemScan(txtQuery.Text);
             }
+        }
+        public void SimulateEnterKeyPress()
+        {
+            txtQuery_KeyPress(this, new KeyPressEventArgs((char)Keys.Enter));
         }
 
         private void txtProductID_KeyPress(object sender, KeyPressEventArgs e)

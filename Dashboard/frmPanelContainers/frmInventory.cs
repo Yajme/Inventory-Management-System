@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Inventory_Management_System.Dashboard.frmPanelContainers.frmInventoyForms;
+using static Inventory_Management_System.db.db;
 namespace Inventory_Management_System.Dashboard.frmPanelContainers
 {
     public partial class frmInventory : Form
@@ -19,10 +20,7 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
         }
         private void LoadItems(string query, string filter)
         {
-            if (db.con.State == ConnectionState.Open)
-            {
-                db.con.Close();
-            }
+            
             dataGridView1.Rows.Clear();
             
 

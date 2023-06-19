@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using FontAwesome.Sharp;
 using Inventory_Management_System.Dashboard;
-
+using static Inventory_Management_System.db.db;
 namespace Inventory_Management_System
 {
     public partial class Login : Form
@@ -40,16 +40,16 @@ namespace Inventory_Management_System
             {
                 try
                 {
-                        db.con.Open();
-                    using (SqlCommand command = new SqlCommand("SELECT * FROM users WHERE username = @Username AND password = @Password", db.con))
+                        con.Open();
+                    using (SqlCommand command = new SqlCommand("SELECT * FROM users WHERE username = @Username AND password = @Password", con))
                     {
                         command.Parameters.AddWithValue("@Username", txtUsername.Text);
                         command.Parameters.AddWithValue("@Password", txtPassword.Text);
 
-                        db.dr = command.ExecuteReader();
-                        if (db.dr.Read())
+                        dr = command.ExecuteReader();
+                        if (dr.Read())
                         {
-                            if (db.dr[3].ToString() == "1")
+                            if (dr[3].ToString() == "1")
                             {
                                 frmDashboard frmdb = new frmDashboard();
                                 frmdb.Show();
@@ -64,12 +64,12 @@ namespace Inventory_Management_System
                     // Clear the input fields
                     txtPassword.Text = "";
                     txtUsername.Text = "";
-                    db.dr.Close();
-                    db.con.Close();
+                    dr.Close();
+                    con.Close();
                 }
                 catch (Exception ex)
                 {
-                    db.con.Close();
+                    con.Close();
                     MessageBox.Show(ex.Message);
                 }
             }
@@ -79,7 +79,7 @@ namespace Inventory_Management_System
 
         private void Login_Load(object sender, EventArgs e)
         {
-            db.Connection();
+            Connection();
         }
 
         private void keyPressEnter(object sender, KeyPressEventArgs e)
