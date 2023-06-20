@@ -214,11 +214,14 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
 
                     break;
                 case "VoidItem":
-
+                    frmVoidItem frmVoidItem = new frmVoidItem();
+                    frmVoidItem.ShowDialog();
+                    txtQuery.Focus();
                     break;
                 case "SetQty":
                     frmSetQuantity frmNewQ = new frmSetQuantity();
                     frmNewQ.ShowDialog();
+                    txtQuery.Focus();
                     break;
 
             }
@@ -387,7 +390,12 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
         {
             txtQuery_KeyPress(this, new KeyPressEventArgs((char)Keys.Enter));
         }
-
+        public void itemVoid()
+        {
+            total -= Convert.ToDouble(dataGridView1.Rows[dataGridView1.RowCount - 1].Cells[5].Value);
+            lblSaleTotal.Text = total.ToString("#,##.00");
+            dataGridView1.Rows.RemoveAt(dataGridView1.Rows.Count - 1);
+        }
         private void txtProductID_KeyPress(object sender, KeyPressEventArgs e)
         {
             

@@ -12,6 +12,7 @@ namespace Inventory_Management_System.db
         public static SqlConnection con = new SqlConnection();
         public static SqlCommand cmd = new SqlCommand();
         public static SqlDataReader dr;
+        public static string username = "admin";
         public static string conString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=D:\\Library\\Documents\\InventoryDB.mdf;Integrated Security=True;Connect Timeout=30";
         public static void Connection()
         {
