@@ -18,13 +18,16 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
         public static bool scan = false;
         public static frmOrder instance;
         public TextBox txtFormTextbox;
+        public Label lblSetQ;
+        public int quantity;
+        public bool setQty = false;
         string lastID = "";
         public frmOrder()
         {
             InitializeComponent();
             instance = this;
             txtFormTextbox = txtQuery;
-
+            //lblSetQ = lblSetQuantity;
 
         }
 
@@ -52,6 +55,8 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
             total = 0;
             txtQuery.Clear();
             txtCashTendered.Clear();
+
+            lblSetQuantity.Text = "";
             lblProductID.Text = "";
             lblProductName.Text = "";
             lblPrice.Text = "";
@@ -95,10 +100,18 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
             bool found = false;
             int row = dataGridView1.RowCount;
             string[] itemfetched = commands.itemEncode(query);
+            int itemQuantity = 1;
             
-            //commands.itemEncode(query);
+
+            if(setQty == true)
+            {
+                itemQuantity = quantity;
+                setQty = false;
+            }
+           
+            lblSetQuantity.Text = "x" + itemQuantity.ToString();
             if (itemfetched != Array.Empty<string>()) {
-                total += Convert.ToDouble(itemfetched[2]);
+                total += Convert.ToDouble(itemfetched[2]) * itemQuantity;
                 if (dataGridView1.Rows.Count > 0)
                 {
                     foreach (DataGridViewRow rows in dataGridView1.Rows)
@@ -106,13 +119,13 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
                         if (rows.Cells[dataGridView1.Columns["colID"].Index].Value.ToString() == txtQuery.Text)
                         {
                             found = true;
-                            rows.Cells[dataGridView1.Columns["colQuantity"].Index].Value = Convert.ToInt32(rows.Cells[dataGridView1.Columns["colQuantity"].Index].Value) + 1;
+                            rows.Cells[dataGridView1.Columns["colQuantity"].Index].Value = Convert.ToInt32(rows.Cells[dataGridView1.Columns["colQuantity"].Index].Value) + itemQuantity;
                         }
                     }
                     if (!found)
                     {
                         row++;
-                        dataGridView1.Rows.Add(row, itemfetched[0], itemfetched[1], itemfetched[2], 1, string.Format("0", "#,##0.00"));
+                        dataGridView1.Rows.Add(row, itemfetched[0], itemfetched[1], itemfetched[2], itemQuantity, string.Format("0", "#,##0.00"));
 
                         lblProductID.Text = itemfetched[0];
                         lblProductName.Text = itemfetched[1];
@@ -122,7 +135,7 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
                 else
                 {
                     row++;
-                    dataGridView1.Rows.Add(row, itemfetched[0], itemfetched[1], itemfetched[2], 1, string.Format("0", "#,##0.00"));
+                    dataGridView1.Rows.Add(row, itemfetched[0], itemfetched[1], itemfetched[2], itemQuantity, string.Format("0", "#,##0.00"));
                     lblProductID.Text = itemfetched[0];
                     lblProductName.Text = itemfetched[1];
                     lblPrice.Text = itemfetched[2];
@@ -168,6 +181,9 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
                 case "F5":
                     POSControls("VoidItem");
                     break;
+                case "F6":
+                    POSControls("SetQty");
+                    break;
             }
         }
 
@@ -199,6 +215,10 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
                     break;
                 case "VoidItem":
 
+                    break;
+                case "SetQty":
+                    frmSetQuantity frmNewQ = new frmSetQuantity();
+                    frmNewQ.ShowDialog();
                     break;
 
             }

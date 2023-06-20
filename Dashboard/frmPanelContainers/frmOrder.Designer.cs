@@ -32,9 +32,6 @@
             this.panelCash = new System.Windows.Forms.Panel();
             this.label12 = new System.Windows.Forms.Label();
             this.txtCashTendered = new System.Windows.Forms.TextBox();
-            this.btnReturnExchange = new FontAwesome.Sharp.IconButton();
-            this.btnReplenishInventory = new FontAwesome.Sharp.IconButton();
-            this.btnPlaceOrder = new FontAwesome.Sharp.IconButton();
             this.panelPlaceOrder = new System.Windows.Forms.Panel();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.colRow = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -44,14 +41,8 @@
             this.colQuantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colTotalPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panelOrderTop = new System.Windows.Forms.Panel();
-            this.btnEnter = new FontAwesome.Sharp.IconButton();
             this.txtQuery = new System.Windows.Forms.TextBox();
             this.panelOrderControls = new System.Windows.Forms.Panel();
-            this.btnVoidItem = new FontAwesome.Sharp.IconButton();
-            this.btnAddDiscount = new FontAwesome.Sharp.IconButton();
-            this.btnSettle = new FontAwesome.Sharp.IconButton();
-            this.btnProductInquiry = new FontAwesome.Sharp.IconButton();
-            this.btnNewTransaction = new FontAwesome.Sharp.IconButton();
             this.panelPlaceOrderSide = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblSubTotal = new System.Windows.Forms.Label();
@@ -74,14 +65,11 @@
             this.panelReplenishInventory = new System.Windows.Forms.Panel();
             this.cmbWarehouse = new System.Windows.Forms.ComboBox();
             this.label11 = new System.Windows.Forms.Label();
-            this.btnDiscard = new FontAwesome.Sharp.IconButton();
-            this.btnSave = new FontAwesome.Sharp.IconButton();
             this.label9 = new System.Windows.Forms.Label();
             this.dataGridView3 = new System.Windows.Forms.DataGridView();
             this.colProductID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colProductName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colPQuantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnEnterReplenish = new FontAwesome.Sharp.IconButton();
             this.label8 = new System.Windows.Forms.Label();
             this.txtQuantity = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -97,11 +85,24 @@
             this.colQuantityH = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel6 = new System.Windows.Forms.Panel();
             this.label10 = new System.Windows.Forms.Label();
-            this.btnSetQty = new FontAwesome.Sharp.IconButton();
             this.panelPlaceOrderSideItemScanned = new System.Windows.Forms.Panel();
             this.lblProductID = new System.Windows.Forms.Label();
             this.lblProductName = new System.Windows.Forms.Label();
             this.lblPrice = new System.Windows.Forms.Label();
+            this.btnDiscard = new FontAwesome.Sharp.IconButton();
+            this.btnSave = new FontAwesome.Sharp.IconButton();
+            this.btnEnterReplenish = new FontAwesome.Sharp.IconButton();
+            this.btnEnter = new FontAwesome.Sharp.IconButton();
+            this.btnSetQty = new FontAwesome.Sharp.IconButton();
+            this.btnVoidItem = new FontAwesome.Sharp.IconButton();
+            this.btnAddDiscount = new FontAwesome.Sharp.IconButton();
+            this.btnSettle = new FontAwesome.Sharp.IconButton();
+            this.btnProductInquiry = new FontAwesome.Sharp.IconButton();
+            this.btnNewTransaction = new FontAwesome.Sharp.IconButton();
+            this.btnReturnExchange = new FontAwesome.Sharp.IconButton();
+            this.btnReplenishInventory = new FontAwesome.Sharp.IconButton();
+            this.btnPlaceOrder = new FontAwesome.Sharp.IconButton();
+            this.lblSetQuantity = new System.Windows.Forms.Label();
             this.panelTop.SuspendLayout();
             this.panelCash.SuspendLayout();
             this.panelPlaceOrder.SuspendLayout();
@@ -169,57 +170,6 @@
             this.txtCashTendered.TabIndex = 3;
             this.txtCashTendered.TextChanged += new System.EventHandler(this.txtCashTendered_TextChanged);
             this.txtCashTendered.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCashTendered_KeyPress);
-            // 
-            // btnReturnExchange
-            // 
-            this.btnReturnExchange.AutoSize = true;
-            this.btnReturnExchange.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnReturnExchange.ForeColor = System.Drawing.Color.White;
-            this.btnReturnExchange.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.btnReturnExchange.IconColor = System.Drawing.Color.Black;
-            this.btnReturnExchange.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnReturnExchange.Location = new System.Drawing.Point(292, 11);
-            this.btnReturnExchange.Margin = new System.Windows.Forms.Padding(2);
-            this.btnReturnExchange.Name = "btnReturnExchange";
-            this.btnReturnExchange.Size = new System.Drawing.Size(162, 56);
-            this.btnReturnExchange.TabIndex = 2;
-            this.btnReturnExchange.Text = "[Return and Exchanges]";
-            this.btnReturnExchange.UseVisualStyleBackColor = true;
-            this.btnReturnExchange.Click += new System.EventHandler(this.btnReturnExchange_Click);
-            // 
-            // btnReplenishInventory
-            // 
-            this.btnReplenishInventory.AutoSize = true;
-            this.btnReplenishInventory.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnReplenishInventory.ForeColor = System.Drawing.Color.White;
-            this.btnReplenishInventory.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.btnReplenishInventory.IconColor = System.Drawing.Color.Black;
-            this.btnReplenishInventory.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnReplenishInventory.Location = new System.Drawing.Point(143, 11);
-            this.btnReplenishInventory.Margin = new System.Windows.Forms.Padding(2);
-            this.btnReplenishInventory.Name = "btnReplenishInventory";
-            this.btnReplenishInventory.Size = new System.Drawing.Size(145, 56);
-            this.btnReplenishInventory.TabIndex = 1;
-            this.btnReplenishInventory.Text = "[Replenish Inventory]";
-            this.btnReplenishInventory.UseVisualStyleBackColor = true;
-            this.btnReplenishInventory.Click += new System.EventHandler(this.btnReplenishInventory_Click);
-            // 
-            // btnPlaceOrder
-            // 
-            this.btnPlaceOrder.AutoSize = true;
-            this.btnPlaceOrder.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPlaceOrder.ForeColor = System.Drawing.Color.White;
-            this.btnPlaceOrder.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.btnPlaceOrder.IconColor = System.Drawing.Color.Black;
-            this.btnPlaceOrder.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnPlaceOrder.Location = new System.Drawing.Point(36, 11);
-            this.btnPlaceOrder.Margin = new System.Windows.Forms.Padding(2);
-            this.btnPlaceOrder.Name = "btnPlaceOrder";
-            this.btnPlaceOrder.Size = new System.Drawing.Size(103, 56);
-            this.btnPlaceOrder.TabIndex = 0;
-            this.btnPlaceOrder.Text = "[Place Order]";
-            this.btnPlaceOrder.UseVisualStyleBackColor = true;
-            this.btnPlaceOrder.Click += new System.EventHandler(this.btnPlaceOrder_Click);
             // 
             // panelPlaceOrder
             // 
@@ -321,20 +271,6 @@
             this.panelOrderTop.Size = new System.Drawing.Size(858, 27);
             this.panelOrderTop.TabIndex = 6;
             // 
-            // btnEnter
-            // 
-            this.btnEnter.Dock = System.Windows.Forms.DockStyle.Left;
-            this.btnEnter.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.btnEnter.IconColor = System.Drawing.Color.Black;
-            this.btnEnter.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnEnter.Location = new System.Drawing.Point(368, 0);
-            this.btnEnter.Name = "btnEnter";
-            this.btnEnter.Size = new System.Drawing.Size(65, 27);
-            this.btnEnter.TabIndex = 5;
-            this.btnEnter.Text = "Enter";
-            this.btnEnter.UseVisualStyleBackColor = true;
-            this.btnEnter.Click += new System.EventHandler(this.btnEnter_Click);
-            // 
             // txtQuery
             // 
             this.txtQuery.Dock = System.Windows.Forms.DockStyle.Left;
@@ -359,81 +295,6 @@
             this.panelOrderControls.Name = "panelOrderControls";
             this.panelOrderControls.Size = new System.Drawing.Size(858, 37);
             this.panelOrderControls.TabIndex = 4;
-            // 
-            // btnVoidItem
-            // 
-            this.btnVoidItem.Dock = System.Windows.Forms.DockStyle.Left;
-            this.btnVoidItem.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.btnVoidItem.IconColor = System.Drawing.Color.Black;
-            this.btnVoidItem.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnVoidItem.Location = new System.Drawing.Point(463, 0);
-            this.btnVoidItem.Name = "btnVoidItem";
-            this.btnVoidItem.Size = new System.Drawing.Size(110, 37);
-            this.btnVoidItem.TabIndex = 4;
-            this.btnVoidItem.Tag = "VoidItem";
-            this.btnVoidItem.Text = "[F5] - Void Item";
-            this.btnVoidItem.UseVisualStyleBackColor = true;
-            this.btnVoidItem.Click += new System.EventHandler(this.btnPOSControls);
-            // 
-            // btnAddDiscount
-            // 
-            this.btnAddDiscount.Dock = System.Windows.Forms.DockStyle.Left;
-            this.btnAddDiscount.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.btnAddDiscount.IconColor = System.Drawing.Color.Black;
-            this.btnAddDiscount.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnAddDiscount.Location = new System.Drawing.Point(353, 0);
-            this.btnAddDiscount.Name = "btnAddDiscount";
-            this.btnAddDiscount.Size = new System.Drawing.Size(110, 37);
-            this.btnAddDiscount.TabIndex = 3;
-            this.btnAddDiscount.Tag = "AddDiscount";
-            this.btnAddDiscount.Text = "[F4] - Add Discount";
-            this.btnAddDiscount.UseVisualStyleBackColor = true;
-            this.btnAddDiscount.Click += new System.EventHandler(this.btnPOSControls);
-            // 
-            // btnSettle
-            // 
-            this.btnSettle.Dock = System.Windows.Forms.DockStyle.Left;
-            this.btnSettle.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.btnSettle.IconColor = System.Drawing.Color.Black;
-            this.btnSettle.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnSettle.Location = new System.Drawing.Point(263, 0);
-            this.btnSettle.Name = "btnSettle";
-            this.btnSettle.Size = new System.Drawing.Size(90, 37);
-            this.btnSettle.TabIndex = 2;
-            this.btnSettle.Tag = "Settle";
-            this.btnSettle.Text = "[F3] - Settle";
-            this.btnSettle.UseVisualStyleBackColor = true;
-            this.btnSettle.Click += new System.EventHandler(this.btnPOSControls);
-            // 
-            // btnProductInquiry
-            // 
-            this.btnProductInquiry.Dock = System.Windows.Forms.DockStyle.Left;
-            this.btnProductInquiry.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.btnProductInquiry.IconColor = System.Drawing.Color.Black;
-            this.btnProductInquiry.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnProductInquiry.Location = new System.Drawing.Point(146, 0);
-            this.btnProductInquiry.Name = "btnProductInquiry";
-            this.btnProductInquiry.Size = new System.Drawing.Size(117, 37);
-            this.btnProductInquiry.TabIndex = 1;
-            this.btnProductInquiry.Tag = "ProductInquiry";
-            this.btnProductInquiry.Text = "[F2] - Product Inquiry";
-            this.btnProductInquiry.UseVisualStyleBackColor = true;
-            this.btnProductInquiry.Click += new System.EventHandler(this.btnPOSControls);
-            // 
-            // btnNewTransaction
-            // 
-            this.btnNewTransaction.Dock = System.Windows.Forms.DockStyle.Left;
-            this.btnNewTransaction.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.btnNewTransaction.IconColor = System.Drawing.Color.Black;
-            this.btnNewTransaction.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnNewTransaction.Location = new System.Drawing.Point(0, 0);
-            this.btnNewTransaction.Name = "btnNewTransaction";
-            this.btnNewTransaction.Size = new System.Drawing.Size(146, 37);
-            this.btnNewTransaction.TabIndex = 0;
-            this.btnNewTransaction.Tag = "NewTransaction";
-            this.btnNewTransaction.Text = "[F1] - New Transaction";
-            this.btnNewTransaction.UseVisualStyleBackColor = true;
-            this.btnNewTransaction.Click += new System.EventHandler(this.btnPOSControls);
             // 
             // panelPlaceOrderSide
             // 
@@ -678,32 +539,6 @@
             this.label11.TabIndex = 17;
             this.label11.Text = "Warehouse";
             // 
-            // btnDiscard
-            // 
-            this.btnDiscard.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.btnDiscard.IconColor = System.Drawing.Color.Black;
-            this.btnDiscard.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnDiscard.Location = new System.Drawing.Point(750, 189);
-            this.btnDiscard.Name = "btnDiscard";
-            this.btnDiscard.Size = new System.Drawing.Size(75, 22);
-            this.btnDiscard.TabIndex = 16;
-            this.btnDiscard.Text = "[Discard]";
-            this.btnDiscard.UseVisualStyleBackColor = true;
-            this.btnDiscard.Click += new System.EventHandler(this.btnDiscard_Click);
-            // 
-            // btnSave
-            // 
-            this.btnSave.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.btnSave.IconColor = System.Drawing.Color.Black;
-            this.btnSave.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnSave.Location = new System.Drawing.Point(669, 189);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(75, 22);
-            this.btnSave.TabIndex = 15;
-            this.btnSave.Text = "[Save]";
-            this.btnSave.UseVisualStyleBackColor = true;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            // 
             // label9
             // 
             this.label9.AutoSize = true;
@@ -758,19 +593,6 @@
             this.colPQuantity.Name = "colPQuantity";
             this.colPQuantity.ReadOnly = true;
             this.colPQuantity.Width = 71;
-            // 
-            // btnEnterReplenish
-            // 
-            this.btnEnterReplenish.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.btnEnterReplenish.IconColor = System.Drawing.Color.Black;
-            this.btnEnterReplenish.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnEnterReplenish.Location = new System.Drawing.Point(832, 62);
-            this.btnEnterReplenish.Name = "btnEnterReplenish";
-            this.btnEnterReplenish.Size = new System.Drawing.Size(75, 22);
-            this.btnEnterReplenish.TabIndex = 10;
-            this.btnEnterReplenish.Text = "[Enter]";
-            this.btnEnterReplenish.UseVisualStyleBackColor = true;
-            this.btnEnterReplenish.Click += new System.EventHandler(this.btnEnterReplenish_Click);
             // 
             // label8
             // 
@@ -917,22 +739,9 @@
             this.label10.TabIndex = 14;
             this.label10.Text = "History:";
             // 
-            // btnSetQty
-            // 
-            this.btnSetQty.Dock = System.Windows.Forms.DockStyle.Left;
-            this.btnSetQty.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.btnSetQty.IconColor = System.Drawing.Color.Black;
-            this.btnSetQty.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnSetQty.Location = new System.Drawing.Point(573, 0);
-            this.btnSetQty.Name = "btnSetQty";
-            this.btnSetQty.Size = new System.Drawing.Size(110, 37);
-            this.btnSetQty.TabIndex = 5;
-            this.btnSetQty.Tag = "SetQty";
-            this.btnSetQty.Text = "[F6] - Set Quantity";
-            this.btnSetQty.UseVisualStyleBackColor = true;
-            // 
             // panelPlaceOrderSideItemScanned
             // 
+            this.panelPlaceOrderSideItemScanned.Controls.Add(this.lblSetQuantity);
             this.panelPlaceOrderSideItemScanned.Controls.Add(this.lblPrice);
             this.panelPlaceOrderSideItemScanned.Controls.Add(this.lblProductName);
             this.panelPlaceOrderSideItemScanned.Controls.Add(this.lblProductID);
@@ -968,6 +777,209 @@
             this.lblPrice.Size = new System.Drawing.Size(37, 13);
             this.lblPrice.TabIndex = 2;
             this.lblPrice.Text = "[Price]";
+            // 
+            // btnDiscard
+            // 
+            this.btnDiscard.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.btnDiscard.IconColor = System.Drawing.Color.Black;
+            this.btnDiscard.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnDiscard.Location = new System.Drawing.Point(750, 189);
+            this.btnDiscard.Name = "btnDiscard";
+            this.btnDiscard.Size = new System.Drawing.Size(75, 22);
+            this.btnDiscard.TabIndex = 16;
+            this.btnDiscard.Text = "[Discard]";
+            this.btnDiscard.UseVisualStyleBackColor = true;
+            this.btnDiscard.Click += new System.EventHandler(this.btnDiscard_Click);
+            // 
+            // btnSave
+            // 
+            this.btnSave.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.btnSave.IconColor = System.Drawing.Color.Black;
+            this.btnSave.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnSave.Location = new System.Drawing.Point(669, 189);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(75, 22);
+            this.btnSave.TabIndex = 15;
+            this.btnSave.Text = "[Save]";
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
+            // btnEnterReplenish
+            // 
+            this.btnEnterReplenish.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.btnEnterReplenish.IconColor = System.Drawing.Color.Black;
+            this.btnEnterReplenish.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnEnterReplenish.Location = new System.Drawing.Point(832, 62);
+            this.btnEnterReplenish.Name = "btnEnterReplenish";
+            this.btnEnterReplenish.Size = new System.Drawing.Size(75, 22);
+            this.btnEnterReplenish.TabIndex = 10;
+            this.btnEnterReplenish.Text = "[Enter]";
+            this.btnEnterReplenish.UseVisualStyleBackColor = true;
+            this.btnEnterReplenish.Click += new System.EventHandler(this.btnEnterReplenish_Click);
+            // 
+            // btnEnter
+            // 
+            this.btnEnter.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnEnter.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.btnEnter.IconColor = System.Drawing.Color.Black;
+            this.btnEnter.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnEnter.Location = new System.Drawing.Point(368, 0);
+            this.btnEnter.Name = "btnEnter";
+            this.btnEnter.Size = new System.Drawing.Size(65, 27);
+            this.btnEnter.TabIndex = 5;
+            this.btnEnter.Text = "Enter";
+            this.btnEnter.UseVisualStyleBackColor = true;
+            this.btnEnter.Click += new System.EventHandler(this.btnEnter_Click);
+            // 
+            // btnSetQty
+            // 
+            this.btnSetQty.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnSetQty.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.btnSetQty.IconColor = System.Drawing.Color.Black;
+            this.btnSetQty.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnSetQty.Location = new System.Drawing.Point(573, 0);
+            this.btnSetQty.Name = "btnSetQty";
+            this.btnSetQty.Size = new System.Drawing.Size(110, 37);
+            this.btnSetQty.TabIndex = 5;
+            this.btnSetQty.Tag = "SetQty";
+            this.btnSetQty.Text = "[F6] - Set Quantity";
+            this.btnSetQty.UseVisualStyleBackColor = true;
+            this.btnSetQty.Click += new System.EventHandler(this.btnPOSControls);
+            // 
+            // btnVoidItem
+            // 
+            this.btnVoidItem.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnVoidItem.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.btnVoidItem.IconColor = System.Drawing.Color.Black;
+            this.btnVoidItem.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnVoidItem.Location = new System.Drawing.Point(463, 0);
+            this.btnVoidItem.Name = "btnVoidItem";
+            this.btnVoidItem.Size = new System.Drawing.Size(110, 37);
+            this.btnVoidItem.TabIndex = 4;
+            this.btnVoidItem.Tag = "VoidItem";
+            this.btnVoidItem.Text = "[F5] - Void Item";
+            this.btnVoidItem.UseVisualStyleBackColor = true;
+            this.btnVoidItem.Click += new System.EventHandler(this.btnPOSControls);
+            // 
+            // btnAddDiscount
+            // 
+            this.btnAddDiscount.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnAddDiscount.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.btnAddDiscount.IconColor = System.Drawing.Color.Black;
+            this.btnAddDiscount.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnAddDiscount.Location = new System.Drawing.Point(353, 0);
+            this.btnAddDiscount.Name = "btnAddDiscount";
+            this.btnAddDiscount.Size = new System.Drawing.Size(110, 37);
+            this.btnAddDiscount.TabIndex = 3;
+            this.btnAddDiscount.Tag = "AddDiscount";
+            this.btnAddDiscount.Text = "[F4] - Add Discount";
+            this.btnAddDiscount.UseVisualStyleBackColor = true;
+            this.btnAddDiscount.Click += new System.EventHandler(this.btnPOSControls);
+            // 
+            // btnSettle
+            // 
+            this.btnSettle.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnSettle.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.btnSettle.IconColor = System.Drawing.Color.Black;
+            this.btnSettle.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnSettle.Location = new System.Drawing.Point(263, 0);
+            this.btnSettle.Name = "btnSettle";
+            this.btnSettle.Size = new System.Drawing.Size(90, 37);
+            this.btnSettle.TabIndex = 2;
+            this.btnSettle.Tag = "Settle";
+            this.btnSettle.Text = "[F3] - Settle";
+            this.btnSettle.UseVisualStyleBackColor = true;
+            this.btnSettle.Click += new System.EventHandler(this.btnPOSControls);
+            // 
+            // btnProductInquiry
+            // 
+            this.btnProductInquiry.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnProductInquiry.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.btnProductInquiry.IconColor = System.Drawing.Color.Black;
+            this.btnProductInquiry.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnProductInquiry.Location = new System.Drawing.Point(146, 0);
+            this.btnProductInquiry.Name = "btnProductInquiry";
+            this.btnProductInquiry.Size = new System.Drawing.Size(117, 37);
+            this.btnProductInquiry.TabIndex = 1;
+            this.btnProductInquiry.Tag = "ProductInquiry";
+            this.btnProductInquiry.Text = "[F2] - Product Inquiry";
+            this.btnProductInquiry.UseVisualStyleBackColor = true;
+            this.btnProductInquiry.Click += new System.EventHandler(this.btnPOSControls);
+            // 
+            // btnNewTransaction
+            // 
+            this.btnNewTransaction.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnNewTransaction.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.btnNewTransaction.IconColor = System.Drawing.Color.Black;
+            this.btnNewTransaction.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnNewTransaction.Location = new System.Drawing.Point(0, 0);
+            this.btnNewTransaction.Name = "btnNewTransaction";
+            this.btnNewTransaction.Size = new System.Drawing.Size(146, 37);
+            this.btnNewTransaction.TabIndex = 0;
+            this.btnNewTransaction.Tag = "NewTransaction";
+            this.btnNewTransaction.Text = "[F1] - New Transaction";
+            this.btnNewTransaction.UseVisualStyleBackColor = true;
+            this.btnNewTransaction.Click += new System.EventHandler(this.btnPOSControls);
+            // 
+            // btnReturnExchange
+            // 
+            this.btnReturnExchange.AutoSize = true;
+            this.btnReturnExchange.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnReturnExchange.ForeColor = System.Drawing.Color.White;
+            this.btnReturnExchange.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.btnReturnExchange.IconColor = System.Drawing.Color.Black;
+            this.btnReturnExchange.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnReturnExchange.Location = new System.Drawing.Point(292, 11);
+            this.btnReturnExchange.Margin = new System.Windows.Forms.Padding(2);
+            this.btnReturnExchange.Name = "btnReturnExchange";
+            this.btnReturnExchange.Size = new System.Drawing.Size(162, 56);
+            this.btnReturnExchange.TabIndex = 2;
+            this.btnReturnExchange.Text = "[Return and Exchanges]";
+            this.btnReturnExchange.UseVisualStyleBackColor = true;
+            this.btnReturnExchange.Click += new System.EventHandler(this.btnReturnExchange_Click);
+            // 
+            // btnReplenishInventory
+            // 
+            this.btnReplenishInventory.AutoSize = true;
+            this.btnReplenishInventory.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnReplenishInventory.ForeColor = System.Drawing.Color.White;
+            this.btnReplenishInventory.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.btnReplenishInventory.IconColor = System.Drawing.Color.Black;
+            this.btnReplenishInventory.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnReplenishInventory.Location = new System.Drawing.Point(143, 11);
+            this.btnReplenishInventory.Margin = new System.Windows.Forms.Padding(2);
+            this.btnReplenishInventory.Name = "btnReplenishInventory";
+            this.btnReplenishInventory.Size = new System.Drawing.Size(145, 56);
+            this.btnReplenishInventory.TabIndex = 1;
+            this.btnReplenishInventory.Text = "[Replenish Inventory]";
+            this.btnReplenishInventory.UseVisualStyleBackColor = true;
+            this.btnReplenishInventory.Click += new System.EventHandler(this.btnReplenishInventory_Click);
+            // 
+            // btnPlaceOrder
+            // 
+            this.btnPlaceOrder.AutoSize = true;
+            this.btnPlaceOrder.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPlaceOrder.ForeColor = System.Drawing.Color.White;
+            this.btnPlaceOrder.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.btnPlaceOrder.IconColor = System.Drawing.Color.Black;
+            this.btnPlaceOrder.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnPlaceOrder.Location = new System.Drawing.Point(36, 11);
+            this.btnPlaceOrder.Margin = new System.Windows.Forms.Padding(2);
+            this.btnPlaceOrder.Name = "btnPlaceOrder";
+            this.btnPlaceOrder.Size = new System.Drawing.Size(103, 56);
+            this.btnPlaceOrder.TabIndex = 0;
+            this.btnPlaceOrder.Text = "[Place Order]";
+            this.btnPlaceOrder.UseVisualStyleBackColor = true;
+            this.btnPlaceOrder.Click += new System.EventHandler(this.btnPlaceOrder_Click);
+            // 
+            // lblSetQuantity
+            // 
+            this.lblSetQuantity.AutoSize = true;
+            this.lblSetQuantity.Location = new System.Drawing.Point(60, 67);
+            this.lblSetQuantity.Name = "lblSetQuantity";
+            this.lblSetQuantity.Size = new System.Drawing.Size(52, 13);
+            this.lblSetQuantity.TabIndex = 6;
+            this.lblSetQuantity.Text = "[Quantity]";
             // 
             // frmOrder
             // 
@@ -1093,5 +1105,6 @@
         private System.Windows.Forms.Label lblPrice;
         private System.Windows.Forms.Label lblProductName;
         private System.Windows.Forms.Label lblProductID;
+        private System.Windows.Forms.Label lblSetQuantity;
     }
 }

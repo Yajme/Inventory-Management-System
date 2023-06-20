@@ -133,6 +133,12 @@
     <Compile Include="Dashboard\frmPanelContainers\frmOrderForms\frmProductInquiry.Designer.cs">
       <DependentUpon>frmProductInquiry.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dashboard\frmPanelContainers\frmOrderForms\frmSetQuantity.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dashboard\frmPanelContainers\frmOrderForms\frmSetQuantity.Designer.cs">
+      <DependentUpon>frmSetQuantity.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dashboard\frmPanelContainers\frmSalesReport.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -178,6 +184,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dashboard\frmPanelContainers\frmOrderForms\frmProductInquiry.resx">
       <DependentUpon>frmProductInquiry.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dashboard\frmPanelContainers\frmOrderForms\frmSetQuantity.resx">
+      <DependentUpon>frmSetQuantity.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dashboard\frmPanelContainers\frmSalesReport.resx">
       <DependentUpon>frmSalesReport.cs</DependentUpon>

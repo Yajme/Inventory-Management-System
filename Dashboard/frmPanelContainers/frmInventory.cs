@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Inventory_Management_System.Dashboard.frmPanelContainers.frmInventoyForms;
-using static Inventory_Management_System.db.db;
+
 namespace Inventory_Management_System.Dashboard.frmPanelContainers
 {
     public partial class frmInventory : Form
