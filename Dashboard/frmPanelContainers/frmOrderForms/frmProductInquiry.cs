@@ -74,10 +74,8 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers.frmOrderForms
             string colName = dataGridView1.Columns[e.ColumnIndex].Name;
             if(colName == "colAdd")
             {
-               // MessageBox.Show(dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString());
                 frmOrder.instance.txtFormTextbox.Text = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
                 frmOrder.instance.SimulateEnterKeyPress();
-                //itemScan(dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString());
             }
         }
         private void loadItems()
@@ -132,29 +130,13 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers.frmOrderForms
             }
         }
 
-        private void frmProductInquiry_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Escape)
-            {
-                MessageBox.Show("Escape key pressed");
-
-                // prevent child controls from handling this event as well
-                e.SuppressKeyPress = true;
-            }
-
-            if(e.KeyCode.ToString() == "Escape")
-            {
-                MessageBox.Show("Escape key pressed");
-            }
-        }
-
+     
         private void frmProductInquiry_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == (char)Keys.Escape)
-            {
-                MessageBox.Show("Escape key pressed");
+            
                 this.Close();
             }
         }
+
     }
-}
