@@ -52,6 +52,9 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
             total = 0;
             txtQuery.Clear();
             txtCashTendered.Clear();
+            lblProductID.Text = "";
+            lblProductName.Text = "";
+            lblPrice.Text = "";
             lblCash.Text = "0.00";
             lblChange.Text = "0.00";
             lblSubTotal.Text  = "0.00";
@@ -110,12 +113,19 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
                     {
                         row++;
                         dataGridView1.Rows.Add(row, itemfetched[0], itemfetched[1], itemfetched[2], 1, string.Format("0", "#,##0.00"));
+
+                        lblProductID.Text = itemfetched[0];
+                        lblProductName.Text = itemfetched[1];
+                        lblPrice.Text = itemfetched[2];
                     }
                 }
                 else
                 {
                     row++;
                     dataGridView1.Rows.Add(row, itemfetched[0], itemfetched[1], itemfetched[2], 1, string.Format("0", "#,##0.00"));
+                    lblProductID.Text = itemfetched[0];
+                    lblProductName.Text = itemfetched[1];
+                    lblPrice.Text = itemfetched[2];
                 }
 
                 foreach (DataGridViewRow rows in dataGridView1.Rows)
@@ -178,7 +188,7 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
 
                     // Toggle on or off
                     frmProductInquiry frmNew = new frmProductInquiry();
-                    frmNew.Show();
+                    frmNew.ShowDialog();
                     break;
                 case "Settle":
                     panelCash.Visible = true;

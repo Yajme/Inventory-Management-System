@@ -141,12 +141,18 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers.frmOrderForms
                 // prevent child controls from handling this event as well
                 e.SuppressKeyPress = true;
             }
+
+            if(e.KeyCode.ToString() == "Escape")
+            {
+                MessageBox.Show("Escape key pressed");
+            }
         }
 
         private void frmProductInquiry_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == (char)Keys.Escape)
             {
+                MessageBox.Show("Escape key pressed");
                 this.Close();
             }
         }

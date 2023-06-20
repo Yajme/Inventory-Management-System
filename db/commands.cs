@@ -647,8 +647,14 @@ END
             //cmd.ExecuteNonQuery();
             using (cmd = new SqlCommand(ordercommand, con, t))
             {
-                cmd.Parameters.AddWithValue("@CustomerID", data[0]);
-                cmd.Parameters.AddWithValue("@SaleAmount", data[1]);
+                // cmd.Parameters.AddWithValue("@CustomerID", data[0]);
+                //cmd.Parameters.AddWithValue("@SaleAmount", data[1]);
+
+
+                cmd.Parameters.Add("@CustomerID", SqlDbType.Int).Value = data[0];
+                cmd.Parameters.Add("@SaleAmount", SqlDbType.Decimal).Value = data[1];
+
+
 
                 orderid = (int)cmd.ExecuteScalar();
             }

@@ -97,6 +97,11 @@
             this.colQuantityH = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel6 = new System.Windows.Forms.Panel();
             this.label10 = new System.Windows.Forms.Label();
+            this.btnSetQty = new FontAwesome.Sharp.IconButton();
+            this.panelPlaceOrderSideItemScanned = new System.Windows.Forms.Panel();
+            this.lblProductID = new System.Windows.Forms.Label();
+            this.lblProductName = new System.Windows.Forms.Label();
+            this.lblPrice = new System.Windows.Forms.Label();
             this.panelTop.SuspendLayout();
             this.panelCash.SuspendLayout();
             this.panelPlaceOrder.SuspendLayout();
@@ -115,6 +120,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.panel6.SuspendLayout();
+            this.panelPlaceOrderSideItemScanned.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelTop
@@ -221,9 +227,10 @@
             this.panelPlaceOrder.Controls.Add(this.panelOrderTop);
             this.panelPlaceOrder.Controls.Add(this.panelOrderControls);
             this.panelPlaceOrder.Controls.Add(this.panelPlaceOrderSide);
+            this.panelPlaceOrder.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelPlaceOrder.Location = new System.Drawing.Point(0, 0);
             this.panelPlaceOrder.Name = "panelPlaceOrder";
-            this.panelPlaceOrder.Size = new System.Drawing.Size(819, 238);
+            this.panelPlaceOrder.Size = new System.Drawing.Size(1095, 576);
             this.panelPlaceOrder.TabIndex = 1;
             this.panelPlaceOrder.Visible = false;
             // 
@@ -249,7 +256,7 @@
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.Size = new System.Drawing.Size(582, 174);
+            this.dataGridView1.Size = new System.Drawing.Size(858, 512);
             this.dataGridView1.TabIndex = 5;
             // 
             // colRow
@@ -311,7 +318,7 @@
             this.panelOrderTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelOrderTop.Location = new System.Drawing.Point(0, 0);
             this.panelOrderTop.Name = "panelOrderTop";
-            this.panelOrderTop.Size = new System.Drawing.Size(582, 27);
+            this.panelOrderTop.Size = new System.Drawing.Size(858, 27);
             this.panelOrderTop.TabIndex = 6;
             // 
             // btnEnter
@@ -341,15 +348,16 @@
             // 
             // panelOrderControls
             // 
+            this.panelOrderControls.Controls.Add(this.btnSetQty);
             this.panelOrderControls.Controls.Add(this.btnVoidItem);
             this.panelOrderControls.Controls.Add(this.btnAddDiscount);
             this.panelOrderControls.Controls.Add(this.btnSettle);
             this.panelOrderControls.Controls.Add(this.btnProductInquiry);
             this.panelOrderControls.Controls.Add(this.btnNewTransaction);
             this.panelOrderControls.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelOrderControls.Location = new System.Drawing.Point(0, 201);
+            this.panelOrderControls.Location = new System.Drawing.Point(0, 539);
             this.panelOrderControls.Name = "panelOrderControls";
-            this.panelOrderControls.Size = new System.Drawing.Size(582, 37);
+            this.panelOrderControls.Size = new System.Drawing.Size(858, 37);
             this.panelOrderControls.TabIndex = 4;
             // 
             // btnVoidItem
@@ -429,6 +437,7 @@
             // 
             // panelPlaceOrderSide
             // 
+            this.panelPlaceOrderSide.Controls.Add(this.panelPlaceOrderSideItemScanned);
             this.panelPlaceOrderSide.Controls.Add(this.panel1);
             this.panelPlaceOrderSide.Controls.Add(this.panelSaleTotalContaine);
             this.panelPlaceOrderSide.Controls.Add(this.panel2);
@@ -436,9 +445,9 @@
             this.panelPlaceOrderSide.Controls.Add(this.panel4);
             this.panelPlaceOrderSide.Controls.Add(this.panel5);
             this.panelPlaceOrderSide.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panelPlaceOrderSide.Location = new System.Drawing.Point(582, 0);
+            this.panelPlaceOrderSide.Location = new System.Drawing.Point(858, 0);
             this.panelPlaceOrderSide.Name = "panelPlaceOrderSide";
-            this.panelPlaceOrderSide.Size = new System.Drawing.Size(237, 238);
+            this.panelPlaceOrderSide.Size = new System.Drawing.Size(237, 576);
             this.panelPlaceOrderSide.TabIndex = 1;
             // 
             // panel1
@@ -446,7 +455,7 @@
             this.panel1.Controls.Add(this.lblSubTotal);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 38);
+            this.panel1.Location = new System.Drawing.Point(0, 376);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(237, 40);
             this.panel1.TabIndex = 6;
@@ -499,7 +508,7 @@
             this.panel2.Controls.Add(this.lblVAT);
             this.panel2.Controls.Add(this.label2);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(0, 78);
+            this.panel2.Location = new System.Drawing.Point(0, 416);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(237, 40);
             this.panel2.TabIndex = 7;
@@ -530,7 +539,7 @@
             this.panel3.Controls.Add(this.lblTotal);
             this.panel3.Controls.Add(this.label3);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel3.Location = new System.Drawing.Point(0, 118);
+            this.panel3.Location = new System.Drawing.Point(0, 456);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(237, 40);
             this.panel3.TabIndex = 7;
@@ -561,7 +570,7 @@
             this.panel4.Controls.Add(this.lblCash);
             this.panel4.Controls.Add(this.label4);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel4.Location = new System.Drawing.Point(0, 158);
+            this.panel4.Location = new System.Drawing.Point(0, 496);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(237, 40);
             this.panel4.TabIndex = 7;
@@ -592,7 +601,7 @@
             this.panel5.Controls.Add(this.lblChange);
             this.panel5.Controls.Add(this.label5);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel5.Location = new System.Drawing.Point(0, 198);
+            this.panel5.Location = new System.Drawing.Point(0, 536);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(237, 40);
             this.panel5.TabIndex = 8;
@@ -621,6 +630,7 @@
             // panelContainer
             // 
             this.panelContainer.Controls.Add(this.panelReplenishInventory);
+            this.panelContainer.Controls.Add(this.panelPlaceOrder);
             this.panelContainer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelContainer.Location = new System.Drawing.Point(0, 73);
             this.panelContainer.Name = "panelContainer";
@@ -632,7 +642,6 @@
             this.panelReplenishInventory.Controls.Add(this.cmbWarehouse);
             this.panelReplenishInventory.Controls.Add(this.label11);
             this.panelReplenishInventory.Controls.Add(this.btnDiscard);
-            this.panelReplenishInventory.Controls.Add(this.panelPlaceOrder);
             this.panelReplenishInventory.Controls.Add(this.btnSave);
             this.panelReplenishInventory.Controls.Add(this.label9);
             this.panelReplenishInventory.Controls.Add(this.dataGridView3);
@@ -908,6 +917,58 @@
             this.label10.TabIndex = 14;
             this.label10.Text = "History:";
             // 
+            // btnSetQty
+            // 
+            this.btnSetQty.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnSetQty.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.btnSetQty.IconColor = System.Drawing.Color.Black;
+            this.btnSetQty.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnSetQty.Location = new System.Drawing.Point(573, 0);
+            this.btnSetQty.Name = "btnSetQty";
+            this.btnSetQty.Size = new System.Drawing.Size(110, 37);
+            this.btnSetQty.TabIndex = 5;
+            this.btnSetQty.Tag = "SetQty";
+            this.btnSetQty.Text = "[F6] - Set Quantity";
+            this.btnSetQty.UseVisualStyleBackColor = true;
+            // 
+            // panelPlaceOrderSideItemScanned
+            // 
+            this.panelPlaceOrderSideItemScanned.Controls.Add(this.lblPrice);
+            this.panelPlaceOrderSideItemScanned.Controls.Add(this.lblProductName);
+            this.panelPlaceOrderSideItemScanned.Controls.Add(this.lblProductID);
+            this.panelPlaceOrderSideItemScanned.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelPlaceOrderSideItemScanned.Location = new System.Drawing.Point(0, 40);
+            this.panelPlaceOrderSideItemScanned.Name = "panelPlaceOrderSideItemScanned";
+            this.panelPlaceOrderSideItemScanned.Size = new System.Drawing.Size(237, 100);
+            this.panelPlaceOrderSideItemScanned.TabIndex = 9;
+            // 
+            // lblProductID
+            // 
+            this.lblProductID.AutoSize = true;
+            this.lblProductID.Location = new System.Drawing.Point(17, 18);
+            this.lblProductID.Name = "lblProductID";
+            this.lblProductID.Size = new System.Drawing.Size(61, 13);
+            this.lblProductID.TabIndex = 0;
+            this.lblProductID.Text = "[ProductID]";
+            // 
+            // lblProductName
+            // 
+            this.lblProductName.AutoSize = true;
+            this.lblProductName.Location = new System.Drawing.Point(17, 42);
+            this.lblProductName.Name = "lblProductName";
+            this.lblProductName.Size = new System.Drawing.Size(78, 13);
+            this.lblProductName.TabIndex = 1;
+            this.lblProductName.Text = "[ProductName]";
+            // 
+            // lblPrice
+            // 
+            this.lblPrice.AutoSize = true;
+            this.lblPrice.Location = new System.Drawing.Point(17, 67);
+            this.lblPrice.Name = "lblPrice";
+            this.lblPrice.Size = new System.Drawing.Size(37, 13);
+            this.lblPrice.TabIndex = 2;
+            this.lblPrice.Text = "[Price]";
+            // 
             // frmOrder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -950,6 +1011,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
+            this.panelPlaceOrderSideItemScanned.ResumeLayout(false);
+            this.panelPlaceOrderSideItemScanned.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1025,5 +1088,10 @@
         private System.Windows.Forms.Panel panelCash;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private FontAwesome.Sharp.IconButton btnSetQty;
+        private System.Windows.Forms.Panel panelPlaceOrderSideItemScanned;
+        private System.Windows.Forms.Label lblPrice;
+        private System.Windows.Forms.Label lblProductName;
+        private System.Windows.Forms.Label lblProductID;
     }
 }
