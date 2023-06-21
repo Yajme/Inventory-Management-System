@@ -824,6 +824,34 @@ END
         }
 
     }
+
+    public static DataTable loadEligibleExchangeReturn()
+    {
+        DataTable dt = new DataTable();
+        con.Open();
+
+        cmd = new SqlCommand("SELECT Orders.OrderID, Customers.CustomerName ,Orders.TransactionDateTime FROM Orders JOIN Customers ON Orders.CustomerID = Customers.CustomerID where Orders.TransactionDateTime >= CURRENT_TIMESTAMP -30\r\n", con);
+        dt.Load(cmd.ExecuteReader());
+
+        con.Close();
+        return dt;
+    }
+
+    public static DataTable loadEligbleItems(int OrderID)
+    {
+
+
+        DataTable dt = new DataTable();
+        con.Open();
+
+        cmd = new SqlCommand("SELECT OrderItems.OrderItemID, Products.Description, OrderItems.Quantity, OrderItems.UnitPrice FROM OrderItems JOIN Products ON OrderItems.ProductID = Products.ProductID WHERE OrderItems.OrderID = @OrderID;", con);
+        cmd.Parameters.Add("@OrderID",SqlDbType.Int ).Value = OrderID;
+        dt.Load(cmd.ExecuteReader());
+
+        con.Close();
+        return dt;
+
+    }
 }
         
 

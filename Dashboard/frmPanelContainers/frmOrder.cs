@@ -77,7 +77,9 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
 
         private void btnReturnExchange_Click(object sender, EventArgs e)
         {
+            fillContainer(panelReturnExchange);
 
+            loadEligibleExchangeReturn();
         }
 
         private void fillContainer(Panel panel)
@@ -517,6 +519,43 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
 
         // replenishloaddata
 
+        //Return and Exchange
 
+        //datagridview5 -> Eligible
+        //DataGridView4 -> Actions or list of items
+
+        private void loadEligibleExchangeReturn()
+        {
+            DataTable dt = commands.loadEligibleExchangeReturn();
+            dataGridView5.Rows.Clear();
+            foreach(DataRow row in dt.Rows)
+            {
+                dataGridView5.Rows.Add(row[0], row[1], row[2], "[Return]", "[Exchange]");
+            }
+
+        }
+        private void loadEligibleItems(int orderID)
+        {
+           DataTable dt = commands.loadEligbleItems(orderID);
+            dataGridView4.Rows.Clear();
+            foreach (DataRow row in dt.Rows)
+            {
+                dataGridView4.Rows.Add(row[0], row[1], row[2], row[3]);
+            }
+        }
+
+        private void dataGridView5_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            string colName = dataGridView5.Columns[e.ColumnIndex].Name;
+            if(colName == "colReturn")
+            {
+                loadEligibleItems((int)dataGridView5.Rows[e.RowIndex].Cells[0].Value);
+                MessageBox.Show("Return");
+            }else if(colName == "colExchange")
+            {
+                MessageBox.Show("Exchange");
+            }
+        }
+        //Return and Exchange
     }
 }
