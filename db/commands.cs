@@ -409,7 +409,7 @@ public static class commands
     }
     public static int stockWarehouseValidator(string[] stock)
     {
-        int query = 0;
+        int query = -1;
         con.Open();
         cmd = new SqlCommand("SELECT QuantityStock FROM WarehouseStock WHERE ProductID= @ProductID AND WarehouseID= @WarehouseID", con);
         cmd.Parameters.AddWithValue("@ProductID", stock[0]);//productid

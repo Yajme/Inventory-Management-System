@@ -31,7 +31,7 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
 
         }
 
-        //formcontrol
+        /* <--FormControlsStart -->  */
         private void frmOrder_Load(object sender, EventArgs e)
         {
             this.KeyPreview = true;
@@ -92,11 +92,14 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
 
 
 
-        //formcontrol
+        /* <--FormControls End -->  */
 
-        //placeorder
-       
-      
+        /* <--Place Order Start -->  */
+        public void SimulateEnterKeyPress()
+        {
+            txtQuery_KeyPress(this, new KeyPressEventArgs((char)Keys.Enter));
+        }
+
         public void itemScan(string query)
         {
             bool found = false;
@@ -204,7 +207,7 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
                     break;
                 case "ProductInquiry":
 
-                    // Toggle on or off
+                   
                     frmProductInquiry frmNew = new frmProductInquiry();
                     frmNew.ShowDialog();
                     break;
@@ -216,9 +219,13 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
 
                     break;
                 case "VoidItem":
-                    frmVoidItem frmVoidItem = new frmVoidItem();
-                    frmVoidItem.ShowDialog();
-                    txtQuery.Focus();
+                    if(dataGridView1.RowCount > 0)
+                    {
+                        frmVoidItem frmVoidItem = new frmVoidItem();
+                        frmVoidItem.ShowDialog();
+                        txtQuery.Focus();
+                    }
+                    
                     break;
                 case "SetQty":
                     frmSetQuantity frmNewQ = new frmSetQuantity();
@@ -228,15 +235,139 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
 
             }
         }
-        //placeorder
 
-        //replenishbutton
+
+        private void txtQuery_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                itemScan(txtQuery.Text);
+            }
+        }
+
+        public void itemVoid()
+        {
+            total -= Convert.ToDouble(dataGridView1.Rows[dataGridView1.RowCount - 1].Cells[5].Value);
+            lblSaleTotal.Text = total.ToString("#,##.00");
+            dataGridView1.Rows.RemoveAt(dataGridView1.Rows.Count - 1);
+        }
+
+
+
+
+        private void newSale()
+        {
+            string customer = "0";
+            try
+            {
+                //OrderTable
+                string[] Sale = new string[2];
+                Sale[0] = customer;
+                Sale[1] = total.ToString("#,##0.00");
+
+                //OrderItemTable
+                DataTable dt = new DataTable();
+                dt.Columns.Add("ProductID");
+                dt.Columns.Add("Quantity");
+                dt.Columns.Add("Total");
+
+                DataRow dr = null;
+
+                foreach (DataGridViewRow row in dataGridView1.Rows)
+                {
+                    dr = dt.NewRow();
+                    dr["ProductID"] = row.Cells["colID"].Value;
+                    dr["Quantity"] = row.Cells["colQuantity"].Value;
+                    dr["Total"] = row.Cells["colTotalPrice"].Value;
+                    dt.Rows.Add(dr);
+                }
+
+                commands.insertOrder(Sale, dt);
+                MessageBox.Show("Thank you Shop Again!");
+                clearPlaceOrderPanel();
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("Database Error: " + ex.Message + " \n\n\n" + ex.Procedure);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("System Error: " + ex.Message + " \n\n\n" + ex.StackTrace.ToString());
+            }
+
+        }
+
+        private void txtCashTendered_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+
+                double cash = double.Parse(txtCashTendered.Text);
+                double change = cash - total;
+                double subtotal = (total / 112) * 100;
+                double vat = total - subtotal;
+
+                lblSubTotal.Text = subtotal.ToString("#,##0.00");
+                lblVAT.Text = vat.ToString("#,##0.00");
+                lblTotal.Text = total.ToString("#,##0.00");
+                lblCash.Text = cash.ToString("#,##0.00");
+                lblChange.Text = change.ToString("#,##0.00");
+                panelCash.Visible = false;
+                newSale();
+                txtQuery.Focus();
+            }
+            else if (e.KeyChar == (char)Keys.Escape)
+            {
+                panelCash.Visible = false;
+                txtQuery.Focus();
+            }
+
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
+            {
+                e.Handled = true;
+            }
+
+            // only allow one decimal point
+            if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+            {
+                e.Handled = true;
+            }
+
+        }
+
+        private void txtCashTendered_TextChanged(object sender, EventArgs e)
+        {
+            /*
+            if (txtCashTendered.Text == "" || txtCashTendered.Text == "0") return;
+            decimal number;
+            number = decimal.Parse(txtCashTendered.Text, System.Globalization.NumberStyles.Currency);
+            txtCashTendered.Text = number.ToString("#,#");
+            
+            */
+            txtCashTendered.SelectionStart = txtCashTendered.Text.Length;
+        }
+
+        private void txtQuery_TextChanged(object sender, EventArgs e)
+        {
+            if (txtQuery.Text == "")
+            {
+                txtQuery.Focus();
+            }
+        }
+        /* <-- Place Order End -->  */
+
+
+
+
+
+        /* <--Replenish Inventory Start--> */
+
         private void movementStock(string[] stock)
         {
             try
             {
                 int validator = commands.stockWarehouseValidator(stock);
-                if (validator == 0) //new
+                if (validator == -1) //new
                 {
                     commands.insertStocktoWarehouse(stock);
                 }
@@ -259,15 +390,16 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
         }
         private void btnSave_Click(object sender, EventArgs e)
         {
-            int outbound;
-            if (string.IsNullOrWhiteSpace(txtQuantity.Text) || !int.TryParse(txtQuantity.Text, out outbound))
+            if (string.IsNullOrWhiteSpace(txtQuantity.Text) || !int.TryParse(txtQuantity.Text, out int outbound))
             {
                 MessageBox.Show("Invalid Quantity!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtQuantity.Focus();
-            }else if(cmbWarehouse.Text == string.Empty)
+            }
+            else if (cmbWarehouse.Text == string.Empty)
             {
                 MessageBox.Show("Please Select Warehouse!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }else if (!scan)
+            }
+            else if (!scan)
             {
                 MessageBox.Show("Indicate Product!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtProductID.Focus();
@@ -286,7 +418,7 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
 
                 loadHistoryandProducts();
             }
-            
+
         }
 
         private void btnDiscard_Click(object sender, EventArgs e)
@@ -303,9 +435,16 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
                     if (item.Length > 0)
                     {
                         txtProductName.Text = item[1];
+                        txtProductID.ReadOnly = true;
+                        scan = true;
                     }
-                    txtProductID.ReadOnly = true;
-                    scan = true;
+                    else
+                    {
+
+                        MessageBox.Show("Not Found!", "Invalid Field", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                    }
+                    
                 }
             }
             else
@@ -323,11 +462,7 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
         }
 
         
-
-
-        //replenishbutton
-
-        // replenishloaddata
+       
         private void resetTextbox()
         {
             txtProductID.Clear();
@@ -375,32 +510,9 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
             //history
 
         }
-
-        private void frmOrder_KeyPress(object sender, KeyPressEventArgs e)
-        {
-
-        }
-
-        private void txtQuery_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == (char)Keys.Enter)
-            {
-                itemScan(txtQuery.Text);
-            }
-        }
-        public void SimulateEnterKeyPress()
-        {
-            txtQuery_KeyPress(this, new KeyPressEventArgs((char)Keys.Enter));
-        }
-        public void itemVoid()
-        {
-            total -= Convert.ToDouble(dataGridView1.Rows[dataGridView1.RowCount - 1].Cells[5].Value);
-            lblSaleTotal.Text = total.ToString("#,##.00");
-            dataGridView1.Rows.RemoveAt(dataGridView1.Rows.Count - 1);
-        }
         private void txtProductID_KeyPress(object sender, KeyPressEventArgs e)
         {
-            
+
             if (e.KeyChar == (char)Keys.Enter)
             {
                 lastID = txtProductID.Text;
@@ -410,116 +522,30 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
 
         private void txtProductID_TextChanged(object sender, EventArgs e)
         {
-            if(txtProductID.Text == "")
+            if (txtProductID.Text == "")
             {
                 resetTextbox();
             }
         }
-
-        private void newSale()
+       
+        private void txtQuantity_KeyPress(object sender, KeyPressEventArgs e)
         {
-            string customer = "0";
-            try
-            {
-                //OrderTable
-                string[] Sale = new string[2];
-                Sale[0] = customer;
-                Sale[1] = total.ToString("#,##0.00");
-
-                //OrderItemTable
-                DataTable dt = new DataTable();
-                dt.Columns.Add("ProductID");
-                dt.Columns.Add("Quantity");
-                dt.Columns.Add("Total");
-
-                DataRow dr = null;
-
-                foreach (DataGridViewRow row in dataGridView1.Rows)
-                {
-                    dr = dt.NewRow();
-                    dr["ProductID"] = row.Cells["colID"].Value;
-                    dr["Quantity"] = row.Cells["colQuantity"].Value;
-                    dr["Total"] = row.Cells["colTotalPrice"].Value;
-                    dt.Rows.Add(dr);
-                }
-
-                commands.insertOrder(Sale, dt);
-                MessageBox.Show("Thank you Shop Again!");
-                clearPlaceOrderPanel();
-            }
-            catch (SqlException ex)
-            {
-                MessageBox.Show("Database Error: " + ex.Message + " \n\n\n" + ex.Procedure);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("System Error: " + ex.Message + " \n\n\n" + ex.StackTrace.ToString());
-            }
-           
-        }
-
-        private void txtCashTendered_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == (char)Keys.Enter)
-            {
-                
-                double cash = double.Parse(txtCashTendered.Text);
-                double change = cash - total;
-                double subtotal = (total/112) * 100;
-                double vat = total - subtotal;
-
-                lblSubTotal.Text = subtotal.ToString("#,##0.00");
-                lblVAT.Text = vat.ToString("#,##0.00");
-                lblTotal.Text = total.ToString("#,##0.00"); 
-                lblCash.Text = cash.ToString("#,##0.00");
-                lblChange.Text = change.ToString("#,##0.00");
-                panelCash.Visible = false;
-                newSale();
-                txtQuery.Focus();
-            }
-            else if(e.KeyChar == (char)Keys.Escape)
-            {
-                panelCash.Visible = false;
-                txtQuery.Focus();
-            }
-
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
             {
                 e.Handled = true;
             }
-
-            // only allow one decimal point
-            if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
-            {
-                e.Handled = true;
-            }
-           
-        }
-
-        private void txtCashTendered_TextChanged(object sender, EventArgs e)
-        {
-            /*
-            if (txtCashTendered.Text == "" || txtCashTendered.Text == "0") return;
-            decimal number;
-            number = decimal.Parse(txtCashTendered.Text, System.Globalization.NumberStyles.Currency);
-            txtCashTendered.Text = number.ToString("#,#");
-            
-            */
-            txtCashTendered.SelectionStart = txtCashTendered.Text.Length;
-        }
-
-        private void txtQuery_TextChanged(object sender, EventArgs e)
-        {
-            if(txtQuery.Text == "")
-            {
-                Focus();
-            }
         }
 
 
-        // replenishloaddata
 
-        //Return and Exchange
+
+
+        /* <--Replenish Inventory End--> */
+
+
+
+
+        /* <--Exchange and Return Start -->  */
 
         //datagridview5 -> Eligible
         //DataGridView4 -> Actions or list of items
@@ -530,7 +556,7 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
             dataGridView5.Rows.Clear();
             foreach(DataRow row in dt.Rows)
             {
-                dataGridView5.Rows.Add(row[0], row[1], row[2], "[Return]", "[Exchange]");
+                dataGridView5.Rows.Add(row[0], row[1], row[2], "[View]");
             }
 
         }
@@ -542,20 +568,49 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
             {
                 dataGridView4.Rows.Add(row[0], row[1], row[2], row[3]);
             }
+            dataGridView4.Columns[4].ReadOnly = false;
         }
 
         private void dataGridView5_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             string colName = dataGridView5.Columns[e.ColumnIndex].Name;
-            if(colName == "colReturn")
+            if(colName == "colView")
             {
                 loadEligibleItems((int)dataGridView5.Rows[e.RowIndex].Cells[0].Value);
-                MessageBox.Show("Return");
-            }else if(colName == "colExchange")
-            {
-                MessageBox.Show("Exchange");
             }
         }
-        //Return and Exchange
+
+        private void btnRESave_Click(object sender, EventArgs e)
+        {
+            StringBuilder sb = new StringBuilder();
+            foreach (DataGridViewRow row in dataGridView4.Rows)
+            {
+                DataGridViewCheckBoxCell checkBoxCell = row.Cells[4] as DataGridViewCheckBoxCell;
+
+                if (checkBoxCell != null && (bool)checkBoxCell.Value)
+                {
+                    sb.Append(row.Cells[0].Value);
+                }
+
+
+            }
+            MessageBox.Show(sb.ToString());
+            //foreach (DataGridViewRow row in dataGridView4.Rows)
+            //{
+            //    bool checkedRow = (bool)row.Cells[4].Value;
+            //    if (checkedRow)
+            //    {
+            //        sb.Append(row.Cells[0]);
+            //    }
+            //}
+            //MessageBox.Show(sb.ToString());
+        }
+
+
+
+
+
+
+        /* <--Exchange and Return End -->  */
     }
 }

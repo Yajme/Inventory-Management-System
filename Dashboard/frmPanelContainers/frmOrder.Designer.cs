@@ -78,6 +78,32 @@
             this.label5 = new System.Windows.Forms.Label();
             this.panelContainer = new System.Windows.Forms.Panel();
             this.panelReturnExchange = new System.Windows.Forms.Panel();
+            this.panel10 = new System.Windows.Forms.Panel();
+            this.label15 = new System.Windows.Forms.Label();
+            this.cmbAction = new System.Windows.Forms.ComboBox();
+            this.btnRESave = new FontAwesome.Sharp.IconButton();
+            this.btnREDicard = new FontAwesome.Sharp.IconButton();
+            this.panel11 = new System.Windows.Forms.Panel();
+            this.dataGridView4 = new System.Windows.Forms.DataGridView();
+            this.colItemID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colPDesc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colQty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colSelect = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.panel9 = new System.Windows.Forms.Panel();
+            this.dataGridView5 = new System.Windows.Forms.DataGridView();
+            this.colOrderID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colCustomer = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colView = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.panel7 = new System.Windows.Forms.Panel();
+            this.label14 = new System.Windows.Forms.Label();
+            this.btnClear = new FontAwesome.Sharp.IconButton();
+            this.btnFilter = new FontAwesome.Sharp.IconButton();
+            this.panel8 = new System.Windows.Forms.Panel();
+            this.label13 = new System.Windows.Forms.Label();
+            this.toDate = new System.Windows.Forms.DateTimePicker();
+            this.fromDate = new System.Windows.Forms.DateTimePicker();
             this.panelReplenishInventory = new System.Windows.Forms.Panel();
             this.cmbWarehouse = new System.Windows.Forms.ComboBox();
             this.label11 = new System.Windows.Forms.Label();
@@ -104,31 +130,6 @@
             this.colQuantityH = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel6 = new System.Windows.Forms.Panel();
             this.label10 = new System.Windows.Forms.Label();
-            this.panel7 = new System.Windows.Forms.Panel();
-            this.panel8 = new System.Windows.Forms.Panel();
-            this.panel9 = new System.Windows.Forms.Panel();
-            this.label13 = new System.Windows.Forms.Label();
-            this.panel10 = new System.Windows.Forms.Panel();
-            this.panel11 = new System.Windows.Forms.Panel();
-            this.dataGridView4 = new System.Windows.Forms.DataGridView();
-            this.dataGridView5 = new System.Windows.Forms.DataGridView();
-            this.btnREDicard = new FontAwesome.Sharp.IconButton();
-            this.btnRESave = new FontAwesome.Sharp.IconButton();
-            this.btnFilter = new FontAwesome.Sharp.IconButton();
-            this.fromDate = new System.Windows.Forms.DateTimePicker();
-            this.toDate = new System.Windows.Forms.DateTimePicker();
-            this.label14 = new System.Windows.Forms.Label();
-            this.btnClear = new FontAwesome.Sharp.IconButton();
-            this.colOrderID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colCustomer = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colReturn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colExchange = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colItemID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colPID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colQty = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colSelect = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.panelTop.SuspendLayout();
             this.panelCash.SuspendLayout();
             this.panelPlaceOrder.SuspendLayout();
@@ -145,17 +146,17 @@
             this.panel5.SuspendLayout();
             this.panelContainer.SuspendLayout();
             this.panelReturnExchange.SuspendLayout();
+            this.panel10.SuspendLayout();
+            this.panel11.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).BeginInit();
+            this.panel9.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView5)).BeginInit();
+            this.panel7.SuspendLayout();
+            this.panel8.SuspendLayout();
             this.panelReplenishInventory.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.panel6.SuspendLayout();
-            this.panel7.SuspendLayout();
-            this.panel8.SuspendLayout();
-            this.panel9.SuspendLayout();
-            this.panel10.SuspendLayout();
-            this.panel11.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView5)).BeginInit();
             this.SuspendLayout();
             // 
             // panelTop
@@ -743,10 +744,276 @@
             this.panelReturnExchange.Controls.Add(this.panel10);
             this.panelReturnExchange.Controls.Add(this.panel9);
             this.panelReturnExchange.Controls.Add(this.panel7);
-            this.panelReturnExchange.Location = new System.Drawing.Point(23, 29);
+            this.panelReturnExchange.Location = new System.Drawing.Point(12, 13);
             this.panelReturnExchange.Name = "panelReturnExchange";
             this.panelReturnExchange.Size = new System.Drawing.Size(1095, 573);
             this.panelReturnExchange.TabIndex = 3;
+            // 
+            // panel10
+            // 
+            this.panel10.Controls.Add(this.label15);
+            this.panel10.Controls.Add(this.cmbAction);
+            this.panel10.Controls.Add(this.btnRESave);
+            this.panel10.Controls.Add(this.btnREDicard);
+            this.panel10.Controls.Add(this.panel11);
+            this.panel10.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel10.Location = new System.Drawing.Point(550, 58);
+            this.panel10.Name = "panel10";
+            this.panel10.Size = new System.Drawing.Size(545, 515);
+            this.panel10.TabIndex = 2;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(212, 481);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(40, 13);
+            this.label15.TabIndex = 4;
+            this.label15.Text = "Action:";
+            // 
+            // cmbAction
+            // 
+            this.cmbAction.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbAction.FormattingEnabled = true;
+            this.cmbAction.Items.AddRange(new object[] {
+            "Return",
+            "Exchange"});
+            this.cmbAction.Location = new System.Drawing.Point(258, 477);
+            this.cmbAction.Name = "cmbAction";
+            this.cmbAction.Size = new System.Drawing.Size(117, 21);
+            this.cmbAction.TabIndex = 3;
+            // 
+            // btnRESave
+            // 
+            this.btnRESave.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.btnRESave.IconColor = System.Drawing.Color.Black;
+            this.btnRESave.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnRESave.Location = new System.Drawing.Point(100, 470);
+            this.btnRESave.Name = "btnRESave";
+            this.btnRESave.Size = new System.Drawing.Size(88, 33);
+            this.btnRESave.TabIndex = 2;
+            this.btnRESave.Text = "[Save]";
+            this.btnRESave.UseVisualStyleBackColor = true;
+            this.btnRESave.Click += new System.EventHandler(this.btnRESave_Click);
+            // 
+            // btnREDicard
+            // 
+            this.btnREDicard.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.btnREDicard.IconColor = System.Drawing.Color.Black;
+            this.btnREDicard.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnREDicard.Location = new System.Drawing.Point(3, 470);
+            this.btnREDicard.Name = "btnREDicard";
+            this.btnREDicard.Size = new System.Drawing.Size(91, 33);
+            this.btnREDicard.TabIndex = 1;
+            this.btnREDicard.Text = "[Discard]";
+            this.btnREDicard.UseVisualStyleBackColor = true;
+            // 
+            // panel11
+            // 
+            this.panel11.Controls.Add(this.dataGridView4);
+            this.panel11.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel11.Location = new System.Drawing.Point(0, 0);
+            this.panel11.Name = "panel11";
+            this.panel11.Size = new System.Drawing.Size(545, 464);
+            this.panel11.TabIndex = 0;
+            // 
+            // dataGridView4
+            // 
+            this.dataGridView4.AllowUserToAddRows = false;
+            this.dataGridView4.AllowUserToDeleteRows = false;
+            this.dataGridView4.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView4.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.colItemID,
+            this.colPDesc,
+            this.colPrice,
+            this.colQty,
+            this.colSelect});
+            this.dataGridView4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView4.Location = new System.Drawing.Point(0, 0);
+            this.dataGridView4.Name = "dataGridView4";
+            this.dataGridView4.RowHeadersVisible = false;
+            this.dataGridView4.Size = new System.Drawing.Size(545, 464);
+            this.dataGridView4.TabIndex = 0;
+            // 
+            // colItemID
+            // 
+            this.colItemID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.colItemID.HeaderText = "#";
+            this.colItemID.Name = "colItemID";
+            this.colItemID.ReadOnly = true;
+            this.colItemID.Width = 39;
+            // 
+            // colPDesc
+            // 
+            this.colPDesc.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colPDesc.HeaderText = "ProductDesc";
+            this.colPDesc.Name = "colPDesc";
+            this.colPDesc.ReadOnly = true;
+            // 
+            // colPrice
+            // 
+            this.colPrice.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.colPrice.HeaderText = "Price";
+            this.colPrice.Name = "colPrice";
+            this.colPrice.ReadOnly = true;
+            this.colPrice.Width = 56;
+            // 
+            // colQty
+            // 
+            this.colQty.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.colQty.HeaderText = "Quantity";
+            this.colQty.Name = "colQty";
+            this.colQty.ReadOnly = true;
+            this.colQty.Width = 71;
+            // 
+            // colSelect
+            // 
+            this.colSelect.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.colSelect.HeaderText = "";
+            this.colSelect.Name = "colSelect";
+            this.colSelect.ReadOnly = true;
+            this.colSelect.Width = 5;
+            // 
+            // panel9
+            // 
+            this.panel9.Controls.Add(this.dataGridView5);
+            this.panel9.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel9.Location = new System.Drawing.Point(0, 58);
+            this.panel9.Name = "panel9";
+            this.panel9.Size = new System.Drawing.Size(550, 515);
+            this.panel9.TabIndex = 1;
+            // 
+            // dataGridView5
+            // 
+            this.dataGridView5.AllowUserToAddRows = false;
+            this.dataGridView5.AllowUserToDeleteRows = false;
+            this.dataGridView5.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView5.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.colOrderID,
+            this.colCustomer,
+            this.colDate,
+            this.colView});
+            this.dataGridView5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView5.Location = new System.Drawing.Point(0, 0);
+            this.dataGridView5.Name = "dataGridView5";
+            this.dataGridView5.ReadOnly = true;
+            this.dataGridView5.RowHeadersVisible = false;
+            this.dataGridView5.Size = new System.Drawing.Size(550, 515);
+            this.dataGridView5.TabIndex = 1;
+            this.dataGridView5.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView5_CellContentClick);
+            // 
+            // colOrderID
+            // 
+            this.colOrderID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.colOrderID.HeaderText = "#";
+            this.colOrderID.Name = "colOrderID";
+            this.colOrderID.ReadOnly = true;
+            this.colOrderID.Width = 39;
+            // 
+            // colCustomer
+            // 
+            this.colCustomer.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colCustomer.HeaderText = "Customer";
+            this.colCustomer.Name = "colCustomer";
+            this.colCustomer.ReadOnly = true;
+            // 
+            // colDate
+            // 
+            this.colDate.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colDate.HeaderText = "Date";
+            this.colDate.Name = "colDate";
+            this.colDate.ReadOnly = true;
+            // 
+            // colView
+            // 
+            this.colView.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.colView.HeaderText = "";
+            this.colView.Name = "colView";
+            this.colView.ReadOnly = true;
+            this.colView.Width = 19;
+            // 
+            // panel7
+            // 
+            this.panel7.Controls.Add(this.label14);
+            this.panel7.Controls.Add(this.btnClear);
+            this.panel7.Controls.Add(this.btnFilter);
+            this.panel7.Controls.Add(this.panel8);
+            this.panel7.Controls.Add(this.toDate);
+            this.panel7.Controls.Add(this.fromDate);
+            this.panel7.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel7.Location = new System.Drawing.Point(0, 0);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(1095, 58);
+            this.panel7.TabIndex = 0;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(605, 28);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(20, 13);
+            this.label14.TabIndex = 4;
+            this.label14.Text = "To";
+            // 
+            // btnClear
+            // 
+            this.btnClear.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.btnClear.IconColor = System.Drawing.Color.Black;
+            this.btnClear.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnClear.Location = new System.Drawing.Point(808, 19);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(75, 23);
+            this.btnClear.TabIndex = 1;
+            this.btnClear.Text = "[Clear]";
+            this.btnClear.UseVisualStyleBackColor = true;
+            // 
+            // btnFilter
+            // 
+            this.btnFilter.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.btnFilter.IconColor = System.Drawing.Color.Black;
+            this.btnFilter.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnFilter.Location = new System.Drawing.Point(727, 19);
+            this.btnFilter.Name = "btnFilter";
+            this.btnFilter.Size = new System.Drawing.Size(75, 23);
+            this.btnFilter.TabIndex = 1;
+            this.btnFilter.Text = "[Filter]";
+            this.btnFilter.UseVisualStyleBackColor = true;
+            // 
+            // panel8
+            // 
+            this.panel8.Controls.Add(this.label13);
+            this.panel8.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel8.Location = new System.Drawing.Point(0, 0);
+            this.panel8.Name = "panel8";
+            this.panel8.Size = new System.Drawing.Size(501, 58);
+            this.panel8.TabIndex = 0;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(12, 22);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(40, 13);
+            this.label13.TabIndex = 0;
+            this.label13.Text = "Eligible";
+            // 
+            // toDate
+            // 
+            this.toDate.CustomFormat = "MM/DD/YYYY";
+            this.toDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.toDate.Location = new System.Drawing.Point(636, 22);
+            this.toDate.Name = "toDate";
+            this.toDate.Size = new System.Drawing.Size(85, 20);
+            this.toDate.TabIndex = 3;
+            // 
+            // fromDate
+            // 
+            this.fromDate.CustomFormat = "MM/DD/YYYY";
+            this.fromDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.fromDate.Location = new System.Drawing.Point(514, 22);
+            this.fromDate.Name = "fromDate";
+            this.fromDate.Size = new System.Drawing.Size(85, 20);
+            this.fromDate.TabIndex = 2;
             // 
             // panelReplenishInventory
             // 
@@ -898,6 +1165,7 @@
             this.txtQuantity.Name = "txtQuantity";
             this.txtQuantity.Size = new System.Drawing.Size(224, 20);
             this.txtQuantity.TabIndex = 8;
+            this.txtQuantity.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtQuantity_KeyPress);
             // 
             // label7
             // 
@@ -1028,257 +1296,6 @@
             this.label10.TabIndex = 14;
             this.label10.Text = "History:";
             // 
-            // panel7
-            // 
-            this.panel7.Controls.Add(this.label14);
-            this.panel7.Controls.Add(this.btnClear);
-            this.panel7.Controls.Add(this.btnFilter);
-            this.panel7.Controls.Add(this.panel8);
-            this.panel7.Controls.Add(this.toDate);
-            this.panel7.Controls.Add(this.fromDate);
-            this.panel7.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel7.Location = new System.Drawing.Point(0, 0);
-            this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(1095, 58);
-            this.panel7.TabIndex = 0;
-            // 
-            // panel8
-            // 
-            this.panel8.Controls.Add(this.label13);
-            this.panel8.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel8.Location = new System.Drawing.Point(0, 0);
-            this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(501, 58);
-            this.panel8.TabIndex = 0;
-            // 
-            // panel9
-            // 
-            this.panel9.Controls.Add(this.dataGridView5);
-            this.panel9.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel9.Location = new System.Drawing.Point(0, 58);
-            this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(550, 515);
-            this.panel9.TabIndex = 1;
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(12, 22);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(40, 13);
-            this.label13.TabIndex = 0;
-            this.label13.Text = "Eligible";
-            // 
-            // panel10
-            // 
-            this.panel10.Controls.Add(this.btnRESave);
-            this.panel10.Controls.Add(this.btnREDicard);
-            this.panel10.Controls.Add(this.panel11);
-            this.panel10.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel10.Location = new System.Drawing.Point(550, 58);
-            this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(545, 515);
-            this.panel10.TabIndex = 2;
-            // 
-            // panel11
-            // 
-            this.panel11.Controls.Add(this.dataGridView4);
-            this.panel11.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel11.Location = new System.Drawing.Point(0, 0);
-            this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(545, 464);
-            this.panel11.TabIndex = 0;
-            // 
-            // dataGridView4
-            // 
-            this.dataGridView4.AllowUserToAddRows = false;
-            this.dataGridView4.AllowUserToDeleteRows = false;
-            this.dataGridView4.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView4.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.colItemID,
-            this.colPID,
-            this.colPrice,
-            this.colQty,
-            this.colSelect});
-            this.dataGridView4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView4.Location = new System.Drawing.Point(0, 0);
-            this.dataGridView4.Name = "dataGridView4";
-            this.dataGridView4.RowHeadersVisible = false;
-            this.dataGridView4.Size = new System.Drawing.Size(545, 464);
-            this.dataGridView4.TabIndex = 0;
-            // 
-            // dataGridView5
-            // 
-            this.dataGridView5.AllowUserToAddRows = false;
-            this.dataGridView5.AllowUserToDeleteRows = false;
-            this.dataGridView5.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView5.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.colOrderID,
-            this.colCustomer,
-            this.colDate,
-            this.colReturn,
-            this.colExchange});
-            this.dataGridView5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView5.Location = new System.Drawing.Point(0, 0);
-            this.dataGridView5.Name = "dataGridView5";
-            this.dataGridView5.ReadOnly = true;
-            this.dataGridView5.RowHeadersVisible = false;
-            this.dataGridView5.Size = new System.Drawing.Size(550, 515);
-            this.dataGridView5.TabIndex = 1;
-            this.dataGridView5.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView5_CellContentClick);
-            // 
-            // btnREDicard
-            // 
-            this.btnREDicard.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.btnREDicard.IconColor = System.Drawing.Color.Black;
-            this.btnREDicard.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnREDicard.Location = new System.Drawing.Point(3, 470);
-            this.btnREDicard.Name = "btnREDicard";
-            this.btnREDicard.Size = new System.Drawing.Size(91, 33);
-            this.btnREDicard.TabIndex = 1;
-            this.btnREDicard.Text = "[Discard]";
-            this.btnREDicard.UseVisualStyleBackColor = true;
-            // 
-            // btnRESave
-            // 
-            this.btnRESave.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.btnRESave.IconColor = System.Drawing.Color.Black;
-            this.btnRESave.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnRESave.Location = new System.Drawing.Point(100, 470);
-            this.btnRESave.Name = "btnRESave";
-            this.btnRESave.Size = new System.Drawing.Size(88, 33);
-            this.btnRESave.TabIndex = 2;
-            this.btnRESave.Text = "[Save]";
-            this.btnRESave.UseVisualStyleBackColor = true;
-            // 
-            // btnFilter
-            // 
-            this.btnFilter.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.btnFilter.IconColor = System.Drawing.Color.Black;
-            this.btnFilter.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnFilter.Location = new System.Drawing.Point(727, 19);
-            this.btnFilter.Name = "btnFilter";
-            this.btnFilter.Size = new System.Drawing.Size(75, 23);
-            this.btnFilter.TabIndex = 1;
-            this.btnFilter.Text = "[Filter]";
-            this.btnFilter.UseVisualStyleBackColor = true;
-            // 
-            // fromDate
-            // 
-            this.fromDate.CustomFormat = "MM/DD/YYYY";
-            this.fromDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.fromDate.Location = new System.Drawing.Point(514, 22);
-            this.fromDate.Name = "fromDate";
-            this.fromDate.Size = new System.Drawing.Size(85, 20);
-            this.fromDate.TabIndex = 2;
-            // 
-            // toDate
-            // 
-            this.toDate.CustomFormat = "MM/DD/YYYY";
-            this.toDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.toDate.Location = new System.Drawing.Point(636, 22);
-            this.toDate.Name = "toDate";
-            this.toDate.Size = new System.Drawing.Size(85, 20);
-            this.toDate.TabIndex = 3;
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(605, 28);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(20, 13);
-            this.label14.TabIndex = 4;
-            this.label14.Text = "To";
-            // 
-            // btnClear
-            // 
-            this.btnClear.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.btnClear.IconColor = System.Drawing.Color.Black;
-            this.btnClear.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnClear.Location = new System.Drawing.Point(808, 19);
-            this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(75, 23);
-            this.btnClear.TabIndex = 1;
-            this.btnClear.Text = "[Clear]";
-            this.btnClear.UseVisualStyleBackColor = true;
-            // 
-            // colOrderID
-            // 
-            this.colOrderID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.colOrderID.HeaderText = "#";
-            this.colOrderID.Name = "colOrderID";
-            this.colOrderID.ReadOnly = true;
-            this.colOrderID.Width = 39;
-            // 
-            // colCustomer
-            // 
-            this.colCustomer.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colCustomer.HeaderText = "Customer";
-            this.colCustomer.Name = "colCustomer";
-            this.colCustomer.ReadOnly = true;
-            // 
-            // colDate
-            // 
-            this.colDate.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colDate.HeaderText = "Date";
-            this.colDate.Name = "colDate";
-            this.colDate.ReadOnly = true;
-            // 
-            // colReturn
-            // 
-            this.colReturn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.colReturn.HeaderText = "";
-            this.colReturn.Name = "colReturn";
-            this.colReturn.ReadOnly = true;
-            this.colReturn.Width = 19;
-            // 
-            // colExchange
-            // 
-            this.colExchange.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.colExchange.HeaderText = "";
-            this.colExchange.Name = "colExchange";
-            this.colExchange.ReadOnly = true;
-            this.colExchange.Width = 19;
-            // 
-            // colItemID
-            // 
-            this.colItemID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.colItemID.HeaderText = "#";
-            this.colItemID.Name = "colItemID";
-            this.colItemID.ReadOnly = true;
-            this.colItemID.Width = 39;
-            // 
-            // colPID
-            // 
-            this.colPID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colPID.HeaderText = "ProductID";
-            this.colPID.Name = "colPID";
-            this.colPID.ReadOnly = true;
-            // 
-            // colPrice
-            // 
-            this.colPrice.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.colPrice.HeaderText = "Price";
-            this.colPrice.Name = "colPrice";
-            this.colPrice.ReadOnly = true;
-            this.colPrice.Width = 56;
-            // 
-            // colQty
-            // 
-            this.colQty.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.colQty.HeaderText = "Quantity";
-            this.colQty.Name = "colQty";
-            this.colQty.ReadOnly = true;
-            this.colQty.Width = 71;
-            // 
-            // colSelect
-            // 
-            this.colSelect.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.colSelect.HeaderText = "";
-            this.colSelect.Name = "colSelect";
-            this.colSelect.ReadOnly = true;
-            this.colSelect.Width = 5;
-            // 
             // frmOrder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1291,7 +1308,6 @@
             this.Name = "frmOrder";
             this.Text = "btnOrder";
             this.Load += new System.EventHandler(this.frmOrder_Load);
-            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.frmOrder_KeyPress);
             this.panelTop.ResumeLayout(false);
             this.panelTop.PerformLayout();
             this.panelCash.ResumeLayout(false);
@@ -1318,21 +1334,22 @@
             this.panel5.PerformLayout();
             this.panelContainer.ResumeLayout(false);
             this.panelReturnExchange.ResumeLayout(false);
+            this.panel10.ResumeLayout(false);
+            this.panel10.PerformLayout();
+            this.panel11.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).EndInit();
+            this.panel9.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView5)).EndInit();
+            this.panel7.ResumeLayout(false);
+            this.panel7.PerformLayout();
+            this.panel8.ResumeLayout(false);
+            this.panel8.PerformLayout();
             this.panelReplenishInventory.ResumeLayout(false);
             this.panelReplenishInventory.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
-            this.panel7.ResumeLayout(false);
-            this.panel7.PerformLayout();
-            this.panel8.ResumeLayout(false);
-            this.panel8.PerformLayout();
-            this.panel9.ResumeLayout(false);
-            this.panel10.ResumeLayout(false);
-            this.panel11.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView5)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1430,15 +1447,16 @@
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.DateTimePicker toDate;
         private System.Windows.Forms.DateTimePicker fromDate;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colOrderID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colCustomer;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colDate;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colReturn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colExchange;
         private System.Windows.Forms.DataGridViewTextBoxColumn colItemID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colPID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colPDesc;
         private System.Windows.Forms.DataGridViewTextBoxColumn colPrice;
         private System.Windows.Forms.DataGridViewTextBoxColumn colQty;
         private System.Windows.Forms.DataGridViewCheckBoxColumn colSelect;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colOrderID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colCustomer;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colView;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.ComboBox cmbAction;
     }
 }
