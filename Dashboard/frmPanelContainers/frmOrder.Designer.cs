@@ -744,7 +744,7 @@
             this.panelReturnExchange.Controls.Add(this.panel10);
             this.panelReturnExchange.Controls.Add(this.panel9);
             this.panelReturnExchange.Controls.Add(this.panel7);
-            this.panelReturnExchange.Location = new System.Drawing.Point(12, 13);
+            this.panelReturnExchange.Location = new System.Drawing.Point(12, 5);
             this.panelReturnExchange.Name = "panelReturnExchange";
             this.panelReturnExchange.Size = new System.Drawing.Size(1095, 573);
             this.panelReturnExchange.TabIndex = 3;

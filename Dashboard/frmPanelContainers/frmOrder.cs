@@ -203,7 +203,16 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
             switch (tag)
             {
                 case "NewTransaction":
-                    clearPlaceOrderPanel();
+                    if(dataGridView1.RowCount > 0)
+                    {
+                        DialogResult result = MessageBox.Show("Are you sure to reset transaction?", "Reset?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if(result == DialogResult.Yes)
+                        {
+                            clearPlaceOrderPanel();
+                        }
+                        
+                    }
+                    
                     break;
                 case "ProductInquiry":
 
@@ -582,28 +591,46 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
 
         private void btnRESave_Click(object sender, EventArgs e)
         {
-            StringBuilder sb = new StringBuilder();
-            foreach (DataGridViewRow row in dataGridView4.Rows)
+            
+            
+            if(dataGridView4.RowCount > 0)
             {
-                DataGridViewCheckBoxCell checkBoxCell = row.Cells[4] as DataGridViewCheckBoxCell;
-
-                if (checkBoxCell != null && (bool)checkBoxCell.Value)
+                if(cmbAction.Text != "")
                 {
-                    sb.Append(row.Cells[0].Value);
+                    StringBuilder sb = new StringBuilder();
+                    int size = dataGridView4.Rows.Count;
+                    string[] orderID = new string[size];
+                    int i = 0;
+                    foreach (DataGridViewRow row in dataGridView4.Rows)
+                    {
+                        if (row.Cells[4].Value != null)
+                        {
+                            sb.Append(row.Cells[0].Value + "\n");
+                            orderID[i] = row.Cells[0].Value.ToString();
+                            i++;
+                        }
+                    }
+                    //MessageBox.Show(sb.ToString());
+
+                    frmReturnExchangeAction frmNew = new frmReturnExchangeAction();
+
+                    //frmNew.ShowDialog();
+                    frmReturnExchangeAction.instance.orderID = orderID;
+                    frmReturnExchangeAction.instance.action = cmbAction.Text;
+                    frmNew.ShowDialog();
+                }
+                else
+                {
+                    MessageBox.Show("Indicate Action!", "Invalid Field", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
 
-
             }
-            MessageBox.Show(sb.ToString());
-            //foreach (DataGridViewRow row in dataGridView4.Rows)
-            //{
-            //    bool checkedRow = (bool)row.Cells[4].Value;
-            //    if (checkedRow)
-            //    {
-            //        sb.Append(row.Cells[0]);
-            //    }
-            //}
-            //MessageBox.Show(sb.ToString());
+            else
+            {
+                MessageBox.Show("No data!", "Invalid Field", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+             
+
         }
 
 
