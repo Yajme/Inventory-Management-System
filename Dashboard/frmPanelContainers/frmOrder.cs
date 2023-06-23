@@ -21,6 +21,7 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
         public Label lblSetQ;
         public int quantity;
         public bool setQty = false;
+        public int orderid = 0;
         string lastID = "";
         public frmOrder()
         {
@@ -585,38 +586,43 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
             string colName = dataGridView5.Columns[e.ColumnIndex].Name;
             if(colName == "colView")
             {
-                loadEligibleItems((int)dataGridView5.Rows[e.RowIndex].Cells[0].Value);
+                orderid = (int)dataGridView5.Rows[e.RowIndex].Cells[0].Value;
+                loadEligibleItems(orderid);
+                
             }
         }
 
         private void btnRESave_Click(object sender, EventArgs e)
         {
-            
+
             
             if(dataGridView4.RowCount > 0)
             {
                 if(cmbAction.Text != "")
                 {
-                    StringBuilder sb = new StringBuilder();
-                    int size = dataGridView4.Rows.Count;
-                    string[] orderID = new string[size];
-                    int i = 0;
+                    DataTable dt = new DataTable();
+                    dt.Columns.Add("orderItemID");
+                    dt.Columns.Add("Description");
+                    dt.Columns.Add("Quantity");
+                    dt.Columns.Add("Total");
+                    DataRow dr = null;
                     foreach (DataGridViewRow row in dataGridView4.Rows)
                     {
                         if (row.Cells[4].Value != null)
                         {
-                            sb.Append(row.Cells[0].Value + "\n");
-                            orderID[i] = row.Cells[0].Value.ToString();
-                            i++;
+                            dr = dt.NewRow();
+                            dr["orderItemID"] = row.Cells[0].Value;
+                            dr["Description"] = row.Cells[1].Value;
+                            dr["Quantity"] = row.Cells[2].Value;
+                            dr["Total"] = row.Cells[3].Value;
+
+                            dt.Rows.Add(dr);
                         }
                     }
-                    //MessageBox.Show(sb.ToString());
-
                     frmReturnExchangeAction frmNew = new frmReturnExchangeAction();
-
-                    //frmNew.ShowDialog();
-                    frmReturnExchangeAction.instance.orderID = orderID;
+                    frmReturnExchangeAction.instance.orderTable = dt;
                     frmReturnExchangeAction.instance.action = cmbAction.Text;
+                    frmReturnExchangeAction.instance.orderID = orderid.ToString();
                     frmNew.ShowDialog();
                 }
                 else
