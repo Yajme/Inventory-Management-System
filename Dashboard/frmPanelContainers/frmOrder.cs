@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 using Inventory_Management_System.Dashboard.frmPanelContainers.frmOrderForms;
+using System.Windows.Media.Animation;
+
 namespace Inventory_Management_System.Dashboard.frmPanelContainers
 {
     public partial class frmOrder : Form
@@ -22,7 +24,7 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
         public int quantity;
         public bool setQty = false;
         public int orderid = 0;
-        string lastID = "";
+        
         public frmOrder()
         {
             InitializeComponent();
@@ -439,23 +441,36 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
         {
             if(txtProductID.Text != string.Empty)
             {
-                if (!scan)
+                if (!search)
                 {
-                    string[] item = commands.itemEncode(txtProductID.Text);
-                    if (item.Length > 0)
+                    if (!scan)
                     {
-                        txtProductName.Text = item[1];
-                        txtProductID.ReadOnly = true;
-                        scan = true;
-                    }
-                    else
-                    {
+                        string[] item = commands.itemEncode(txtProductID.Text);
+                        if (item.Length > 0)
+                        {
+                            txtProductName.Text = item[1];
+                            txtProductID.ReadOnly = true;
+                            scan = true;
+                        }
+                        else
+                        {
 
-                        MessageBox.Show("Not Found!", "Invalid Field", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show("Not Found!", "Invalid Field", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                        }
 
                     }
-                    
                 }
+                else
+                {
+                    dataGridView3.Rows.Clear();
+                    DataTable dt = commands.searchInventoryWOC(id);
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        dataGridView3.Rows.Add(row[0], row[2], row[4], row[7]);
+                    }
+                }
+                
             }
             else
             {
@@ -468,7 +483,10 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
         }
         private void btnEnterReplenish_Click(object sender, EventArgs e)
         {
-            replenishFetch(txtProductID.Text);
+            
+                replenishFetch(txtProductID.Text);
+           
+            
         }
 
         
@@ -494,7 +512,7 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
             DataTable dt =  commands.loadInventory();
             foreach (DataRow row in dt.Rows)
             {
-                dataGridView3.Rows.Add(row[0], row[2], row[4]);
+                dataGridView3.Rows.Add(row[0], row[2], row[4], row[7]);
             }
           
             //product
@@ -510,13 +528,14 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
                 cmbWarehouse.Items.Add(row[1]);
             }
             //cmb
+
             dataGridView2.Rows.Clear();
-            DataTable history = commands.loadMovementStock();
-            foreach(DataRow row in history.Rows)
+
+            DataTable warehousestock = commands.viewWarehouseStock();
+            foreach (DataRow row in warehousestock.Rows)
             {
-                dataGridView2.Rows.Add(row[0], row[1], row[2], row[3], row[4], row[5]);
+                dataGridView2.Rows.Add(row[0], row[2], row[1], row[3]);
             }
-            
             //history
 
         }
@@ -525,8 +544,11 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
 
             if (e.KeyChar == (char)Keys.Enter)
             {
-                lastID = txtProductID.Text;
-                replenishFetch(txtProductID.Text);
+                
+                    replenishFetch(txtProductID.Text);
+                
+               
+                
             }
         }
 
@@ -545,9 +567,40 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
                 e.Handled = true;
             }
         }
+        bool search = false;
+        private void btnSearchMode_Click(object sender, EventArgs e)
+        {
+            if (!search)
+            {
+                btnSearchMode.ForeColor = Color.White;
+                btnSearchMode.BackColor = Color.FromArgb(55, 55, 55);
+                search = true;
+            }
+            else
+            {
+                loadHistoryandProducts();
+                btnSearchMode.ForeColor = Color.Black;
+                btnSearchMode.BackColor = Color.AntiqueWhite;
+                search = false;
+            }
+            
+        }
+        private void btnMove_Click(object sender, EventArgs e)
+        {
 
+            getdpi = devmode.GetWindowsScaling();
+            if (panelDataGridView.Height > 0)
+            {
+                panelDataGridView.Height = 0;
 
-
+                btnMove.IconChar = FontAwesome.Sharp.IconChar.AngleDown;
+            }
+            else if (panelDataGridView.Height < 191)
+            {
+                btnMove.IconChar = FontAwesome.Sharp.IconChar.AngleUp;
+                panelDataGridView.Height = (int)(191 * getdpi / 100);
+            }
+        }
 
 
         /* <--Replenish Inventory End--> */
@@ -638,6 +691,25 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
              
 
         }
+
+        private void btnFilter_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnREDicard_Click(object sender, EventArgs e)
+        {
+
+        }
+        
+        
+
+
 
 
 

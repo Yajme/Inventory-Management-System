@@ -552,7 +552,7 @@ public static class commands
     {
         
         con.Open();
-        cmd = new SqlCommand("SELECT Products.ProductID, Products.ProductName, Products.Description, Categories.CategoryName, Products.QuantityInStock, Products.UnitPrice, Suppliers.SupplierName\r\nFROM Products\r\nJOIN Categories ON Products.CategoryID = Categories.CategoryID\r\nJOIN Suppliers ON Products.SupplierID = Suppliers.SupplierID", con);
+        cmd = new SqlCommand("SELECT Products.ProductID, Products.ProductName, Products.Description, Categories.CategoryName, Products.QuantityInStock, Products.UnitPrice, Suppliers.SupplierName,Products.ReorderLevel\r\nFROM Products\r\nJOIN Categories ON Products.CategoryID = Categories.CategoryID\r\nJOIN Suppliers ON Products.SupplierID = Suppliers.SupplierID", con);
 
         DataTable dt = new DataTable();
         dt.Load(cmd.ExecuteReader());
@@ -566,7 +566,7 @@ public static class commands
     {
 
         con.Open();
-        cmd = new SqlCommand("SELECT Products.ProductID, Products.ProductName, Products.Description, Categories.CategoryName, Products.QuantityInStock, Products.UnitPrice, Suppliers.SupplierName\r\nFROM Products\r\nJOIN Categories ON Products.CategoryID = Categories.CategoryID\r\nJOIN Suppliers ON Products.SupplierID = Suppliers.SupplierID WHERE Products.ProductID= @ProductID AND Categories.CategoryName= @CategoryName", con);
+        cmd = new SqlCommand("SELECT Products.ProductID, Products.ProductName, Products.Description, Categories.CategoryName, Products.QuantityInStock, Products.UnitPrice, Suppliers.SupplierName,Products.ReorderLevel\r\nFROM Products\r\nJOIN Categories ON Products.CategoryID = Categories.CategoryID\r\nJOIN Suppliers ON Products.SupplierID = Suppliers.SupplierID WHERE Products.ProductID= @ProductID AND Categories.CategoryName= @CategoryName", con);
         cmd.Parameters.AddWithValue("@ProductID", query);
        
             cmd.Parameters.AddWithValue("@CategoryName", filter);
@@ -585,7 +585,7 @@ public static class commands
     {
 
         con.Open();
-        cmd = new SqlCommand("SELECT Products.ProductID, Products.ProductName, Products.Description, Categories.CategoryName, Products.QuantityInStock, Products.UnitPrice, Suppliers.SupplierName\r\nFROM Products\r\nJOIN Categories ON Products.CategoryID = Categories.CategoryID\r\nJOIN Suppliers ON Products.SupplierID = Suppliers.SupplierID WHERE Products.ProductID= @ProductID", con);
+        cmd = new SqlCommand("SELECT Products.ProductID, Products.ProductName, Products.Description, Categories.CategoryName, Products.QuantityInStock, Products.UnitPrice, Suppliers.SupplierName,Products.ReorderLevel\r\nFROM Products\r\nJOIN Categories ON Products.CategoryID = Categories.CategoryID\r\nJOIN Suppliers ON Products.SupplierID = Suppliers.SupplierID WHERE Products.ProductID= @ProductID", con);
         cmd.Parameters.AddWithValue("@ProductID", query);
 
 
@@ -853,46 +853,7 @@ END
 
     }
 
-    public static DataTable loadSelectedItems(string[] orderItemID)
-    {
-        DataTable dt = new DataTable();
-        dt.Columns.Add("orderItemID");
-        dt.Columns.Add("Description");
-        dt.Columns.Add("Quantity");
-        dt.Columns.Add("Total");
-        DataRow row = null;
-        try
-        {
-            con.Open();
-            for (int i = 0; i < orderItemID.Length; i++)
-            {
-                row = dt.NewRow();
-                cmd = new SqlCommand("SELECT OrderItems.OrderItemID, Products.Description, OrderItems.Quantity, OrderItems.UnitPrice FROM OrderItems JOIN Products ON OrderItems.ProductID = Products.ProductID WHERE OrderItems.OrderItemID= @OrderItemID;", con);
-                cmd.Parameters.Add("@OrderItemID", SqlDbType.Int).Value = orderItemID[i];
-                dr = cmd.ExecuteReader();
-                while (dr.Read())
-                {
-                    row["orderItemID"] = dr[0];
-                    row["Description"] = dr[1];
-                    row["Quantity"] = dr[2];
-                    row["Total"] = dr[3];
-
-                }
-                dt.Rows.Add(row);
-                dr.Close();
-                cmd.Parameters.Clear();
-            }
-        }
-        finally
-        {
-            con.Close();
-        }
-        
-
-
-
-        return dt;
-    }
+    
 }
         
 
