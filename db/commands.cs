@@ -853,13 +853,45 @@ END
 
     }
 
-    
+    /** 
+     * 
+SELECT Products.Description, SUM(OrderItems.Quantity) as TotalSold, SUM(OrderItems.UnitPrice) as TotalSale
+FROM Products 
+JOIN OrderItems ON Products.ProductID = OrderItems.ProductID
+GROUP BY  Products.Description
+ORDER BY TotalSale DESC
+
+
+SELECT Products.Description, SUM(OrderItems.Quantity) as TotalSold, SUM(OrderItems.UnitPrice) as TotalSale
+FROM Products 
+JOIN OrderItems ON Products.ProductID = OrderItems.ProductID
+GROUP BY  Products.Description
+ORDER BY TotalSold DESC
+
+SELECT COUNT (*) as lowStock FROM Products WHERE ReorderLevel > QuantityInStock
+
+    SELECT Products.Description, Products.QuantityInStock, Products.ReorderLevel,SUM(WarehouseStock.QuantityStock) as WarehouseStock  
+FROM Products 
+JOIN WarehouseStock ON Products.ProductID = WarehouseStock.ProductID
+GROUP BY Products.Description,Products.QuantityInStock, Products.ReorderLevel
+
+
+SELECT Products.Description, Products.QuantityInStock, Products.ReorderLevel,SUM(WarehouseStock.QuantityStock) as WarehouseStocks   FROM Products  JOIN WarehouseStock ON Products.ProductID = WarehouseStock.ProductID WHERE WarehouseStock.QuantityStock+Products.QuantityInStock  < Products.ReorderLevel GROUP BY Products.Description,Products.QuantityInStock, Products.ReorderLevel 
+
+   
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * **/
 }
-        
 
 
 
 
 
-    
+
+
 

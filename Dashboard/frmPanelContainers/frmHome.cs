@@ -16,5 +16,10 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
         {
             InitializeComponent();
         }
+
+        private void frmHome_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
