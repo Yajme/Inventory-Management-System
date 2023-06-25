@@ -22,8 +22,10 @@ Inventory Management System using C#
 > In Development
 ## Built With
 
-C# for System
-MS SQL for Database
+* C# for System 
+* MS SQL for Database
+* Visual Studio for forms designing and debugging
+  
 
 ## Contributing
 
