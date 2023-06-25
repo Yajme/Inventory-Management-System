@@ -40,4 +40,4 @@ Contributors are welcome refer to the installation then issue a pull request.
 ## Authors
 * Yajme - Initial work
 ## License
-This project is licensed under the GNU License - see the [LICENSE.md](https://github.com/Yajme/Inventory-Management-System/blob/main/LICENSE.md) file for details
+This project is licensed under the GNU General Public License v3.0 - see the [LICENSE.md](https://github.com/Yajme/Inventory-Management-System/blob/main/LICENSE.md) file for details
