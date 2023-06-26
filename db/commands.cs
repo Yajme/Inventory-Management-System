@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
 using static Inventory_Management_System.db.db;
 
@@ -886,6 +887,20 @@ SELECT Products.Description, Products.QuantityInStock, Products.ReorderLevel,SUM
      * 
      * 
      * **/
+
+
+    public static DataTable saleReport()
+    {
+        DataTable dt = new DataTable();
+        con.Open();
+        //cmd = new SqlCommand("SELECT SUM(SaleAmount) as TotalSale,FORMAT(TransactionDateTime, 'MM/dd/yy') as Date FROM Orders GROUP BY FORMAT(TransactionDateTime, 'MM/dd/yy')", con);
+        cmd = new SqlCommand("SELECT SUM(SaleAmount) as TotalSale, '01/'+FORMAT(TransactionDateTime, 'MM/yyyy') as Month\r\nFROM Orders\r\nWHERE TransactionDateTime BETWEEN DATEADD(YEAR, DATEDIFF(YEAR, 0, GETDATE()), 0) AND DATEADD(DAY, -1, DATEADD(YEAR, DATEDIFF(YEAR, 0, GETDATE()) + 1, 0))\r\nGROUP BY FORMAT(TransactionDateTime, 'MM/yyyy');", con);
+        dt.Load(cmd.ExecuteReader());
+        con.Close();
+
+
+        return dt;
+    }
 }
 
 
