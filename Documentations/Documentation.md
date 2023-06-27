@@ -199,3 +199,7 @@ To enhance the system's functionality and performance, various libraries and fra
 <p>Deployment and maintenance are critical stages in the lifecycle of an Inventory Management System. Once the system has been developed, it needs to be deployed to the production environment to make it accessible to users. This involves setting up the necessary infrastructure, including hosting services, server configurations, and dependencies, to ensure smooth operation. Once deployed, regular maintenance procedures are essential to keep the system up-to-date, stable, and aligned with evolving requirements. This includes applying updates, bug fixes, and implementing system enhancements based on user feedback and changing business needs. Additionally, continuous monitoring of system performance, security, and user feedback is crucial for ongoing improvement. By monitoring the system, issues such as performance bottlenecks, security vulnerabilities, and user experience problems can be identified and addressed promptly. This ensures that the Inventory Management System remains reliable, secure, and optimized, providing an efficient and satisfying user experience. By emphasizing deployment and maintenance, organizations can ensure the long-term success and effectiveness of their Inventory Management System. </p>
 
 
+## Chapter 3 Execution
+
+Final ER Diagram:
+![er_1687834580129](https://github.com/Yajme/Inventory-Management-System/assets/88352665/267e78cb-0999-4cbd-891c-67db6380d8d3)
