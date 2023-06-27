@@ -21,5 +21,46 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
         {
 
         }
+
+        private void frmSalesReport_Load(object sender, EventArgs e)
+        {
+            flowLayoutPanel1.HorizontalScroll.Visible = false;
+        }
+
+        private void frmSalesReport_Resize(object sender, EventArgs e)
+        {
+            panel2.Width = flowLayoutPanel1.Width - 30;
+            panel3.Width = flowLayoutPanel1.Width - 30;
+            panel4.Width = flowLayoutPanel1.Width - 30;
+            panel5.Width = flowLayoutPanel1.Width - 30;
+
+            
+
+        }
+
+        private void flowLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void panel3_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void panel4_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void panel5_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

@@ -19,6 +19,12 @@ namespace Inventory_Management_System.db
             con = new SqlConnection();
             con.ConnectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=D:\\Library\\Documents\\InventoryDB.mdf;Integrated Security=True;Connect Timeout=30";
         }
+
+
+        
+
+            
+
     }
 }
     

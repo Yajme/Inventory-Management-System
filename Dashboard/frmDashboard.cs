@@ -152,9 +152,8 @@ namespace Inventory_Management_System.Dashboard
         private void frmDashboard_Load(object sender, EventArgs e)
         {
             logout = false;
-            ChangeMenu("btnHome");
             Connection();
-
+            ChangeMenu("btnHome");
             getdpi = devmode.GetWindowsScaling();
             //MessageBox.Show((getsize/100).ToString());
         }

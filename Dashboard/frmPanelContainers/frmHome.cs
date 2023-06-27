@@ -26,7 +26,7 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
             //chart1.Series["Line"].Points.Add(new DataPoint(1, 1));
             //chart1.Series["Line"].Points.Add(new DataPoint(3, 3));
             //chart1.Series["Line"].ChartType = SeriesChartType.Line;
-            db.db.Connection();
+            //db.db.Connection();
             DataTable dt = commands.saleReport();
 
             Axis XA = chart1.ChartAreas[0].AxisX;
