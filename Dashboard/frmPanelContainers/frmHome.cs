@@ -65,12 +65,13 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
                 date = DateTime.ParseExact(dateString, format, CultureInfo.InvariantCulture);
 
                 S1.Points.AddXY(date, row[0]);
+                chart1.Series["Line"].ChartType = SeriesChartType.SplineArea;
 
             }
 
 
-
-
+            S1.BorderWidth = 1;
+            
             // show the year in the legend:
             S1.LegendText = "Year " + dtr.Year;
             // move to the bottom center:

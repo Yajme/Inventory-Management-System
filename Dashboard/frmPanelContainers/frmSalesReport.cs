@@ -29,10 +29,10 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
 
         private void frmSalesReport_Resize(object sender, EventArgs e)
         {
-            panel2.Width = flowLayoutPanel1.Width - 30;
-            panel3.Width = flowLayoutPanel1.Width - 30;
-            panel4.Width = flowLayoutPanel1.Width - 30;
-            panel5.Width = flowLayoutPanel1.Width - 30;
+            panel2.Width = flowLayoutPanel1.Width - 50;
+            panel3.Width = flowLayoutPanel1.Width - 50;
+            panel4.Width = flowLayoutPanel1.Width - 50;
+            panel5.Width = flowLayoutPanel1.Width - 50;
 
             
 
