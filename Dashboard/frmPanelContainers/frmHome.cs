@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 
+
 namespace Inventory_Management_System.Dashboard.frmPanelContainers
 {
     public partial class frmHome : Form
@@ -43,7 +44,7 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
                 dates.Add(new DateTime(dtr.Year, i, 1));
             }
 
-
+            
 
             //foreach (DateTime d in dates)
             //{

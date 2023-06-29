@@ -1070,7 +1070,7 @@
             this.panelReplenishInventory.Controls.Add(this.label6);
             this.panelReplenishInventory.Controls.Add(this.txtProductName);
             this.panelReplenishInventory.Controls.Add(this.panel6);
-            this.panelReplenishInventory.Location = new System.Drawing.Point(1092, 573);
+            this.panelReplenishInventory.Location = new System.Drawing.Point(12, 20);
             this.panelReplenishInventory.Name = "panelReplenishInventory";
             this.panelReplenishInventory.Size = new System.Drawing.Size(1092, 573);
             this.panelReplenishInventory.TabIndex = 2;
