@@ -30,9 +30,9 @@ or using Visual Studio, Select "Clone a repository" at startup menu, paste the l
 > In Development
 ## Built With
 
-* C# for System 
-* MS SQL for Database
-* Visual Studio for forms designing and debugging
+* C# for the system implementation
+* MS SQL for the database management
+* Visual Studio for form designing and debugging
   
 
 ## Contributing
