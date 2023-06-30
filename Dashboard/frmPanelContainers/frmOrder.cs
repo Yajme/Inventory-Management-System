@@ -706,8 +706,14 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
         {
 
         }
-        
-        
+
+        private void btnNewPurchase_Click(object sender, EventArgs e)
+        {
+            frmPurchaseOrder frmPurchase = new frmPurchaseOrder();
+            frmPurchase.ShowDialog();
+        }
+
+
 
 
 

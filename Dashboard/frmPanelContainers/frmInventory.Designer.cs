@@ -75,7 +75,7 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(885, 61);
+            this.panel1.Size = new System.Drawing.Size(1095, 61);
             this.panel1.TabIndex = 0;
             // 
             // panel3
@@ -86,7 +86,7 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
             this.panel3.Controls.Add(this.btnSearch);
             this.panel3.Controls.Add(this.panel5);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel3.Location = new System.Drawing.Point(557, 0);
+            this.panel3.Location = new System.Drawing.Point(767, 0);
             this.panel3.Margin = new System.Windows.Forms.Padding(2);
             this.panel3.MaximumSize = new System.Drawing.Size(328, 61);
             this.panel3.Name = "panel3";
@@ -287,7 +287,7 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
             this.panel4.Location = new System.Drawing.Point(0, 61);
             this.panel4.Margin = new System.Windows.Forms.Padding(2);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(885, 461);
+            this.panel4.Size = new System.Drawing.Size(1095, 588);
             this.panel4.TabIndex = 1;
             // 
             // dataGridView1
@@ -324,7 +324,7 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.RowHeadersWidth = 62;
             this.dataGridView1.RowTemplate.Height = 28;
-            this.dataGridView1.Size = new System.Drawing.Size(885, 461);
+            this.dataGridView1.Size = new System.Drawing.Size(1095, 588);
             this.dataGridView1.TabIndex = 0;
             // 
             // colProductID
@@ -435,7 +435,7 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(885, 522);
+            this.ClientSize = new System.Drawing.Size(1095, 649);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;

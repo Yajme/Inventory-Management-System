@@ -134,6 +134,7 @@
             this.txtProductName = new System.Windows.Forms.TextBox();
             this.panel6 = new System.Windows.Forms.Panel();
             this.label10 = new System.Windows.Forms.Label();
+            this.btnNewPurchase = new FontAwesome.Sharp.IconButton();
             this.panelTop.SuspendLayout();
             this.panelCash.SuspendLayout();
             this.panelPlaceOrder.SuspendLayout();
@@ -1054,6 +1055,7 @@
             // 
             // panelReplenishInventory
             // 
+            this.panelReplenishInventory.Controls.Add(this.btnNewPurchase);
             this.panelReplenishInventory.Controls.Add(this.panelDataControlContainer);
             this.panelReplenishInventory.Controls.Add(this.btnSearchMode);
             this.panelReplenishInventory.Controls.Add(this.cmbWarehouse);
@@ -1070,7 +1072,7 @@
             this.panelReplenishInventory.Controls.Add(this.label6);
             this.panelReplenishInventory.Controls.Add(this.txtProductName);
             this.panelReplenishInventory.Controls.Add(this.panel6);
-            this.panelReplenishInventory.Location = new System.Drawing.Point(12, 20);
+            this.panelReplenishInventory.Location = new System.Drawing.Point(3, 3);
             this.panelReplenishInventory.Name = "panelReplenishInventory";
             this.panelReplenishInventory.Size = new System.Drawing.Size(1092, 573);
             this.panelReplenishInventory.TabIndex = 2;
@@ -1239,6 +1241,7 @@
             this.dataGridView3.AllowUserToResizeRows = false;
             this.dataGridView3.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dataGridView3.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dataGridView3.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView3.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colProductID,
@@ -1372,6 +1375,19 @@
             this.label10.Size = new System.Drawing.Size(155, 20);
             this.label10.TabIndex = 0;
             this.label10.Text = "WarehouseStocks";
+            // 
+            // btnNewPurchase
+            // 
+            this.btnNewPurchase.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.btnNewPurchase.IconColor = System.Drawing.Color.Black;
+            this.btnNewPurchase.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnNewPurchase.Location = new System.Drawing.Point(497, 231);
+            this.btnNewPurchase.Name = "btnNewPurchase";
+            this.btnNewPurchase.Size = new System.Drawing.Size(159, 28);
+            this.btnNewPurchase.TabIndex = 21;
+            this.btnNewPurchase.Text = "[Create New PurchaseOrder]";
+            this.btnNewPurchase.UseVisualStyleBackColor = true;
+            this.btnNewPurchase.Click += new System.EventHandler(this.btnNewPurchase_Click);
             // 
             // frmOrder
             // 
@@ -1541,5 +1557,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colWarehouseName;
         private System.Windows.Forms.DataGridViewTextBoxColumn colQuantityWarehouse;
         private System.Windows.Forms.Label label10;
+        private FontAwesome.Sharp.IconButton btnNewPurchase;
     }
 }
