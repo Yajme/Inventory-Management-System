@@ -901,6 +901,85 @@ SELECT Products.Description, Products.QuantityInStock, Products.ReorderLevel,SUM
 
         return dt;
     }
+    public static void recordExchangeReturn(string[] record)
+    {
+        con.Open();
+        SqlTransaction t = con.BeginTransaction();
+        try
+        {
+            cmd = new SqlCommand("", con, t);
+
+            t.Commit();
+        }catch(SqlException ex)
+        {
+            t.Rollback();
+            throw ex;
+        }catch(Exception ex)
+        {
+            t.Rollback();
+            throw ex;
+        }
+        finally
+        {
+            con.Close();
+        }
+    }
+    public static void returnItem(DataTable returns)
+    {
+        con.Open();
+        SqlTransaction t = con.BeginTransaction();
+        try
+        {
+            cmd = new SqlCommand("", con, t);
+
+            t.Commit();
+        }
+        catch (SqlException ex)
+        {
+            t.Rollback();
+            throw ex;
+        }
+        catch (Exception ex)
+        {
+            t.Rollback();
+            throw ex;
+        }
+        finally
+        {
+            con.Close();
+        }
+    }
+
+    /*                 
+     
+     con.Open();
+        SqlTransaction t = con.BeginTransaction();
+        try
+        {
+            cmd = new SqlCommand("", con, t);
+
+            t.Commit();
+        }
+        catch (SqlException ex)
+        {
+            t.Rollback();
+            throw ex;
+        }
+        catch (Exception ex)
+        {
+            t.Rollback();
+            throw ex;
+        }
+        finally
+        {
+            con.Close();
+        }
+     
+     
+     
+     
+     
+     */
 }
 
 

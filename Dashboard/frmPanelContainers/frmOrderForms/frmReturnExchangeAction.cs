@@ -24,16 +24,13 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers.frmOrderForms
         }
         private void loadData()
         {
-           
             dataGridView1.Rows.Clear();
             foreach(DataRow row in orderTable.Rows)
             {
                 dataGridView1.Rows.Add(row[0], row[1], row[2], row[3]);
-                
-               
-                    Credit.Amount += Convert.ToDouble(row[3]);
-                
+                Credit.Amount += Convert.ToDouble(row[3]);
             }
+
             txtAction.Text = action;
             txtOrderID.Text = orderID;
             btnAction.Text = "["+action+"]";
@@ -96,6 +93,10 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers.frmOrderForms
             
             
         }
+        private void recordAction()
+        {
+
+        }
         private void actionExchange()
         {
             double getdpi = devmode.GetWindowsScaling();
@@ -126,14 +127,18 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers.frmOrderForms
         }
         private void btnAction_Click(object sender, EventArgs e)
         {
-            if(action == "Return")
-            {
-                actionReturn();
-            }
-            else if (action == "Exchange")
-            {
-                actionExchange();
-            }
+            
+            
+                if (action == "Return")
+                {
+                    actionReturn();
+                }
+                else if (action == "Exchange")
+                {
+                    actionExchange();
+                }
+            
+            
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
