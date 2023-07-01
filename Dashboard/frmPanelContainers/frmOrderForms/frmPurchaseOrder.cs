@@ -82,7 +82,21 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers.frmOrderForms
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            { 
 
+            }
+            try
+            {
+
+
+
+                clearFields();
+            }
+            catch(Exception ex)
+            {
+
+            }
         }
 
         private void btnScan_Click(object sender, EventArgs e)
