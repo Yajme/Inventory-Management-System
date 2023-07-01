@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -88,7 +89,38 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers.frmOrderForms
                 DialogResult result = MessageBox.Show("Refundable amount: " + Credit.Amount.ToString() + "\n\n" + "Press Ok to continue", "Confirmation", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 if (result == DialogResult.OK)
                 {
-                    
+                    try
+                    {
+                    string[] records = new string[3];
+                    records[0] = txtOrderID.Text;
+                    records[1] = "Return";
+                    records[2] = txtRemarks.Text;
+
+                    DataTable dt = new DataTable();
+                    dt.Columns.Add("ProductID");
+                    dt.Columns.Add("Quantity");
+                    dt.Columns.Add("Amount");
+
+
+                    DataRow dr = null;
+
+                    foreach (DataGridViewRow row in dataGridView1.Rows)
+                    {
+                        dr = dt.NewRow();
+                        dr["ProductID"] = row.Cells["colID"].Value;
+                        dr["Quantity"] = row.Cells["colQuantity"].Value;
+                        dr["Amount"] = row.Cells["colTotalPrice"].Value;
+                        dt.Rows.Add(dr);
+                    }
+                }
+                    catch(SqlException ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                    catch(Exception ex)
+                    {
+                    MessageBox.Show(ex.Message);
+                    }
                 }
             
             

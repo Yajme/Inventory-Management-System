@@ -3,10 +3,12 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
+using System.Windows.Forms;
 using static Inventory_Management_System.db.db;
 
 public static class commands
 {
+    
     public static void dbclose()
     {
         if (con.State == ConnectionState.Open)
@@ -924,19 +926,91 @@ SELECT Products.Description, Products.QuantityInStock, Products.ReorderLevel,SUM
             con.Close();
         }
     }
-    public static void returnItem(DataTable returns)
+    public static void returnItem(DataTable returns, string[] record)
     {
         con.Open();
         SqlTransaction t = con.BeginTransaction();
         try
         {
-            cmd = new SqlCommand("", con, t);
 
+            /*               
+    CREATE PROCEDURE InsertReturnExchangeRecord
+	@OrderID INT,
+	@Status varchar(50),
+	@Remarks varchar(255),
+	@TransactionID INT OUTPUT
+AS
+BEGIN
+INSERT INTO ReturnExchangeRecords (OrderID,Status,Remarks) VALUES (@OrderID, @Status,@Remarks);
+
+SET @TransactionID=SCOPE_IDENTITY();
+
+SELECT TransactionID FROM ReturnExchangeRecords WHERE TransactionID= @TransactionID;
+
+END*/
+
+            int transactionID = 0;
+            using (cmd = new SqlCommand("DECLARE @ReturnedID INT;EXEC InsertReturnExchangeRecord @OrderID, @Status,@Remarks, @TransactionID= @ReturnedID OUTPUT;SELECT @ReturnedID as 'ReturnedID';", con, t))
+            {
+                cmd.Parameters.AddWithValue("@OrderID", SqlDbType.Int).Value = record[0];
+                cmd.Parameters.AddWithValue("@Status", SqlDbType.VarChar).Value = record[1];
+                cmd.Parameters.AddWithValue("@Remarks", SqlDbType.VarChar).Value = record[2];
+                transactionID = (int)cmd.ExecuteScalar();
+            }
+
+            cmd.Parameters.Clear();
+            int p = 1;
+            int batch = 0;
+            StringBuilder sb = new StringBuilder();
+            foreach (DataRow dr in returns.Rows)
+            {
+                //Parameter Name
+                string TransactionID = string.Format("@p{0}", p);
+                string productID = string.Format("@p{0}", p + 1);
+                string quantity = string.Format("@p{0}", p + 2);
+                string total = string.Format("@p{0}", p + 3);
+                p += 4;
+
+                //row
+                String row = String.Format("({0}, {1}, {2}, {3})", TransactionID, productID, quantity, total);
+
+                //add row
+                if (batch > 0)
+                {
+                    sb.AppendLine(",");
+                }
+                sb.Append(row);
+                batch++;
+
+                //add parameters
+                cmd.Parameters.Add(TransactionID, SqlDbType.Int).Value = transactionID;
+                cmd.Parameters.Add(productID, SqlDbType.VarChar).Value = dr[0];
+                cmd.Parameters.Add(quantity, SqlDbType.Int).Value = dr[1];
+                cmd.Parameters.Add(total, SqlDbType.Decimal).Value = dr[2];
+
+                if (batch >= 5)
+                {
+                    string sql = "INSERT INTO ReturnItem(TransactionID,ProductID,Quantity,RefundAmount) VALUES" + "\r\n" + sb.ToString();
+                    cmd.CommandText = sql;
+                    cmd.ExecuteNonQuery();
+                    cmd.Parameters.Clear();
+                    sb.Clear();
+                    batch = 0;
+                    p = 1;
+                }
+            }
+            if (batch > 0)
+            {
+                string sql = "INSERT INTO ReturnItem(TransactionID,ProductID,Quantity,RefundAmount) VALUES" + "\r\n" + sb.ToString();
+                cmd.CommandText = sql;
+                cmd.ExecuteNonQuery();
+            }
             t.Commit();
         }
         catch (SqlException ex)
         {
             t.Rollback();
+            
             throw ex;
         }
         catch (Exception ex)
@@ -982,6 +1056,19 @@ SELECT Products.Description, Products.QuantityInStock, Products.ReorderLevel,SUM
      */
 }
 
+
+
+
+
+
+
+
+class recordExchangeReturns
+{
+    private int orderID;
+    public int OrderID { get { return orderID; } set { orderID = value; } }
+
+}
 
 
 
