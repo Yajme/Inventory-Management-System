@@ -26,9 +26,13 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers.frmOrderForms
         private void loadData()
         {
             dataGridView1.Rows.Clear();
+            int[] orderitemID = new int[100];
+            int i = 0;
             foreach(DataRow row in orderTable.Rows)
             {
                 dataGridView1.Rows.Add(row[0], row[1], row[2], row[3]);
+                orderitemID[i] = Convert.ToInt32(row[0]);
+                i++;
                 Credit.Amount += Convert.ToDouble(row[3]);
             }
 
@@ -38,6 +42,8 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers.frmOrderForms
 
             lblRefund.Text = Credit.Amount.ToString();
 
+
+            Credit.OrderID = commands.selectOrderID(orderitemID);
         }
         private void frmReturnExchangeAction_Load(object sender, EventArgs e)
         {
@@ -70,7 +76,7 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers.frmOrderForms
                 
             }
         }
-
+       
         private void frmReturnExchangeAction_KeyPress(object sender, KeyPressEventArgs e)
         {
             if(e.KeyChar == (char)Keys.Escape)
@@ -96,22 +102,8 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers.frmOrderForms
                     records[1] = "Return";
                     records[2] = txtRemarks.Text;
 
-                    DataTable dt = new DataTable();
-                    dt.Columns.Add("ProductID");
-                    dt.Columns.Add("Quantity");
-                    dt.Columns.Add("Amount");
-
-
-                    DataRow dr = null;
-
-                    foreach (DataGridViewRow row in dataGridView1.Rows)
-                    {
-                        dr = dt.NewRow();
-                        dr["ProductID"] = row.Cells["colID"].Value;
-                        dr["Quantity"] = row.Cells["colQuantity"].Value;
-                        dr["Amount"] = row.Cells["colTotalPrice"].Value;
-                        dt.Rows.Add(dr);
-                    }
+                    commands.returnItem(Credit.OrderID, records);
+                    MessageBox.Show("Return Transaction Complete");
                 }
                     catch(SqlException ex)
                     {
@@ -203,6 +195,13 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers.frmOrderForms
         {
             get { return exchange; }
             set { exchange = value; }
+        }
+
+        private DataTable orderID;
+        public DataTable OrderID
+        {
+            get { return orderID; }
+            set { orderID = value; }
         }
     }
 }

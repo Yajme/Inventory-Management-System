@@ -1054,6 +1054,25 @@ END*/
      
      
      */
+
+    public static DataTable selectOrderID(int[] orderitemID)
+    {
+        DataTable dt = new DataTable();
+        con.Open();
+        string command = "SELECT ProductID, Quantity, UnitPrice FROM OrderItems WHERE OrderItemID= @OrderItemID";
+        for(int i = 0;i < orderitemID.Length; i++)
+        {
+            using(cmd = new SqlCommand(command, con))
+            {
+                cmd.Parameters.AddWithValue("@OrderItemID", SqlDbType.Int).Value = orderitemID[i];
+                dt.Load(cmd.ExecuteReader());
+                cmd.Parameters.Clear();
+            }
+        }
+        
+        con.Close();
+        return dt;
+    }
 }
 
 
