@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -92,7 +93,7 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers.frmOrderForms
         private void actionReturn()
         {
             
-                DialogResult result = MessageBox.Show("Refundable amount: " + Credit.Amount.ToString() + "\n\n" + "Press Ok to continue", "Confirmation", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                DialogResult result = MessageBox.Show("Refundable amount: " + Credit.Amount.ToString() + "\n\n" + "Press Ok to continue", "Confirmation", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
                 if (result == DialogResult.OK)
                 {
                     try
@@ -104,23 +105,20 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers.frmOrderForms
 
                     commands.returnItem(Credit.OrderID, records);
                     MessageBox.Show("Return Transaction Complete");
-                }
+                    }
                     catch(SqlException ex)
                     {
                         MessageBox.Show(ex.Message);
                     }
                     catch(Exception ex)
                     {
-                    MessageBox.Show(ex.Message);
+                        MessageBox.Show(ex.Message);
                     }
                 }
             
             
         }
-        private void recordAction()
-        {
-
-        }
+      
         private void actionExchange()
         {
             double getdpi = devmode.GetWindowsScaling();
@@ -147,6 +145,44 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers.frmOrderForms
         }
         private void itemEncode()
         {
+            string[] itemfetched = commands.itemEncode(txtProduct.Text);
+            bool found = false;
+            int row = dataGridView1.RowCount;
+            if (itemfetched != Array.Empty<string>())
+            {
+                Credit.StoreCredit += Convert.ToDouble(itemfetched[2]);
+                if(dataGridView2.Rows.Count > 0)
+                {
+                    foreach(DataGridViewRow rows in dataGridView2.Rows)
+                    {
+                        found = true;
+                        rows.Cells[dataGridView2.Columns["dataGridViewTextBoxColumn3"].Index].Value = Convert.ToInt32(rows.Cells[dataGridView2.Columns["dataGridViewTextBoxColumn3"].Index].Value) + 1;
+                    }
+
+                    if (!found)
+                    {
+                        dataGridView2.Rows.Add(row,itemfetched[1], 1, itemfetched[2]);
+                    }
+                }
+                else
+                {
+                    dataGridView2.Rows.Add(row, itemfetched[1], 1, itemfetched[2]);
+                }
+
+                foreach(DataGridViewRow rows in dataGridView2.Rows)
+                {
+                    rows.Cells[dataGridView2.Columns["dataGridViewTextBoxColumn4"].Index].Value = Convert.ToDouble(rows.Cells[dataGridView2.Columns["dataGridViewTextBoxColumn4"].Index].Value) * Convert.ToDouble(rows.Cells[dataGridView2.Columns["dataGridViewTextBoxColumn3"].Index].Value);
+                }
+                double total = Credit.Amount - Credit.StoreCredit;
+
+                lblRefund.Text = total.ToString("#,##0.00");
+            }
+            else
+            {
+                MessageBox.Show("Item not Found!", "404", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            txtProduct.Clear();
 
         }
         private void btnAction_Click(object sender, EventArgs e)
@@ -203,5 +239,7 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers.frmOrderForms
             get { return orderID; }
             set { orderID = value; }
         }
+
+        public double StoreCredit {get;set;}
     }
 }
