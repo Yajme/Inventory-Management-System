@@ -14,14 +14,11 @@ using System.Windows.Media.Animation;
 namespace Inventory_Management_System.Dashboard.frmPanelContainers
 {
     public partial class frmOrder : Form
-    {
-        //public static double getdpi; //
-        //public static double total = 0; //
-        //public static bool scan = false; //
+    { 
         public static frmOrder instance;
         public TextBox txtFormTextbox;
-        public int quantity; //
-        public bool setQty = false; //
+        public int quantity; 
+        public bool setQty = false; 
 
         Order Order = new Order();
         

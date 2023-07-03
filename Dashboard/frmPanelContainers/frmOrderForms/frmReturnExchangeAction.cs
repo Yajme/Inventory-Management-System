@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Drawing.Text;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -41,22 +42,13 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers.frmOrderForms
             txtOrderID.Text = orderID;
             btnAction.Text = "["+action+"]";
 
-            lblRefund.Text = Credit.Amount.ToString();
+            lblRefund.Text = Credit.Amount.ToString("#,##0.00");
 
 
             Credit.OrderID = commands.selectOrderID(orderitemID);
         }
         private void frmReturnExchangeAction_Load(object sender, EventArgs e)
-        {
-            //StringBuilder sb = new StringBuilder();
-            //for (int i = 0; i < orderID.Length; i++)
-            //{
-            //    sb.Append(orderID[i] + "\n");
-            //}
-
-            //MessageBox.Show(sb.ToString() + "\n" + action);
-
-
+        { 
             loadData();
         }
 
@@ -67,7 +59,6 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers.frmOrderForms
             if (characterremaining > -1)
             {
                 lblCharacter.Text = characterremaining.ToString();
-                
             }
             else
             {
@@ -85,26 +76,19 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers.frmOrderForms
                 this.Close();
             }
         }
-
-        private void txtRemarks_KeyPress(object sender, KeyPressEventArgs e)
-        {
-          
-        }
         private void actionReturn()
         {
             
-                DialogResult result = MessageBox.Show("Refundable amount: " + Credit.Amount.ToString() + "\n\n" + "Press Ok to continue", "Confirmation", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+                DialogResult result = MessageBox.Show("Refundable amount: " + Credit.Amount.ToString("#,##0.00") + "\n\n" + "Press Ok to continue", "Confirmation", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
                 if (result == DialogResult.OK)
                 {
                     try
                     {
-                    string[] records = new string[3];
-                    records[0] = txtOrderID.Text;
-                    records[1] = "Return";
-                    records[2] = txtRemarks.Text;
+                    actionRecord();
 
-                    commands.returnItem(Credit.OrderID, records);
+                    commands.returnItem(Credit.OrderID, Credit.Record);
                     MessageBox.Show("Return Transaction Complete");
+                    this.Close();
                     }
                     catch(SqlException ex)
                     {
@@ -126,7 +110,7 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers.frmOrderForms
             //338width
             if (!Credit.Exchange)
             {
-                DialogResult result = MessageBox.Show("Please add items according to the amount: " + Credit.Amount.ToString() + "\n\n" + "Press Ok to continue", "Confirmation", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                DialogResult result = MessageBox.Show("Please add items according to the amount: " + Credit.Amount.ToString("#,##0.00") + "\n\n" + "Press Ok to continue", "Confirmation", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
                 if (result == DialogResult.OK)
                 {
                     txtProduct.Focus();
@@ -135,54 +119,105 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers.frmOrderForms
                     Credit.Exchange = true;
                 }
             }
-            else
+            else 
             {
+                
+                DialogResult result = MessageBox.Show("Proceed to Exchange? \n\n\n"  + "Press Yes to continue", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                if(result == DialogResult.Yes)
+                {
+                    try
+                    {
+                        actionRecord();
+                        DataTable dt = new DataTable();
+                        dt.Columns.Add("ProductID");
+                        dt.Columns.Add("Quantity");
+                        dt.Columns.Add("Total");
 
+                        DataRow dr = null;
+                        int i = 0;
+                        foreach (DataGridViewRow rows in dataGridView2.Rows)
+                        {
+                            dr = dt.NewRow();
+                            dr["ProductID"] = Credit.ProductID[i];
+                            dr["Quantity"] = rows.Cells["colExQty"].Value;
+                            dr["Total"] = rows.Cells["colExPrice"].Value;
+                            i++;
+                        }
+                        //product,productExchanged,record
+
+                        commands.exchangeItem(Credit.OrderID, dt, Credit.Record);
+
+                        Credit.Exchange = false;
+                        MessageBox.Show("Exchange Transaction Complete");
+                        this.Close();
+                    }
+                    catch(Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                }
             }
 
-                
+        
 
+        }
+
+        private void actionRecord()
+        {
+            Credit.Record = new string[3];
+            Credit.Record[0] = txtOrderID.Text;
+            Credit.Record[1] = action;
+            Credit.Record[2] = txtRemarks.Text;
         }
         private void itemEncode()
         {
             string[] itemfetched = commands.itemEncode(txtProduct.Text);
             bool found = false;
             int row = dataGridView1.RowCount;
-            if (itemfetched != Array.Empty<string>())
+            if(Credit.Amount >= 0)
             {
-                Credit.StoreCredit += Convert.ToDouble(itemfetched[2]);
-                if(dataGridView2.Rows.Count > 0)
+                if (itemfetched != Array.Empty<string>())
                 {
-                    foreach(DataGridViewRow rows in dataGridView2.Rows)
+                    Credit.StoreCredit += Convert.ToDouble(itemfetched[2]);
+                    Credit.ProductID[row] = itemfetched[0];
+                    if (dataGridView2.Rows.Count > 0)
                     {
-                        found = true;
-                        rows.Cells[dataGridView2.Columns["dataGridViewTextBoxColumn3"].Index].Value = Convert.ToInt32(rows.Cells[dataGridView2.Columns["dataGridViewTextBoxColumn3"].Index].Value) + 1;
+                        foreach (DataGridViewRow rows in dataGridView2.Rows)
+                        {
+                            found = true;
+                            rows.Cells[dataGridView2.Columns["colExQty"].Index].Value = Convert.ToInt32(rows.Cells[dataGridView2.Columns["colExQty"].Index].Value) + 1;
+                        }
+
+                        if (!found)
+                        {
+                            dataGridView2.Rows.Add(row, itemfetched[1], 1, itemfetched[2]);
+                        }
+                    }
+                    else
+                    {
+                        dataGridView2.Rows.Add(row, itemfetched[1], 1, itemfetched[2]);
                     }
 
-                    if (!found)
+                    foreach (DataGridViewRow rows in dataGridView2.Rows)
                     {
-                        dataGridView2.Rows.Add(row,itemfetched[1], 1, itemfetched[2]);
+                        rows.Cells[dataGridView2.Columns["colExPrice"].Index].Value = Convert.ToDouble(rows.Cells[dataGridView2.Columns["colExprice"].Index].Value) * Convert.ToDouble(rows.Cells[dataGridView2.Columns["colExQty"].Index].Value);
                     }
+                    double total = Credit.Amount - Credit.StoreCredit;
+
+                    lblRefund.Text = total.ToString("#,##0.00");
                 }
                 else
                 {
-                    dataGridView2.Rows.Add(row, itemfetched[1], 1, itemfetched[2]);
+                    MessageBox.Show("Item not Found!", "404", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
 
-                foreach(DataGridViewRow rows in dataGridView2.Rows)
-                {
-                    rows.Cells[dataGridView2.Columns["dataGridViewTextBoxColumn4"].Index].Value = Convert.ToDouble(rows.Cells[dataGridView2.Columns["dataGridViewTextBoxColumn4"].Index].Value) * Convert.ToDouble(rows.Cells[dataGridView2.Columns["dataGridViewTextBoxColumn3"].Index].Value);
-                }
-                double total = Credit.Amount - Credit.StoreCredit;
-
-                lblRefund.Text = total.ToString("#,##0.00");
+                txtProduct.Clear();
             }
             else
             {
-                MessageBox.Show("Item not Found!", "404", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Transaction Exceeded Store Credit!", "Amount Exceed!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
-            txtProduct.Clear();
+           
 
         }
         private void btnAction_Click(object sender, EventArgs e)
@@ -218,7 +253,6 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers.frmOrderForms
     class Credit
     {
         private double amount;
-
         public double Amount
         {
             get { return amount; }
@@ -232,14 +266,15 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers.frmOrderForms
             get { return exchange; }
             set { exchange = value; }
         }
-
+        public string[] ProductID { get; set; }
         private DataTable orderID;
         public DataTable OrderID
         {
             get { return orderID; }
             set { orderID = value; }
         }
-
         public double StoreCredit {get;set;}
+        public string[] Record { get;set;}
+
     }
 }

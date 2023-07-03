@@ -48,10 +48,10 @@
             this.lblRefund = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colRowN = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colExDesc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colExQty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colExPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnSearch = new FontAwesome.Sharp.IconButton();
             this.txtProduct = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
@@ -142,7 +142,6 @@
             this.txtRemarks.Size = new System.Drawing.Size(183, 67);
             this.txtRemarks.TabIndex = 3;
             this.txtRemarks.TextChanged += new System.EventHandler(this.txtRemarks_TextChanged);
-            this.txtRemarks.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtRemarks_KeyPress);
             // 
             // label2
             // 
@@ -257,10 +256,10 @@
             this.dataGridView2.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn1,
-            this.dataGridViewTextBoxColumn2,
-            this.dataGridViewTextBoxColumn3,
-            this.dataGridViewTextBoxColumn4});
+            this.colRowN,
+            this.colExDesc,
+            this.colExQty,
+            this.colExPrice});
             this.dataGridView2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView2.Location = new System.Drawing.Point(0, 19);
             this.dataGridView2.Name = "dataGridView2";
@@ -269,36 +268,36 @@
             this.dataGridView2.Size = new System.Drawing.Size(0, 263);
             this.dataGridView2.TabIndex = 3;
             // 
-            // dataGridViewTextBoxColumn1
+            // colRowN
             // 
-            this.dataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.dataGridViewTextBoxColumn1.HeaderText = "#";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            this.dataGridViewTextBoxColumn1.Width = 39;
+            this.colRowN.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.colRowN.HeaderText = "#";
+            this.colRowN.Name = "colRowN";
+            this.colRowN.ReadOnly = true;
+            this.colRowN.Width = 39;
             // 
-            // dataGridViewTextBoxColumn2
+            // colExDesc
             // 
-            this.dataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dataGridViewTextBoxColumn2.HeaderText = "Description";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            this.colExDesc.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colExDesc.HeaderText = "Description";
+            this.colExDesc.Name = "colExDesc";
+            this.colExDesc.ReadOnly = true;
             // 
-            // dataGridViewTextBoxColumn3
+            // colExQty
             // 
-            this.dataGridViewTextBoxColumn3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.dataGridViewTextBoxColumn3.HeaderText = "Quantity";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.ReadOnly = true;
-            this.dataGridViewTextBoxColumn3.Width = 71;
+            this.colExQty.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.colExQty.HeaderText = "Quantity";
+            this.colExQty.Name = "colExQty";
+            this.colExQty.ReadOnly = true;
+            this.colExQty.Width = 71;
             // 
-            // dataGridViewTextBoxColumn4
+            // colExPrice
             // 
-            this.dataGridViewTextBoxColumn4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.dataGridViewTextBoxColumn4.HeaderText = "Price";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            this.dataGridViewTextBoxColumn4.ReadOnly = true;
-            this.dataGridViewTextBoxColumn4.Width = 56;
+            this.colExPrice.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.colExPrice.HeaderText = "Price";
+            this.colExPrice.Name = "colExPrice";
+            this.colExPrice.ReadOnly = true;
+            this.colExPrice.Width = 56;
             // 
             // btnSearch
             // 
@@ -387,10 +386,10 @@
         private System.Windows.Forms.Label lblRefund;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.DataGridView dataGridView2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colRowN;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colExDesc;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colExQty;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colExPrice;
         private FontAwesome.Sharp.IconButton btnSearch;
         private System.Windows.Forms.TextBox txtProduct;
     }
