@@ -15,47 +15,37 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
 {
     public partial class frmOrder : Form
     {
-        public static double getdpi;
-        public static double total = 0;
-        public static bool scan = false;
+        //public static double getdpi; //
+        //public static double total = 0; //
+        //public static bool scan = false; //
         public static frmOrder instance;
         public TextBox txtFormTextbox;
-        public Label lblSetQ;
-        public int quantity;
-        public bool setQty = false;
-        public int orderid = 0;
+        public int quantity; //
+        public bool setQty = false; //
+
+        Order Order = new Order();
         
         public frmOrder()
         {
             InitializeComponent();
             instance = this;
             txtFormTextbox = txtQuery;
-            //lblSetQ = lblSetQuantity;
-
         }
 
         /* <--FormControlsStart -->  */
         private void frmOrder_Load(object sender, EventArgs e)
         {
-            this.KeyPreview = true;
-            this.KeyDown += new KeyEventHandler(frmOrder_Key);
-            getdpi = devmode.GetWindowsScaling();
-            clearPlaceOrderPanel();
             fillContainer(panelPlaceOrder);
-            
         }
-
         private void btnPlaceOrder_Click(object sender, EventArgs e)
         {
             clearPlaceOrderPanel();
             fillContainer(panelPlaceOrder);
-            
-
         }
         private void clearPlaceOrderPanel()
         {
             dataGridView1.Rows.Clear();
-            total = 0;
+            Order.total = 0;
             txtQuery.Clear();
             txtCashTendered.Clear();
 
@@ -71,20 +61,19 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
             lblSaleTotal.Text = "0.00";
             txtQuery.Focus();
         }
-
         private void btnReplenishInventory_Click(object sender, EventArgs e)
         {
-            fillContainer(panelReplenishInventory);
             loadHistoryandProducts();
+            fillContainer(panelReplenishInventory);
+            
         }
-
         private void btnReturnExchange_Click(object sender, EventArgs e)
         {
+            loadEligibleExchangeReturn();
             fillContainer(panelReturnExchange);
 
-            loadEligibleExchangeReturn();
+            
         }
-
         private void fillContainer(Panel panel)
         {
             panelContainer.Controls.Clear();
@@ -92,17 +81,13 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
             panelContainer.Controls.Add(panel);
             panel.Show();
         }
+        /* <--FormControlsEnd-->  */
 
-
-
-        /* <--FormControls End -->  */
-
-        /* <--Place Order Start -->  */
+        /* <--PlaceOrderStart -->  */
         public void SimulateEnterKeyPress()
         {
             txtQuery_KeyPress(this, new KeyPressEventArgs((char)Keys.Enter));
         }
-
         public void itemScan(string query)
         {
             bool found = false;
@@ -119,7 +104,7 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
            
             lblSetQuantity.Text = "x" + itemQuantity.ToString();
             if (itemfetched != Array.Empty<string>()) {
-                total += Convert.ToDouble(itemfetched[2]) * itemQuantity;
+                Order.total += Convert.ToDouble(itemfetched[2]) * itemQuantity;
                 if (dataGridView1.Rows.Count > 0)
                 {
                     foreach (DataGridViewRow rows in dataGridView1.Rows)
@@ -153,7 +138,7 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
                 {
                     rows.Cells[dataGridView1.Columns["colTotalPrice"].Index].Value = (Convert.ToDouble(rows.Cells[dataGridView1.Columns["colUnitPrice"].Index].Value) * Convert.ToDouble(rows.Cells[dataGridView1.Columns["colQuantity"].Index].Value)).ToString("#,##0.00");
                 }
-                lblSaleTotal.Text = total.ToString("#,##0.00");
+                lblSaleTotal.Text = Order.total.ToString("#,##0.00");
                 txtQuery.Clear();
             }
             else
@@ -161,21 +146,17 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
                 txtQuery.Clear();
                 MessageBox.Show("Item not Found!", "404", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
         }
-
         private void btnEnter_Click(object sender, EventArgs e)
         {
             itemScan(txtQuery.Text);
         }
         private void frmOrder_Key(object sender, KeyEventArgs e)
         {
-
             switch (e.KeyCode.ToString())
             {
                 case "F1":
                     POSControls("NewTransaction");
-                    
                     break;
                 case "F2":
                     POSControls("ProductInquiry");
@@ -194,15 +175,12 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
                     break;
             }
         }
-
         private void btnPOSControls(object sender, EventArgs e)
         {
             POSControls(((Button)sender).Tag.ToString());
         }
         private void POSControls(string tag)
         {
-            //MessageBox.Show(tag);
-
             switch (tag)
             {
                 case "NewTransaction":
@@ -213,13 +191,9 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
                         {
                             clearPlaceOrderPanel();
                         }
-                        
                     }
-                    
                     break;
                 case "ProductInquiry":
-
-                   
                     frmProductInquiry frmNew = new frmProductInquiry();
                     frmNew.ShowDialog();
                     break;
@@ -237,18 +211,14 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
                         frmVoidItem.ShowDialog();
                         txtQuery.Focus();
                     }
-                    
                     break;
                 case "SetQty":
                     frmSetQuantity frmNewQ = new frmSetQuantity();
                     frmNewQ.ShowDialog();
                     txtQuery.Focus();
                     break;
-
             }
         }
-
-
         private void txtQuery_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == (char)Keys.Enter)
@@ -256,17 +226,12 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
                 itemScan(txtQuery.Text);
             }
         }
-
         public void itemVoid()
         {
-            total -= Convert.ToDouble(dataGridView1.Rows[dataGridView1.RowCount - 1].Cells[5].Value);
-            lblSaleTotal.Text = total.ToString("#,##.00");
+            Order.total -= Convert.ToDouble(dataGridView1.Rows[dataGridView1.RowCount - 1].Cells[5].Value);
+            lblSaleTotal.Text = Order.total.ToString("#,##.00");
             dataGridView1.Rows.RemoveAt(dataGridView1.Rows.Count - 1);
         }
-
-
-
-
         private void newSale()
         {
             string customer = "0";
@@ -275,7 +240,7 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
                 //OrderTable
                 string[] Sale = new string[2];
                 Sale[0] = customer;
-                Sale[1] = total.ToString("#,##0.00");
+                Sale[1] = Order.total.ToString("#,##0.00");
 
                 //OrderItemTable
                 DataTable dt = new DataTable();
@@ -308,20 +273,19 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
             }
 
         }
-
         private void txtCashTendered_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == (char)Keys.Enter)
             {
 
                 double cash = double.Parse(txtCashTendered.Text);
-                double change = cash - total;
-                double subtotal = (total / 112) * 100;
-                double vat = total - subtotal;
+                double change = cash - Order.total;
+                double subtotal = (Order.total / 112) * 100;
+                double vat = Order.total - subtotal;
 
                 lblSubTotal.Text = subtotal.ToString("#,##0.00");
                 lblVAT.Text = vat.ToString("#,##0.00");
-                lblTotal.Text = total.ToString("#,##0.00");
+                lblTotal.Text = Order.total.ToString("#,##0.00");
                 lblCash.Text = cash.ToString("#,##0.00");
                 lblChange.Text = change.ToString("#,##0.00");
                 panelCash.Visible = false;
@@ -346,19 +310,10 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
             }
 
         }
-
         private void txtCashTendered_TextChanged(object sender, EventArgs e)
         {
-            /*
-            if (txtCashTendered.Text == "" || txtCashTendered.Text == "0") return;
-            decimal number;
-            number = decimal.Parse(txtCashTendered.Text, System.Globalization.NumberStyles.Currency);
-            txtCashTendered.Text = number.ToString("#,#");
-            
-            */
             txtCashTendered.SelectionStart = txtCashTendered.Text.Length;
         }
-
         private void txtQuery_TextChanged(object sender, EventArgs e)
         {
             if (txtQuery.Text == "")
@@ -411,7 +366,7 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
             {
                 MessageBox.Show("Please Select Warehouse!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            else if (!scan)
+            else if (!Order.Scan)
             {
                 MessageBox.Show("Indicate Product!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtProductID.Focus();
@@ -432,7 +387,6 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
             }
 
         }
-
         private void btnDiscard_Click(object sender, EventArgs e)
         {
             loadHistoryandProducts();
@@ -441,16 +395,16 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
         {
             if(txtProductID.Text != string.Empty)
             {
-                if (!search)
+                if (!Order.Search)
                 {
-                    if (!scan)
+                    if (!Order.Scan)
                     {
                         string[] item = commands.itemEncode(txtProductID.Text);
                         if (item.Length > 0)
                         {
                             txtProductName.Text = item[1];
                             txtProductID.ReadOnly = true;
-                            scan = true;
+                            Order.Scan = true;
                         }
                         else
                         {
@@ -483,14 +437,8 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
         }
         private void btnEnterReplenish_Click(object sender, EventArgs e)
         {
-            
-                replenishFetch(txtProductID.Text);
-           
-            
+            replenishFetch(txtProductID.Text);
         }
-
-        
-       
         private void resetTextbox()
         {
             txtProductID.Clear();
@@ -500,7 +448,7 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
         }
         private void loadHistoryandProducts()
         {
-            scan = false;
+            Order.Scan= false;
             txtProductID.ReadOnly = false;
             txtProductID.Focus();
             resetTextbox();
@@ -544,14 +492,9 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
 
             if (e.KeyChar == (char)Keys.Enter)
             {
-                
                     replenishFetch(txtProductID.Text);
-                
-               
-                
             }
         }
-
         private void txtProductID_TextChanged(object sender, EventArgs e)
         {
             if (txtProductID.Text == "")
@@ -559,7 +502,6 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
                 resetTextbox();
             }
         }
-       
         private void txtQuantity_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
@@ -567,28 +509,25 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
                 e.Handled = true;
             }
         }
-        bool search = false;
         private void btnSearchMode_Click(object sender, EventArgs e)
         {
-            if (!search)
+            if (!Order.Search)
             {
                 btnSearchMode.ForeColor = Color.White;
                 btnSearchMode.BackColor = Color.FromArgb(55, 55, 55);
-                search = true;
+                Order.Search = true;
             }
             else
             {
                 loadHistoryandProducts();
                 btnSearchMode.ForeColor = Color.Black;
                 btnSearchMode.BackColor = Color.AntiqueWhite;
-                search = false;
+                Order.Search = false;
             }
             
         }
         private void btnMove_Click(object sender, EventArgs e)
         {
-
-            getdpi = devmode.GetWindowsScaling();
             if (panelDataGridView.Height > 0)
             {
                 panelDataGridView.Height = 0;
@@ -598,11 +537,9 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
             else if (panelDataGridView.Height < 191)
             {
                 btnMove.IconChar = FontAwesome.Sharp.IconChar.AngleUp;
-                panelDataGridView.Height = (int)(191 * getdpi / 100);
+                panelDataGridView.Height = (int)(191 * Order.getDPI / 100);
             }
         }
-
-
         /* <--Replenish Inventory End--> */
 
 
@@ -621,7 +558,6 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
             {
                 dataGridView5.Rows.Add(row[0], row[1], row[2], "[View]");
             }
-
         }
         private void loadEligibleItems(int orderID)
         {
@@ -639,16 +575,14 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
             string colName = dataGridView5.Columns[e.ColumnIndex].Name;
             if(colName == "colView")
             {
-                orderid = (int)dataGridView5.Rows[e.RowIndex].Cells[0].Value;
-                loadEligibleItems(orderid);
+                Order.orderID = (int)dataGridView5.Rows[e.RowIndex].Cells[0].Value;
+                loadEligibleItems(Order.orderID);
                 
             }
         }
 
         private void btnRESave_Click(object sender, EventArgs e)
         {
-
-            
             if(dataGridView4.RowCount > 0)
             {
                 if(cmbAction.Text != "")
@@ -675,7 +609,7 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
                     frmReturnExchangeAction frmNew = new frmReturnExchangeAction();
                     frmReturnExchangeAction.instance.orderTable = dt;
                     frmReturnExchangeAction.instance.action = cmbAction.Text;
-                    frmReturnExchangeAction.instance.orderID = orderid.ToString();
+                    frmReturnExchangeAction.instance.orderID = Order.orderID.ToString();
                     frmNew.ShowDialog();
                 }
                 else
@@ -688,8 +622,6 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
             {
                 MessageBox.Show("No data!", "Invalid Field", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-             
-
         }
 
         private void btnFilter_Click(object sender, EventArgs e)
@@ -713,15 +645,28 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
             frmPurchase.ShowDialog();
         }
 
-
-
-
-
-
-
-
-
-
         /* <--Exchange and Return End -->  */
+    }
+
+   class Order
+    {
+        private bool search = false;
+        public bool Search
+        {
+            get { return search; }
+            set { search = value;}
+        }
+        public int orderID { get; set; }
+        public double total { get;set; }
+        private bool scan = false;
+        public bool Scan {
+            get { return scan; }
+            set { scan = value; }
+        }
+        private double getdpi;
+        public double getDPI { 
+            get { return getdpi; } 
+            set {getdpi = devmode.GetWindowsScaling();} 
+        }
     }
 }

@@ -106,6 +106,7 @@
             this.toDate = new System.Windows.Forms.DateTimePicker();
             this.fromDate = new System.Windows.Forms.DateTimePicker();
             this.panelReplenishInventory = new System.Windows.Forms.Panel();
+            this.btnNewPurchase = new FontAwesome.Sharp.IconButton();
             this.panelDataControlContainer = new System.Windows.Forms.Panel();
             this.panelDataGridView = new System.Windows.Forms.Panel();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
@@ -134,7 +135,6 @@
             this.txtProductName = new System.Windows.Forms.TextBox();
             this.panel6 = new System.Windows.Forms.Panel();
             this.label10 = new System.Windows.Forms.Label();
-            this.btnNewPurchase = new FontAwesome.Sharp.IconButton();
             this.panelTop.SuspendLayout();
             this.panelCash.SuspendLayout();
             this.panelPlaceOrder.SuspendLayout();
@@ -1078,6 +1078,19 @@
             this.panelReplenishInventory.TabIndex = 2;
             this.panelReplenishInventory.Visible = false;
             // 
+            // btnNewPurchase
+            // 
+            this.btnNewPurchase.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.btnNewPurchase.IconColor = System.Drawing.Color.Black;
+            this.btnNewPurchase.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnNewPurchase.Location = new System.Drawing.Point(497, 231);
+            this.btnNewPurchase.Name = "btnNewPurchase";
+            this.btnNewPurchase.Size = new System.Drawing.Size(159, 28);
+            this.btnNewPurchase.TabIndex = 21;
+            this.btnNewPurchase.Text = "[Create New PurchaseOrder]";
+            this.btnNewPurchase.UseVisualStyleBackColor = true;
+            this.btnNewPurchase.Click += new System.EventHandler(this.btnNewPurchase_Click);
+            // 
             // panelDataControlContainer
             // 
             this.panelDataControlContainer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -1376,19 +1389,6 @@
             this.label10.TabIndex = 0;
             this.label10.Text = "WarehouseStocks";
             // 
-            // btnNewPurchase
-            // 
-            this.btnNewPurchase.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.btnNewPurchase.IconColor = System.Drawing.Color.Black;
-            this.btnNewPurchase.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnNewPurchase.Location = new System.Drawing.Point(497, 231);
-            this.btnNewPurchase.Name = "btnNewPurchase";
-            this.btnNewPurchase.Size = new System.Drawing.Size(159, 28);
-            this.btnNewPurchase.TabIndex = 21;
-            this.btnNewPurchase.Text = "[Create New PurchaseOrder]";
-            this.btnNewPurchase.UseVisualStyleBackColor = true;
-            this.btnNewPurchase.Click += new System.EventHandler(this.btnNewPurchase_Click);
-            // 
             // frmOrder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1397,10 +1397,12 @@
             this.Controls.Add(this.panelContainer);
             this.Controls.Add(this.panelTop);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "frmOrder";
             this.Text = "btnOrder";
             this.Load += new System.EventHandler(this.frmOrder_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmOrder_Key);
             this.panelTop.ResumeLayout(false);
             this.panelTop.PerformLayout();
             this.panelCash.ResumeLayout(false);

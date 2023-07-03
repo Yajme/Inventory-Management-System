@@ -31,6 +31,7 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers.frmOrderForms
                 
                 frmOrder.instance.quantity = Convert.ToInt32(txtQuantity.Text);
                 frmOrder.instance.setQty = true;
+                
                 this.Close();
             }
             else if (e.KeyChar == (char)Keys.Escape)
