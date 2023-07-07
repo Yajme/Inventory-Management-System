@@ -1059,13 +1059,14 @@ END*/
         return dt;
     }
 
-    public static void exchangeItem(string [] productExchanged, string[] record) //Product-> product that is returned and will be exchanged with datatable productExchanged
+    public static int exchangeItem(string [] productExchanged, string[] record) //Product-> product that is returned and will be exchanged with datatable productExchanged
     {
         con.Open();
         SqlTransaction t = con.BeginTransaction();
+        int transactionID = 0;
         try
         {
-            int transactionID = 0;
+            
             using (cmd = new SqlCommand("DECLARE @ReturnedID INT;EXEC InsertReturnExchangeRecord @OrderID, @Status,@Remarks, @TransactionID= @ReturnedID OUTPUT;SELECT @ReturnedID as 'ReturnedID';", con, t))
             {
                 cmd.Parameters.AddWithValue("@OrderID", SqlDbType.Int).Value = record[0];
@@ -1099,22 +1100,12 @@ END*/
         {
             con.Close();
         }
+
+        return transactionID;
     }
 }
 
 
-
-
-
-
-
-
-class recordExchangeReturns
-{
-    private int orderID;
-    public int OrderID { get { return orderID; } set { orderID = value; } }
-
-}
 
 
 

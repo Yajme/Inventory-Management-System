@@ -5,13 +5,16 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.Drawing.Text;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Inventory_Management_System.Dashboard.frmPanelContainers.frmOrderForms.frmReciept;
 using IronBarCode;
+using IronSoftware.Drawing;
 
 namespace Inventory_Management_System.Dashboard.frmPanelContainers.frmOrderForms
 {
@@ -104,23 +107,39 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers.frmOrderForms
             
             
         }
-      private void GenerateStoreCredit()
+
+        public void SaveStreamAsFile(string filePath, Stream inputStream, string fileName)
+        {
+            DirectoryInfo info = new DirectoryInfo(filePath);
+            if (!info.Exists)
+            {
+                info.Create();
+            }
+
+            string path = Path.Combine(filePath, fileName);
+            using (FileStream outputFileStream = new FileStream(path, FileMode.Create))
+            {
+                inputStream.CopyTo(outputFileStream);
+            }
+        }
+        private void GenerateStoreCredit()
       {
             Credit.exchangeBarcode = EAN13Generator.GenerateRandomEAN13();
             var barcode = BarcodeWriter.CreateBarcode(Credit.exchangeBarcode, BarcodeEncoding.EAN13).AddBarcodeValueTextBelowBarcode().SetMargins(5,5,5,5).ToStream(); // Create barcode number from generated barcode
+
             
-            
+            //SaveStreamAsFile(filepath, barcode, fileName);
+            Credit.imagePath = "D:\\Users\\spart\\Source\\Repos\\Inventory-Management-System\\Dashboard\\frmPanelContainers\\frmOrderForms\\frmReciept\\" + Credit.exchangeBarcode + ".Jpeg";
 
             barcodeContainer.Image = Image.FromStream(barcode);
             barcodeContainer.SizeMode = PictureBoxSizeMode.StretchImage;
-
+            barcodeContainer.Image.Save(Credit.imagePath, ImageFormat.Jpeg);
 
             Credit.ExchangeRecord = new string[2];
-
             Credit.ExchangeRecord[0] = Credit.Amount.ToString();
             Credit.ExchangeRecord[1] = Credit.exchangeBarcode;
 
-            MessageBox.Show(Credit.ExchangeRecord[0] + "\n\n\n\n" + Credit.ExchangeRecord[1]);
+            //MessageBox.Show(Credit.ExchangeRecord[0] + "\n\n\n\n" + Credit.ExchangeRecord[1]);
         }
         
         private void actionExchange()
@@ -140,28 +159,25 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers.frmOrderForms
             }
             else 
             {
-                
-                DialogResult result = MessageBox.Show("Proceed to Exchange? \n\n\n"  + "Press Yes to continue", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
-                if(result == DialogResult.Yes)
-                {
-                    try
-                    {
-                        actionRecord();
 
-                        commands.exchangeItem(Credit.ExchangeRecord,Credit.Record);
-                        Credit.Exchange = false;
-                        MessageBox.Show("Exchange Transaction Complete");
-                        this.Close();
-                    }
-                    catch(SqlException ex)
-                    {
-                        MessageBox.Show(ex.Message);
-                    }
-                    catch(Exception ex)
-                    {
-                        MessageBox.Show(ex.Message);
-                    }
+
+                try
+                {
+                    actionRecord();
+
+                    Credit.transactionID = commands.exchangeItem(Credit.ExchangeRecord, Credit.Record);
+                    Credit.Exchange = false;
+                    MessageBox.Show("You can close this dialog");
                 }
+                catch (SqlException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                
             }
 
         
@@ -195,6 +211,12 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers.frmOrderForms
         private void btnPrint_Click(object sender, EventArgs e)
         {
             //WIP 
+            frmPreview frmNew = new frmPreview();
+            frmPreview.Instance.filePath = Credit.imagePath;
+            frmPreview.Instance.transactionID = Credit.transactionID;
+            frmPreview.Instance.StoreCreditamount = Credit.Amount;
+            
+            frmNew.ShowDialog();
         }
     }
     public class EAN13Generator
@@ -235,7 +257,13 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers.frmOrderForms
 
 
     class Credit
+
     {
+        public string imagePath { get; set; }
+        private int TransactionID = 0;
+        public int transactionID {
+            get { return TransactionID; }
+            set { TransactionID = value; } }
         private double amount;
         public double Amount
         {

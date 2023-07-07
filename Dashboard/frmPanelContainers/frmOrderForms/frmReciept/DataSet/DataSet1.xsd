@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DataSet1" targetNamespace="http://tempuri.org/DataSet1.xsd" xmlns:mstns="http://tempuri.org/DataSet1.xsd" xmlns="http://tempuri.org/DataSet1.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DataSet1" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_UserDSName="DataSet1" msprop:Generator_DataSetName="DataSet1">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="StoreCredit" msprop:Generator_RowEvHandlerName="StoreCreditRowChangeEventHandler" msprop:Generator_RowDeletedName="StoreCreditRowDeleted" msprop:Generator_RowDeletingName="StoreCreditRowDeleting" msprop:Generator_RowEvArgName="StoreCreditRowChangeEvent" msprop:Generator_TablePropName="StoreCredit" msprop:Generator_RowChangedName="StoreCreditRowChanged" msprop:Generator_RowChangingName="StoreCreditRowChanging" msprop:Generator_TableClassName="StoreCreditDataTable" msprop:Generator_RowClassName="StoreCreditRow" msprop:Generator_TableVarName="tableStoreCredit" msprop:Generator_UserTableName="StoreCredit">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="TransactionID" msprop:Generator_ColumnPropNameInRow="TransactionID" msprop:Generator_ColumnPropNameInTable="TransactionIDColumn" msprop:Generator_ColumnVarNameInTable="columnTransactionID" msprop:Generator_UserColumnName="TransactionID" type="xs:string" minOccurs="0" />
+              <xs:element name="StoreCreditAmount" msprop:Generator_ColumnPropNameInRow="StoreCreditAmount" msprop:Generator_ColumnPropNameInTable="StoreCreditAmountColumn" msprop:Generator_ColumnVarNameInTable="columnStoreCreditAmount" msprop:Generator_UserColumnName="StoreCreditAmount" type="xs:string" minOccurs="0" />
+              <xs:element name="StoreCreditBarcode" msprop:Generator_ColumnPropNameInRow="StoreCreditBarcode" msprop:Generator_ColumnPropNameInTable="StoreCreditBarcodeColumn" msprop:Generator_ColumnVarNameInTable="columnStoreCreditBarcode" msprop:Generator_UserColumnName="StoreCreditBarcode" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
