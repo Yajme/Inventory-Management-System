@@ -47,17 +47,13 @@
             this.btnAction = new FontAwesome.Sharp.IconButton();
             this.lblRefund = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.colRowN = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colExDesc = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colExQty = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colExPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnSearch = new FontAwesome.Sharp.IconButton();
-            this.txtProduct = new System.Windows.Forms.TextBox();
+            this.barcodeContainer = new System.Windows.Forms.PictureBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.btnPrint = new FontAwesome.Sharp.IconButton();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.barcodeContainer)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -213,6 +209,7 @@
             // 
             // btnAction
             // 
+            this.btnAction.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnAction.IconChar = FontAwesome.Sharp.IconChar.None;
             this.btnAction.IconColor = System.Drawing.Color.Black;
             this.btnAction.IconFont = FontAwesome.Sharp.IconFont.Auto;
@@ -237,95 +234,49 @@
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.dataGridView2);
-            this.panel2.Controls.Add(this.btnSearch);
-            this.panel2.Controls.Add(this.txtProduct);
+            this.panel2.Controls.Add(this.btnPrint);
+            this.panel2.Controls.Add(this.barcodeContainer);
+            this.panel2.Controls.Add(this.label6);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel2.Location = new System.Drawing.Point(0, 46);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(0, 282);
             this.panel2.TabIndex = 13;
             // 
-            // dataGridView2
+            // barcodeContainer
             // 
-            this.dataGridView2.AllowUserToAddRows = false;
-            this.dataGridView2.AllowUserToDeleteRows = false;
-            this.dataGridView2.AllowUserToResizeColumns = false;
-            this.dataGridView2.AllowUserToResizeRows = false;
-            this.dataGridView2.BackgroundColor = System.Drawing.SystemColors.Control;
-            this.dataGridView2.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.colRowN,
-            this.colExDesc,
-            this.colExQty,
-            this.colExPrice});
-            this.dataGridView2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView2.Location = new System.Drawing.Point(0, 19);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.ReadOnly = true;
-            this.dataGridView2.RowHeadersVisible = false;
-            this.dataGridView2.Size = new System.Drawing.Size(0, 263);
-            this.dataGridView2.TabIndex = 3;
+            this.barcodeContainer.Dock = System.Windows.Forms.DockStyle.Top;
+            this.barcodeContainer.Location = new System.Drawing.Point(0, 22);
+            this.barcodeContainer.Name = "barcodeContainer";
+            this.barcodeContainer.Size = new System.Drawing.Size(0, 163);
+            this.barcodeContainer.TabIndex = 0;
+            this.barcodeContainer.TabStop = false;
             // 
-            // colRowN
+            // label6
             // 
-            this.colRowN.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.colRowN.HeaderText = "#";
-            this.colRowN.Name = "colRowN";
-            this.colRowN.ReadOnly = true;
-            this.colRowN.Width = 39;
+            this.label6.AutoSize = true;
+            this.label6.Dock = System.Windows.Forms.DockStyle.Top;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.25F);
+            this.label6.Location = new System.Drawing.Point(0, 0);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(172, 22);
+            this.label6.TabIndex = 1;
+            this.label6.Text = "Generated Barcode:";
             // 
-            // colExDesc
+            // btnPrint
             // 
-            this.colExDesc.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colExDesc.HeaderText = "Description";
-            this.colExDesc.Name = "colExDesc";
-            this.colExDesc.ReadOnly = true;
-            // 
-            // colExQty
-            // 
-            this.colExQty.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.colExQty.HeaderText = "Quantity";
-            this.colExQty.Name = "colExQty";
-            this.colExQty.ReadOnly = true;
-            this.colExQty.Width = 71;
-            // 
-            // colExPrice
-            // 
-            this.colExPrice.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.colExPrice.HeaderText = "Price";
-            this.colExPrice.Name = "colExPrice";
-            this.colExPrice.ReadOnly = true;
-            this.colExPrice.Width = 56;
-            // 
-            // btnSearch
-            // 
-            this.btnSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSearch.BackColor = System.Drawing.Color.White;
-            this.btnSearch.FlatAppearance.BorderSize = 0;
-            this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSearch.IconChar = FontAwesome.Sharp.IconChar.MagnifyingGlass;
-            this.btnSearch.IconColor = System.Drawing.Color.DimGray;
-            this.btnSearch.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnSearch.IconSize = 20;
-            this.btnSearch.Location = new System.Drawing.Point(-47, 0);
-            this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(47, 19);
-            this.btnSearch.TabIndex = 5;
-            this.btnSearch.UseVisualStyleBackColor = false;
-            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
-            // 
-            // txtProduct
-            // 
-            this.txtProduct.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtProduct.Dock = System.Windows.Forms.DockStyle.Top;
-            this.txtProduct.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtProduct.Location = new System.Drawing.Point(0, 0);
-            this.txtProduct.Name = "txtProduct";
-            this.txtProduct.Size = new System.Drawing.Size(0, 19);
-            this.txtProduct.TabIndex = 4;
-            this.txtProduct.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtProduct_KeyPress);
+            this.btnPrint.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnPrint.IconChar = FontAwesome.Sharp.IconChar.Print;
+            this.btnPrint.IconColor = System.Drawing.Color.Black;
+            this.btnPrint.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnPrint.IconSize = 30;
+            this.btnPrint.Location = new System.Drawing.Point(-94, 191);
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.Size = new System.Drawing.Size(91, 35);
+            this.btnPrint.TabIndex = 2;
+            this.btnPrint.Text = "[Print]";
+            this.btnPrint.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnPrint.UseVisualStyleBackColor = true;
             // 
             // frmReturnExchangeAction
             // 
@@ -358,7 +309,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.barcodeContainer)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -385,12 +336,8 @@
         private FontAwesome.Sharp.IconButton btnAction;
         private System.Windows.Forms.Label lblRefund;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.DataGridView dataGridView2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colRowN;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colExDesc;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colExQty;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colExPrice;
-        private FontAwesome.Sharp.IconButton btnSearch;
-        private System.Windows.Forms.TextBox txtProduct;
+        private System.Windows.Forms.PictureBox barcodeContainer;
+        private FontAwesome.Sharp.IconButton btnPrint;
+        private System.Windows.Forms.Label label6;
     }
 }

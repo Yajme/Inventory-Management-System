@@ -32,6 +32,7 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
         /* <--FormControlsStart -->  */
         private void frmOrder_Load(object sender, EventArgs e)
         {
+            clearPlaceOrderPanel();
             fillContainer(panelPlaceOrder);
         }
         private void btnPlaceOrder_Click(object sender, EventArgs e)

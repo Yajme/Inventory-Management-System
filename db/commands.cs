@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
-using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
-using System.Windows.Forms;
 using static Inventory_Management_System.db.db;
 
 public static class commands
 {
-    
+
     public static void dbclose()
     {
         if (con.State == ConnectionState.Open)
@@ -16,7 +14,7 @@ public static class commands
             con.Close();
         }
     }
-    
+
 
 
     public static void insertInventory(string[] product)
@@ -77,18 +75,18 @@ public static class commands
         SqlTransaction t = con.BeginTransaction();
         try
         {
-            cmd = new SqlCommand("INSERT INTO CATEGORIES(CATEGORYNAME) VALUES(@CATEGORYNAME)", con,t);
+            cmd = new SqlCommand("INSERT INTO CATEGORIES(CATEGORYNAME) VALUES(@CATEGORYNAME)", con, t);
             cmd.Parameters.AddWithValue("@CATEGORYNAME", category);
-            
+
             cmd.ExecuteNonQuery();
             t.Commit();
         }
-        catch(SqlException ex)
+        catch (SqlException ex)
         {
             t.Rollback();
             throw ex;
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             t.Rollback();
             throw ex;
@@ -97,8 +95,8 @@ public static class commands
         {
             con.Close();
         }
-        
-       
+
+
     }
     public static void updatecategories(string category, int id)
     {
@@ -106,18 +104,20 @@ public static class commands
         SqlTransaction t = con.BeginTransaction();
         try
         {
-            cmd = new SqlCommand("UPDATE CATEGORIES SET CATEGORYNAME= @CATEGORYNAME WHERE CATEGORYID= @CATEGORYID", con,t);
+            cmd = new SqlCommand("UPDATE CATEGORIES SET CATEGORYNAME= @CATEGORYNAME WHERE CATEGORYID= @CATEGORYID", con, t);
             cmd.Parameters.AddWithValue("@CATEGORYNAME", category);
             cmd.Parameters.AddWithValue("@CATEGORYID", id);
 
-            
+
             cmd.ExecuteNonQuery();
             t.Commit();
-        }catch(SqlException ex)
+        }
+        catch (SqlException ex)
         {
             t.Rollback();
             throw ex;
-        }catch(Exception ex)
+        }
+        catch (Exception ex)
         {
             t.Rollback();
             throw ex;
@@ -126,8 +126,8 @@ public static class commands
         {
             con.Close();
         }
-        
-        
+
+
     }
     public static void deletecategories(int id)
     {
@@ -135,18 +135,19 @@ public static class commands
         SqlTransaction t = con.BeginTransaction();
         try
         {
-            cmd = new SqlCommand("DELETE FROM CATEGORIES WHERE CATEGORYID= @CATEGORYID", con,t);
+            cmd = new SqlCommand("DELETE FROM CATEGORIES WHERE CATEGORYID= @CATEGORYID", con, t);
             cmd.Parameters.AddWithValue("@CATEGORYID", id);
 
-            
+
             cmd.ExecuteNonQuery();
             t.Commit();
         }
-        catch(SqlException ex)
+        catch (SqlException ex)
         {
             t.Rollback();
             throw ex;
-        }catch(Exception ex)
+        }
+        catch (Exception ex)
         {
             t.Rollback();
             throw ex;
@@ -155,8 +156,8 @@ public static class commands
         {
             con.Close();
         }
-        
-        
+
+
     }
     public static int categoryValidator(string category)
     {
@@ -198,7 +199,7 @@ public static class commands
             cmd.Parameters.AddWithValue("@CONTACTPERSON", supplier[1]);
             cmd.Parameters.AddWithValue("@PHONE", supplier[2]);
             cmd.Parameters.AddWithValue("@EMAIL", supplier[3]);
-            
+
             cmd.ExecuteNonQuery();
             t.Commit();
         }
@@ -206,7 +207,8 @@ public static class commands
         {
             t.Rollback();
             throw ex;
-        }catch(Exception ex)
+        }
+        catch (Exception ex)
         {
             t.Rollback();
             throw ex;
@@ -223,13 +225,13 @@ public static class commands
         SqlTransaction t = con.BeginTransaction();
         try
         {
-            cmd = new SqlCommand("UPDATE SUPPLIERS SET SUPPLIERNAME=@SUPPLIERNAME, CONTACTPERSON= @CONTACTPERSON, PHONE= @PHONE, EMAIL= @EMAIL WHERE SUPPLIERID= @SUPPLIERID ", con,t);
+            cmd = new SqlCommand("UPDATE SUPPLIERS SET SUPPLIERNAME=@SUPPLIERNAME, CONTACTPERSON= @CONTACTPERSON, PHONE= @PHONE, EMAIL= @EMAIL WHERE SUPPLIERID= @SUPPLIERID ", con, t);
             cmd.Parameters.AddWithValue("@SUPPLIERNAME", supplier[0]);
             cmd.Parameters.AddWithValue("@CONTACTPERSON", supplier[1]);
             cmd.Parameters.AddWithValue("@PHONE", supplier[2]);
             cmd.Parameters.AddWithValue("@EMAIL", supplier[3]);
             cmd.Parameters.AddWithValue("@SUPPLIERID", supplierid);
-            
+
             cmd.ExecuteNonQuery();
 
         }
@@ -237,7 +239,8 @@ public static class commands
         {
             t.Rollback();
             throw ex;
-        }catch(Exception ex)
+        }
+        catch (Exception ex)
         {
             t.Rollback();
             throw ex;
@@ -246,7 +249,7 @@ public static class commands
         {
             con.Close();
         }
-        
+
     }
     public static void deletesuppliers(int id)
     {
@@ -256,15 +259,16 @@ public static class commands
         {
             cmd = new SqlCommand("DELETE FROM SUPPLIERS WHERE SUPPLIERID= @SUPPLIERID", con, t);
             cmd.Parameters.AddWithValue("@SUPPLIERID", id);
-            
+
             cmd.ExecuteNonQuery();
             t.Commit();
         }
-        catch(SqlException ex)
+        catch (SqlException ex)
         {
             t.Rollback();
             throw ex;
-        }catch(Exception ex)
+        }
+        catch (Exception ex)
         {
             t.Rollback();
             throw ex;
@@ -273,9 +277,9 @@ public static class commands
         {
             con.Close();
         }
-        
-        
-        
+
+
+
     }
 
     public static string[] itemEncode(string id)
@@ -318,7 +322,7 @@ public static class commands
     {
         con.Open();
         cmd = new SqlCommand("SELECT * FROM Warehouses", con);
-        
+
         DataTable dt = new DataTable();
         dt.Load(cmd.ExecuteReader());
 
@@ -328,7 +332,7 @@ public static class commands
     public static int selectWarehouse(string warehousename)
     {
         int id = 0;
-        
+
         con.Open();
         cmd = new SqlCommand("SELECT WarehouseID FROM Warehouses WHERE WarehouseName=@WarehouseName", con);
         cmd.Parameters.AddWithValue("@WarehouseName", warehousename);
@@ -345,12 +349,12 @@ public static class commands
     {
         con.Open();
         SqlTransaction t = con.BeginTransaction();
-        
-        
-        
+
+
+
         try
         {
-            cmd = new SqlCommand("INSERT INTO StockMovements(ProductID, WarehouseID, MovementType, Quantity) VALUES(@PRODUCTID, @WAREHOUSEID, @MOVEMENTTYPE,@QUANTITY)", con,t);
+            cmd = new SqlCommand("INSERT INTO StockMovements(ProductID, WarehouseID, MovementType, Quantity) VALUES(@PRODUCTID, @WAREHOUSEID, @MOVEMENTTYPE,@QUANTITY)", con, t);
             cmd.Parameters.AddWithValue("@PRODUCTID", stock[0]);//productid
             cmd.Parameters.AddWithValue("@WAREHOUSEID", stock[1]);//warehouseid
             cmd.Parameters.AddWithValue("@QUANTITY", stock[2]);//quantity
@@ -360,12 +364,12 @@ public static class commands
 
             t.Commit();
         }
-        catch(SqlException ex)
+        catch (SqlException ex)
         {
             t.Rollback();
             throw ex;
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             t.Rollback();
             throw ex;
@@ -374,7 +378,7 @@ public static class commands
         {
             con.Close();
         }
-        
+
     }
     public static void insertStocktoWarehouse(string[] stock)
     {
@@ -384,12 +388,12 @@ public static class commands
 
         try
         {
-            cmd = new SqlCommand("INSERT INTO WarehouseStock(ProductID, WarehouseID, QuantityStock) VALUES (@ProductID, @WarehouseID, @Quantity)", con,t);
+            cmd = new SqlCommand("INSERT INTO WarehouseStock(ProductID, WarehouseID, QuantityStock) VALUES (@ProductID, @WarehouseID, @Quantity)", con, t);
             cmd.Parameters.AddWithValue("@ProductID", stock[0]); // productid
             cmd.Parameters.AddWithValue("@WarehouseID", stock[1]); // warehouseid
             cmd.Parameters.AddWithValue("@Quantity", stock[2]); // quantity
 
-            
+
             cmd.ExecuteNonQuery();
             t.Commit();
         }
@@ -418,11 +422,11 @@ public static class commands
         cmd.Parameters.AddWithValue("@ProductID", stock[0]);//productid
         cmd.Parameters.AddWithValue("@WarehouseID", stock[1]);//warehouseid
         dr = cmd.ExecuteReader();
-        if(dr.Read())
+        if (dr.Read())
         {
             query = (int)dr[0];
         }
-        
+
 
 
         con.Close();
@@ -435,11 +439,11 @@ public static class commands
 
         try
         {
-            cmd = new SqlCommand("UPDATE WarehouseStock SET QuantityStock= QuantityStock+@Quantity WHERE ProductID=@ProductID AND WarehouseID=@WarehouseID", con,t);
+            cmd = new SqlCommand("UPDATE WarehouseStock SET QuantityStock= QuantityStock+@Quantity WHERE ProductID=@ProductID AND WarehouseID=@WarehouseID", con, t);
             cmd.Parameters.AddWithValue("@ProductID", stock[0]);//productid
             cmd.Parameters.AddWithValue("@WarehouseID", stock[1]);//warehouseid
             cmd.Parameters.AddWithValue("@Quantity", stock[2]);//quantity
-            
+
             cmd.ExecuteNonQuery();
             t.Commit();
         }
@@ -465,18 +469,19 @@ public static class commands
         SqlTransaction t = con.BeginTransaction();
         try
         {
-            cmd = new SqlCommand("UPDATE Products SET QuantityInStock= QuantityInStock+@Quantity WHERE PRODUCTID= @PRODUCTID", con,t);
+            cmd = new SqlCommand("UPDATE Products SET QuantityInStock= QuantityInStock+@Quantity WHERE PRODUCTID= @PRODUCTID", con, t);
             cmd.Parameters.AddWithValue("@ProductID", stock[0]);//productid
             cmd.Parameters.AddWithValue("@Quantity", stock[2]);//quantity
-            
+
             cmd.ExecuteNonQuery();
             t.Commit();
         }
-        catch(SqlException ex)
+        catch (SqlException ex)
         {
             t.Rollback();
             throw ex;
-        }catch(Exception ex)
+        }
+        catch (Exception ex)
         {
             t.Rollback();
             throw ex;
@@ -485,9 +490,9 @@ public static class commands
         {
             con.Close();
         }
-        
-        
-        
+
+
+
     }
 
     public static DataTable viewWarehouseStock()
@@ -539,7 +544,7 @@ public static class commands
     }
     public static DataTable demo()
     {
-        
+
         con.Open();
         cmd = new SqlCommand("SELECT Products.ProductID, Products.ProductName, Products.Description, Categories.CategoryName, Products.QuantityInStock, Products.UnitPrice, Suppliers.SupplierName\r\nFROM Products\r\nJOIN Categories ON Products.CategoryID = Categories.CategoryID\r\nJOIN Suppliers ON Products.SupplierID = Suppliers.SupplierID", con);
 
@@ -553,7 +558,7 @@ public static class commands
 
     public static DataTable loadInventory()
     {
-        
+
         con.Open();
         cmd = new SqlCommand("SELECT Products.ProductID, Products.ProductName, Products.Description, Categories.CategoryName, Products.QuantityInStock, Products.UnitPrice, Suppliers.SupplierName,Products.ReorderLevel\r\nFROM Products\r\nJOIN Categories ON Products.CategoryID = Categories.CategoryID\r\nJOIN Suppliers ON Products.SupplierID = Suppliers.SupplierID", con);
 
@@ -571,10 +576,10 @@ public static class commands
         con.Open();
         cmd = new SqlCommand("SELECT Products.ProductID, Products.ProductName, Products.Description, Categories.CategoryName, Products.QuantityInStock, Products.UnitPrice, Suppliers.SupplierName,Products.ReorderLevel\r\nFROM Products\r\nJOIN Categories ON Products.CategoryID = Categories.CategoryID\r\nJOIN Suppliers ON Products.SupplierID = Suppliers.SupplierID WHERE Products.ProductID= @ProductID AND Categories.CategoryName= @CategoryName", con);
         cmd.Parameters.AddWithValue("@ProductID", query);
-       
-            cmd.Parameters.AddWithValue("@CategoryName", filter);
-        
-        
+
+        cmd.Parameters.AddWithValue("@CategoryName", filter);
+
+
 
         DataTable dt = new DataTable();
         dt.Load(cmd.ExecuteReader());
@@ -616,13 +621,13 @@ public static class commands
 
     }
     //public static int OrderID = 0;
-    
-    
+
+
     public static void insertOrder(string[] data, DataTable OrderItems)
     {
         con.Open();
         SqlTransaction t = con.BeginTransaction();
-        
+
         try
         {
 
@@ -661,8 +666,8 @@ END
 
                 orderid = (int)cmd.ExecuteScalar();
             }
-            
-           
+
+
             //cmd = new SqlCommand("SELECT TOP 1 OrderID FROM Orders ORDER BY OrderID DESC", con, t);
             /*
             using (cmd = new SqlCommand("SELECT TOP 1 OrderID FROM Orders ORDER BY OrderID DESC", con, t)) 
@@ -678,16 +683,16 @@ END
             {
                 //Parameter Name
                 string orderID = string.Format("@p{0}", p);
-                string productID = string.Format("@p{0}", p+1);
-                string quantity = string.Format("@p{0}", p+2);
-                string total = string.Format("@p{0}", p+3);
+                string productID = string.Format("@p{0}", p + 1);
+                string quantity = string.Format("@p{0}", p + 2);
+                string total = string.Format("@p{0}", p + 3);
                 p += 4;
 
                 //row
-                String row = String.Format("({0}, {1}, {2}, {3})", orderID,productID,quantity,total);
+                String row = String.Format("({0}, {1}, {2}, {3})", orderID, productID, quantity, total);
 
                 //add row
-                if(batch > 0)
+                if (batch > 0)
                 {
                     sb.AppendLine(",");
                 }
@@ -700,7 +705,7 @@ END
                 cmd.Parameters.Add(quantity, SqlDbType.Int).Value = dr[1];
                 cmd.Parameters.Add(total, SqlDbType.Decimal).Value = dr[2];
 
-                if(batch >= 5)
+                if (batch >= 5)
                 {
                     string sql = "INSERT INTO OrderItems(OrderID,ProductID,Quantity,UnitPrice) VALUES" + "\r\n" + sb.ToString();
                     cmd.CommandText = sql;
@@ -711,13 +716,13 @@ END
                     p = 1;
                 }
             }
-            if(batch > 0)
+            if (batch > 0)
             {
                 string sql = "INSERT INTO OrderItems(OrderID,ProductID,Quantity,UnitPrice) VALUES" + "\r\n" + sb.ToString();
                 cmd.CommandText = sql;
                 cmd.ExecuteNonQuery();
             }
-            
+
             t.Commit();
         }
         catch (SqlException ex)
@@ -736,7 +741,7 @@ END
         }
     }
 
-    
+
     public static void insertWarehouse(string[] warehouse)
     {
         con.Open();
@@ -746,16 +751,18 @@ END
             cmd = new SqlCommand("INSERT INTO Warehouses(WarehouseName, Location) VALUES(@WarehouseName, @Location)", con, t);
             cmd.Parameters.AddWithValue("@WarehouseName", warehouse[0]);
             cmd.Parameters.AddWithValue("@Location", warehouse[1]);
-            
+
             cmd.ExecuteNonQuery();
 
 
             t.Commit();
-        }catch(SqlException ex)
+        }
+        catch (SqlException ex)
         {
             t.Rollback();
             throw ex;
-        }catch(Exception ex)
+        }
+        catch (Exception ex)
         {
             t.Rollback();
             throw ex;
@@ -848,7 +855,7 @@ END
         con.Open();
 
         cmd = new SqlCommand("SELECT OrderItems.OrderItemID, Products.Description, OrderItems.Quantity, OrderItems.UnitPrice FROM OrderItems JOIN Products ON OrderItems.ProductID = Products.ProductID WHERE OrderItems.OrderID = @OrderID;", con);
-        cmd.Parameters.Add("@OrderID",SqlDbType.Int ).Value = OrderID;
+        cmd.Parameters.Add("@OrderID", SqlDbType.Int).Value = OrderID;
         dt.Load(cmd.ExecuteReader());
 
         con.Close();
@@ -912,11 +919,13 @@ SELECT Products.Description, Products.QuantityInStock, Products.ReorderLevel,SUM
             cmd = new SqlCommand("", con, t);
 
             t.Commit();
-        }catch(SqlException ex)
+        }
+        catch (SqlException ex)
         {
             t.Rollback();
             throw ex;
-        }catch(Exception ex)
+        }
+        catch (Exception ex)
         {
             t.Rollback();
             throw ex;
@@ -1010,7 +1019,7 @@ END*/
         catch (SqlException ex)
         {
             t.Rollback();
-            
+
             throw ex;
         }
         catch (Exception ex)
@@ -1059,17 +1068,17 @@ END*/
     {
         DataTable dt = new DataTable();
         con.Open();
-        string command = "SELECT ProductID, Quantity, UnitPrice FROM OrderItems WHERE OrderItemID= @OrderItemID";
-        for(int i = 0;i < orderitemID.Length; i++)
+        string command = "SELECT ProductID, Quantity, UnitPrice,OrderItemID FROM OrderItems WHERE OrderItemID= @OrderItemID";
+        for (int i = 0; i < orderitemID.Length; i++)
         {
-            using(cmd = new SqlCommand(command, con))
+            using (cmd = new SqlCommand(command, con))
             {
                 cmd.Parameters.AddWithValue("@OrderItemID", SqlDbType.Int).Value = orderitemID[i];
                 dt.Load(cmd.ExecuteReader());
                 cmd.Parameters.Clear();
             }
         }
-        
+
         con.Close();
         return dt;
     }
@@ -1091,8 +1100,10 @@ END*/
 
             cmd.Parameters.Clear();
             int p = 1;
+            
             int batch = 0;
             StringBuilder sb = new StringBuilder();
+            StringBuilder deleteItem = new StringBuilder();
             foreach (DataRow dr in product.Rows)
             {
                 //Parameter Name
@@ -1100,17 +1111,22 @@ END*/
                 string productID = string.Format("@p{0}", p + 1);
                 string quantity = string.Format("@p{0}", p + 2);
                 string total = string.Format("@p{0}", p + 3);
+
+                string orderItemID = string.Format("@p{0}", p); // for deletation of record in sale
                 p += 4;
+                
 
                 //row
                 String row = String.Format("({0}, {1}, {2}, {3})", TransactionID, productID, quantity, total);
-
+                String OIDrow = String.Format("{0}", orderItemID);
                 //add row
                 if (batch > 0)
                 {
                     sb.AppendLine(",");
+                    deleteItem.AppendLine(",");
                 }
                 sb.Append(row);
+                deleteItem.Append(OIDrow);
                 batch++;
 
                 //add parameters
@@ -1118,11 +1134,14 @@ END*/
                 cmd.Parameters.Add(productID, SqlDbType.VarChar).Value = dr[0];
                 cmd.Parameters.Add(quantity, SqlDbType.Int).Value = dr[1];
                 cmd.Parameters.Add(total, SqlDbType.Decimal).Value = dr[2];
+                cmd.Parameters.Add(orderItemID, SqlDbType.Int).Value = dr[3];
 
+                
                 if (batch >= 5)
                 {
+                    string command = "DELETE FROM OrderItems WHERE OrderItemID IN (" + deleteItem.ToString() + ");";
                     string sql = "INSERT INTO ReturnItem(TransactionID,ProductID,Quantity,RefundAmount) VALUES" + "\r\n" + sb.ToString();
-                    cmd.CommandText = sql;
+                    cmd.CommandText = command+sql;
                     cmd.ExecuteNonQuery();
                     cmd.Parameters.Clear();
                     sb.Clear();
@@ -1132,8 +1151,9 @@ END*/
             }
             if (batch > 0)
             {
+                string command = "DELETE FROM OrderItems WHERE OrderItemID IN (" + deleteItem.ToString() + ");";
                 string sql = "INSERT INTO ReturnItem(TransactionID,ProductID,Quantity,RefundAmount) VALUES" + "\r\n" + sb.ToString();
-                cmd.CommandText = sql;
+                cmd.CommandText = command + sql;
                 cmd.ExecuteNonQuery();
             }
 

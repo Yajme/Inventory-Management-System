@@ -6,10 +6,12 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Drawing.Text;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using IronBarCode;
 
 namespace Inventory_Management_System.Dashboard.frmPanelContainers.frmOrderForms
 {
@@ -102,7 +104,19 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers.frmOrderForms
             
             
         }
-      
+      private void GenerateStoreCredit()
+      {
+            Credit.exchangeBarcode = EAN13Generator.GenerateRandomEAN13();
+            var barcode = BarcodeWriter.CreateBarcode(Credit.exchangeBarcode, BarcodeEncoding.EAN13).AddBarcodeValueTextBelowBarcode().SetMargins(5,5,5,5).ToStream(); // Create barcode number from generated barcode
+            
+            
+
+            
+
+            barcodeContainer.Image = Image.FromStream(barcode);
+            barcodeContainer.SizeMode = PictureBoxSizeMode.StretchImage;
+
+        }
         private void actionExchange()
         {
             double getdpi = devmode.GetWindowsScaling();
@@ -113,8 +127,9 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers.frmOrderForms
                 DialogResult result = MessageBox.Show("Please add items according to the amount: " + Credit.Amount.ToString("#,##0.00") + "\n\n" + "Press Ok to continue", "Confirmation", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
                 if (result == DialogResult.OK)
                 {
-                    txtProduct.Focus();
+                    
                     panel2.Width = panelwidth;
+                    GenerateStoreCredit();
                     dataGridView1.Hide();
                     Credit.Exchange = true;
                 }
@@ -128,24 +143,7 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers.frmOrderForms
                     try
                     {
                         actionRecord();
-                        DataTable dt = new DataTable();
-                        dt.Columns.Add("ProductID");
-                        dt.Columns.Add("Quantity");
-                        dt.Columns.Add("Total");
-
-                        DataRow dr = null;
-                        int i = 0;
-                        foreach (DataGridViewRow rows in dataGridView2.Rows)
-                        {
-                            dr = dt.NewRow();
-                            dr["ProductID"] = Credit.ProductID[i];
-                            dr["Quantity"] = rows.Cells["colExQty"].Value;
-                            dr["Total"] = rows.Cells["colExPrice"].Value;
-                            i++;
-                        }
-                        //product,productExchanged,record
-
-                        commands.exchangeItem(Credit.OrderID, dt, Credit.Record);
+                        
 
                         Credit.Exchange = false;
                         MessageBox.Show("Exchange Transaction Complete");
@@ -169,57 +167,7 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers.frmOrderForms
             Credit.Record[1] = action;
             Credit.Record[2] = txtRemarks.Text;
         }
-        private void itemEncode()
-        {
-            string[] itemfetched = commands.itemEncode(txtProduct.Text);
-            bool found = false;
-            int row = dataGridView1.RowCount;
-            if(Credit.Amount >= 0)
-            {
-                if (itemfetched != Array.Empty<string>())
-                {
-                    Credit.StoreCredit += Convert.ToDouble(itemfetched[2]);
-                    Credit.ProductID[row] = itemfetched[0];
-                    if (dataGridView2.Rows.Count > 0)
-                    {
-                        foreach (DataGridViewRow rows in dataGridView2.Rows)
-                        {
-                            found = true;
-                            rows.Cells[dataGridView2.Columns["colExQty"].Index].Value = Convert.ToInt32(rows.Cells[dataGridView2.Columns["colExQty"].Index].Value) + 1;
-                        }
-
-                        if (!found)
-                        {
-                            dataGridView2.Rows.Add(row, itemfetched[1], 1, itemfetched[2]);
-                        }
-                    }
-                    else
-                    {
-                        dataGridView2.Rows.Add(row, itemfetched[1], 1, itemfetched[2]);
-                    }
-
-                    foreach (DataGridViewRow rows in dataGridView2.Rows)
-                    {
-                        rows.Cells[dataGridView2.Columns["colExPrice"].Index].Value = Convert.ToDouble(rows.Cells[dataGridView2.Columns["colExprice"].Index].Value) * Convert.ToDouble(rows.Cells[dataGridView2.Columns["colExQty"].Index].Value);
-                    }
-                    double total = Credit.Amount - Credit.StoreCredit;
-
-                    lblRefund.Text = total.ToString("#,##0.00");
-                }
-                else
-                {
-                    MessageBox.Show("Item not Found!", "404", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-
-                txtProduct.Clear();
-            }
-            else
-            {
-                MessageBox.Show("Transaction Exceeded Store Credit!", "Amount Exceed!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-           
-
-        }
+       
         private void btnAction_Click(object sender, EventArgs e)
         {
             
@@ -236,19 +184,45 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers.frmOrderForms
             
         }
 
-        private void btnSearch_Click(object sender, EventArgs e)
+
+
+    }
+    public class EAN13Generator
+    {
+        private static Random random = new Random();
+
+        public static string GenerateRandomEAN13()
         {
-            itemEncode();
+            // Generate 12 random digits
+            StringBuilder barcodeBuilder = new StringBuilder();
+            for (int i = 0; i < 12; i++)
+            {
+                barcodeBuilder.Append(random.Next(0, 10));
+            }
+
+            string barcodeWithoutCheckDigit = barcodeBuilder.ToString();
+            int checkDigit = CalculateEAN13CheckDigit(barcodeWithoutCheckDigit);
+
+            // Append the check digit to the barcode
+            string barcode = barcodeWithoutCheckDigit + checkDigit.ToString();
+
+            return barcode;
         }
 
-        private void txtProduct_KeyPress(object sender, KeyPressEventArgs e)
+        private static int CalculateEAN13CheckDigit(string barcode)
         {
-            if(e.KeyChar == (char)Keys.Enter)
+            int sum = 0;
+            for (int i = 0; i < barcode.Length; i++)
             {
-                itemEncode();
+                int digit = int.Parse(barcode[i].ToString());
+                sum += (i % 2 == 0) ? digit : digit * 3;
             }
+
+            int checkDigit = (10 - (sum % 10)) % 10;
+            return checkDigit;
         }
     }
+
 
     class Credit
     {
@@ -273,8 +247,9 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers.frmOrderForms
             get { return orderID; }
             set { orderID = value; }
         }
-        public double StoreCredit {get;set;}
-        public string[] Record { get;set;}
+        public double StoreCredit { get; set; }
+        public string[] Record { get; set; }
 
+        public string exchangeBarcode {get;set;}
     }
 }
