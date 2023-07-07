@@ -47,9 +47,9 @@
             this.btnAction = new FontAwesome.Sharp.IconButton();
             this.lblRefund = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.btnPrint = new FontAwesome.Sharp.IconButton();
             this.barcodeContainer = new System.Windows.Forms.PictureBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.btnPrint = new FontAwesome.Sharp.IconButton();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel2.SuspendLayout();
@@ -243,6 +243,22 @@
             this.panel2.Size = new System.Drawing.Size(0, 282);
             this.panel2.TabIndex = 13;
             // 
+            // btnPrint
+            // 
+            this.btnPrint.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnPrint.IconChar = FontAwesome.Sharp.IconChar.Print;
+            this.btnPrint.IconColor = System.Drawing.Color.Black;
+            this.btnPrint.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnPrint.IconSize = 30;
+            this.btnPrint.Location = new System.Drawing.Point(-94, 191);
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.Size = new System.Drawing.Size(91, 35);
+            this.btnPrint.TabIndex = 2;
+            this.btnPrint.Text = "[Print]";
+            this.btnPrint.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnPrint.UseVisualStyleBackColor = true;
+            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
+            // 
             // barcodeContainer
             // 
             this.barcodeContainer.Dock = System.Windows.Forms.DockStyle.Top;
@@ -262,21 +278,6 @@
             this.label6.Size = new System.Drawing.Size(172, 22);
             this.label6.TabIndex = 1;
             this.label6.Text = "Generated Barcode:";
-            // 
-            // btnPrint
-            // 
-            this.btnPrint.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnPrint.IconChar = FontAwesome.Sharp.IconChar.Print;
-            this.btnPrint.IconColor = System.Drawing.Color.Black;
-            this.btnPrint.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnPrint.IconSize = 30;
-            this.btnPrint.Location = new System.Drawing.Point(-94, 191);
-            this.btnPrint.Name = "btnPrint";
-            this.btnPrint.Size = new System.Drawing.Size(91, 35);
-            this.btnPrint.TabIndex = 2;
-            this.btnPrint.Text = "[Print]";
-            this.btnPrint.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnPrint.UseVisualStyleBackColor = true;
             // 
             // frmReturnExchangeAction
             // 

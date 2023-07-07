@@ -910,31 +910,7 @@ SELECT Products.Description, Products.QuantityInStock, Products.ReorderLevel,SUM
 
         return dt;
     }
-    public static void recordExchangeReturn(string[] record)
-    {
-        con.Open();
-        SqlTransaction t = con.BeginTransaction();
-        try
-        {
-            cmd = new SqlCommand("", con, t);
-
-            t.Commit();
-        }
-        catch (SqlException ex)
-        {
-            t.Rollback();
-            throw ex;
-        }
-        catch (Exception ex)
-        {
-            t.Rollback();
-            throw ex;
-        }
-        finally
-        {
-            con.Close();
-        }
-    }
+   
     public static void returnItem(DataTable returns, string[] record)
     {
         con.Open();
@@ -1083,7 +1059,7 @@ END*/
         return dt;
     }
 
-    public static void exchangeItem(DataTable product, DataTable productExchanged, string[] record) //Product-> product that is returned and will be exchanged with datatable productExchanged
+    public static void exchangeItem(string [] productExchanged, string[] record) //Product-> product that is returned and will be exchanged with datatable productExchanged
     {
         con.Open();
         SqlTransaction t = con.BeginTransaction();
@@ -1099,64 +1075,14 @@ END*/
             }
 
             cmd.Parameters.Clear();
-            int p = 1;
+
+            cmd = new SqlCommand("INSERT INTO ExchangeItem(TransactionID,StoreCreditAmount,StoreCreditBarcode) VALUES(@TransactionID,@Amount,@Barcode);", con, t);
             
-            int batch = 0;
-            StringBuilder sb = new StringBuilder();
-            StringBuilder deleteItem = new StringBuilder();
-            foreach (DataRow dr in product.Rows)
-            {
-                //Parameter Name
-                string TransactionID = string.Format("@p{0}", p);
-                string productID = string.Format("@p{0}", p + 1);
-                string quantity = string.Format("@p{0}", p + 2);
-                string total = string.Format("@p{0}", p + 3);
+                cmd.Parameters.AddWithValue("@TransactionID", SqlDbType.Int).Value = transactionID;
+                cmd.Parameters.AddWithValue("@Amount", SqlDbType.Decimal).Value = productExchanged[0]; //amount
+                cmd.Parameters.AddWithValue("@Barcode", SqlDbType.VarChar).Value = productExchanged[1]; //barcode
 
-                string orderItemID = string.Format("@p{0}", p); // for deletation of record in sale
-                p += 4;
-                
-
-                //row
-                String row = String.Format("({0}, {1}, {2}, {3})", TransactionID, productID, quantity, total);
-                String OIDrow = String.Format("{0}", orderItemID);
-                //add row
-                if (batch > 0)
-                {
-                    sb.AppendLine(",");
-                    deleteItem.AppendLine(",");
-                }
-                sb.Append(row);
-                deleteItem.Append(OIDrow);
-                batch++;
-
-                //add parameters
-                cmd.Parameters.Add(TransactionID, SqlDbType.Int).Value = transactionID;
-                cmd.Parameters.Add(productID, SqlDbType.VarChar).Value = dr[0];
-                cmd.Parameters.Add(quantity, SqlDbType.Int).Value = dr[1];
-                cmd.Parameters.Add(total, SqlDbType.Decimal).Value = dr[2];
-                cmd.Parameters.Add(orderItemID, SqlDbType.Int).Value = dr[3];
-
-                
-                if (batch >= 5)
-                {
-                    string command = "DELETE FROM OrderItems WHERE OrderItemID IN (" + deleteItem.ToString() + ");";
-                    string sql = "INSERT INTO ReturnItem(TransactionID,ProductID,Quantity,RefundAmount) VALUES" + "\r\n" + sb.ToString();
-                    cmd.CommandText = command+sql;
-                    cmd.ExecuteNonQuery();
-                    cmd.Parameters.Clear();
-                    sb.Clear();
-                    batch = 0;
-                    p = 1;
-                }
-            }
-            if (batch > 0)
-            {
-                string command = "DELETE FROM OrderItems WHERE OrderItemID IN (" + deleteItem.ToString() + ");";
-                string sql = "INSERT INTO ReturnItem(TransactionID,ProductID,Quantity,RefundAmount) VALUES" + "\r\n" + sb.ToString();
-                cmd.CommandText = command + sql;
-                cmd.ExecuteNonQuery();
-            }
-
+            cmd.ExecuteNonQuery();
             t.Commit();
         }
         catch (SqlException ex)

@@ -111,12 +111,18 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers.frmOrderForms
             
             
 
-            
-
             barcodeContainer.Image = Image.FromStream(barcode);
             barcodeContainer.SizeMode = PictureBoxSizeMode.StretchImage;
 
+
+            Credit.ExchangeRecord = new string[2];
+
+            Credit.ExchangeRecord[0] = Credit.Amount.ToString();
+            Credit.ExchangeRecord[1] = Credit.exchangeBarcode;
+
+            MessageBox.Show(Credit.ExchangeRecord[0] + "\n\n\n\n" + Credit.ExchangeRecord[1]);
         }
+        
         private void actionExchange()
         {
             double getdpi = devmode.GetWindowsScaling();
@@ -124,15 +130,13 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers.frmOrderForms
             //338width
             if (!Credit.Exchange)
             {
-                DialogResult result = MessageBox.Show("Please add items according to the amount: " + Credit.Amount.ToString("#,##0.00") + "\n\n" + "Press Ok to continue", "Confirmation", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
-                if (result == DialogResult.OK)
-                {
+               
                     
                     panel2.Width = panelwidth;
                     GenerateStoreCredit();
                     dataGridView1.Hide();
                     Credit.Exchange = true;
-                }
+                
             }
             else 
             {
@@ -143,11 +147,15 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers.frmOrderForms
                     try
                     {
                         actionRecord();
-                        
 
+                        commands.exchangeItem(Credit.ExchangeRecord,Credit.Record);
                         Credit.Exchange = false;
                         MessageBox.Show("Exchange Transaction Complete");
                         this.Close();
+                    }
+                    catch(SqlException ex)
+                    {
+                        MessageBox.Show(ex.Message);
                     }
                     catch(Exception ex)
                     {
@@ -184,8 +192,10 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers.frmOrderForms
             
         }
 
-
-
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+            //WIP 
+        }
     }
     public class EAN13Generator
     {
@@ -251,5 +261,7 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers.frmOrderForms
         public string[] Record { get; set; }
 
         public string exchangeBarcode {get;set;}
+
+        public string[] ExchangeRecord { get; set; }
     }
 }

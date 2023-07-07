@@ -95,7 +95,7 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers.frmOrderForms
             }
             catch(Exception ex)
             {
-
+                MessageBox.Show(ex.Message);
             }
         }
 
