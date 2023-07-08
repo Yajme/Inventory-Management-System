@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Inventory_Management_System.Dashboard.frmPanelContainers.frmOrderForms.frmReciept.DataSetFiles;
 
 namespace Inventory_Management_System.Dashboard.frmPanelContainers.frmOrderForms.frmReciept
 {
@@ -32,7 +33,12 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers.frmOrderForms
             ReportParameter transacID = new ReportParameter("transactionID", transactionID.ToString());
             ReportParameter amount = new ReportParameter("StoreCreditAmount", StoreCreditamount.ToString());
 
+            DataSet1 ds = commands.selectExchangeItem(transactionID);
+            
+            ReportDataSource rptDataSource = new ReportDataSource("DataSet1", ds.Tables["StoreCredit"]);
+            this.reportViewer1.LocalReport.DataSources.Add(rptDataSource);
             this.reportViewer1.LocalReport.EnableExternalImages = true;
+            this.reportViewer1.SetDisplayMode(DisplayMode.PrintLayout);
             this.reportViewer1.LocalReport.SetParameters(new ReportParameter[] { filepath,transacID,amount });
         }
 

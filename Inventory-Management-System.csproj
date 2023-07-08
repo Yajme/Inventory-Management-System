@@ -197,7 +197,7 @@
     <Compile Include="Dashboard\frmPanelContainers\frmOrderForms\frmPurchaseOrder.Designer.cs">
       <DependentUpon>frmPurchaseOrder.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dashboard\frmPanelContainers\frmOrderForms\frmReciept\DataSet\DataSet1.Designer.cs">
+    <Compile Include="Dashboard\frmPanelContainers\frmOrderForms\frmReciept\DataSetFiles\DataSet1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DataSet1.xsd</DependentUpon>
@@ -306,15 +306,15 @@
     </Compile>
     <None Include="App.config" />
     <None Include="app.manifest" />
-    <None Include="Dashboard\frmPanelContainers\frmOrderForms\frmReciept\DataSet\DataSet1.xsc">
+    <None Include="Dashboard\frmPanelContainers\frmOrderForms\frmReciept\DataSetFiles\DataSet1.xsc">
       <DependentUpon>DataSet1.xsd</DependentUpon>
     </None>
-    <None Include="Dashboard\frmPanelContainers\frmOrderForms\frmReciept\DataSet\DataSet1.xsd">
+    <None Include="Dashboard\frmPanelContainers\frmOrderForms\frmReciept\DataSetFiles\DataSet1.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DataSet1.Designer.cs</LastGenOutput>
     </None>
-    <None Include="Dashboard\frmPanelContainers\frmOrderForms\frmReciept\DataSet\DataSet1.xss">
+    <None Include="Dashboard\frmPanelContainers\frmOrderForms\frmReciept\DataSetFiles\DataSet1.xss">
       <DependentUpon>DataSet1.xsd</DependentUpon>
     </None>
     <None Include="packages.config" />

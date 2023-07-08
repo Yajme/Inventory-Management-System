@@ -3,7 +3,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Text;
 using static Inventory_Management_System.db.db;
-
+using Inventory_Management_System.Dashboard.frmPanelContainers.frmOrderForms.frmReciept.DataSetFiles;
 public static class commands
 {
 
@@ -1102,6 +1102,23 @@ END*/
         }
 
         return transactionID;
+    }
+
+    public static DataSet1 selectExchangeItem(int transactionID)
+    {
+        DataSet1 ds = new DataSet1();
+        con.Open();
+
+        cmd = new SqlCommand("SELECT TransactionID, StoreCreditAmount,StoreCreditBarcode FROM ExchangeItem WHERE TransactionID= @TransactionID", con);
+        cmd.Parameters.AddWithValue("@TransactionID", SqlDbType.Int).Value = transactionID;
+
+        sda = new SqlDataAdapter(cmd);
+
+        sda.Fill(ds.Tables["StoreCredit"]);
+
+        con.Close();
+
+        return ds;
     }
 }
 

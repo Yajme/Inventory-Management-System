@@ -10,7 +10,7 @@
 
 #pragma warning disable 1591
 
-namespace Inventory_Management_System.Dashboard.frmPanelContainers.frmOrderForms.frmReciept.DataSet {
+namespace Inventory_Management_System.Dashboard.frmPanelContainers.frmOrderForms.frmReciept.DataSetFiles {
     
     
     /// <summary>
