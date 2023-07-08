@@ -106,20 +106,12 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers.frmOrderForms
 
 
             DataTable dt = Invoice.invoice(dataGridView1);
-            try
-            {
+            
+                MessageBox.Show(GetItemsupplier.supplierid.ToString());
                 commands.insertPurchaseOrder(dt, GetItemsupplier.supplierid);
                 MessageBox.Show("Purchase Order Submitted!");
                 clearFields();
-            }
-            catch(SqlException ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            catch(Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            
             
         }
 
@@ -201,8 +193,8 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers.frmOrderForms
             foreach(DataGridViewRow rows in data.Rows)
             {
                 dr = dt.NewRow();
-                dr["ProductID"] = rows.Cells["colProductID"];
-                dr["Quantity"] = rows.Cells["colQuantity"];
+                dr["ProductID"] = rows.Cells["colProductID"].Value;
+                dr["Quantity"] = rows.Cells["colQuantity"].Value;
                 dt.Rows.Add(dr);
             }
 

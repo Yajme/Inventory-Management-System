@@ -1127,8 +1127,57 @@ END*/
         SqlTransaction t = con.BeginTransaction();
         try
         {
-            cmd = new SqlCommand("INSERT INTO ", con, t);
+            int PurchaseID = 0;
+            using (cmd = new SqlCommand("DECLARE @ReturnedID INT;\r\n EXEC InsertPurchaseOrder @SupplierID, @PurchaseID= @ReturnedID OUTPUT; SELECT @ReturnedID as 'ReturnedID';  ", con, t))
+            {
+                cmd.Parameters.AddWithValue("@SupplierID", SqlDbType.Int).Value = SupplierID;
+                PurchaseID = (int)cmd.ExecuteScalar();
+            }
 
+            int p = 1, batch = 0;
+            StringBuilder sb = new StringBuilder();
+
+            foreach(DataRow row in Invoice.Rows)
+            {
+                //PurchaseID, ProductID, Quantity
+                string purchaseID = String.Format("@p{0}", p);
+                string productID = String.Format("@p{0}", p + 1);
+                string Quantity = String.Format("@p{0}", p + 2);
+
+
+                p += 3;
+
+                String Row = String.Format("({0},{1},{2})", purchaseID,productID,Quantity);
+                if (batch > 0)
+                {
+                    sb.AppendLine(",");
+                }
+                sb.Append(Row);
+                batch++;
+
+                cmd.Parameters.AddWithValue(purchaseID, SqlDbType.Int).Value = PurchaseID;
+                cmd.Parameters.AddWithValue(productID, SqlDbType.VarChar).Value = row[0];
+                cmd.Parameters.AddWithValue(Quantity, SqlDbType.Int).Value = row[1];
+
+                if (batch >= 5)
+                {
+                    string sql = "INSERT INTO PurchaseInvoice(PurchaseID, ProductID, Quantity) VALUES" + "\r\n" + sb.ToString();
+                    cmd.CommandText = sql;
+                    cmd.ExecuteNonQuery();
+                    cmd.Parameters.Clear();
+                    sb.Clear();
+                    batch = 0;
+                    p = 1;
+                }
+            }
+            if (batch > 0)
+            {
+                string sql = "INSERT INTO PurchaseInvoice(PurchaseID, ProductID, Quantity) VALUES" + "\r\n" + sb.ToString();
+                cmd.CommandText = sql;
+                cmd.ExecuteNonQuery();
+                cmd.Parameters.Clear();
+           
+            }
             t.Commit();
         }
         catch (SqlException ex)

@@ -304,6 +304,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include=".editorconfig" />
     <None Include="App.config" />
     <None Include="app.manifest" />
     <None Include="Dashboard\frmPanelContainers\frmOrderForms\frmReciept\DataSetFiles\DataSet1.xsc">
