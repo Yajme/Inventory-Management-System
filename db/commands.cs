@@ -1120,6 +1120,32 @@ END*/
 
         return ds;
     }
+
+    public static void insertPurchaseOrder(DataTable Invoice, int SupplierID)
+    {
+        con.Open();
+        SqlTransaction t = con.BeginTransaction();
+        try
+        {
+            cmd = new SqlCommand("INSERT INTO ", con, t);
+
+            t.Commit();
+        }
+        catch (SqlException ex)
+        {
+            t.Rollback();
+            throw ex;
+        }
+        catch (Exception ex)
+        {
+            t.Rollback();
+            throw ex;
+        }
+        finally
+        {
+            con.Close();
+        }
+    }
 }
 
 
