@@ -4,6 +4,8 @@ using System.Data.SqlClient;
 using System.Text;
 using static Inventory_Management_System.db.db;
 using Inventory_Management_System.Dashboard.frmPanelContainers.frmOrderForms.frmReciept.DataSetFiles;
+using System.ComponentModel;
+
 public static class commands
 {
 
@@ -1194,6 +1196,31 @@ END*/
         {
             con.Close();
         }
+    }
+
+
+    public static DataTable loadPurchaseOrder()
+    {
+        DataTable dt = new DataTable();
+        con.Open();
+        cmd = new SqlCommand("SELECT PurchaseOrders.PurchaseID, Suppliers.SupplierName, FORMAT(PurchaseOrders.PurchaseDate, 'MMMM-dd-yyy') as Date FROM PurchaseOrders JOIN Suppliers ON PurchaseOrders.SupplierID = Suppliers.SupplierID WHERE Recieved = 0", con);
+        dt.Load(cmd.ExecuteReader());
+        con.Close();
+
+        return dt;
+    }
+
+    public static DataTable selectPurchaseInvoice(int transactionID)
+    {
+        DataTable dt = new DataTable();
+        con.Open();
+        cmd = new SqlCommand("SELECT PurchaseInvoice.InvoiceNumber, Products.Description, PurchaseInvoice.Quantity FROM PurchaseInvoice JOIN Products ON PurchaseInvoice.ProductID = Products.ProductID WHERE PurchaseInvoice.PurchaseID= @PurchaseID", con);
+        cmd.Parameters.AddWithValue("@PurchaseID", SqlDbType.Int).Value = transactionID;
+        dt.Load(cmd.ExecuteReader());
+        con.Close();
+
+
+        return dt;
     }
 }
 

@@ -77,6 +77,7 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers.frmOrderForms
             txtProductName.Clear();
             txtQuantity.Clear();
             dataGridView1.Rows.Clear();
+            cboSuppliers.SelectedIndex = -1;
         }
         private void txtProductID_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -104,13 +105,25 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers.frmOrderForms
             //    MessageBox.Show(ex.Message);
             //}
 
-
-            DataTable dt = Invoice.invoice(dataGridView1);
+            DialogResult result = MessageBox.Show("Confirm purchase order?","Confirmation",MessageBoxButtons.YesNo,MessageBoxIcon.Question);
+            if(result == DialogResult.Yes)
+            {
+                try
+                {
+                    DataTable dt = Invoice.invoice(dataGridView1);
+                    commands.insertPurchaseOrder(dt, GetItemsupplier.supplierid);
+                    MessageBox.Show("Purchase Order Submitted!");
+                    clearFields();
+                }
+                catch(SqlException ex)
+                {
+                    MessageBox.Show("Database error"  + ex.Message);
+                }catch(Exception ex)
+                {
+                    MessageBox.Show("Systm error" + ex.Message);
+                }
+            }
             
-                MessageBox.Show(GetItemsupplier.supplierid.ToString());
-                commands.insertPurchaseOrder(dt, GetItemsupplier.supplierid);
-                MessageBox.Show("Purchase Order Submitted!");
-                clearFields();
             
             
         }
@@ -162,8 +175,12 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers.frmOrderForms
 
         private void cboSuppliers_SelectedIndexChanged(object sender, EventArgs e)
         {
-            GetItemsupplier.Name = cboSuppliers.Text;
-            GetItemsupplier.supplierid = GetItemsupplier.SupplierID[cboSuppliers.SelectedIndex]; 
+            if(cboSuppliers.SelectedIndex != -1)
+            {
+                GetItemsupplier.Name = cboSuppliers.Text;
+                GetItemsupplier.supplierid = GetItemsupplier.SupplierID[cboSuppliers.SelectedIndex];
+            }
+            
         }
 
 

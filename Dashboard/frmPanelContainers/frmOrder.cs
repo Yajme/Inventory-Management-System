@@ -355,34 +355,7 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
         }
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtQuantity.Text) || !int.TryParse(txtQuantity.Text, out int outbound))
-            {
-                MessageBox.Show("Invalid Quantity!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtQuantity.Focus();
-            }
-            else if (cmbWarehouse.Text == string.Empty)
-            {
-                MessageBox.Show("Please Select Warehouse!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            else if (!Order.Scan)
-            {
-                MessageBox.Show("Indicate Product!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtProductID.Focus();
-            }
-            else
-            {
-                int id = commands.selectWarehouse(cmbWarehouse.Text);
-
-                string[] stock = new string[4];
-                stock[0] = txtProductID.Text;//productid
-                stock[1] = id.ToString(); //warehouseid
-                stock[2] = txtQuantity.Text;
-                stock[3] = "Inbound";
-                movementStock(stock);
-
-
-                loadHistoryandProducts();
-            }
+            
 
         }
         private void btnDiscard_Click(object sender, EventArgs e)
@@ -391,64 +364,64 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
         }
         private void replenishFetch(string id)
         {
-            if(txtProductID.Text != string.Empty)
-            {
-                if (!Order.Search)
-                {
-                    if (!Order.Scan)
-                    {
-                        string[] item = commands.itemEncode(txtProductID.Text);
-                        if (item.Length > 0)
-                        {
-                            txtProductName.Text = item[1];
-                            txtProductID.ReadOnly = true;
-                            Order.Scan = true;
-                        }
-                        else
-                        {
+            //if(txtProductID.Text != string.Empty)
+            //{
+            //    if (!Order.Search)
+            //    {
+            //        if (!Order.Scan)
+            //        {
+            //            string[] item = commands.itemEncode(txtProductID.Text);
+            //            if (item.Length > 0)
+            //            {
+            //                txtProductName.Text = item[1];
+            //                txtProductID.ReadOnly = true;
+            //                Order.Scan = true;
+            //            }
+            //            else
+            //            {
 
-                            MessageBox.Show("Not Found!", "Invalid Field", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //                MessageBox.Show("Not Found!", "Invalid Field", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-                        }
+            //            }
 
-                    }
-                }
-                else
-                {
-                    dataGridView3.Rows.Clear();
-                    DataTable dt = commands.searchInventoryWOC(id);
-                    foreach (DataRow row in dt.Rows)
-                    {
-                        dataGridView3.Rows.Add(row[0], row[2], row[4], row[7]);
-                    }
-                }
+            //        }
+            //    }
+            //    else
+            //    {
+            //        dataGridView3.Rows.Clear();
+            //        DataTable dt = commands.searchInventoryWOC(id);
+            //        foreach (DataRow row in dt.Rows)
+            //        {
+            //            dataGridView3.Rows.Add(row[0], row[2], row[4], row[7]);
+            //        }
+            //    }
                 
-            }
-            else
-            {
-                MessageBox.Show("Enter Product ID!" ,"Invalid Field", MessageBoxButtons.OK,MessageBoxIcon.Error);
+            //}
+            //else
+            //{
+            //    MessageBox.Show("Enter Product ID!" ,"Invalid Field", MessageBoxButtons.OK,MessageBoxIcon.Error);
 
-            }
+            //}
 
 
 
         }
         private void btnEnterReplenish_Click(object sender, EventArgs e)
         {
-            replenishFetch(txtProductID.Text);
+            //replenishFetch(txtProductID.Text);
         }
         private void resetTextbox()
         {
-            txtProductID.Clear();
-            txtProductName.Clear();
-            txtQuantity.Clear();
+            //txtProductID.Clear();
+            //txtProductName.Clear();
+            //txtQuantity.Clear();
 
         }
         private void loadHistoryandProducts()
         {
             Order.Scan= false;
-            txtProductID.ReadOnly = false;
-            txtProductID.Focus();
+            //txtProductID.ReadOnly = false;
+            //txtProductID.Focus();
             resetTextbox();
             //datagridview2 = history
             //datagridview3 = product
@@ -484,22 +457,17 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
             }
             //history
 
-        }
-        private void txtProductID_KeyPress(object sender, KeyPressEventArgs e)
-        {
 
-            if (e.KeyChar == (char)Keys.Enter)
+            dataGridView6.Rows.Clear();
+            DataTable PurchaseOrder = commands.loadPurchaseOrder();
+            foreach(DataRow row in PurchaseOrder.Rows)
             {
-                    replenishFetch(txtProductID.Text);
+                dataGridView6.Rows.Add(row[0], row[2], row[1], "[View]");
             }
+            dataGridView6.Columns[4].ReadOnly = false;
         }
-        private void txtProductID_TextChanged(object sender, EventArgs e)
-        {
-            if (txtProductID.Text == "")
-            {
-                resetTextbox();
-            }
-        }
+        
+        
         private void txtQuantity_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
@@ -507,23 +475,7 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
                 e.Handled = true;
             }
         }
-        private void btnSearchMode_Click(object sender, EventArgs e)
-        {
-            if (!Order.Search)
-            {
-                btnSearchMode.ForeColor = Color.White;
-                btnSearchMode.BackColor = Color.FromArgb(55, 55, 55);
-                Order.Search = true;
-            }
-            else
-            {
-                loadHistoryandProducts();
-                btnSearchMode.ForeColor = Color.Black;
-                btnSearchMode.BackColor = Color.AntiqueWhite;
-                Order.Search = false;
-            }
-            
-        }
+        
         private void btnMove_Click(object sender, EventArgs e)
         {
             if (panelDataGridView.Height > 0)
@@ -643,10 +595,40 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
             frmPurchase.ShowDialog();
         }
 
+        private void dataGridView6_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            string colName = dataGridView6.Columns[e.ColumnIndex].Name;
+
+            if(colName == "colDetail")
+            {
+                int transactID = (int)dataGridView6.Rows[e.RowIndex].Cells[0].Value;
+                string SupplierName = dataGridView6.Rows[e.RowIndex].Cells[2].Value.ToString();
+                purchaseOrder.purchaseInvoice(transactID, SupplierName);
+            }
+        }
+
+      
+
         /* <--Exchange and Return End -->  */
     }
 
-   class Order
+    public class purchaseOrder
+    {
+        public static void purchaseInvoice(int TransactionID,string SupplierName)
+        {
+            DataTable dt = commands.selectPurchaseInvoice(TransactionID);
+            frmPurchaseInvoice frmNew = new frmPurchaseInvoice();
+            frmPurchaseInvoice.Instance.SupplierName.Text = SupplierName;
+            frmPurchaseInvoice.Instance.Invoice = dt;
+
+            frmNew.ShowDialog();
+
+        }
+
+        
+    }
+
+    class Order
     {
         private bool search = false;
         public bool Search
@@ -661,10 +643,10 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
             get { return scan; }
             set { scan = value; }
         }
-        private double getdpi;
+        private double getdpi = devmode.GetWindowsScaling();
         public double getDPI { 
             get { return getdpi; } 
-            set {getdpi = devmode.GetWindowsScaling();} 
+            set {getdpi = value;} 
         }
     }
 }

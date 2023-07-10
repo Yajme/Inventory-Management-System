@@ -191,6 +191,12 @@
     <Compile Include="Dashboard\frmPanelContainers\frmOrderForms\frmProductInquiry.Designer.cs">
       <DependentUpon>frmProductInquiry.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dashboard\frmPanelContainers\frmOrderForms\frmPurchaseInvoice.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dashboard\frmPanelContainers\frmOrderForms\frmPurchaseInvoice.Designer.cs">
+      <DependentUpon>frmPurchaseInvoice.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dashboard\frmPanelContainers\frmOrderForms\frmPurchaseOrder.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -271,6 +277,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dashboard\frmPanelContainers\frmOrderForms\frmProductInquiry.resx">
       <DependentUpon>frmProductInquiry.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dashboard\frmPanelContainers\frmOrderForms\frmPurchaseInvoice.resx">
+      <DependentUpon>frmPurchaseInvoice.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dashboard\frmPanelContainers\frmOrderForms\frmPurchaseOrder.resx">
       <DependentUpon>frmPurchaseOrder.cs</DependentUpon>

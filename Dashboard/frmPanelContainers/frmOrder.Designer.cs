@@ -106,6 +106,14 @@
             this.toDate = new System.Windows.Forms.DateTimePicker();
             this.fromDate = new System.Windows.Forms.DateTimePicker();
             this.panelReplenishInventory = new System.Windows.Forms.Panel();
+            this.cmbWarehouse = new System.Windows.Forms.ComboBox();
+            this.panel12 = new System.Windows.Forms.Panel();
+            this.dataGridView6 = new System.Windows.Forms.DataGridView();
+            this.colPORow = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colPODate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colSupplier = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colDetail = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colConfirm = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.btnNewPurchase = new FontAwesome.Sharp.IconButton();
             this.panelDataControlContainer = new System.Windows.Forms.Panel();
             this.panelDataGridView = new System.Windows.Forms.Panel();
@@ -115,24 +123,16 @@
             this.colWarehouseName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colQuantityWarehouse = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnMove = new FontAwesome.Sharp.IconButton();
-            this.btnSearchMode = new FontAwesome.Sharp.IconButton();
-            this.cmbWarehouse = new System.Windows.Forms.ComboBox();
-            this.label11 = new System.Windows.Forms.Label();
+            this.panel13 = new System.Windows.Forms.Panel();
             this.btnDiscard = new FontAwesome.Sharp.IconButton();
-            this.btnSave = new FontAwesome.Sharp.IconButton();
             this.label9 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.btnSave = new FontAwesome.Sharp.IconButton();
             this.dataGridView3 = new System.Windows.Forms.DataGridView();
             this.colProductID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colProductName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colPQuantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colReorderLevel = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnEnterReplenish = new FontAwesome.Sharp.IconButton();
-            this.label8 = new System.Windows.Forms.Label();
-            this.txtQuantity = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.txtProductID = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.txtProductName = new System.Windows.Forms.TextBox();
             this.panel6 = new System.Windows.Forms.Panel();
             this.label10 = new System.Windows.Forms.Label();
             this.panelTop.SuspendLayout();
@@ -159,6 +159,8 @@
             this.panel7.SuspendLayout();
             this.panel8.SuspendLayout();
             this.panelReplenishInventory.SuspendLayout();
+            this.panel12.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView6)).BeginInit();
             this.panelDataControlContainer.SuspendLayout();
             this.panelDataGridView.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
@@ -1055,22 +1057,15 @@
             // 
             // panelReplenishInventory
             // 
+            this.panelReplenishInventory.Controls.Add(this.cmbWarehouse);
+            this.panelReplenishInventory.Controls.Add(this.panel12);
             this.panelReplenishInventory.Controls.Add(this.btnNewPurchase);
             this.panelReplenishInventory.Controls.Add(this.panelDataControlContainer);
-            this.panelReplenishInventory.Controls.Add(this.btnSearchMode);
-            this.panelReplenishInventory.Controls.Add(this.cmbWarehouse);
-            this.panelReplenishInventory.Controls.Add(this.label11);
             this.panelReplenishInventory.Controls.Add(this.btnDiscard);
-            this.panelReplenishInventory.Controls.Add(this.btnSave);
             this.panelReplenishInventory.Controls.Add(this.label9);
+            this.panelReplenishInventory.Controls.Add(this.label11);
+            this.panelReplenishInventory.Controls.Add(this.btnSave);
             this.panelReplenishInventory.Controls.Add(this.dataGridView3);
-            this.panelReplenishInventory.Controls.Add(this.btnEnterReplenish);
-            this.panelReplenishInventory.Controls.Add(this.label8);
-            this.panelReplenishInventory.Controls.Add(this.txtQuantity);
-            this.panelReplenishInventory.Controls.Add(this.label7);
-            this.panelReplenishInventory.Controls.Add(this.txtProductID);
-            this.panelReplenishInventory.Controls.Add(this.label6);
-            this.panelReplenishInventory.Controls.Add(this.txtProductName);
             this.panelReplenishInventory.Controls.Add(this.panel6);
             this.panelReplenishInventory.Location = new System.Drawing.Point(3, 3);
             this.panelReplenishInventory.Name = "panelReplenishInventory";
@@ -1078,12 +1073,91 @@
             this.panelReplenishInventory.TabIndex = 2;
             this.panelReplenishInventory.Visible = false;
             // 
+            // cmbWarehouse
+            // 
+            this.cmbWarehouse.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbWarehouse.FormattingEnabled = true;
+            this.cmbWarehouse.Location = new System.Drawing.Point(468, 70);
+            this.cmbWarehouse.Name = "cmbWarehouse";
+            this.cmbWarehouse.Size = new System.Drawing.Size(223, 21);
+            this.cmbWarehouse.TabIndex = 18;
+            // 
+            // panel12
+            // 
+            this.panel12.AutoSize = true;
+            this.panel12.Controls.Add(this.dataGridView6);
+            this.panel12.Location = new System.Drawing.Point(4, 51);
+            this.panel12.Name = "panel12";
+            this.panel12.Size = new System.Drawing.Size(455, 191);
+            this.panel12.TabIndex = 23;
+            // 
+            // dataGridView6
+            // 
+            this.dataGridView6.AllowUserToAddRows = false;
+            this.dataGridView6.AllowUserToDeleteRows = false;
+            this.dataGridView6.AllowUserToResizeColumns = false;
+            this.dataGridView6.AllowUserToResizeRows = false;
+            this.dataGridView6.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.dataGridView6.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dataGridView6.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView6.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.colPORow,
+            this.colPODate,
+            this.colSupplier,
+            this.colDetail,
+            this.colConfirm});
+            this.dataGridView6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView6.Location = new System.Drawing.Point(0, 0);
+            this.dataGridView6.Name = "dataGridView6";
+            this.dataGridView6.RowHeadersVisible = false;
+            this.dataGridView6.Size = new System.Drawing.Size(455, 191);
+            this.dataGridView6.TabIndex = 22;
+            this.dataGridView6.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView6_CellContentClick);
+            // 
+            // colPORow
+            // 
+            this.colPORow.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.colPORow.HeaderText = "#";
+            this.colPORow.Name = "colPORow";
+            this.colPORow.Width = 39;
+            // 
+            // colPODate
+            // 
+            this.colPODate.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.colPODate.HeaderText = "Date";
+            this.colPODate.Name = "colPODate";
+            this.colPODate.Width = 55;
+            // 
+            // colSupplier
+            // 
+            this.colSupplier.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colSupplier.HeaderText = "Supplier";
+            this.colSupplier.Name = "colSupplier";
+            // 
+            // colDetail
+            // 
+            this.colDetail.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.colDetail.HeaderText = "";
+            this.colDetail.Name = "colDetail";
+            this.colDetail.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.colDetail.Width = 19;
+            // 
+            // colConfirm
+            // 
+            this.colConfirm.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.colConfirm.HeaderText = "";
+            this.colConfirm.Name = "colConfirm";
+            this.colConfirm.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.colConfirm.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.colConfirm.Width = 19;
+            // 
             // btnNewPurchase
             // 
+            this.btnNewPurchase.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnNewPurchase.IconChar = FontAwesome.Sharp.IconChar.None;
             this.btnNewPurchase.IconColor = System.Drawing.Color.Black;
             this.btnNewPurchase.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnNewPurchase.Location = new System.Drawing.Point(497, 231);
+            this.btnNewPurchase.Location = new System.Drawing.Point(540, 231);
             this.btnNewPurchase.Name = "btnNewPurchase";
             this.btnNewPurchase.Size = new System.Drawing.Size(159, 28);
             this.btnNewPurchase.TabIndex = 21;
@@ -1096,9 +1170,10 @@
             this.panelDataControlContainer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.panelDataControlContainer.Controls.Add(this.panelDataGridView);
             this.panelDataControlContainer.Controls.Add(this.btnMove);
-            this.panelDataControlContainer.Location = new System.Drawing.Point(662, 46);
+            this.panelDataControlContainer.Controls.Add(this.panel13);
+            this.panelDataControlContainer.Location = new System.Drawing.Point(705, 46);
             this.panelDataControlContainer.Name = "panelDataControlContainer";
-            this.panelDataControlContainer.Size = new System.Drawing.Size(420, 219);
+            this.panelDataControlContainer.Size = new System.Drawing.Size(377, 219);
             this.panelDataControlContainer.TabIndex = 20;
             // 
             // panelDataGridView
@@ -1107,7 +1182,7 @@
             this.panelDataGridView.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelDataGridView.Location = new System.Drawing.Point(0, 28);
             this.panelDataGridView.Name = "panelDataGridView";
-            this.panelDataGridView.Size = new System.Drawing.Size(420, 0);
+            this.panelDataGridView.Size = new System.Drawing.Size(377, 0);
             this.panelDataGridView.TabIndex = 2;
             // 
             // dataGridView2
@@ -1127,7 +1202,7 @@
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.ReadOnly = true;
             this.dataGridView2.RowHeadersVisible = false;
-            this.dataGridView2.Size = new System.Drawing.Size(420, 0);
+            this.dataGridView2.Size = new System.Drawing.Size(377, 0);
             this.dataGridView2.TabIndex = 0;
             // 
             // colStockID
@@ -1173,67 +1248,31 @@
             this.btnMove.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnMove.Location = new System.Drawing.Point(0, 0);
             this.btnMove.Name = "btnMove";
-            this.btnMove.Size = new System.Drawing.Size(420, 28);
+            this.btnMove.Size = new System.Drawing.Size(377, 28);
             this.btnMove.TabIndex = 1;
             this.btnMove.UseVisualStyleBackColor = true;
             this.btnMove.Click += new System.EventHandler(this.btnMove_Click);
             // 
-            // btnSearchMode
+            // panel13
             // 
-            this.btnSearchMode.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.btnSearchMode.IconColor = System.Drawing.Color.Black;
-            this.btnSearchMode.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnSearchMode.Location = new System.Drawing.Point(490, 53);
-            this.btnSearchMode.Name = "btnSearchMode";
-            this.btnSearchMode.Size = new System.Drawing.Size(91, 23);
-            this.btnSearchMode.TabIndex = 19;
-            this.btnSearchMode.Text = "[SearchMode]";
-            this.btnSearchMode.UseVisualStyleBackColor = true;
-            this.btnSearchMode.Click += new System.EventHandler(this.btnSearchMode_Click);
-            // 
-            // cmbWarehouse
-            // 
-            this.cmbWarehouse.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbWarehouse.FormattingEnabled = true;
-            this.cmbWarehouse.Location = new System.Drawing.Point(81, 136);
-            this.cmbWarehouse.Name = "cmbWarehouse";
-            this.cmbWarehouse.Size = new System.Drawing.Size(223, 21);
-            this.cmbWarehouse.TabIndex = 18;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(5, 144);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(62, 13);
-            this.label11.TabIndex = 17;
-            this.label11.Text = "Warehouse";
+            this.panel13.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel13.Location = new System.Drawing.Point(3, 31);
+            this.panel13.Name = "panel13";
+            this.panel13.Size = new System.Drawing.Size(371, 185);
+            this.panel13.TabIndex = 24;
             // 
             // btnDiscard
             // 
             this.btnDiscard.IconChar = FontAwesome.Sharp.IconChar.None;
             this.btnDiscard.IconColor = System.Drawing.Color.Black;
             this.btnDiscard.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnDiscard.Location = new System.Drawing.Point(229, 180);
+            this.btnDiscard.Location = new System.Drawing.Point(549, 97);
             this.btnDiscard.Name = "btnDiscard";
             this.btnDiscard.Size = new System.Drawing.Size(75, 22);
             this.btnDiscard.TabIndex = 16;
             this.btnDiscard.Text = "[Discard]";
             this.btnDiscard.UseVisualStyleBackColor = true;
             this.btnDiscard.Click += new System.EventHandler(this.btnDiscard_Click);
-            // 
-            // btnSave
-            // 
-            this.btnSave.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.btnSave.IconColor = System.Drawing.Color.Black;
-            this.btnSave.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnSave.Location = new System.Drawing.Point(148, 180);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(75, 22);
-            this.btnSave.TabIndex = 15;
-            this.btnSave.Text = "[Save]";
-            this.btnSave.UseVisualStyleBackColor = true;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // label9
             // 
@@ -1245,6 +1284,28 @@
             this.label9.Size = new System.Drawing.Size(85, 20);
             this.label9.TabIndex = 13;
             this.label9.Text = "Products:";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(465, 54);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(113, 13);
+            this.label11.TabIndex = 17;
+            this.label11.Text = "Recieving Warehouse";
+            // 
+            // btnSave
+            // 
+            this.btnSave.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.btnSave.IconColor = System.Drawing.Color.Black;
+            this.btnSave.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnSave.Location = new System.Drawing.Point(468, 97);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(75, 22);
+            this.btnSave.TabIndex = 15;
+            this.btnSave.Text = "[Save]";
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // dataGridView3
             // 
@@ -1304,71 +1365,6 @@
             this.colReorderLevel.ReadOnly = true;
             this.colReorderLevel.Width = 99;
             // 
-            // btnEnterReplenish
-            // 
-            this.btnEnterReplenish.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.btnEnterReplenish.IconColor = System.Drawing.Color.Black;
-            this.btnEnterReplenish.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnEnterReplenish.Location = new System.Drawing.Point(409, 53);
-            this.btnEnterReplenish.Name = "btnEnterReplenish";
-            this.btnEnterReplenish.Size = new System.Drawing.Size(75, 22);
-            this.btnEnterReplenish.TabIndex = 10;
-            this.btnEnterReplenish.Text = "[Enter]";
-            this.btnEnterReplenish.UseVisualStyleBackColor = true;
-            this.btnEnterReplenish.Click += new System.EventHandler(this.btnEnterReplenish_Click);
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(3, 117);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(46, 13);
-            this.label8.TabIndex = 9;
-            this.label8.Text = "Quantity";
-            // 
-            // txtQuantity
-            // 
-            this.txtQuantity.Location = new System.Drawing.Point(81, 110);
-            this.txtQuantity.Name = "txtQuantity";
-            this.txtQuantity.Size = new System.Drawing.Size(224, 20);
-            this.txtQuantity.TabIndex = 8;
-            this.txtQuantity.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtQuantity_KeyPress);
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(3, 91);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(72, 13);
-            this.label7.TabIndex = 7;
-            this.label7.Text = "ProductName";
-            // 
-            // txtProductID
-            // 
-            this.txtProductID.Location = new System.Drawing.Point(81, 55);
-            this.txtProductID.Name = "txtProductID";
-            this.txtProductID.Size = new System.Drawing.Size(322, 20);
-            this.txtProductID.TabIndex = 6;
-            this.txtProductID.TextChanged += new System.EventHandler(this.txtProductID_TextChanged);
-            this.txtProductID.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtProductID_KeyPress);
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(3, 62);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(55, 13);
-            this.label6.TabIndex = 5;
-            this.label6.Text = "ProductID";
-            // 
-            // txtProductName
-            // 
-            this.txtProductName.Location = new System.Drawing.Point(81, 84);
-            this.txtProductName.Name = "txtProductName";
-            this.txtProductName.ReadOnly = true;
-            this.txtProductName.Size = new System.Drawing.Size(224, 20);
-            this.txtProductName.TabIndex = 4;
-            // 
             // panel6
             // 
             this.panel6.Controls.Add(this.label10);
@@ -1383,7 +1379,7 @@
             this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
-            this.label10.Location = new System.Drawing.Point(658, 23);
+            this.label10.Location = new System.Drawing.Point(701, 25);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(155, 20);
             this.label10.TabIndex = 0;
@@ -1441,6 +1437,8 @@
             this.panel8.PerformLayout();
             this.panelReplenishInventory.ResumeLayout(false);
             this.panelReplenishInventory.PerformLayout();
+            this.panel12.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView6)).EndInit();
             this.panelDataControlContainer.ResumeLayout(false);
             this.panelDataGridView.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
@@ -1491,13 +1489,6 @@
         private FontAwesome.Sharp.IconButton btnSave;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.DataGridView dataGridView3;
-        private FontAwesome.Sharp.IconButton btnEnterReplenish;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox txtQuantity;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox txtProductID;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox txtProductName;
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.DataGridViewTextBoxColumn colRow;
         private System.Windows.Forms.DataGridViewTextBoxColumn colID;
@@ -1549,7 +1540,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colProductName;
         private System.Windows.Forms.DataGridViewTextBoxColumn colPQuantity;
         private System.Windows.Forms.DataGridViewTextBoxColumn colReorderLevel;
-        private FontAwesome.Sharp.IconButton btnSearchMode;
         private System.Windows.Forms.Panel panelDataControlContainer;
         private FontAwesome.Sharp.IconButton btnMove;
         private System.Windows.Forms.Panel panelDataGridView;
@@ -1560,5 +1550,13 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colQuantityWarehouse;
         private System.Windows.Forms.Label label10;
         private FontAwesome.Sharp.IconButton btnNewPurchase;
+        private System.Windows.Forms.DataGridView dataGridView6;
+        private System.Windows.Forms.Panel panel12;
+        private System.Windows.Forms.Panel panel13;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colPORow;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colPODate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colSupplier;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colDetail;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn colConfirm;
     }
 }
