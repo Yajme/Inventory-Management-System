@@ -357,10 +357,10 @@ public static class commands
         try
         {
             cmd = new SqlCommand("INSERT INTO StockMovements(ProductID, WarehouseID, MovementType, Quantity) VALUES(@PRODUCTID, @WAREHOUSEID, @MOVEMENTTYPE,@QUANTITY)", con, t);
-            cmd.Parameters.AddWithValue("@PRODUCTID", stock[0]);//productid
-            cmd.Parameters.AddWithValue("@WAREHOUSEID", stock[1]);//warehouseid
-            cmd.Parameters.AddWithValue("@QUANTITY", stock[2]);//quantity
-            cmd.Parameters.AddWithValue("@MOVEMENTTYPE", stock[3]);//movementtype
+            cmd.Parameters.AddWithValue("@PRODUCTID", SqlDbType.VarChar).Value = stock[0];//productid
+            cmd.Parameters.AddWithValue("@WAREHOUSEID", SqlDbType.Int).Value = stock[1];//warehouseid
+            cmd.Parameters.AddWithValue("@QUANTITY", SqlDbType.Int).Value = stock[2];//quantity
+            cmd.Parameters.AddWithValue("@MOVEMENTTYPE", SqlDbType.VarChar).Value = stock[3];//movementtype
 
             cmd.ExecuteNonQuery();
 
@@ -391,9 +391,9 @@ public static class commands
         try
         {
             cmd = new SqlCommand("INSERT INTO WarehouseStock(ProductID, WarehouseID, QuantityStock) VALUES (@ProductID, @WarehouseID, @Quantity)", con, t);
-            cmd.Parameters.AddWithValue("@ProductID", stock[0]); // productid
-            cmd.Parameters.AddWithValue("@WarehouseID", stock[1]); // warehouseid
-            cmd.Parameters.AddWithValue("@Quantity", stock[2]); // quantity
+            cmd.Parameters.AddWithValue("@ProductID", SqlDbType.VarChar).Value = stock[0];//productid
+            cmd.Parameters.AddWithValue("@WarehouseID", SqlDbType.Int).Value = stock[1];//warehouseid
+            cmd.Parameters.AddWithValue("@Quantity", SqlDbType.Int).Value = stock[2];//quantity
 
 
             cmd.ExecuteNonQuery();
@@ -442,9 +442,9 @@ public static class commands
         try
         {
             cmd = new SqlCommand("UPDATE WarehouseStock SET QuantityStock= QuantityStock+@Quantity WHERE ProductID=@ProductID AND WarehouseID=@WarehouseID", con, t);
-            cmd.Parameters.AddWithValue("@ProductID", stock[0]);//productid
-            cmd.Parameters.AddWithValue("@WarehouseID", stock[1]);//warehouseid
-            cmd.Parameters.AddWithValue("@Quantity", stock[2]);//quantity
+            cmd.Parameters.AddWithValue("@ProductID", SqlDbType.VarChar).Value = stock[0];//productid
+            cmd.Parameters.AddWithValue("@WarehouseID", SqlDbType.Int).Value= stock[1];//warehouseid
+            cmd.Parameters.AddWithValue("@Quantity",SqlDbType.Int).Value = stock[2];//quantity
 
             cmd.ExecuteNonQuery();
             t.Commit();
@@ -1221,6 +1221,65 @@ END*/
 
 
         return dt;
+    }
+
+    public static DataTable selectProductInvoice(DataTable purchaseID)
+    {
+        DataTable dt = new DataTable();
+        string command = "SELECT ProductID, Quantity FROM PurchaseInvoice WHERE PurchaseID= @PurchaseID";
+        con.Open();
+        foreach(DataRow row in purchaseID.Rows)
+        {
+            using(cmd = new SqlCommand(command, con))
+            {
+                cmd.Parameters.AddWithValue("@PurchaseID",SqlDbType.Int).Value = row[0];
+                dt.Load(cmd.ExecuteReader());
+                cmd.Parameters.Clear();
+            }
+        }
+
+        con.Close();
+
+        return dt;
+    }
+
+   public static void updatePurchaseOrder(DataTable PurchaseID)
+    {
+        con.Open();
+        SqlTransaction t = con.BeginTransaction();
+
+        try
+        {
+            t.Save("start");
+            string command = "UPDATE PurchaseOrders SET Recieved= @Received WHERE PurchaseID= @PurchaseID";
+            foreach(DataRow row in PurchaseID.Rows)
+            {
+                using(cmd = new SqlCommand(command, con, t))
+                {
+                    cmd.Parameters.Add("@Received", SqlDbType.Int).Value = 1;
+                    cmd.Parameters.Add("@PurchaseID", SqlDbType.Int).Value = Convert.ToInt32(row[0]);
+                    cmd.ExecuteNonQuery();
+
+                    cmd.Parameters.Clear();
+                }
+            }
+
+
+            t.Commit();
+        }catch(SqlException ex)
+        {
+            t.Rollback("start");
+            
+            throw ex;
+        }catch(Exception ex)
+        {
+            t.Rollback("start");
+            throw ex;
+        }
+        finally
+        {
+            con.Close();
+        }
     }
 }
 

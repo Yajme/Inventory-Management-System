@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.Data.SqlClient;
 using Inventory_Management_System.Dashboard.frmPanelContainers.frmOrderForms;
 using System.Windows.Media.Animation;
+using System.Diagnostics;
 
 namespace Inventory_Management_System.Dashboard.frmPanelContainers
 {
@@ -327,85 +328,43 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
 
         /* <--Replenish Inventory Start--> */
 
-        private void movementStock(string[] stock)
-        {
-            try
-            {
-                int validator = commands.stockWarehouseValidator(stock);
-                if (validator == -1) //new
-                {
-                    commands.insertStocktoWarehouse(stock);
-                }
-                else//existing record
-                {
-                    commands.updateStocktoWarehouse(stock);
-                }
-                commands.insertMovementStock(stock);
-                MessageBox.Show("Goods received!", "Done!",MessageBoxButtons.OK,MessageBoxIcon.Information);
-            }
-            catch(SqlException exsql)
-            {
-                MessageBox.Show("Database Error\n\n" + exsql.Message);
-                
-            }catch(Exception ex)
-            {
-                MessageBox.Show("Error\n\n" + ex.Message);
-            }
-            
-        }
+       
         private void btnSave_Click(object sender, EventArgs e)
         {
-            
+            if(cmbWarehouse.Text != "")
+            {
+                WarehouseStock warehouseStock = new WarehouseStock();
+
+                warehouseStock.RecievingProducts = new DataTable();
+                warehouseStock.RecievingProducts.Columns.Add("PurchaseID");
+                DataRow dr = null;
+                foreach (DataGridViewRow row in dataGridView6.Rows)
+                {
+                    if (row.Cells[4].Value != null)
+                    {
+                        dr = warehouseStock.RecievingProducts.NewRow();
+                        dr["PurchaseID"] = row.Cells[0].Value;
+
+                        warehouseStock.RecievingProducts.Rows.Add(dr);
+                    }
+                }
+
+                StockMovement.CollectData(warehouseStock.RecievingProducts,warehouseStock.WarehouseID(cmbWarehouse.Text));
+
+                MessageBox.Show("Goods Received!","Success!",MessageBoxButtons.OK,MessageBoxIcon.Information);
+                loadHistoryandProducts();
+            }
+            else
+            {
+                MessageBox.Show("Select Recieving Warehouse First!","Invalid Field",MessageBoxButtons.OK,MessageBoxIcon.Warning);
+            }
 
         }
         private void btnDiscard_Click(object sender, EventArgs e)
         {
             loadHistoryandProducts();
         }
-        private void replenishFetch(string id)
-        {
-            //if(txtProductID.Text != string.Empty)
-            //{
-            //    if (!Order.Search)
-            //    {
-            //        if (!Order.Scan)
-            //        {
-            //            string[] item = commands.itemEncode(txtProductID.Text);
-            //            if (item.Length > 0)
-            //            {
-            //                txtProductName.Text = item[1];
-            //                txtProductID.ReadOnly = true;
-            //                Order.Scan = true;
-            //            }
-            //            else
-            //            {
-
-            //                MessageBox.Show("Not Found!", "Invalid Field", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-            //            }
-
-            //        }
-            //    }
-            //    else
-            //    {
-            //        dataGridView3.Rows.Clear();
-            //        DataTable dt = commands.searchInventoryWOC(id);
-            //        foreach (DataRow row in dt.Rows)
-            //        {
-            //            dataGridView3.Rows.Add(row[0], row[2], row[4], row[7]);
-            //        }
-            //    }
-                
-            //}
-            //else
-            //{
-            //    MessageBox.Show("Enter Product ID!" ,"Invalid Field", MessageBoxButtons.OK,MessageBoxIcon.Error);
-
-            //}
-
-
-
-        }
+        
         private void btnEnterReplenish_Click(object sender, EventArgs e)
         {
             //replenishFetch(txtProductID.Text);
@@ -626,6 +585,81 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
         }
 
         
+    }
+    public class StockMovement
+    {
+        public static void CollectData(DataTable purchaseID,int warehouseID)
+        {
+            //[0] -> ProductID
+            //[1] -> WarehouseID
+            //[2] -> Quantity
+            //[3] -> MovementType
+
+
+            Products = commands.selectProductInvoice(purchaseID);
+
+            foreach (DataRow row in Products.Rows)
+            {
+                string[] stock = new string[4];
+                stock[0] = row[0].ToString(); // productID
+                stock[1] = warehouseID.ToString();
+                stock[2] = row[1].ToString(); // Quantity
+                stock[3] = "Inbound";
+
+                MovementStock(stock);
+            }
+            try
+            {
+                commands.updatePurchaseOrder(purchaseID);
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            
+
+
+        }
+        public static DataTable Products = new DataTable();
+        public static void MovementStock(string[] stock)
+        {
+            try
+            {
+                int validator = commands.stockWarehouseValidator(stock);
+                if (validator == -1) //new
+                {
+                    commands.insertStocktoWarehouse(stock);
+                }
+                else//existing record
+                {
+                    commands.updateStocktoWarehouse(stock);
+                }
+                commands.insertMovementStock(stock);
+                //MessageBox.Show("Goods received!", "Done!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (SqlException exsql)
+            {
+                MessageBox.Show("Database Error\n\n" + exsql.Message);
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error\n\n" + ex.Message);
+            }
+
+        }
+    }
+    public class WarehouseStock
+    {
+        private int warehouseID;
+        public int WarehouseID(string warehouseName)
+        {
+            warehouseID = commands.selectWarehouse(warehouseName);
+            return warehouseID;
+        }
+        private DataTable recievingProducts;
+        public DataTable RecievingProducts { get { return recievingProducts; } set { recievingProducts = value; } }
+       
     }
 
     class Order
