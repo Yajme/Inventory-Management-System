@@ -203,3 +203,53 @@ To enhance the system's functionality and performance, various libraries and fra
 
 Final ER Diagram:
 ![er_1687834580129](https://github.com/Yajme/Inventory-Management-System/assets/88352665/267e78cb-0999-4cbd-891c-67db6380d8d3)
+
+
+### Functions:
+
+Inventory Tracking
+
+User can do the following:
+* Add Products
+* Manage Category
+* Manage Suppliers
+* Manage stocks
+* Manage Warehouses
+* Filter by Category
+* Search Products w/ or w/o Category
+* Delete/Edit Product(WIP)
+
+
+<br><br><br>
+
+  #### Add Products
+  -----------------
+
+  Following Fields must be filled:
+* ProductID - Unique Identification for individual Products
+* ProductName - Product Name 
+* ProductDescription - Product with accurate description e.g. -> MineralWater 500ml
+* Supplier -> Supplier name can be selected through combobox
+* Category -> Category can be selected through combobox
+* Quantity -> Initial Quantity
+* UnitPrice -> Price of the product
+
+**If the category/supplier appropriate selected item cannot be found, make sure to check if the supplier/category is existent and if not proceed first to manage supplier/manage category**
+
+<br>
+
+#### Manage Category
+---
+<p> In this Section you can Add/Delete/Edit/View Categories based on products you have. </p><br>
+<p><br> Press Add category to show Textbox for the category name. once you are done you can press save to save changes</p>
+ <p><br>If you want to delete Categories make sure there is no products that falls to that category then proceed to press the trash icon in the right side of the table, a prompt message will be shown to indicate that you are confirming the deletation. once you confirmed the category will be erased from the table</p>
+ <br><p>If you want to edit categories just make sure to check if it is already existing to prevent confusion to the system and to the user then proceed to press the pencil icon in the right side of the table. Once you are done with the changes proceed to Press save to save changes and you are done</p>
+ 
+**The only field to be filled is**: <br>
+* Category Name
+
+
+
+#### Manage Suppliers
+---
+<p> Managing suppliers include Adding/Viewing/Editing/Deleting of the suppliers </p>
