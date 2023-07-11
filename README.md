@@ -36,7 +36,7 @@ or using Visual Studio, Select "Clone a repository" at startup menu, paste the l
   
 
 ## Contributing
-Contributors are welcome refer to the installation then issue a pull request.
+Contributors are welcome refer to the installation create new branch/fork/push to contributors branch then issue a pull request.
 ## Authors
 * [Yajme](https://github.com/Yajme) - Initial work
 ## License
