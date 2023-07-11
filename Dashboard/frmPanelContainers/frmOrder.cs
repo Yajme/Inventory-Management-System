@@ -683,4 +683,9 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
             set {getdpi = value;} 
         }
     }
+
+    class Inventory
+    {
+
+    }
 }
