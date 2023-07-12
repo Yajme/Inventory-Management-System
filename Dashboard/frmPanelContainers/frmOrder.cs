@@ -87,23 +87,30 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
         {
             txtQuery_KeyPress(this, new KeyPressEventArgs((char)Keys.Enter));
         }
+        public void SetQuantity(int Quantity)
+        {
+            Order.SetQuantity = true;
+            Order.Quantity = Quantity;
+        }
         public void itemScan(string query)
         {
             bool found = false;
             int row = dataGridView1.RowCount;
-            string[] itemfetched = commands.itemEncode(query);
             int itemQuantity = 1;
+            string[] itemfetched = commands.itemEncode(query);
+            
             
 
-            if(setQty == true)
+            if(Order.SetQuantity)
             {
-                itemQuantity = quantity;
-                setQty = false;
+                itemQuantity = Order.Quantity;
+                Order.SetQuantity = false;
             }
            
-            lblSetQuantity.Text = "x" + itemQuantity.ToString();
+            
             if (itemfetched != Array.Empty<string>()) {
-                Order.total += Convert.ToDouble(itemfetched[2]) * itemQuantity;
+                Order.total += Convert.ToDouble(itemfetched[2]) * itemQuantity; //SaleAmount
+                lblSetQuantity.Text = "x" + itemQuantity.ToString();
                 if (dataGridView1.Rows.Count > 0)
                 {
                     foreach (DataGridViewRow rows in dataGridView1.Rows)
@@ -602,7 +609,7 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
             {
                 string[] stock = new string[4];
                 stock[0] = row[0].ToString(); // productID
-                stock[1] = warehouseID.ToString();
+                stock[1] = warehouseID.ToString(); //warehouseID
                 stock[2] = row[1].ToString(); // Quantity
                 stock[3] = "Inbound";
 
@@ -635,7 +642,8 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
                     commands.updateStocktoWarehouse(stock);
                 }
                 commands.insertMovementStock(stock);
-                //MessageBox.Show("Goods received!", "Done!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                
             }
             catch (SqlException exsql)
             {
@@ -654,8 +662,7 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
         private int warehouseID;
         public int WarehouseID(string warehouseName)
         {
-            warehouseID = commands.selectWarehouse(warehouseName);
-            return warehouseID;
+            return warehouseID = commands.selectWarehouse(warehouseName);
         }
         private DataTable recievingProducts;
         public DataTable RecievingProducts { get { return recievingProducts; } set { recievingProducts = value; } }
@@ -682,10 +689,17 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers
             get { return getdpi; } 
             set {getdpi = value;} 
         }
+
+        private bool setQty = false;
+        public bool SetQuantity { get { return setQty; } set { setQty = value; } }
+        public  int Quantity { get; set; }
     }
 
     class Inventory
     {
+
+
+
 
     }
 }

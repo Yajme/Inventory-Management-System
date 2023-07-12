@@ -688,6 +688,10 @@ END
                 string productID = string.Format("@p{0}", p + 1);
                 string quantity = string.Format("@p{0}", p + 2);
                 string total = string.Format("@p{0}", p + 3);
+
+                string QuantityParameter = string.Format("@y{0}", p);
+                string ProductID = string.Format("@y{0}", p + 1);
+
                 p += 4;
 
                 //row
@@ -707,6 +711,15 @@ END
                 cmd.Parameters.Add(quantity, SqlDbType.Int).Value = dr[1];
                 cmd.Parameters.Add(total, SqlDbType.Decimal).Value = dr[2];
 
+                
+                //
+
+                string update = "UPDATE Products SET QuantityInStock= QuantityInStock -" + QuantityParameter + " WHERE ProductID=" + ProductID;
+
+                cmd.Parameters.Add(QuantityParameter, SqlDbType.VarChar).Value = dr[1];
+                cmd.Parameters.Add(ProductID, SqlDbType.VarChar).Value = dr[0];
+                cmd.CommandText = update;
+                cmd.ExecuteNonQuery();
                 if (batch >= 5)
                 {
                     string sql = "INSERT INTO OrderItems(OrderID,ProductID,Quantity,UnitPrice) VALUES" + "\r\n" + sb.ToString();

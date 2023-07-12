@@ -73,8 +73,9 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers.frmOrderForms
         {
             string colName = dataGridView1.Columns[e.ColumnIndex].Name;
             if(colName == "colAdd")
-            {
-                frmOrder.instance.txtFormTextbox.Text = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
+            { 
+                //frmOrder.instance.itemScan(dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString());
+                frmOrder.instance.txtFormTextbox.Text= dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
                 frmOrder.instance.SimulateEnterKeyPress();
             }
         }
@@ -107,6 +108,7 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers.frmOrderForms
         {
             frmOrder.instance.txtFormTextbox.Text = ((Button)sender).Tag.ToString();
             frmOrder.instance.SimulateEnterKeyPress();
+            //frmOrder.instance.itemScan(((Button)sender).Tag.ToString());
         }
             private void placePanel(Panel panel)
         {
