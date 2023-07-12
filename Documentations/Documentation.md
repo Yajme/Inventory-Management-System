@@ -220,10 +220,16 @@ User can do the following:
 * Delete/Edit Product(WIP)
 
 
+![image](https://github.com/Yajme/Inventory-Management-System/assets/88352665/f8fb022b-5274-4642-88f2-7120628b36c7)
+
+
 <br><br><br>
 
   #### Add Products
   -----------------
+
+![image](https://github.com/Yajme/Inventory-Management-System/assets/88352665/c8c8cdb0-a1e5-48d1-81d7-4f7ac1b06e42)
+
 
   Following Fields must be filled:
 * ProductID - Unique Identification for individual Products
@@ -241,9 +247,23 @@ User can do the following:
 #### Manage Category
 ---
 <p> In this Section you can Add/Delete/Edit/View Categories based on products you have. </p><br>
+
+![image](https://github.com/Yajme/Inventory-Management-System/assets/88352665/2e7182be-4ba3-424d-96f0-84bbe11fc3ee)
+
 <p><br> Press Add category to show Textbox for the category name. once you are done you can press save to save changes</p>
+
+![image](https://github.com/Yajme/Inventory-Management-System/assets/88352665/28355a0f-6324-4830-b8f0-c685302fb78c)
+
  <p><br>If you want to delete Categories make sure there is no products that falls to that category then proceed to press the trash icon in the right side of the table, a prompt message will be shown to indicate that you are confirming the deletation. once you confirmed the category will be erased from the table</p>
+
+![image](https://github.com/Yajme/Inventory-Management-System/assets/88352665/8fd97704-57d0-4cf6-b8eb-efd234863962)
+
+ 
  <br><p>If you want to edit categories just make sure to check if it is already existing to prevent confusion to the system and to the user then proceed to press the pencil icon in the right side of the table. Once you are done with the changes proceed to Press save to save changes and you are done</p>
+
+![image](https://github.com/Yajme/Inventory-Management-System/assets/88352665/743b2135-98fe-4281-bfe3-315fb84de6c4)
+
+
  
 **The only field to be filled is**: <br>
 * Category Name
@@ -253,3 +273,8 @@ User can do the following:
 #### Manage Suppliers
 ---
 <p> Managing suppliers include Adding/Viewing/Editing/Deleting of the suppliers </p>
+
+![image](https://github.com/Yajme/Inventory-Management-System/assets/88352665/336356df-c32c-4e77-8439-34726756fc0a)
+
+
+_Demo Data does not reflect real data_
