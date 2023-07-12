@@ -275,3 +275,6 @@ User can do the following:
 <p> Managing suppliers include Adding/Viewing/Editing/Deleting of the suppliers </p>
 
 ![image](https://github.com/Yajme/Inventory-Management-System/assets/88352665/336356df-c32c-4e77-8439-34726756fc0a)
+
+
+_Demo Data does not reflect real data_
