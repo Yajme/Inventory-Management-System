@@ -44,13 +44,14 @@
             this.cmbSupplier = new System.Windows.Forms.ComboBox();
             this.btnDiscard = new FontAwesome.Sharp.IconButton();
             this.btnSave = new FontAwesome.Sharp.IconButton();
-            this.btnScan = new FontAwesome.Sharp.IconButton();
+            this.label7 = new System.Windows.Forms.Label();
             this.panelTop.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelTop
             // 
             this.panelTop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(55)))), ((int)(((byte)(55)))));
+            this.panelTop.Controls.Add(this.label7);
             this.panelTop.Controls.Add(this.btnExit);
             this.panelTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelTop.Location = new System.Drawing.Point(0, 0);
@@ -76,7 +77,7 @@
             // 
             // txtProductID
             // 
-            this.txtProductID.Location = new System.Drawing.Point(138, 91);
+            this.txtProductID.Location = new System.Drawing.Point(158, 73);
             this.txtProductID.Name = "txtProductID";
             this.txtProductID.Size = new System.Drawing.Size(235, 20);
             this.txtProductID.TabIndex = 2;
@@ -84,7 +85,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 94);
+            this.label1.Location = new System.Drawing.Point(32, 76);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(55, 13);
             this.label1.TabIndex = 3;
@@ -94,7 +95,7 @@
             // 
             this.cmbCategory.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbCategory.FormattingEnabled = true;
-            this.cmbCategory.Location = new System.Drawing.Point(138, 195);
+            this.cmbCategory.Location = new System.Drawing.Point(158, 177);
             this.cmbCategory.Name = "cmbCategory";
             this.cmbCategory.Size = new System.Drawing.Size(121, 21);
             this.cmbCategory.TabIndex = 4;
@@ -102,7 +103,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 129);
+            this.label2.Location = new System.Drawing.Point(32, 111);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(72, 13);
             this.label2.TabIndex = 5;
@@ -110,14 +111,14 @@
             // 
             // txtProductName
             // 
-            this.txtProductName.Location = new System.Drawing.Point(138, 122);
+            this.txtProductName.Location = new System.Drawing.Point(158, 104);
             this.txtProductName.Name = "txtProductName";
             this.txtProductName.Size = new System.Drawing.Size(235, 20);
             this.txtProductName.TabIndex = 6;
             // 
             // txtDescription
             // 
-            this.txtDescription.Location = new System.Drawing.Point(138, 157);
+            this.txtDescription.Location = new System.Drawing.Point(158, 139);
             this.txtDescription.Name = "txtDescription";
             this.txtDescription.Size = new System.Drawing.Size(235, 20);
             this.txtDescription.TabIndex = 8;
@@ -125,7 +126,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 164);
+            this.label3.Location = new System.Drawing.Point(32, 146);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(57, 13);
             this.label3.TabIndex = 7;
@@ -134,7 +135,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(12, 203);
+            this.label4.Location = new System.Drawing.Point(32, 185);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(49, 13);
             this.label4.TabIndex = 9;
@@ -142,7 +143,7 @@
             // 
             // txtUnitPrice
             // 
-            this.txtUnitPrice.Location = new System.Drawing.Point(138, 232);
+            this.txtUnitPrice.Location = new System.Drawing.Point(158, 214);
             this.txtUnitPrice.Name = "txtUnitPrice";
             this.txtUnitPrice.Size = new System.Drawing.Size(235, 20);
             this.txtUnitPrice.TabIndex = 11;
@@ -150,7 +151,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(12, 239);
+            this.label5.Location = new System.Drawing.Point(32, 221);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(53, 13);
             this.label5.TabIndex = 10;
@@ -159,7 +160,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(12, 276);
+            this.label6.Location = new System.Drawing.Point(32, 258);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(45, 13);
             this.label6.TabIndex = 13;
@@ -169,7 +170,7 @@
             // 
             this.cmbSupplier.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbSupplier.FormattingEnabled = true;
-            this.cmbSupplier.Location = new System.Drawing.Point(138, 268);
+            this.cmbSupplier.Location = new System.Drawing.Point(158, 250);
             this.cmbSupplier.Name = "cmbSupplier";
             this.cmbSupplier.Size = new System.Drawing.Size(235, 21);
             this.cmbSupplier.TabIndex = 12;
@@ -199,17 +200,15 @@
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
-            // btnScan
+            // label7
             // 
-            this.btnScan.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.btnScan.IconColor = System.Drawing.Color.Black;
-            this.btnScan.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnScan.Location = new System.Drawing.Point(379, 80);
-            this.btnScan.Name = "btnScan";
-            this.btnScan.Size = new System.Drawing.Size(81, 31);
-            this.btnScan.TabIndex = 1;
-            this.btnScan.Text = "[Scan]";
-            this.btnScan.UseVisualStyleBackColor = true;
+            this.label7.AutoSize = true;
+            this.label7.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.label7.Location = new System.Drawing.Point(15, 12);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(72, 13);
+            this.label7.TabIndex = 16;
+            this.label7.Text = "[Add Product]";
             // 
             // frmAddProduct
             // 
@@ -230,7 +229,6 @@
             this.Controls.Add(this.cmbCategory);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtProductID);
-            this.Controls.Add(this.btnScan);
             this.Controls.Add(this.panelTop);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmAddProduct";
@@ -238,6 +236,7 @@
             this.Text = "frmAddProduct";
             this.Load += new System.EventHandler(this.frmAddProduct_Load);
             this.panelTop.ResumeLayout(false);
+            this.panelTop.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -246,7 +245,6 @@
         #endregion
 
         private System.Windows.Forms.Panel panelTop;
-        private FontAwesome.Sharp.IconButton btnScan;
         private System.Windows.Forms.TextBox txtProductID;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cmbCategory;
@@ -262,5 +260,6 @@
         private FontAwesome.Sharp.IconButton btnExit;
         private FontAwesome.Sharp.IconButton btnSave;
         private FontAwesome.Sharp.IconButton btnDiscard;
+        private System.Windows.Forms.Label label7;
     }
 }

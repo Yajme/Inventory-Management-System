@@ -135,6 +135,7 @@
             this.colReorderLevel = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel6 = new System.Windows.Forms.Panel();
             this.label10 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             this.panelTop.SuspendLayout();
             this.panelCash.SuspendLayout();
             this.panelPlaceOrder.SuspendLayout();
@@ -164,6 +165,7 @@
             this.panelDataControlContainer.SuspendLayout();
             this.panelDataGridView.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            this.panel13.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
             this.panel6.SuspendLayout();
             this.SuspendLayout();
@@ -187,9 +189,9 @@
             this.panelCash.Controls.Add(this.label12);
             this.panelCash.Controls.Add(this.txtCashTendered);
             this.panelCash.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panelCash.Location = new System.Drawing.Point(493, 0);
+            this.panelCash.Location = new System.Drawing.Point(463, 0);
             this.panelCash.Name = "panelCash";
-            this.panelCash.Size = new System.Drawing.Size(602, 73);
+            this.panelCash.Size = new System.Drawing.Size(632, 73);
             this.panelCash.TabIndex = 4;
             this.panelCash.Visible = false;
             // 
@@ -210,7 +212,7 @@
             this.txtCashTendered.Location = new System.Drawing.Point(0, 0);
             this.txtCashTendered.Name = "txtCashTendered";
             this.txtCashTendered.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.txtCashTendered.Size = new System.Drawing.Size(602, 62);
+            this.txtCashTendered.Size = new System.Drawing.Size(632, 62);
             this.txtCashTendered.TabIndex = 3;
             this.txtCashTendered.TextChanged += new System.EventHandler(this.txtCashTendered_TextChanged);
             this.txtCashTendered.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCashTendered_KeyPress);
@@ -275,7 +277,7 @@
             this.panelPlaceOrder.Controls.Add(this.panelOrderTop);
             this.panelPlaceOrder.Controls.Add(this.panelOrderControls);
             this.panelPlaceOrder.Controls.Add(this.panelPlaceOrderSide);
-            this.panelPlaceOrder.Location = new System.Drawing.Point(1095, 649);
+            this.panelPlaceOrder.Location = new System.Drawing.Point(0, 0);
             this.panelPlaceOrder.Name = "panelPlaceOrder";
             this.panelPlaceOrder.Size = new System.Drawing.Size(1095, 576);
             this.panelPlaceOrder.TabIndex = 1;
@@ -1057,17 +1059,12 @@
             // 
             // panelReplenishInventory
             // 
-            this.panelReplenishInventory.Controls.Add(this.cmbWarehouse);
             this.panelReplenishInventory.Controls.Add(this.panel12);
-            this.panelReplenishInventory.Controls.Add(this.btnNewPurchase);
             this.panelReplenishInventory.Controls.Add(this.panelDataControlContainer);
-            this.panelReplenishInventory.Controls.Add(this.btnDiscard);
             this.panelReplenishInventory.Controls.Add(this.label9);
-            this.panelReplenishInventory.Controls.Add(this.label11);
-            this.panelReplenishInventory.Controls.Add(this.btnSave);
             this.panelReplenishInventory.Controls.Add(this.dataGridView3);
             this.panelReplenishInventory.Controls.Add(this.panel6);
-            this.panelReplenishInventory.Location = new System.Drawing.Point(3, 3);
+            this.panelReplenishInventory.Location = new System.Drawing.Point(1095, 649);
             this.panelReplenishInventory.Name = "panelReplenishInventory";
             this.panelReplenishInventory.Size = new System.Drawing.Size(1092, 573);
             this.panelReplenishInventory.TabIndex = 2;
@@ -1077,18 +1074,18 @@
             // 
             this.cmbWarehouse.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbWarehouse.FormattingEnabled = true;
-            this.cmbWarehouse.Location = new System.Drawing.Point(468, 70);
+            this.cmbWarehouse.Location = new System.Drawing.Point(6, 26);
             this.cmbWarehouse.Name = "cmbWarehouse";
-            this.cmbWarehouse.Size = new System.Drawing.Size(223, 21);
+            this.cmbWarehouse.Size = new System.Drawing.Size(179, 21);
             this.cmbWarehouse.TabIndex = 18;
             // 
             // panel12
             // 
-            this.panel12.AutoSize = true;
             this.panel12.Controls.Add(this.dataGridView6);
-            this.panel12.Location = new System.Drawing.Point(4, 51);
+            this.panel12.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel12.Location = new System.Drawing.Point(0, 25);
             this.panel12.Name = "panel12";
-            this.panel12.Size = new System.Drawing.Size(455, 191);
+            this.panel12.Size = new System.Drawing.Size(620, 251);
             this.panel12.TabIndex = 23;
             // 
             // dataGridView6
@@ -1110,7 +1107,7 @@
             this.dataGridView6.Location = new System.Drawing.Point(0, 0);
             this.dataGridView6.Name = "dataGridView6";
             this.dataGridView6.RowHeadersVisible = false;
-            this.dataGridView6.Size = new System.Drawing.Size(455, 191);
+            this.dataGridView6.Size = new System.Drawing.Size(620, 251);
             this.dataGridView6.TabIndex = 22;
             this.dataGridView6.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView6_CellContentClick);
             // 
@@ -1157,9 +1154,9 @@
             this.btnNewPurchase.IconChar = FontAwesome.Sharp.IconChar.None;
             this.btnNewPurchase.IconColor = System.Drawing.Color.Black;
             this.btnNewPurchase.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnNewPurchase.Location = new System.Drawing.Point(540, 231);
+            this.btnNewPurchase.Location = new System.Drawing.Point(6, 90);
             this.btnNewPurchase.Name = "btnNewPurchase";
-            this.btnNewPurchase.Size = new System.Drawing.Size(159, 28);
+            this.btnNewPurchase.Size = new System.Drawing.Size(179, 28);
             this.btnNewPurchase.TabIndex = 21;
             this.btnNewPurchase.Text = "[Create New PurchaseOrder]";
             this.btnNewPurchase.UseVisualStyleBackColor = true;
@@ -1171,9 +1168,9 @@
             this.panelDataControlContainer.Controls.Add(this.panelDataGridView);
             this.panelDataControlContainer.Controls.Add(this.btnMove);
             this.panelDataControlContainer.Controls.Add(this.panel13);
-            this.panelDataControlContainer.Location = new System.Drawing.Point(705, 46);
+            this.panelDataControlContainer.Location = new System.Drawing.Point(705, 23);
             this.panelDataControlContainer.Name = "panelDataControlContainer";
-            this.panelDataControlContainer.Size = new System.Drawing.Size(377, 219);
+            this.panelDataControlContainer.Size = new System.Drawing.Size(377, 242);
             this.panelDataControlContainer.TabIndex = 20;
             // 
             // panelDataGridView
@@ -1256,9 +1253,14 @@
             // panel13
             // 
             this.panel13.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel13.Location = new System.Drawing.Point(3, 31);
+            this.panel13.Controls.Add(this.cmbWarehouse);
+            this.panel13.Controls.Add(this.btnNewPurchase);
+            this.panel13.Controls.Add(this.label11);
+            this.panel13.Controls.Add(this.btnSave);
+            this.panel13.Controls.Add(this.btnDiscard);
+            this.panel13.Location = new System.Drawing.Point(3, 34);
             this.panel13.Name = "panel13";
-            this.panel13.Size = new System.Drawing.Size(371, 185);
+            this.panel13.Size = new System.Drawing.Size(191, 121);
             this.panel13.TabIndex = 24;
             // 
             // btnDiscard
@@ -1266,9 +1268,9 @@
             this.btnDiscard.IconChar = FontAwesome.Sharp.IconChar.None;
             this.btnDiscard.IconColor = System.Drawing.Color.Black;
             this.btnDiscard.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnDiscard.Location = new System.Drawing.Point(549, 97);
+            this.btnDiscard.Location = new System.Drawing.Point(95, 53);
             this.btnDiscard.Name = "btnDiscard";
-            this.btnDiscard.Size = new System.Drawing.Size(75, 22);
+            this.btnDiscard.Size = new System.Drawing.Size(90, 22);
             this.btnDiscard.TabIndex = 16;
             this.btnDiscard.Text = "[Discard]";
             this.btnDiscard.UseVisualStyleBackColor = true;
@@ -1279,7 +1281,7 @@
             this.label9.AutoSize = true;
             this.label9.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(0, 245);
+            this.label9.Location = new System.Drawing.Point(0, 276);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(85, 20);
             this.label9.TabIndex = 13;
@@ -1288,7 +1290,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(465, 54);
+            this.label11.Location = new System.Drawing.Point(3, 10);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(113, 13);
             this.label11.TabIndex = 17;
@@ -1299,9 +1301,9 @@
             this.btnSave.IconChar = FontAwesome.Sharp.IconChar.None;
             this.btnSave.IconColor = System.Drawing.Color.Black;
             this.btnSave.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnSave.Location = new System.Drawing.Point(468, 97);
+            this.btnSave.Location = new System.Drawing.Point(6, 53);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(75, 22);
+            this.btnSave.Size = new System.Drawing.Size(83, 22);
             this.btnSave.TabIndex = 15;
             this.btnSave.Text = "[Save]";
             this.btnSave.UseVisualStyleBackColor = true;
@@ -1323,12 +1325,12 @@
             this.colPQuantity,
             this.colReorderLevel});
             this.dataGridView3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.dataGridView3.Location = new System.Drawing.Point(0, 265);
+            this.dataGridView3.Location = new System.Drawing.Point(0, 296);
             this.dataGridView3.Name = "dataGridView3";
             this.dataGridView3.ReadOnly = true;
             this.dataGridView3.RowHeadersVisible = false;
             this.dataGridView3.RowHeadersWidth = 51;
-            this.dataGridView3.Size = new System.Drawing.Size(1092, 308);
+            this.dataGridView3.Size = new System.Drawing.Size(1092, 277);
             this.dataGridView3.TabIndex = 11;
             // 
             // colProductID
@@ -1367,23 +1369,34 @@
             // 
             // panel6
             // 
+            this.panel6.Controls.Add(this.label6);
             this.panel6.Controls.Add(this.label10);
             this.panel6.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel6.Location = new System.Drawing.Point(0, 0);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(1092, 45);
+            this.panel6.Size = new System.Drawing.Size(1092, 25);
             this.panel6.TabIndex = 12;
             // 
             // label10
             // 
-            this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
-            this.label10.Location = new System.Drawing.Point(701, 25);
+            this.label10.Location = new System.Drawing.Point(0, 0);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(155, 20);
+            this.label10.Size = new System.Drawing.Size(129, 20);
             this.label10.TabIndex = 0;
-            this.label10.Text = "WarehouseStocks";
+            this.label10.Text = "PurchaseOrder";
+            // 
+            // label6
+            // 
+            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
+            this.label6.Location = new System.Drawing.Point(710, 2);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(146, 20);
+            this.label6.TabIndex = 0;
+            this.label6.Text = "WarehouseStock";
             // 
             // frmOrder
             // 
@@ -1442,6 +1455,8 @@
             this.panelDataControlContainer.ResumeLayout(false);
             this.panelDataGridView.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            this.panel13.ResumeLayout(false);
+            this.panel13.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
@@ -1558,5 +1573,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colSupplier;
         private System.Windows.Forms.DataGridViewTextBoxColumn colDetail;
         private System.Windows.Forms.DataGridViewCheckBoxColumn colConfirm;
+        private System.Windows.Forms.Label label6;
     }
 }

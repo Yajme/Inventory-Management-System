@@ -712,14 +712,42 @@ END
                 cmd.Parameters.Add(total, SqlDbType.Decimal).Value = dr[2];
 
                 
-                //
+                
 
                 string update = "UPDATE Products SET QuantityInStock= QuantityInStock -" + QuantityParameter + " WHERE ProductID=" + ProductID;
 
-                cmd.Parameters.Add(QuantityParameter, SqlDbType.VarChar).Value = dr[1];
-                cmd.Parameters.Add(ProductID, SqlDbType.VarChar).Value = dr[0];
-                cmd.CommandText = update;
-                cmd.ExecuteNonQuery();
+            
+
+
+                
+                
+                    cmd.Parameters.Add(QuantityParameter, SqlDbType.VarChar).Value = dr[1];
+                    cmd.Parameters.Add(ProductID, SqlDbType.VarChar).Value = dr[0];
+                    cmd.CommandText = update;
+                    cmd.ExecuteNonQuery();
+                /*
+                 
+                 
+CREATE TRIGGER pqty_upd ON Products FOR UPDATE
+AS
+BEGIN
+    IF EXISTS (SELECT 1 FROM inserted WHERE QuantityInStock < 0)
+    BEGIN
+        RAISERROR('No of available products cannot be less than 0', 16, 1);
+        -- Alternatively, you can use THROW for SQL Server 2012 and later versions:
+        -- THROW 50000, 'No of available products cannot be less than 0', 1;
+        ROLLBACK TRANSACTION;
+        RETURN;
+    END;
+             
+    
+END;
+                 
+                 
+                 
+                 
+                 */
+
                 if (batch >= 5)
                 {
                     string sql = "INSERT INTO OrderItems(OrderID,ProductID,Quantity,UnitPrice) VALUES" + "\r\n" + sb.ToString();

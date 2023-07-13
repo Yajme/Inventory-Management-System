@@ -32,10 +32,10 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers.frmInventoyFo
 
         private void clearItems()
         {
-            txtDescription.Text = "";
-            txtProductID.Text = "";
-            txtProductName.Text = "";
-            txtUnitPrice.Text = "";
+            txtDescription.Clear();
+            txtProductID.Clear();
+            txtProductName.Clear();
+            txtUnitPrice.Clear();
 
             cmbCategory.Items.Clear();
             cmbSupplier.Items.Clear();
@@ -85,11 +85,7 @@ namespace Inventory_Management_System.Dashboard.frmPanelContainers.frmInventoyFo
             {
                 MessageBox.Show("Error: " + ex.Message);
             }
-               
-            
-            
-           
-            
         }
+
     }
 }
