@@ -106,7 +106,6 @@
             this.toDate = new System.Windows.Forms.DateTimePicker();
             this.fromDate = new System.Windows.Forms.DateTimePicker();
             this.panelReplenishInventory = new System.Windows.Forms.Panel();
-            this.cmbWarehouse = new System.Windows.Forms.ComboBox();
             this.panel12 = new System.Windows.Forms.Panel();
             this.dataGridView6 = new System.Windows.Forms.DataGridView();
             this.colPORow = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -114,7 +113,6 @@
             this.colSupplier = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colDetail = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colConfirm = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.btnNewPurchase = new FontAwesome.Sharp.IconButton();
             this.panelDataControlContainer = new System.Windows.Forms.Panel();
             this.panelDataGridView = new System.Windows.Forms.Panel();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
@@ -124,18 +122,20 @@
             this.colQuantityWarehouse = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnMove = new FontAwesome.Sharp.IconButton();
             this.panel13 = new System.Windows.Forms.Panel();
-            this.btnDiscard = new FontAwesome.Sharp.IconButton();
-            this.label9 = new System.Windows.Forms.Label();
+            this.cmbWarehouse = new System.Windows.Forms.ComboBox();
+            this.btnNewPurchase = new FontAwesome.Sharp.IconButton();
             this.label11 = new System.Windows.Forms.Label();
             this.btnSave = new FontAwesome.Sharp.IconButton();
+            this.btnDiscard = new FontAwesome.Sharp.IconButton();
+            this.label9 = new System.Windows.Forms.Label();
             this.dataGridView3 = new System.Windows.Forms.DataGridView();
             this.colProductID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colProductName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colPQuantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colReorderLevel = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel6 = new System.Windows.Forms.Panel();
-            this.label10 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
             this.panelTop.SuspendLayout();
             this.panelCash.SuspendLayout();
             this.panelPlaceOrder.SuspendLayout();
@@ -1070,15 +1070,6 @@
             this.panelReplenishInventory.TabIndex = 2;
             this.panelReplenishInventory.Visible = false;
             // 
-            // cmbWarehouse
-            // 
-            this.cmbWarehouse.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbWarehouse.FormattingEnabled = true;
-            this.cmbWarehouse.Location = new System.Drawing.Point(6, 26);
-            this.cmbWarehouse.Name = "cmbWarehouse";
-            this.cmbWarehouse.Size = new System.Drawing.Size(179, 21);
-            this.cmbWarehouse.TabIndex = 18;
-            // 
             // panel12
             // 
             this.panel12.Controls.Add(this.dataGridView6);
@@ -1147,20 +1138,6 @@
             this.colConfirm.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.colConfirm.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.colConfirm.Width = 19;
-            // 
-            // btnNewPurchase
-            // 
-            this.btnNewPurchase.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnNewPurchase.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.btnNewPurchase.IconColor = System.Drawing.Color.Black;
-            this.btnNewPurchase.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnNewPurchase.Location = new System.Drawing.Point(6, 90);
-            this.btnNewPurchase.Name = "btnNewPurchase";
-            this.btnNewPurchase.Size = new System.Drawing.Size(179, 28);
-            this.btnNewPurchase.TabIndex = 21;
-            this.btnNewPurchase.Text = "[Create New PurchaseOrder]";
-            this.btnNewPurchase.UseVisualStyleBackColor = true;
-            this.btnNewPurchase.Click += new System.EventHandler(this.btnNewPurchase_Click);
             // 
             // panelDataControlContainer
             // 
@@ -1263,6 +1240,51 @@
             this.panel13.Size = new System.Drawing.Size(191, 121);
             this.panel13.TabIndex = 24;
             // 
+            // cmbWarehouse
+            // 
+            this.cmbWarehouse.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbWarehouse.FormattingEnabled = true;
+            this.cmbWarehouse.Location = new System.Drawing.Point(6, 26);
+            this.cmbWarehouse.Name = "cmbWarehouse";
+            this.cmbWarehouse.Size = new System.Drawing.Size(179, 21);
+            this.cmbWarehouse.TabIndex = 18;
+            // 
+            // btnNewPurchase
+            // 
+            this.btnNewPurchase.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnNewPurchase.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.btnNewPurchase.IconColor = System.Drawing.Color.Black;
+            this.btnNewPurchase.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnNewPurchase.Location = new System.Drawing.Point(6, 90);
+            this.btnNewPurchase.Name = "btnNewPurchase";
+            this.btnNewPurchase.Size = new System.Drawing.Size(179, 28);
+            this.btnNewPurchase.TabIndex = 21;
+            this.btnNewPurchase.Text = "[Create New PurchaseOrder]";
+            this.btnNewPurchase.UseVisualStyleBackColor = true;
+            this.btnNewPurchase.Click += new System.EventHandler(this.btnNewPurchase_Click);
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(3, 10);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(113, 13);
+            this.label11.TabIndex = 17;
+            this.label11.Text = "Recieving Warehouse";
+            // 
+            // btnSave
+            // 
+            this.btnSave.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.btnSave.IconColor = System.Drawing.Color.Black;
+            this.btnSave.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnSave.Location = new System.Drawing.Point(6, 53);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(83, 22);
+            this.btnSave.TabIndex = 15;
+            this.btnSave.Text = "[Save]";
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
             // btnDiscard
             // 
             this.btnDiscard.IconChar = FontAwesome.Sharp.IconChar.None;
@@ -1286,28 +1308,6 @@
             this.label9.Size = new System.Drawing.Size(85, 20);
             this.label9.TabIndex = 13;
             this.label9.Text = "Products:";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(3, 10);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(113, 13);
-            this.label11.TabIndex = 17;
-            this.label11.Text = "Recieving Warehouse";
-            // 
-            // btnSave
-            // 
-            this.btnSave.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.btnSave.IconColor = System.Drawing.Color.Black;
-            this.btnSave.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnSave.Location = new System.Drawing.Point(6, 53);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(83, 22);
-            this.btnSave.TabIndex = 15;
-            this.btnSave.Text = "[Save]";
-            this.btnSave.UseVisualStyleBackColor = true;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // dataGridView3
             // 
@@ -1377,16 +1377,6 @@
             this.panel6.Size = new System.Drawing.Size(1092, 25);
             this.panel6.TabIndex = 12;
             // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
-            this.label10.Location = new System.Drawing.Point(0, 0);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(129, 20);
-            this.label10.TabIndex = 0;
-            this.label10.Text = "PurchaseOrder";
-            // 
             // label6
             // 
             this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -1397,6 +1387,16 @@
             this.label6.Size = new System.Drawing.Size(146, 20);
             this.label6.TabIndex = 0;
             this.label6.Text = "WarehouseStock";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
+            this.label10.Location = new System.Drawing.Point(0, 0);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(129, 20);
+            this.label10.TabIndex = 0;
+            this.label10.Text = "PurchaseOrder";
             // 
             // frmOrder
             // 

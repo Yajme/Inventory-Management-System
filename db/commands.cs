@@ -311,10 +311,90 @@ public static class commands
         return items;
     }
 
+    /*<---ProductSearchMovementstock-->*/
+
+    public static DataTable searchMovementStock(string ProductID)
+    {
+        DataTable dt = new DataTable();
+        con.Open();
+        cmd = new SqlCommand("SELECT StockMovements.MovementID, Products.Description, Warehouses.WarehouseName, StockMovements.MovementType,StockMovements.MovementDate, StockMovements.Quantity FROM StockMovements JOIN Warehouses ON StockMovements.WarehouseID = Warehouses.WarehouseID JOIN Products ON StockMovements.ProductID = Products.ProductID WHERE Products.ProductID= @ProductID", con);
+        cmd.Parameters.Add("@ProductID", SqlDbType.VarChar).Value = ProductID;
+
+        dt.Load(cmd.ExecuteReader());
+        con.Close();
+        return dt;
+    }
+    public static DataTable searchMovementStock(string ProductID, string MovementType)
+    {
+        DataTable dt = new DataTable();
+        con.Open();
+        cmd = new SqlCommand("SELECT StockMovements.MovementID, Products.Description, Warehouses.WarehouseName, StockMovements.MovementType,StockMovements.MovementDate, StockMovements.Quantity FROM StockMovements JOIN Warehouses ON StockMovements.WarehouseID = Warehouses.WarehouseID JOIN Products ON StockMovements.ProductID = Products.ProductID  WHERE Products.ProductID= @ProductID, StockMovements.MovementType= @MovementType", con);
+        cmd.Parameters.Add("@MovementType", SqlDbType.VarChar).Value = MovementType;
+        cmd.Parameters.Add("@ProductID", SqlDbType.VarChar).Value = ProductID;
+
+
+        dt.Load(cmd.ExecuteReader());
+        con.Close();
+        return dt;
+    }
+    public static DataTable searchMovementStock(string ProductID, string Warehouse, string MovementType)
+    {
+        DataTable dt = new DataTable();
+        con.Open();
+        cmd = new SqlCommand("SELECT StockMovements.MovementID, Products.Description, Warehouses.WarehouseName, StockMovements.MovementType,StockMovements.MovementDate, StockMovements.Quantity FROM StockMovements JOIN Warehouses ON StockMovements.WarehouseID = Warehouses.WarehouseID JOIN Products ON StockMovements.ProductID = Products.ProductID WHERE Products.ProductID= @ProductID, StockMovements.MovementType= @MovementType,  Warehouses.WarehouseName= @WarehouseName", con);
+        cmd.Parameters.Add("@WarehouseName", SqlDbType.VarChar).Value = Warehouse;
+        cmd.Parameters.Add("@MovementType", SqlDbType.VarChar).Value = MovementType;
+        cmd.Parameters.Add("@ProductID", SqlDbType.VarChar).Value = ProductID;
+
+        dt.Load(cmd.ExecuteReader());
+        con.Close();
+        return dt;
+    }
+
+    /*<---ProductSearchMovementstock-->*/
+    public static string filtermovementstock = "SELECT StockMovements.MovementID, Products.Description, Warehouses.WarehouseName, StockMovements.MovementType,StockMovements.MovementDate, StockMovements.Quantity FROM StockMovements JOIN Warehouses ON StockMovements.WarehouseID = Warehouses.WarehouseID JOIN Products ON StockMovements.ProductID = Products.ProductID";
+    public static DataTable filterMovementStock(string MovementType)
+    {
+        DataTable dt = new DataTable();
+        string command = filtermovementstock += " WHERE StockMovements.MovementType= @MovementType";
+
+        filtermovementstock += " WHERE StockMovements.MovementType= @MovementType";
+        con.Open();
+        cmd.Parameters.Add("@MovementType", SqlDbType.VarChar).Value = MovementType;
+        cmd = new SqlCommand(command,con);
+
+        dt.Load(cmd.ExecuteReader());
+
+        con.Close();
+        return dt;
+    }
+    public static DataTable filterMovementStock(string MovementType, string warehouse)
+    {
+        DataTable dt = new DataTable();
+
+
+        return dt;
+    }
+    public static DataTable filterMovementStock_Warehouse(string warehouse)
+    {
+        DataTable dt = new DataTable();
+
+
+        return dt;
+    }
+    public static DataTable filterMovementStock_Warehouse(string warehouse, string productID)
+    {
+        DataTable dt = new DataTable();
+
+
+        return dt;
+    }
+
+
     public static DataTable loadMovementStock()
     {
         con.Open();
-        cmd = new SqlCommand("SELECT StockMovements.MovementID, StockMovements.ProductID, Warehouses.WarehouseName, StockMovements.MovementType,StockMovements.MovementDate, StockMovements.Quantity FROM StockMovements JOIN Warehouses ON StockMovements.WarehouseID = Warehouses.WarehouseID", con);
+        cmd = new SqlCommand("SELECT StockMovements.MovementID, Products.Description, Warehouses.WarehouseName, StockMovements.MovementType,StockMovements.MovementDate, StockMovements.Quantity FROM StockMovements JOIN Warehouses ON StockMovements.WarehouseID = Warehouses.WarehouseID JOIN Products ON StockMovements.ProductID = Products.ProductID", con);
         DataTable dt = new DataTable();
         dt.Load(cmd.ExecuteReader());
         con.Close();
