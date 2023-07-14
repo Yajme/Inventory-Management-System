@@ -328,7 +328,7 @@ public static class commands
     {
         DataTable dt = new DataTable();
         con.Open();
-        cmd = new SqlCommand("SELECT StockMovements.MovementID, Products.Description, Warehouses.WarehouseName, StockMovements.MovementType,StockMovements.MovementDate, StockMovements.Quantity FROM StockMovements JOIN Warehouses ON StockMovements.WarehouseID = Warehouses.WarehouseID JOIN Products ON StockMovements.ProductID = Products.ProductID  WHERE Products.ProductID= @ProductID, StockMovements.MovementType= @MovementType", con);
+        cmd = new SqlCommand("SELECT StockMovements.MovementID, Products.Description, Warehouses.WarehouseName, StockMovements.MovementType,StockMovements.MovementDate, StockMovements.Quantity FROM StockMovements JOIN Warehouses ON StockMovements.WarehouseID = Warehouses.WarehouseID JOIN Products ON StockMovements.ProductID = Products.ProductID  WHERE Products.ProductID= @ProductID AND StockMovements.MovementType= @MovementType", con);
         cmd.Parameters.Add("@MovementType", SqlDbType.VarChar).Value = MovementType;
         cmd.Parameters.Add("@ProductID", SqlDbType.VarChar).Value = ProductID;
 
@@ -341,7 +341,7 @@ public static class commands
     {
         DataTable dt = new DataTable();
         con.Open();
-        cmd = new SqlCommand("SELECT StockMovements.MovementID, Products.Description, Warehouses.WarehouseName, StockMovements.MovementType,StockMovements.MovementDate, StockMovements.Quantity FROM StockMovements JOIN Warehouses ON StockMovements.WarehouseID = Warehouses.WarehouseID JOIN Products ON StockMovements.ProductID = Products.ProductID WHERE Products.ProductID= @ProductID, StockMovements.MovementType= @MovementType,  Warehouses.WarehouseName= @WarehouseName", con);
+        cmd = new SqlCommand("SELECT StockMovements.MovementID, Products.Description, Warehouses.WarehouseName, StockMovements.MovementType,StockMovements.MovementDate, StockMovements.Quantity FROM StockMovements JOIN Warehouses ON StockMovements.WarehouseID = Warehouses.WarehouseID JOIN Products ON StockMovements.ProductID = Products.ProductID WHERE Products.ProductID= @ProductID AND StockMovements.MovementType= @MovementType AND Warehouses.WarehouseName= @WarehouseName", con);
         cmd.Parameters.Add("@WarehouseName", SqlDbType.VarChar).Value = Warehouse;
         cmd.Parameters.Add("@MovementType", SqlDbType.VarChar).Value = MovementType;
         cmd.Parameters.Add("@ProductID", SqlDbType.VarChar).Value = ProductID;
@@ -352,16 +352,15 @@ public static class commands
     }
 
     /*<---ProductSearchMovementstock-->*/
-    public static string filtermovementstock = "SELECT StockMovements.MovementID, Products.Description, Warehouses.WarehouseName, StockMovements.MovementType,StockMovements.MovementDate, StockMovements.Quantity FROM StockMovements JOIN Warehouses ON StockMovements.WarehouseID = Warehouses.WarehouseID JOIN Products ON StockMovements.ProductID = Products.ProductID";
+     public const string filtermovementstock = "SELECT StockMovements.MovementID, Products.Description, Warehouses.WarehouseName, StockMovements.MovementType,StockMovements.MovementDate, StockMovements.Quantity FROM StockMovements JOIN Warehouses ON StockMovements.WarehouseID = Warehouses.WarehouseID JOIN Products ON StockMovements.ProductID = Products.ProductID";
     public static DataTable filterMovementStock(string MovementType)
     {
         DataTable dt = new DataTable();
-        string command = filtermovementstock += " WHERE StockMovements.MovementType= @MovementType";
-
-        filtermovementstock += " WHERE StockMovements.MovementType= @MovementType";
+        string command = filtermovementstock + "  WHERE StockMovements.MovementType= @MovementType";
         con.Open();
+        cmd = new SqlCommand(command, con);
         cmd.Parameters.Add("@MovementType", SqlDbType.VarChar).Value = MovementType;
-        cmd = new SqlCommand(command,con);
+        
 
         dt.Load(cmd.ExecuteReader());
 
@@ -371,21 +370,47 @@ public static class commands
     public static DataTable filterMovementStock(string MovementType, string warehouse)
     {
         DataTable dt = new DataTable();
+        string command = filtermovementstock + " WHERE StockMovements.MovementType= @MovementType AND Warehouses.WarehouseName= @Warehouse";
+        con.Open();
+        cmd = new SqlCommand(command, con);
+        cmd.Parameters.Add("@MovementType", SqlDbType.VarChar).Value = MovementType;
+        cmd.Parameters.Add("@Warehouse", SqlDbType.VarChar).Value = warehouse;
+        
 
+        dt.Load(cmd.ExecuteReader());
+
+        con.Close();
 
         return dt;
     }
     public static DataTable filterMovementStock_Warehouse(string warehouse)
     {
         DataTable dt = new DataTable();
+        string command = filtermovementstock + " WHERE Warehouses.WarehouseName= @Warehouse";
+        con.Open();
+        cmd = new SqlCommand(command, con);
+        cmd.Parameters.Add("@Warehouse", SqlDbType.VarChar).Value = warehouse;
+        
 
+        dt.Load(cmd.ExecuteReader());
+
+        con.Close();
 
         return dt;
     }
     public static DataTable filterMovementStock_Warehouse(string warehouse, string productID)
     {
         DataTable dt = new DataTable();
+        string command = filtermovementstock + " WHERE Products.ProductID= @ProductID AND Warehouses.WarehouseName= @Warehouse";
+        con.Open();
+        cmd = new SqlCommand(command, con);
+        cmd.Parameters.Add("@ProductID", SqlDbType.VarChar).Value = productID;
+        cmd.Parameters.Add("@Warehouse", SqlDbType.VarChar).Value = warehouse;
+        
 
+        dt.Load(cmd.ExecuteReader());
+
+        con.Close();
 
         return dt;
     }
